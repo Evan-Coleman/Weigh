@@ -19,25 +19,40 @@ namespace Weigh.Helpers
         }
     }
 
-    #region Setting Constants
+        #region Setting Constants
 
-    private const string SettingsKey = "settings_key";
-    private static readonly string SettingsDefault = string.Empty;
+        private const string SettingsKey = "settings_key";
+        private static readonly string SettingsDefault = string.Empty;
 
-    #endregion
+        private const string FirstUseKey = "first_use_key";
+        private static readonly string FirstUseDefault = "yes";
+
+        #endregion
 
 
-    public static string GeneralSettings
-    {
-        get
+        public static string GeneralSettings
         {
-            return AppSettings.GetValueOrDefault(SettingsKey, SettingsDefault);
+            get
+            {
+                return AppSettings.GetValueOrDefault(SettingsKey, SettingsDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(SettingsKey, value);
+            }
         }
-        set
+
+        public static string FirstUse
         {
-            AppSettings.AddOrUpdateValue(SettingsKey, value);
+            get
+            {
+                return AppSettings.GetValueOrDefault(FirstUseKey, FirstUseDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(FirstUseKey, value);
+            }
         }
+
     }
-
-}
 }
