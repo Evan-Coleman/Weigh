@@ -31,7 +31,7 @@ namespace Weigh.Helpers
         private static readonly string NameDefault = string.Empty;
 
         private const string SexKey = "sex_key";
-        private static readonly string SexDefault = string.Empty;
+        private static readonly bool SexDefault = false;
 
         private const string AgeKey = "age_key";
         private static readonly int AgeDefault = 0;
@@ -44,6 +44,9 @@ namespace Weigh.Helpers
 
         private const string WeightKey = "weight_key";
         private static readonly double WeightDefault = 0.0;
+
+        private const string WeightKey = "weight_key";
+        private static readonly bool WeightDefault = false;
 
         #endregion
 
@@ -84,7 +87,7 @@ namespace Weigh.Helpers
             }
         }
 
-        public static string Sex
+        public static bool Sex
         {
             get
             {

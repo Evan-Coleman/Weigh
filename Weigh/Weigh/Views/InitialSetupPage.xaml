@@ -5,23 +5,43 @@
              Title="{Binding Title}">
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Entry Text="{Binding Path=Settings.Name, Mode=TwoWay}"
-               Placeholder="Enter Name Here"/>
-        <StackLayout Orientation="Horizontal">
+        <Entry Text="{Binding Name}"
+               Placeholder="Enter Name Here"
+               HorizontalTextAlignment="Center"
+               WidthRequest="150"/>
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="CenterAndExpand"
+                     Padding="0">
             <Label Text="Male"/>
-            <Switch />
+            <Switch IsToggled="{Binding Sex}"/>
             <Label Text="Female"/>
         </StackLayout>
-        <Entry Text="h"
-               Placeholder="Enter Age Here"/>
-        <Entry Text="h"
-               Placeholder="Enter Height in Feet Here"/>
-        <Entry Text="h"
-               Placeholder="Enter Height in Inches Here"/>
-        <Entry Text="hi"
-               Placeholder="Enter Weight Here"/>
+        <Entry Text="{Binding Age}"
+               Placeholder="Age"
+               HorizontalTextAlignment="Center"
+               WidthRequest="150"/>
+        <Entry Text="{Binding HeightFeet}"
+               Placeholder="Height (ft)"
+               HorizontalTextAlignment="Center"
+               WidthRequest="150"/>
+        <Entry Text="{Binding HeightInches}"
+               Placeholder="Height (in)"
+               HorizontalTextAlignment="Center"
+               WidthRequest="150"/>
+        <Entry Text="{Binding Weight}"
+               Placeholder="Weight"
+               HorizontalTextAlignment="Center"
+               WidthRequest="150"/>
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="CenterAndExpand"
+                     Padding="0">
+            <Label Text="Imperial"/>
+            <Switch IsToggled="{Binding Sex}"/>
+            <Label Text="Metric"/>
+        </StackLayout>
         <Button Text="Save"
-                Command="{Binding SaveInfoCommand}"/>
+                Command="{Binding SaveInfoCommand}"
+                WidthRequest="150"/>
     </StackLayout>
 
 </ContentPage>
