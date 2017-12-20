@@ -30,6 +30,7 @@ namespace Weigh
         {
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainPage>();
+            Container.RegisterTypeForNavigation<InitialSetupPage>();
         }
     }
 }
