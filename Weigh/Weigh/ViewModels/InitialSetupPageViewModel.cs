@@ -12,7 +12,7 @@ namespace Weigh.ViewModels
         public InitialSetupPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
-            Title = "Main Page";
+            Title = "Setup";
         }
     }
 }

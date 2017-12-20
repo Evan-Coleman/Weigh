@@ -4,6 +4,7 @@ using DryIoc;
 using Prism.DryIoc;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Weigh.Helpers;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Weigh
@@ -15,6 +16,7 @@ namespace Weigh
          * This imposes a limitation in which the App class must have a default constructor. 
          * App(IPlatformInitializer initializer = null) cannot be handled by the Activator.
          */
+
         public App() : this(null) { }
 
         public App(IPlatformInitializer initializer) : base(initializer) { }
@@ -23,7 +25,14 @@ namespace Weigh
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            if (Settings.FirstUse == "yes")
+            {
+                await NavigationService.NavigateAsync("NavigationPage/InitialSetupPage");
+            }
+            else
+            {
+                await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            }
         }
 
         protected override void RegisterTypes()
