@@ -27,11 +27,11 @@ namespace Weigh
 
             if (Settings.FirstUse == "yes")
             {
-                await NavigationService.NavigateAsync("NavigationPage/InitialSetupPage");
+                await NavigationService.NavigateAsync("NavigatingAwareTabbedPage");
             }
             else
             {
-                await NavigationService.NavigateAsync("NavigationPage/MainPage");
+                await NavigationService.NavigateAsync("NavigatingAwareTabbedPage/MainPage");
             }
         }
 
@@ -40,6 +40,9 @@ namespace Weigh
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainPage>();
             Container.RegisterTypeForNavigation<InitialSetupPage>();
+            Container.RegisterTypeForNavigation<NavigatingAwareTabbedPage>();
+            Container.RegisterTypeForNavigation<SettingsPage>();
+            Container.RegisterTypeForNavigation<GraphsPage>();
         }
     }
 }

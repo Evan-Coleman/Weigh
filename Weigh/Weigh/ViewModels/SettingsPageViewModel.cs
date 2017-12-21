@@ -8,7 +8,7 @@ using Weigh.Helpers;
 
 namespace Weigh.ViewModels
 {
-	public class InitialSetupPageViewModel : ViewModelBase
+	public class SettingsPageViewModel : ViewModelBase
 	{
         private string _name;
         public string Name
@@ -55,12 +55,12 @@ namespace Weigh.ViewModels
 
         public DelegateCommand SaveInfoCommand { get; set; }
 
-        public InitialSetupPageViewModel(INavigationService navigationService)
+        public SettingsPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
             Title = "Setup";
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
-            
+
             Name = Settings.Name;
             Sex = Settings.Sex;
             Age = Settings.Age.ToString();
@@ -81,6 +81,5 @@ namespace Weigh.ViewModels
             Settings.Units = Units;
             await NavigationService.NavigateAsync("NavigatingAwareTabbedPage/MainPage");
         }
-
     }
 }
