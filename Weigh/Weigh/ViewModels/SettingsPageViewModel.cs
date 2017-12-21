@@ -79,7 +79,8 @@ namespace Weigh.ViewModels
             Settings.HeightMinor = Convert.ToInt32(HeightMinor);
             Settings.Weight = Convert.ToDouble(Weight);
             Settings.Units = Units;
-            await NavigationService.NavigateAsync("NavigatingAwareTabbedPage/MainPage");
+            await NavigationService.NavigateAsync(
+                $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
         }
     }
 }

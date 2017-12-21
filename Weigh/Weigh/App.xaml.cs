@@ -2,6 +2,7 @@
 using Weigh.Views;
 using DryIoc;
 using Prism.DryIoc;
+using Prism.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Weigh.Helpers;
@@ -27,11 +28,12 @@ namespace Weigh
 
             if (Settings.FirstUse == "yes")
             {
-                await NavigationService.NavigateAsync("NavigatingAwareTabbedPage");
+                await NavigationService.NavigateAsync("InitialSetupPage");
             }
             else
             {
-                await NavigationService.NavigateAsync("NavigatingAwareTabbedPage/MainPage");
+                await NavigationService.NavigateAsync(
+                    $"NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
             }
         }
 

@@ -5,8 +5,7 @@
              Title="{Binding Title}">
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
-        <Label Text="HIIHIHIHI"/>
+        <Label Text="{Binding BMI, StringFormat='BMI = {0:00.00}'}"></Label>
     </StackLayout>
 
 </ContentPage>
