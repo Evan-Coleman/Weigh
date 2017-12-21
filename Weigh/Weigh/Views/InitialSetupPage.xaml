@@ -9,7 +9,8 @@
         <Entry Text="{Binding Name}"
                Placeholder="Enter Name Here"
                HorizontalTextAlignment="Center"
-               WidthRequest="150"/>
+               WidthRequest="150"
+               x:Name="Name"/>
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="CenterAndExpand"
                      Padding="0">
@@ -20,7 +21,8 @@
         <Entry Text="{Binding Age}"
                Placeholder="Age"
                HorizontalTextAlignment="Center"
-               WidthRequest="150">
+               WidthRequest="150"
+               x:Name="Age">
             <Entry.Behaviors>
                 <b:NumericValidatorBehavior />
             </Entry.Behaviors>
@@ -28,7 +30,8 @@
         <Entry Text="{Binding HeightMajor}"
                Placeholder="Height (ft/m)"
                HorizontalTextAlignment="Center"
-               WidthRequest="150">
+               WidthRequest="150"
+               x:Name="HeightMajor">
             <Entry.Behaviors>
                 <b:NumericValidatorBehavior />
             </Entry.Behaviors>
@@ -36,7 +39,8 @@
         <Entry Text="{Binding HeightMinor}"
                Placeholder="Height (in/cm)"
                HorizontalTextAlignment="Center"
-               WidthRequest="150">
+               WidthRequest="150"
+               x:Name="HeightMinor">
             <Entry.Behaviors>
             <b:NumericValidatorBehavior />
             </Entry.Behaviors>
@@ -44,7 +48,8 @@
         <Entry Text="{Binding Weight}"
                Placeholder="Weight (lb/kg)"
                HorizontalTextAlignment="Center"
-               WidthRequest="150">
+               WidthRequest="150"
+               x:Name="Weight">
                            <Entry.Behaviors>
             <b:NumericValidatorBehavior />
             </Entry.Behaviors>
@@ -58,7 +63,35 @@
         </StackLayout>
         <Button Text="Save"
                 Command="{Binding SaveInfoCommand}"
-                WidthRequest="150"/>
+                WidthRequest="150">
+            <Button.Triggers>
+                <DataTrigger TargetType="Button"
+                     Binding="{Binding Source={x:Reference Age},
+                                       Path=TextColor}"
+                     Value="Color.Red">
+                    <Setter Property="IsEnabled" Value="False" />
+                </DataTrigger>
+                <DataTrigger TargetType="Button"
+                     Binding="{Binding Source={x:Reference HeightMajor},
+                                       Path=TextColor}"
+                     Value="Color.Red">
+                    <Setter Property="IsEnabled" Value="False" />
+                </DataTrigger>
+                <DataTrigger TargetType="Button"
+                     Binding="{Binding Source={x:Reference HeightMinor},
+                                       Path=TextColor}"
+                     Value="Color.Red">
+                    <Setter Property="IsEnabled" Value="False" />
+                </DataTrigger>
+                <DataTrigger TargetType="Button"
+                     Binding="{Binding Source={x:Reference Weight},
+                                       Path=TextColor}"
+                     Value="Color.Red">
+                    <Setter Property="IsEnabled" Value="False" />
+                </DataTrigger>
+            </Button.Triggers>
+
+        </Button>
     </StackLayout>
 
 </ContentPage>
