@@ -28,17 +28,17 @@ namespace Weigh.ViewModels
             get { return _age; }
             set { SetProperty(ref _age, value); }
         }
-        private string _heightFeet;
-        public string HeightFeet
+        private string _heightMajor;
+        public string HeightMajor
         {
-            get { return _heightFeet; }
-            set { SetProperty(ref _heightFeet, value); }
+            get { return _heightMajor; }
+            set { SetProperty(ref _heightMajor, value); }
         }
-        private string _heightInches;
-        public string HeightInches
+        private string _heightMinor;
+        public string HeightMinor
         {
-            get { return _heightInches; }
-            set { SetProperty(ref _heightInches, value); }
+            get { return _heightMinor; }
+            set { SetProperty(ref _heightMinor, value); }
         }
         private string _weight;
         public string Weight
@@ -46,23 +46,28 @@ namespace Weigh.ViewModels
             get { return _weight; }
             set { SetProperty(ref _weight, value); }
         }
+        private bool _units;
+        public bool Units
+        {
+            get { return _units; }
+            set { SetProperty(ref _units, value); }
+        }
 
         public DelegateCommand SaveInfoCommand { get; set; }
-        public DelegateCommand ChangeSexCommand { get; set; }
 
         public InitialSetupPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
             Title = "Setup";
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
-            ChangeSexCommand = new DelegateCommand(ChangeSex);
-            /*
+            
             Name = Settings.Name;
             Sex = Settings.Sex;
-            Age = Settings.Age;
-            HeightFeet = Settings.HeightFeet;
-            HeightInches = Settings.HeightInches;
-            Weight = Settings.Weight;            */
+            Age = Settings.Age.ToString();
+            HeightMajor = Settings.HeightMajor.ToString();
+            HeightMinor = Settings.HeightMinor.ToString();
+            Weight = Settings.Weight.ToString();
+            Units = Settings.Units;
         }
 
         private async void SaveInfoAsync()
@@ -70,22 +75,12 @@ namespace Weigh.ViewModels
             Settings.Name = Name;
             Settings.Sex = Sex;
             Settings.Age = Convert.ToInt32(Age);
-            Settings.HeightFeet = Convert.ToInt32(HeightFeet);
-            Settings.HeightInches = Convert.ToInt32(HeightInches);
+            Settings.HeightMajor = Convert.ToInt32(HeightMajor);
+            Settings.HeightMinor = Convert.ToInt32(HeightMinor);
             Settings.Weight = Convert.ToDouble(Weight);
+            Settings.Units = Units;
             await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
-        public void ChangeSex()
-        {
-            if (Sex == true)
-            {
-                Sex = false;
-            }
-            else
-            {
-                Sex = true;
-            }
-        }
     }
 }

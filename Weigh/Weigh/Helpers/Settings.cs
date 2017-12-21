@@ -36,17 +36,17 @@ namespace Weigh.Helpers
         private const string AgeKey = "age_key";
         private static readonly int AgeDefault = 0;
 
-        private const string HeightFeetKey = "height_feet_key";
-        private static readonly int HeightFeetDefault = 0;
+        private const string HeightMajorKey = "height_major_key";
+        private static readonly int HeightMajorDefault = 0;
 
-        private const string HeightInchesKey = "height_inches_key";
-        private static readonly int HeightInchesDefault = 0;
+        private const string HeightMinorKey = "height_minor_key";
+        private static readonly int HeightMinorDefault = 0;
 
         private const string WeightKey = "weight_key";
         private static readonly double WeightDefault = 0.0;
 
-        private const string WeightKey = "weight_key";
-        private static readonly bool WeightDefault = false;
+        private const string UnitsKey = "units_key";
+        private static readonly bool UnitsDefault = false;
 
         #endregion
 
@@ -111,27 +111,27 @@ namespace Weigh.Helpers
             }
         }
 
-        public static int HeightFeet
+        public static int HeightMajor
         {
             get
             {
-                return AppSettings.GetValueOrDefault(HeightFeetKey, HeightFeetDefault);
+                return AppSettings.GetValueOrDefault(HeightMajorKey, HeightMajorDefault);
             }
             set
             {
-                AppSettings.AddOrUpdateValue(HeightFeetKey, value);
+                AppSettings.AddOrUpdateValue(HeightMajorKey, value);
             }
         }
 
-        public static int HeightInches
+        public static int HeightMinor
         {
             get
             {
-                return AppSettings.GetValueOrDefault(HeightInchesKey, HeightInchesDefault);
+                return AppSettings.GetValueOrDefault(HeightMinorKey, HeightMinorDefault);
             }
             set
             {
-                AppSettings.AddOrUpdateValue(HeightInchesKey, value);
+                AppSettings.AddOrUpdateValue(HeightMinorKey, value);
             }
         }
 
@@ -144,6 +144,18 @@ namespace Weigh.Helpers
             set
             {
                 AppSettings.AddOrUpdateValue(WeightKey, value);
+            }
+        }
+
+        public static bool Units
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(UnitsKey, UnitsDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(UnitsKey, value);
             }
         }
 

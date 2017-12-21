@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Weigh.Views.InitialSetupPage"
+             xmlns:b="clr-namespace:Weigh.Behaviors"
              Title="{Binding Title}">
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
@@ -19,24 +20,40 @@
         <Entry Text="{Binding Age}"
                Placeholder="Age"
                HorizontalTextAlignment="Center"
-               WidthRequest="150"/>
-        <Entry Text="{Binding HeightFeet}"
-               Placeholder="Height (ft)"
+               WidthRequest="150">
+            <Entry.Behaviors>
+                <b:NumericValidatorBehavior />
+            </Entry.Behaviors>
+        </Entry>
+        <Entry Text="{Binding HeightMajor}"
+               Placeholder="Height (ft/m)"
                HorizontalTextAlignment="Center"
-               WidthRequest="150"/>
-        <Entry Text="{Binding HeightInches}"
-               Placeholder="Height (in)"
+               WidthRequest="150">
+            <Entry.Behaviors>
+                <b:NumericValidatorBehavior />
+            </Entry.Behaviors>
+        </Entry>
+        <Entry Text="{Binding HeightMinor}"
+               Placeholder="Height (in/cm)"
                HorizontalTextAlignment="Center"
-               WidthRequest="150"/>
+               WidthRequest="150">
+            <Entry.Behaviors>
+            <b:NumericValidatorBehavior />
+            </Entry.Behaviors>
+        </Entry>
         <Entry Text="{Binding Weight}"
-               Placeholder="Weight"
+               Placeholder="Weight (lb/kg)"
                HorizontalTextAlignment="Center"
-               WidthRequest="150"/>
+               WidthRequest="150">
+                           <Entry.Behaviors>
+            <b:NumericValidatorBehavior />
+            </Entry.Behaviors>
+        </Entry>
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="CenterAndExpand"
                      Padding="0">
             <Label Text="Imperial"/>
-            <Switch IsToggled="{Binding Sex}"/>
+            <Switch IsToggled="{Binding Units}"/>
             <Label Text="Metric"/>
         </StackLayout>
         <Button Text="Save"
