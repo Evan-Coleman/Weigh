@@ -28,7 +28,7 @@
             </Entry.Behaviors>
         </Entry>
         <Entry Text="{Binding HeightMajor}"
-               Placeholder="Height (ft/m)"
+               Placeholder="Height (ft/cm)"
                HorizontalTextAlignment="Center"
                WidthRequest="150"
                x:Name="HeightMajor">
@@ -40,7 +40,8 @@
                Placeholder="Height (in/cm)"
                HorizontalTextAlignment="Center"
                WidthRequest="150"
-               x:Name="HeightMinor">
+               x:Name="HeightMinor"
+               IsVisible="{Binding Units}">
             <Entry.Behaviors>
             <b:NumericValidatorBehavior />
             </Entry.Behaviors>
@@ -50,16 +51,17 @@
                HorizontalTextAlignment="Center"
                WidthRequest="150"
                x:Name="Weight">
-                           <Entry.Behaviors>
-            <b:NumericValidatorBehavior />
+            <Entry.Behaviors>
+                <b:NumericValidatorBehavior />
             </Entry.Behaviors>
         </Entry>
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="CenterAndExpand"
                      Padding="0">
-            <Label Text="Imperial"/>
-            <Switch IsToggled="{Binding Units}"/>
             <Label Text="Metric"/>
+            <Switch IsToggled="{Binding Units}"
+                    x:Name="UnitSwitch"/>
+            <Label Text="Imperial"/>
         </StackLayout>
         <Button Text="Save"
                 Command="{Binding SaveInfoCommand}"

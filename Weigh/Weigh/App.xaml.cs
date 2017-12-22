@@ -28,10 +28,12 @@ namespace Weigh
 
             if (Settings.FirstUse == "yes")
             {
+                Settings.FirstUse = "no";
                 await NavigationService.NavigateAsync("InitialSetupPage");
             }
             else
             {
+                // Navigate to main page with main tab activated
                 await NavigationService.NavigateAsync(
                     $"NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
             }

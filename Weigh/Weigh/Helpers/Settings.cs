@@ -46,7 +46,7 @@ namespace Weigh.Helpers
         private static readonly double WeightDefault = 0.0;
 
         private const string UnitsKey = "units_key";
-        private static readonly bool UnitsDefault = false;
+        private static readonly bool UnitsDefault = true;
 
         #endregion
 

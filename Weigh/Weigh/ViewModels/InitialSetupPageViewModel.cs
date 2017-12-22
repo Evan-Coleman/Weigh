@@ -10,6 +10,7 @@ namespace Weigh.ViewModels
 {
 	public class InitialSetupPageViewModel : ViewModelBase
 	{
+        #region Fields
         private string _name;
         public string Name
         {
@@ -54,33 +55,46 @@ namespace Weigh.ViewModels
         }
 
         public DelegateCommand SaveInfoCommand { get; set; }
+        #endregion
 
+        #region Constructor
         public InitialSetupPageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
             Title = "Setup";
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
-            
-            Name = Settings.Name;
-            Sex = Settings.Sex;
-            Age = Settings.Age.ToString();
-            HeightMajor = Settings.HeightMajor.ToString();
-            HeightMinor = Settings.HeightMinor.ToString();
-            Weight = Settings.Weight.ToString();
-            Units = Settings.Units;
+            // Setting units to default imperial
+            Units = true;
         }
+        #endregion
 
+        #region Methods
         private async void SaveInfoAsync()
         {
             Settings.Name = Name;
             Settings.Sex = Sex;
             Settings.Age = Convert.ToInt32(Age);
-            Settings.HeightMajor = Convert.ToInt32(HeightMajor);
-            Settings.HeightMinor = Convert.ToInt32(HeightMinor);
-            Settings.Weight = Convert.ToDouble(Weight);
+            // units false means metric, so do calculations here.
+            if (Units == false)
+            {
+                double _feet = ((Convert.ToDouble(HeightMajor) / 2.54) / 12);
+                int _iFeet = (int)_feet;
+                double _inches = (_feet - (double)_iFeet) * 12;
+                Settings.HeightMajor = _iFeet;
+                Settings.HeightMinor = Convert.ToInt32(_inches);
+                Settings.Weight = Convert.ToDouble(Weight) * 2.20462;
+            }
+            else
+            {
+                Settings.HeightMajor = Convert.ToInt32(HeightMajor);
+                Settings.HeightMinor = Convert.ToInt32(HeightMinor);
+                Settings.Weight = Convert.ToDouble(Weight);
+            }
             Settings.Units = Units;
+            // Nav using absolute path so user can't hit the back button and come back here
             await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage/MainPage");
         }
+        #endregion
 
     }
 }
