@@ -5,7 +5,8 @@
              Title="{Binding Title}">
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="{Binding BMI, StringFormat='BMI = {0:00.00}'}"></Label>
+        <Label Text="{Binding BMI, StringFormat='BMI = {0:00.00}'}" />
+        <Label Text="{Binding BMR, StringFormat='Calories to maintain weight with light exercise (BMR) = {0:00.00}'}" />
     </StackLayout>
 
 </ContentPage>
