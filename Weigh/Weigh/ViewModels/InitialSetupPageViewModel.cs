@@ -54,6 +54,20 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _units, value); }
         }
 
+        private List<string> _pickerSource;
+        public List<string> PickerSource
+        {
+            get { return _pickerSource; }
+            set { SetProperty(ref _pickerSource, value); }
+        }
+
+        private string _pickerSelectedItem;
+        public string PickerSelectedItem
+        {
+            get { return _pickerSelectedItem; }
+            set { SetProperty(ref _pickerSelectedItem, value); }
+        }
+
         public DelegateCommand SaveInfoCommand { get; set; }
         #endregion
 
@@ -65,6 +79,7 @@ namespace Weigh.ViewModels
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
             // Setting units to default imperial
             Units = true;
+            PickerSource = new List<string> { "No Exercise", "Light Exercise", "Moderate Exercise", "Heavy Exercise" };
         }
         #endregion
 
@@ -91,6 +106,7 @@ namespace Weigh.ViewModels
                 Settings.Weight = Convert.ToDouble(Weight);
             }
             Settings.Units = Units;
+            Settings.PickerSelectedItem = PickerSelectedItem;
             // Nav using absolute path so user can't hit the back button and come back here
             await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage/MainPage");
         }

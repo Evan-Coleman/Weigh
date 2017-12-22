@@ -1,6 +1,7 @@
 ﻿// Helpers/Settings.cs
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
+using System.Collections.Generic;
 
 namespace Weigh.Helpers
 {
@@ -48,8 +49,22 @@ namespace Weigh.Helpers
         private const string UnitsKey = "units_key";
         private static readonly bool UnitsDefault = true;
 
+        private const string PickerKey = "picker_key";
+        private static readonly string PickerDefault ="Light Exercise";
+
         #endregion
 
+        public static string PickerSelectedItem
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(PickerKey, PickerDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(PickerKey, value);
+            }
+        }
 
         public static string GeneralSettings
         {

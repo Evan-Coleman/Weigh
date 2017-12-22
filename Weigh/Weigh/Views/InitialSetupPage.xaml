@@ -55,6 +55,10 @@
                 <b:NumericValidatorBehavior />
             </Entry.Behaviors>
         </Entry>
+        <Picker ItemsSource="{Binding PickerSource}"
+                SelectedItem="{Binding PickerSelectedItem}"
+                Title="Level of Activity"
+                WidthRequest="150"/>
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="CenterAndExpand"
                      Padding="0">

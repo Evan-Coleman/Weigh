@@ -53,6 +53,20 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _units, value); }
         }
 
+        private List<string> _pickerSource;
+        public List<string> PickerSource
+        {
+            get { return _pickerSource; }
+            set { SetProperty(ref _pickerSource, value); }
+        }
+
+        private string _pickerSelectedItem;
+        public string PickerSelectedItem
+        {
+            get { return _pickerSelectedItem; }
+            set { SetProperty(ref _pickerSelectedItem, value); }
+        }
+
         public DelegateCommand SaveInfoCommand { get; set; }
 
         public SettingsPageViewModel(INavigationService navigationService)
@@ -68,6 +82,8 @@ namespace Weigh.ViewModels
             HeightMinor = Settings.HeightMinor.ToString();
             Weight = Settings.Weight.ToString();
             Units = Settings.Units;
+            PickerSelectedItem = Settings.PickerSelectedItem;
+            PickerSource = new List<string> { "No Exercise", "Light Exercise", "Moderate Exercise", "Heavy Exercise" };
         }
 
         private async void SaveInfoAsync()
@@ -75,10 +91,24 @@ namespace Weigh.ViewModels
             Settings.Name = Name;
             Settings.Sex = Sex;
             Settings.Age = Convert.ToInt32(Age);
-            Settings.HeightMajor = Convert.ToInt32(HeightMajor);
-            Settings.HeightMinor = Convert.ToInt32(HeightMinor);
-            Settings.Weight = Convert.ToDouble(Weight);
+            // units false means metric, so do calculations here.
+            if (Units == false)
+            {
+                double _feet = ((Convert.ToDouble(HeightMajor) / 2.54) / 12);
+                int _iFeet = (int)_feet;
+                double _inches = (_feet - (double)_iFeet) * 12;
+                Settings.HeightMajor = _iFeet;
+                Settings.HeightMinor = Convert.ToInt32(_inches);
+                Settings.Weight = Convert.ToDouble(Weight) * 2.20462;
+            }
+            else
+            {
+                Settings.HeightMajor = Convert.ToInt32(HeightMajor);
+                Settings.HeightMinor = Convert.ToInt32(HeightMinor);
+                Settings.Weight = Convert.ToDouble(Weight);
+            }
             Settings.Units = Units;
+            Settings.PickerSelectedItem = PickerSelectedItem;
             await NavigationService.NavigateAsync(
                 $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
         }
