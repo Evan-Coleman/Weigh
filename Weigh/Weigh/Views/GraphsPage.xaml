@@ -5,8 +5,38 @@
              x:Class="Weigh.Views.GraphsPage"
              Title="{Binding Title}">
 
+    <StackLayout>
     <forms:ChartView x:Name="Chart1"
                      Chart="{Binding MyChart}"
-                     HeightRequest="150"/>
+                     HeightRequest="300"/>
+
+        <ListView ItemsSource="{Binding WeightList}"
+                  VerticalOptions="FillAndExpand"
+                  HasUnevenRows="True"
+                  x:Name="bob"
+        >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                   
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Path=Weight, StringFormat='Weight: {0}'}"
+                                           HorizontalOptions="StartAndExpand"/>
+                                    <Label Text="{Binding Path=WeighDate, StringFormat='Date: {0:MM/dd/yyyy hh:mm}'}"
+                                           HorizontalOptions="EndAndExpand"/>
+                                </StackLayout>
+  
+           
+
+
+
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
 
 </ContentPage>

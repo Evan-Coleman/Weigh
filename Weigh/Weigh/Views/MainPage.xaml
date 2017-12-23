@@ -23,7 +23,8 @@
                    Style="{Binding DynamicResource SetupEntryStyle}"
                    Text="{Binding NewWeightEntry}"/>
             <Button Text="Add" 
-                    IsEnabled="{Binding ButtonEnabled}"/>
+                    IsEnabled="{Binding ButtonEnabled}"
+                    Command="{Binding AddWeightToListCommand}"/>
         </StackLayout>
     </StackLayout>
 

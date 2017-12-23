@@ -1,10 +1,12 @@
 ﻿using Prism.Commands;
+using Prism.Events;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Weigh.Events;
 using Weigh.Helpers;
 using Weigh.Models;
 
@@ -32,11 +34,14 @@ namespace Weigh.ViewModels
         }
 
         private WeightEntry _newWeight;
+        private IEventAggregator _ea;
 
-        public MainPageViewModel(INavigationService navigationService) 
+        public MainPageViewModel(INavigationService navigationService, IEventAggregator ea) 
             : base (navigationService)
         {
+            _ea = ea;
             Title = "Main Page";
+            ButtonEnabled = true;
             CalculateBMRBMI();
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
         }
@@ -104,6 +109,7 @@ namespace Weigh.ViewModels
 
             await App.Database.SaveWeightAsync(_newWeight);
             ButtonEnabled = true;
+            _ea.GetEvent<AddWeightEvent>().Publish(_newWeight);
         }
 
 

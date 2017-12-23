@@ -11,6 +11,6 @@ namespace Weigh.Models
         public int ID { get; set; }
 
         public double Weight { get; set; }
-        public DateTime WeighDate { get; set; } = DateTime.UtcNow;
+        public DateTime WeighDate { get; set; } = DateTime.UtcNow.ToLocalTime();
     }
 }

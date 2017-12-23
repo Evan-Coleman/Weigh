@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Weigh.Models;
+using System.Linq;
 
 namespace Weigh.Data
 {
@@ -26,6 +27,13 @@ namespace Weigh.Data
 
         {
             return database.Table<WeightEntry>().ToListAsync();
+        }
+
+        public Task<List<WeightEntry>> GetLatestWeightsAsync()
+
+        {
+            return database.Table<WeightEntry>().OrderByDescending(t => t.ID).Take(10).ToListAsync();
+               
         }
 
         public Task<WeightEntry> GetWeightasync(int id)
