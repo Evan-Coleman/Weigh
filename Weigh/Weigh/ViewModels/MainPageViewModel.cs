@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Weigh.Helpers;
+using Weigh.Models;
 
 namespace Weigh.ViewModels
 {
@@ -15,12 +16,29 @@ namespace Weigh.ViewModels
         public double BMR { get; set; }
         public int RecommendedDailyCaloricIntake { get; set; }
         public string BMICategory { get; set; }
+        public DelegateCommand AddWeightToListCommand { get; set; }
+
+        private double _newWeightEntry;
+        public double NewWeightEntry
+        {
+            get { return _newWeightEntry; }
+            set { SetProperty(ref _newWeightEntry, value); }
+        }
+        private bool _buttonEnabled;
+        public bool ButtonEnabled
+        {
+            get { return _buttonEnabled; }
+            set { SetProperty(ref _buttonEnabled, value); }
+        }
+
+        private WeightEntry _newWeight;
 
         public MainPageViewModel(INavigationService navigationService) 
             : base (navigationService)
         {
             Title = "Main Page";
             CalculateBMRBMI();
+            AddWeightToListCommand = new DelegateCommand(AddWeightToList);
         }
 
         private void CalculateBMRBMI()
@@ -78,6 +96,17 @@ namespace Weigh.ViewModels
             RecommendedDailyCaloricIntake = (int)BMR - 1000;
         }
 
-        
+        public async void AddWeightToList()
+        {
+            ButtonEnabled = false;
+            _newWeight = new WeightEntry();
+            _newWeight.Weight = NewWeightEntry;
+
+            await App.Database.SaveWeightAsync(_newWeight);
+            ButtonEnabled = true;
+        }
+
+
+
     }
 }

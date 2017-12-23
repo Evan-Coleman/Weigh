@@ -6,6 +6,7 @@ using Prism.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Weigh.Helpers;
+using Weigh.Data;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Weigh
@@ -17,6 +18,8 @@ namespace Weigh
          * This imposes a limitation in which the App class must have a default constructor. 
          * App(IPlatformInitializer initializer = null) cannot be handled by the Activator.
          */
+
+        private static WeightDatabase database;
 
         public App() : this(null) { }
 
@@ -47,6 +50,18 @@ namespace Weigh
             Container.RegisterTypeForNavigation<NavigatingAwareTabbedPage>();
             Container.RegisterTypeForNavigation<SettingsPage>();
             Container.RegisterTypeForNavigation<GraphsPage>();
+        }
+
+        public static WeightDatabase Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new WeightDatabase(DependencyService.Get<IFileHelper>().GetPath("TodoSQLite.db3"));
+                }
+                return database;
+            }
         }
     }
 }

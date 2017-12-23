@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Weigh.Helpers;
+using Weigh.Models;
 
 namespace Weigh.ViewModels
 {
@@ -69,6 +70,8 @@ namespace Weigh.ViewModels
         }
 
         public DelegateCommand SaveInfoCommand { get; set; }
+
+        private WeightEntry _newWeight;
         #endregion
 
         #region Constructor
@@ -86,6 +89,7 @@ namespace Weigh.ViewModels
         #region Methods
         private async void SaveInfoAsync()
         {
+            
             Settings.Name = Name;
             Settings.Sex = Sex;
             Settings.Age = Convert.ToInt32(Age);
@@ -108,6 +112,9 @@ namespace Weigh.ViewModels
             Settings.Units = Units;
             Settings.PickerSelectedItem = PickerSelectedItem;
             // Nav using absolute path so user can't hit the back button and come back here
+            _newWeight = new WeightEntry();
+            _newWeight.Weight = Settings.Weight;
+            await App.Database.SaveWeightAsync(_newWeight);
             await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage/MainPage");
         }
         #endregion
