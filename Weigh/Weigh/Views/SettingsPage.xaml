@@ -8,8 +8,7 @@
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
         <Entry Text="{Binding Name}"
                Placeholder="Enter Name Here"
-               HorizontalTextAlignment="Center"
-               WidthRequest="150"
+               Style="{ StaticResource SetupEntryStyle }"
                x:Name="Name"/>
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="CenterAndExpand"
@@ -20,8 +19,7 @@
         </StackLayout>
         <Entry Text="{Binding Age}"
                Placeholder="Age"
-               HorizontalTextAlignment="Center"
-               WidthRequest="150"
+               Style="{ StaticResource SetupEntryStyle }"
                x:Name="Age">
             <Entry.Behaviors>
                 <b:NumericValidatorBehavior />
@@ -29,8 +27,7 @@
         </Entry>
         <Entry Text="{Binding HeightMajor}"
                Placeholder="Height (ft/cm)"
-               HorizontalTextAlignment="Center"
-               WidthRequest="150"
+               Style="{ StaticResource SetupEntryStyle }"
                x:Name="HeightMajor">
             <Entry.Behaviors>
                 <b:NumericValidatorBehavior />
@@ -38,8 +35,7 @@
         </Entry>
         <Entry Text="{Binding HeightMinor}"
                Placeholder="Height (in/cm)"
-               HorizontalTextAlignment="Center"
-               WidthRequest="150"
+               Style="{ StaticResource SetupEntryStyle }"
                x:Name="HeightMinor"
                IsVisible="{Binding Units}">
             <Entry.Behaviors>
@@ -48,8 +44,7 @@
         </Entry>
         <Entry Text="{Binding Weight}"
                Placeholder="Weight (lb/kg)"
-               HorizontalTextAlignment="Center"
-               WidthRequest="150"
+               Style="{ StaticResource SetupEntryStyle }"
                x:Name="Weight">
             <Entry.Behaviors>
                 <b:NumericValidatorBehavior />

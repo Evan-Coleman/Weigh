@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Weigh.Themes.MyLightTheme">
+
+    <Color x:Key="primary">#3F51B5</Color>
+    <Color x:Key="primary_dark">#303F9F</Color>
+    <Color x:Key="primary_light">#C5CAE9</Color>
+    <Color x:Key="accent">#607D8B</Color>
+    <Color x:Key="primary_text">#212121</Color>
+    <Color x:Key="secondary_text">#757575</Color>
+    <Color x:Key="icons">#FFFFFF</Color>
+    <Color x:Key="divider">#BDBDBD</Color>
+
+    <Color x:Key="booberry">Red</Color>
+
+</ResourceDictionary>

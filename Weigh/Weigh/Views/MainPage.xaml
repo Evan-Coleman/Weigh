@@ -5,8 +5,21 @@
              Title="{Binding Title}">
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="{Binding BMI, StringFormat='BMI = {0:00.00}'}" />
-        <Label Text="{Binding BMR, StringFormat='BMR = {0:00.00}'}" />
+        <StackLayout Orientation="Horizontal">
+            <Label HorizontalTextAlignment="Center"
+                   HorizontalOptions="CenterAndExpand"
+                Text="{Binding BMI, StringFormat='BMI = {0:00.00}'}" />
+            <Label HorizontalTextAlignment="Center"
+                   HorizontalOptions="StartAndExpand"
+                Text="{Binding BMICategory}"/>
+        </StackLayout>
+        <Label Text="{Binding RecommendedDailyCaloricIntake, StringFormat='Recommended Caloric Intake = {0}'}" />
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Enter today's weight: "/>
+            <Entry Placeholder="Weight (lb/kg)"
+                   Style="{Binding DynamicResource SetupEntryStyle}"/>
+            <Button Text="Add" />
+        </StackLayout>
     </StackLayout>
 
 </ContentPage>

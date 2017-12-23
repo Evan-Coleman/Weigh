@@ -13,12 +13,40 @@ namespace Weigh.ViewModels
     {
         public double BMI { get; set; }
         public double BMR { get; set; }
+        public int RecommendedDailyCaloricIntake { get; set; }
+        public string BMICategory { get; set; }
 
         public MainPageViewModel(INavigationService navigationService) 
             : base (navigationService)
         {
             Title = "Main Page";
+            CalculateBMRBMI();
+        }
+
+        private void CalculateBMRBMI()
+        {
             BMI = (Settings.Weight / Math.Pow(((Settings.HeightMajor * 12) + Settings.HeightMinor), 2)) * 703;
+
+            // Categories based on site here: https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm
+            if (BMI < 18.5)
+            {
+                BMICategory = "Underweight";
+            }
+
+            if (BMI >= 18.5 && BMI <= 24.9)
+            {
+                BMICategory = "Underweight";
+            }
+
+            if (BMI >= 25 && BMI <= 29.9)
+            {
+                BMICategory = "Overweight";
+            }
+
+            if (BMI >= 30)
+            {
+                BMICategory = "Obese";
+            }
 
             // BMR based on equations at https://en.wikipedia.org/wiki/Harris%E2%80%93Benedict_equation
             // According to http://www.exercise4weightloss.com/bmr-calculator.html
@@ -47,6 +75,7 @@ namespace Weigh.ViewModels
             {
                 BMR *= 1.725;
             }
+            RecommendedDailyCaloricIntake = (int)BMR - 1000;
         }
 
         
