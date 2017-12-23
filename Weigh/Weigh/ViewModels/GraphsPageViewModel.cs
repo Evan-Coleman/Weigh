@@ -44,21 +44,8 @@ namespace Weigh.ViewModels
             Title = "Graph Page";
             MyEntries = new List<Entry>();
             WeightList = new ObservableCollection<WeightEntry>();
-/*
-            MyEntries.Add(new Entry(237)
-            {
-                Label = "January",
-                ValueLabel = "237",
-            });*/
 
-
-            MyChart = new LineChart { Entries = MyEntries };
-            MyChart.LabelOrientation = Orientation.Horizontal;
-            MyChart.LabelTextSize = 40;
-            MyChart.PointSize = 25;
-            MyChart.ValueLabelOrientation = Orientation.Horizontal;
-            MyChart.PointMode = PointMode.Circle;
-            MyChart.BackgroundColor = SKColors.Transparent;
+            NewGraphInstance();
 
             PopulateWeightList();
         }
@@ -66,8 +53,20 @@ namespace Weigh.ViewModels
         private void Handled(WeightEntry weight)
         {
             WeightList.Add(weight);
-            MyEntries = new List<Entry>();
-            PopulateGraph();
+            MyEntries.RemoveAt(0);
+            AddGraphEntry(weight);
+            NewGraphInstance();
+        }
+        
+        private void NewGraphInstance()
+        {
+            MyChart = new LineChart { Entries = MyEntries };
+            MyChart.LabelOrientation = Orientation.Horizontal;
+            MyChart.LabelTextSize = 40;
+            MyChart.PointSize = 25;
+            MyChart.ValueLabelOrientation = Orientation.Horizontal;
+            MyChart.PointMode = PointMode.Circle;
+            MyChart.BackgroundColor = SKColors.Transparent;
         }
 
         private async void PopulateWeightList()
@@ -81,12 +80,17 @@ namespace Weigh.ViewModels
         {
             foreach (WeightEntry entry in WeightList.Skip(Math.Max(0, WeightList.Count() - 10)).Take(10))
             {
-                MyEntries.Add(new Entry((float)entry.Weight)
-                {
-                    Label = entry.WeighDate.DayOfWeek.ToString(),
-                    ValueLabel = entry.Weight.ToString()
-                });
+                AddGraphEntry(entry);   
             }
+        }
+
+        private void AddGraphEntry(WeightEntry entry)
+        {
+            MyEntries.Add(new Entry((float)entry.Weight)
+            {
+                Label = entry.WeighDate.DayOfWeek.ToString(),
+                ValueLabel = entry.Weight.ToString()
+            });
         }
     }
 }
