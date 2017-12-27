@@ -13,6 +13,7 @@ using Weigh.Models;
 using Weigh.Extensions;
 using Prism.Events;
 using Weigh.Events;
+using Syncfusion.RangeNavigator.XForms;
 
 namespace Weigh.ViewModels
 {
@@ -60,6 +61,8 @@ namespace Weigh.ViewModels
         
         private void NewGraphInstance()
         {
+            SfDateTimeRangeNavigator rangeNavigator = new SfDateTimeRangeNavigator();
+
             MyChart = new LineChart { Entries = MyEntries };
             MyChart.LabelOrientation = Orientation.Horizontal;
             MyChart.LabelTextSize = 40;

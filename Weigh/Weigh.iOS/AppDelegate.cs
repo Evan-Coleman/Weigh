@@ -22,7 +22,7 @@ namespace Weigh.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 
-
+            Syncfusion.RangeNavigator.XForms.iOS.SfRangeNavigatorRenderer.Init();
 
             LoadApplication(new App(new iOSInitializer()));
 
