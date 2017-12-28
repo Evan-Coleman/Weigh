@@ -14,23 +14,12 @@ using Weigh.Extensions;
 using Prism.Events;
 using Weigh.Events;
 using Syncfusion.RangeNavigator.XForms;
+using Syncfusion.SfChart.XForms;
 
 namespace Weigh.ViewModels
 {
 	public class GraphsPageViewModel : ViewModelBase
 	{
-        private LineChart _myChart;
-        public LineChart MyChart
-        {
-            get { return _myChart; }
-            set { SetProperty(ref _myChart, value); }
-        }
-        private List<Microcharts.Entry> _myEntries;
-        public List<Microcharts.Entry> MyEntries
-        {
-            get { return _myEntries; }
-            set { SetProperty(ref _myEntries, value); }
-        }
         private ObservableCollection<WeightEntry> _weightList;
         public ObservableCollection<WeightEntry> WeightList
         {
@@ -43,57 +32,50 @@ namespace Weigh.ViewModels
         {
             ea.GetEvent<AddWeightEvent>().Subscribe(Handled);
             Title = "Graph Page";
-            MyEntries = new List<Entry>();
             WeightList = new ObservableCollection<WeightEntry>();
-
+            SfDateTimeRangeNavigator rangeNavigator = new SfDateTimeRangeNavigator();
             NewGraphInstance();
-
             PopulateWeightList();
         }
 
         private void Handled(WeightEntry weight)
         {
             WeightList.Add(weight);
-            MyEntries.RemoveAt(0);
-            AddGraphEntry(weight);
             NewGraphInstance();
         }
         
         private void NewGraphInstance()
         {
-            SfDateTimeRangeNavigator rangeNavigator = new SfDateTimeRangeNavigator();
+            
 
-            MyChart = new LineChart { Entries = MyEntries };
-            MyChart.LabelOrientation = Orientation.Horizontal;
-            MyChart.LabelTextSize = 40;
-            MyChart.PointSize = 25;
-            MyChart.ValueLabelOrientation = Orientation.Horizontal;
-            MyChart.PointMode = PointMode.Circle;
-            MyChart.BackgroundColor = SKColors.Transparent;
+
         }
 
         private async void PopulateWeightList()
         {
             var data = await App.Database.GetWeightsAsync();
-            WeightList = data.ToObservableCollection();
-            PopulateGraph();
-        }
+            //WeightList = data.ToObservableCollection();
 
-        private void PopulateGraph()
-        {
-            foreach (WeightEntry entry in WeightList.Skip(Math.Max(0, WeightList.Count() - 10)).Take(10))
-            {
-                AddGraphEntry(entry);   
-            }
-        }
 
-        private void AddGraphEntry(WeightEntry entry)
-        {
-            MyEntries.Add(new Entry((float)entry.Weight)
-            {
-                Label = entry.WeighDate.DayOfWeek.ToString(),
-                ValueLabel = entry.Weight.ToString()
-            });
+
+            WeightList.Add(new WeightEntry(237, new DateTime(2017, 12, 1)));
+            WeightList.Add(new WeightEntry(236, new DateTime(2017, 12, 2)));
+            WeightList.Add(new WeightEntry(235, new DateTime(2017, 12, 3)));
+            WeightList.Add(new WeightEntry(234, new DateTime(2017, 12, 4)));
+            WeightList.Add(new WeightEntry(233, new DateTime(2017, 12, 5)));
+            WeightList.Add(new WeightEntry(232, new DateTime(2017, 12, 6)));
+            WeightList.Add(new WeightEntry(231, new DateTime(2017, 12, 7)));
+            WeightList.Add(new WeightEntry(230, new DateTime(2017, 12, 8)));
+            WeightList.Add(new WeightEntry(229, new DateTime(2017, 12, 9)));
+            WeightList.Add(new WeightEntry(228, new DateTime(2017, 12, 10)));
+            WeightList.Add(new WeightEntry(227, new DateTime(2017, 12, 11)));
+            WeightList.Add(new WeightEntry(226, new DateTime(2017, 12, 12)));
+            WeightList.Add(new WeightEntry(225, new DateTime(2017, 12, 13)));
+            WeightList.Add(new WeightEntry(224, new DateTime(2017, 12, 14)));
+            WeightList.Add(new WeightEntry(222, new DateTime(2017, 12, 15)));
+            WeightList.Add(new WeightEntry(222, new DateTime(2017, 12, 16)));
+            WeightList.Add(new WeightEntry(221, new DateTime(2017, 12, 17)));
+            WeightList.Add(new WeightEntry(220, new DateTime(2017, 12, 18)));
         }
     }
 }

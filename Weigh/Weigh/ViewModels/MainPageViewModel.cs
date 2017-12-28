@@ -104,12 +104,31 @@ namespace Weigh.ViewModels
         public async void AddWeightToList()
         {
             ButtonEnabled = false;
-            _newWeight = new WeightEntry();
-            _newWeight.Weight = NewWeightEntry;
+            if ((Settings.LastWeighDate - DateTime.UtcNow).TotalHours < 12)
+            {
+                ButtonEnabled = true;
+                // TODO: Add an error message, less than 12 hours since last entry
+                return;
+            }
+            else
+            {
+                _newWeight = new WeightEntry();
+                Settings.LastWeight = Settings.Weight;
+                if (Settings.Units == false)
+                {
 
-            await App.Database.SaveWeightAsync(_newWeight);
+                    _newWeight.Weight = Convert.ToDouble(NewWeightEntry) * 2.20462;
+                }
+                else
+                {
+                    _newWeight.Weight = NewWeightEntry;
+                }
+                Settings.Weight = _newWeight.Weight;
+                Settings.LastWeighDate = DateTime.UtcNow;
+                await App.Database.SaveWeightAsync(_newWeight);
+                _ea.GetEvent<AddWeightEvent>().Publish(_newWeight);
+            }
             ButtonEnabled = true;
-            _ea.GetEvent<AddWeightEvent>().Publish(_newWeight);
         }
 
 

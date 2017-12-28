@@ -1,6 +1,7 @@
 ﻿// Helpers/Settings.cs
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
+using System;
 using System.Collections.Generic;
 
 namespace Weigh.Helpers
@@ -52,7 +53,52 @@ namespace Weigh.Helpers
         private const string PickerKey = "picker_key";
         private static readonly string PickerDefault ="Light Exercise";
 
+        private const string LastWeightKey = "last_weight_key";
+        private static readonly double LastWeightDefault = 0.0;
+
+        private const string InitialWeightKey = "initial_weight_key";
+        private static readonly double InitialWeightDefault = 0.0;
+
+        private const string LastWeighDateKey = "last_weigh_date_key";
+        private static readonly DateTime LastWeighDateDefault;
+
         #endregion
+
+        public static double InitialWeight
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(InitialWeightKey, InitialWeightDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(InitialWeightKey, value);
+            }
+        }
+
+        public static DateTime LastWeighDate
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(LastWeighDateKey, LastWeighDateDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(LastWeighDateKey, value);
+            }
+        }
+
+        public static double LastWeight
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(LastWeightKey, LastWeightDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(LastWeightKey, value);
+            }
+        }
 
         public static string PickerSelectedItem
         {

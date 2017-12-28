@@ -2,19 +2,63 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:rangenavigator="clr-namespace:Syncfusion.RangeNavigator.XForms;assembly=Syncfusion.SfChart.XForms" 
              x:Class="Weigh.Views.GraphsPage"
              Title="{Binding Title}">
 
-    <StackLayout>
-    <forms:ChartView x:Name="Chart1"
-                     Chart="{Binding MyChart}"
-                     HeightRequest="300"/>
+    <StackLayout Padding="20">
+
+        <chart:SfChart HeightRequest="250">
+
+            <chart:SfChart.PrimaryAxis>
+
+                <chart:DateTimeAxis>
+                    <chart:DateTimeAxis.LabelStyle>
+                        <chart:ChartAxisLabelStyle LabelFormat="MMM/dd"/>
+                    </chart:DateTimeAxis.LabelStyle>
+                </chart:DateTimeAxis>
+
+            </chart:SfChart.PrimaryAxis>
+
+            <chart:SfChart.SecondaryAxis>
+
+                <chart:NumericalAxis>
+
+                    <chart:NumericalAxis.Title>
+
+                        <chart:ChartAxisTitle Text="Weight"></chart:ChartAxisTitle>
+
+                    </chart:NumericalAxis.Title>
+
+                </chart:NumericalAxis>
+
+            </chart:SfChart.SecondaryAxis>
+
+            <chart:SfChart.Series>
+
+                <chart:LineSeries ItemsSource="{Binding WeightList}" XBindingPath="WeighDate" YBindingPath="Weight"
+                                  EnableDataPointSelection="True">
+                    <chart:LineSeries.DataMarker>
+
+                        <chart:ChartDataMarker/>
+
+                    </chart:LineSeries.DataMarker>
+                </chart:LineSeries>
+
+            </chart:SfChart.Series>
+
+        </chart:SfChart>
+
+        <rangenavigator:SfDateTimeRangeNavigator ItemsSource="{Binding WeightList}" XBindingPath="WeighDate" YBindingPath="Weight"
+                                                 HeightRequest="150"/>
+
 
         <ListView ItemsSource="{Binding WeightList}"
                   VerticalOptions="FillAndExpand"
                   HasUnevenRows="True"
-                  x:Name="bob"
-        >
+                  x:Name="bob">
+            
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

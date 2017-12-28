@@ -55,7 +55,7 @@ namespace Weigh.UWP
 
                 List<Assembly> assembliesToInclude = new List<Assembly>();
                 assembliesToInclude.Add(typeof(Syncfusion.RangeNavigator.XForms.UWP.SfRangeNavigatorRenderer).GetTypeInfo().Assembly);
-
+                assembliesToInclude.Add(typeof(Syncfusion.SfChart.XForms.UWP.SfChartRenderer).GetTypeInfo().Assembly);
 
                 Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 

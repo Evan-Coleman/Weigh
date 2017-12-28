@@ -102,13 +102,18 @@ namespace Weigh.ViewModels
                 Settings.HeightMajor = _iFeet;
                 Settings.HeightMinor = Convert.ToInt32(_inches);
                 Settings.Weight = Convert.ToDouble(Weight) * 2.20462;
+                Settings.LastWeight = Convert.ToDouble(Weight) * 2.20462;
+                Settings.InitialWeight = Convert.ToDouble(Weight) * 2.20462;
             }
             else
             {
                 Settings.HeightMajor = Convert.ToInt32(HeightMajor);
                 Settings.HeightMinor = Convert.ToInt32(HeightMinor);
                 Settings.Weight = Convert.ToDouble(Weight);
+                Settings.LastWeight = Convert.ToDouble(Weight);
+                Settings.InitialWeight = Convert.ToDouble(Weight);
             }
+            Settings.LastWeighDate = DateTime.UtcNow;
             Settings.Units = Units;
             Settings.PickerSelectedItem = PickerSelectedItem;
             // Nav using absolute path so user can't hit the back button and come back here

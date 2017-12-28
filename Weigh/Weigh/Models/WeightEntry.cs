@@ -12,5 +12,16 @@ namespace Weigh.Models
 
         public double Weight { get; set; }
         public DateTime WeighDate { get; set; } = DateTime.UtcNow.ToLocalTime();
+
+        public WeightEntry()
+        {
+
+        }
+
+        public WeightEntry(double weight, DateTime date)
+        {
+            Weight = weight;
+            WeighDate = date;
+        }
     }
 }
