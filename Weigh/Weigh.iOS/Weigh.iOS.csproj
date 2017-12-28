@@ -122,13 +122,13 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microcharts.Forms">
-      <Version>0.8.3-pre</Version>
-    </PackageReference>
     <PackageReference Include="sqlite-net-pcl">
       <Version>1.4.118</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfChart">
+      <Version>15.4.0.17</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfGauge">
       <Version>15.4.0.17</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">

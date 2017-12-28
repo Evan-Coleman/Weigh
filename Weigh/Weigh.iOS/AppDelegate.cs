@@ -2,6 +2,7 @@
 using UIKit;
 using DryIoc;
 using Prism.DryIoc;
+using Syncfusion.SfGauge.XForms.iOS;
 
 namespace Weigh.iOS
 {
@@ -24,6 +25,7 @@ namespace Weigh.iOS
 
             new Syncfusion.SfChart.XForms.iOS.Renderers.SfChartRenderer();
             Syncfusion.RangeNavigator.XForms.iOS.SfRangeNavigatorRenderer.Init();
+            new SfLinearGaugeRenderer();
 
             LoadApplication(new App(new iOSInitializer()));
 

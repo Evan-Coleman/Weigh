@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:linear="clr-namespace:Syncfusion.SfGauge.XForms;assembly=Syncfusion.SfGauge.XForms"
              x:Class="Weigh.Views.MainPage"
              Title="{Binding Title}">
 
@@ -16,7 +17,27 @@
         </StackLayout>
         
         <Label Text="{Binding RecommendedDailyCaloricIntake, StringFormat='Recommended Caloric Intake = {0}'}" />
-        
+
+        <linear:SfLinearGauge>
+            <linear:SfLinearGauge.Scales>
+                <linear:LinearScale x:Name="scale" MinimumValue="10" MaximumValue="40"
+                                    Interval="5" ScaleBarLength="100"
+                                    ScaleBarColor="#FAECEC" MinorTicksPerInterval="1"
+                                    ScaleBarSize="13" ScalePosition="BackWard" >
+                    <linear:LinearScale.Ranges>
+                        <linear:LinearRange StartValue="10" Color="Red" Offset ="0.07" EndValue="18.5" StartWidth="10" EndWidth="10" />
+                        <linear:LinearRange StartValue="18.5" Color="Green" EndValue="24.9" Offset ="0.07" StartWidth="10" EndWidth="10" />
+                        <linear:LinearRange StartValue="25" Color="Orange" EndValue="29.9" Offset ="0.07" StartWidth="10" EndWidth="10" />
+                        <linear:LinearRange StartValue="30" Color="Red" EndValue="40" Offset ="0.07" StartWidth="10" EndWidth="10"/>
+                    </linear:LinearScale.Ranges>
+                    <linear:LinearScale.Pointers>
+                        <linear:SymbolPointer x:Name="symbolPointer" Value="{Binding BMI}"  Offset="0.0" Thickness="3" />
+                        <linear:BarPointer x:Name="rangePointer" Value="{Binding BMI}"  Thickness="10" />
+                    </linear:LinearScale.Pointers>
+                </linear:LinearScale>
+            </linear:SfLinearGauge.Scales>
+        </linear:SfLinearGauge>
+
         <StackLayout Orientation="Horizontal">
             <Label Text="Enter today's weight: "/>
             <Entry Placeholder="Weight (lb/kg)"
