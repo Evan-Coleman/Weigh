@@ -39,7 +39,7 @@ namespace Weigh.Helpers
         private static readonly int AgeDefault = 0;
 
         private const string HeightMajorKey = "height_major_key";
-        private static readonly int HeightMajorDefault = 0;
+        private static readonly double HeightMajorDefault = 0;
 
         private const string HeightMinorKey = "height_minor_key";
         private static readonly int HeightMinorDefault = 0;

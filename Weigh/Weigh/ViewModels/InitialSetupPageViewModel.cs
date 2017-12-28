@@ -83,6 +83,7 @@ namespace Weigh.ViewModels
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
             // Setting units to default imperial
             Units = true;
+            // TODO: get rid of hard coded strings!
             PickerSource = new List<string> { "No Exercise", "Light Exercise", "Moderate Exercise", "Heavy Exercise" };
         }
         #endregion

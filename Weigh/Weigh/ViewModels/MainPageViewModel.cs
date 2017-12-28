@@ -9,6 +9,7 @@ using System.Text;
 using Weigh.Events;
 using Weigh.Helpers;
 using Weigh.Models;
+using Weigh.Extensions;
 
 namespace Weigh.ViewModels
 {
@@ -48,7 +49,18 @@ namespace Weigh.ViewModels
 
         private void CalculateBMRBMI()
         {
-            BMI = (Settings.Weight / Math.Pow(((Settings.HeightMajor * 12) + Settings.HeightMinor), 2)) * 703;
+            double Feet = Settings.HeightMajor;
+            int Inches = Settings.HeightMinor;
+            double Weight = Settings.Weight;
+
+            // Units are metric if false, so do conversion here
+            if (Settings.Units == false)
+            {
+                (Feet, Inches) = Settings.HeightMajor.CentimetersToFeetInches();
+                Weight = Settings.Weight.KilogramsToPounds();
+            }
+
+            BMI = (Weight / Math.Pow(((Feet * 12) + Inches), 2)) * 703;
 
             // Categories based on site here: https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm
             if (BMI < 18.5)
@@ -76,11 +88,11 @@ namespace Weigh.ViewModels
             // -- Go 1000 calories lower than this calculation to lose 2 pounds a week which is the max advisable
             if (Settings.Sex == false)
             {
-                BMR = 66 + (6.2 * Settings.Weight) + (12.7 * ((Settings.HeightMajor * 12) + Settings.HeightMinor)) - (6.76 * Settings.Age);
+                BMR = 66 + (6.2 * Weight) + (12.7 * ((Feet * 12) + Inches)) - (6.76 * Settings.Age);
             }
             else
             {
-                BMR = 655.1 + (4.35 * Settings.Weight) + (4.7 * ((Settings.HeightMajor * 12) + Settings.HeightMinor)) - (4.7 * Settings.Age);
+                BMR = 655.1 + (4.35 * Weight) + (4.7 * ((Feet * 12) + Inches)) - (4.7 * Settings.Age);
             }
             if (Settings.PickerSelectedItem == "No Exercise")
             {
@@ -115,15 +127,7 @@ namespace Weigh.ViewModels
             {
                 _newWeight = new WeightEntry();
                 Settings.LastWeight = Settings.Weight;
-                if (Settings.Units == false)
-                {
-
-                    _newWeight.Weight = Convert.ToDouble(NewWeightEntry) * 2.20462;
-                }
-                else
-                {
-                    _newWeight.Weight = NewWeightEntry;
-                }
+                _newWeight.Weight = NewWeightEntry;
                 Settings.Weight = _newWeight.Weight;
                 Settings.LastWeighDate = DateTime.UtcNow;
                 await App.Database.SaveWeightAsync(_newWeight);

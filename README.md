@@ -7,7 +7,7 @@ TODO:
 
 	General
 		think about changing to radial gague
-		Add extensions for imperial/metric changes
+		~~Add extensions for imperial/metric changes~~
 		Find out maths to meet goal in timeline
 		Add google docs backend or way to backup
 		Add a way to know how on or off track you are to meet goal
