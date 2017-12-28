@@ -4,6 +4,7 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Weigh.Extensions;
 using Weigh.Helpers;
 
 namespace Weigh.ViewModels
@@ -91,22 +92,9 @@ namespace Weigh.ViewModels
             Settings.Name = Name;
             Settings.Sex = Sex;
             Settings.Age = Convert.ToInt32(Age);
-            // units false means metric, so do calculations here.
-            if (Units == false)
-            {
-                double _feet = ((Convert.ToDouble(HeightMajor) / 2.54) / 12);
-                int _iFeet = (int)_feet;
-                double _inches = (_feet - (double)_iFeet) * 12;
-                Settings.HeightMajor = _iFeet;
-                Settings.HeightMinor = Convert.ToInt32(_inches);
-                Settings.Weight = Convert.ToDouble(Weight) * 2.20462;
-            }
-            else
-            {
-                Settings.HeightMajor = Convert.ToInt32(HeightMajor);
-                Settings.HeightMinor = Convert.ToInt32(HeightMinor);
-                Settings.Weight = Convert.ToDouble(Weight);
-            }
+            Settings.HeightMajor = Convert.ToDouble(HeightMajor);
+            Settings.HeightMinor = Convert.ToInt32(HeightMinor);
+            Settings.Weight = Convert.ToDouble(Weight);
             Settings.Units = Units;
             Settings.PickerSelectedItem = PickerSelectedItem;
             await NavigationService.NavigateAsync(

@@ -187,7 +187,7 @@ namespace Weigh.Helpers
             }
         }
 
-        public static int HeightMajor
+        public static double HeightMajor
         {
             get
             {
