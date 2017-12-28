@@ -24,6 +24,7 @@ namespace Weigh.ViewModels
         public double DistanceToGoalWeight { get; set; }
         public int TimeLeftToGoal { get; set; }
         public DateTime GoalDate { get; set; }
+        public double CurrentWeight { get; set; }
 
         private double _newWeightEntry;
         public double NewWeightEntry
@@ -53,6 +54,7 @@ namespace Weigh.ViewModels
             DistanceToGoalWeight = Settings.Weight - GoalWeight;
             TimeLeftToGoal = (Settings.GoalDate - DateTime.UtcNow).Days;
             GoalDate = Settings.GoalDate;
+            CurrentWeight = Settings.Weight;
         }
 
         private void CalculateBMRBMI()
