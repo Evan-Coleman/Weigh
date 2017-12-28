@@ -31,6 +31,7 @@ TODO:
 
 
 Sources:
+
 	Min caloric intake (http://www.acsm.org/about-acsm/media-room/acsm-in-the-news/2011/08/01/metabolism-is-modifiable-with-the-right-lifestyle-changes)
 	BMI categories (https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm)
 	BMR equations (https://en.wikipedia.org/wiki/Harris%E2%80%93Benedict_equation)
