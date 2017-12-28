@@ -4,6 +4,7 @@ Description: Simple weight loss app
 
 
 TODO:
+
 	General
 		think about changing to radial gague
 		Add extensions for imperial/metric changes
