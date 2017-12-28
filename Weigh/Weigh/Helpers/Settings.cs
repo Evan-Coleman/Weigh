@@ -65,7 +65,37 @@ namespace Weigh.Helpers
         private const string LastWeighDateKey = "last_weigh_date_key";
         private static readonly DateTime LastWeighDateDefault = DateTime.UtcNow;
 
+        private const string GoalWeightKey = "goal_weight_key";
+        private static readonly double GoalWeightDefault = 0.0;
+
+        private const string GoalDateKey = "goal_date_key";
+        private static readonly DateTime GoalDateDefault = DateTime.UtcNow;
+
         #endregion
+
+        public static double GoalWeight
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(GoalWeightKey, GoalWeightDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(GoalWeightKey, value);
+            }
+        }
+
+        public static DateTime GoalDate
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(GoalDateKey, GoalDateDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(GoalDateKey, value);
+            }
+        }
 
         public static double InitialWeight
         {

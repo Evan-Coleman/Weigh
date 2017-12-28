@@ -70,6 +70,20 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _pickerSelectedItem, value); }
         }
 
+        private string _goalWeight;
+        public string GoalWeight
+        {
+            get { return _goalWeight; }
+            set { SetProperty(ref _goalWeight, value); }
+        }
+
+        private string _goalDate;
+        public string GoalDate
+        {
+            get { return _goalDate; }
+            set { SetProperty(ref _goalDate, value); }
+        }
+
         public DelegateCommand SaveInfoCommand { get; set; }
 
         private WeightEntry _newWeight;
@@ -95,7 +109,8 @@ namespace Weigh.ViewModels
             Settings.Name = Name;
             Settings.Sex = Sex;
             Settings.Age = Convert.ToInt32(Age);
-
+            Settings.GoalWeight = Convert.ToDouble(GoalWeight);
+            Settings.GoalDate = DateTime.UtcNow.AddDays(Convert.ToDouble(GoalDate));
 
             Settings.HeightMajor = Convert.ToDouble(HeightMajor);
             Settings.HeightMinor = Convert.ToInt32(HeightMinor);
