@@ -28,3 +28,10 @@ TODO:
 		Add goal weight & distance to it
 		Add current weight
 		Add time left to goal timeline
+
+
+Sources:
+	Min caloric intake (http://www.acsm.org/about-acsm/media-room/acsm-in-the-news/2011/08/01/metabolism-is-modifiable-with-the-right-lifestyle-changes)
+	BMI categories (https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm)
+	BMR equations (https://en.wikipedia.org/wiki/Harris%E2%80%93Benedict_equation)
+	Caloric defecit numbers (http://www.exercise4weightloss.com/bmr-calculator.html)
