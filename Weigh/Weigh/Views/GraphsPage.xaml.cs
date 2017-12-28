@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Syncfusion.SfChart.XForms;
+using System.Collections.Generic;
 using Xamarin.Forms;
 
 
@@ -10,7 +11,6 @@ namespace Weigh.Views
         public GraphsPage()
         {
             InitializeComponent();
-            
         }
     }
 }

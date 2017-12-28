@@ -114,6 +114,7 @@ namespace Weigh.ViewModels
                 Settings.InitialWeight = Convert.ToDouble(Weight);
             }
             Settings.LastWeighDate = DateTime.UtcNow;
+            Settings.InitialWeightDate = DateTime.UtcNow;
             Settings.Units = Units;
             Settings.PickerSelectedItem = PickerSelectedItem;
             // Nav using absolute path so user can't hit the back button and come back here

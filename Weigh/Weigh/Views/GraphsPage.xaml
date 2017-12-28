@@ -15,7 +15,7 @@
 
                 <chart:DateTimeAxis>
                     <chart:DateTimeAxis.LabelStyle>
-                        <chart:ChartAxisLabelStyle LabelFormat="MMM/dd"/>
+                        <chart:ChartAxisLabelStyle LabelFormat="MM/dd"/>
                     </chart:DateTimeAxis.LabelStyle>
                 </chart:DateTimeAxis>
 
@@ -37,11 +37,19 @@
 
             <chart:SfChart.Series>
 
-                <chart:LineSeries ItemsSource="{Binding WeightList}" XBindingPath="WeighDate" YBindingPath="Weight"
-                                  EnableDataPointSelection="True">
+                <chart:LineSeries ItemsSource="{Binding ChartData}" XBindingPath="WeighDate" YBindingPath="Weight"
+                                  EnableDataPointSelection="False">
                     <chart:LineSeries.DataMarker>
 
-                        <chart:ChartDataMarker/>
+                        <chart:ChartDataMarker>
+
+                            <chart:ChartDataMarker.LabelStyle>
+
+                                <chart:DataMarkerLabelStyle/>
+
+                            </chart:ChartDataMarker.LabelStyle>
+
+                        </chart:ChartDataMarker>
 
                     </chart:LineSeries.DataMarker>
                 </chart:LineSeries>
@@ -49,10 +57,6 @@
             </chart:SfChart.Series>
 
         </chart:SfChart>
-
-        <rangenavigator:SfDateTimeRangeNavigator ItemsSource="{Binding WeightList}" XBindingPath="WeighDate" YBindingPath="Weight"
-                                                 HeightRequest="150"/>
-
 
         <ListView ItemsSource="{Binding WeightList}"
                   VerticalOptions="FillAndExpand"

@@ -104,7 +104,8 @@ namespace Weigh.ViewModels
         public async void AddWeightToList()
         {
             ButtonEnabled = false;
-            if ((Settings.LastWeighDate - DateTime.UtcNow).TotalHours < 12)
+            // Disabling the 12hr restriction for now
+            if ((Settings.LastWeighDate - DateTime.UtcNow).TotalHours > 11231232313232)
             {
                 ButtonEnabled = true;
                 // TODO: Add an error message, less than 12 hours since last entry

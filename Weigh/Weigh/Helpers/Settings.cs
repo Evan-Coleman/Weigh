@@ -59,8 +59,11 @@ namespace Weigh.Helpers
         private const string InitialWeightKey = "initial_weight_key";
         private static readonly double InitialWeightDefault = 0.0;
 
+        private const string InitialWeighDateKey = "initial_weigh_date_key";
+        private static readonly DateTime InitialWeighDateDefault = DateTime.UtcNow;
+
         private const string LastWeighDateKey = "last_weigh_date_key";
-        private static readonly DateTime LastWeighDateDefault;
+        private static readonly DateTime LastWeighDateDefault = DateTime.UtcNow;
 
         #endregion
 
@@ -73,6 +76,18 @@ namespace Weigh.Helpers
             set
             {
                 AppSettings.AddOrUpdateValue(InitialWeightKey, value);
+            }
+        }
+
+        public static DateTime InitialWeightDate
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(InitialWeighDateKey, InitialWeighDateDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(InitialWeighDateKey, value);
             }
         }
 
