@@ -24,7 +24,6 @@ namespace Weigh.UWP
             this.InitializeComponent();
             new Syncfusion.SfChart.XForms.UWP.SfChartRenderer();
             Syncfusion.RangeNavigator.XForms.UWP.SfRangeNavigatorRenderer.Init();
-
             LoadApplication(new Weigh.App(new UwpInitializer()));
         }
     }

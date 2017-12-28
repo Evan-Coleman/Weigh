@@ -20,7 +20,8 @@
         <Entry Text="{Binding Age}"
                Placeholder="Age"
                Style="{ StaticResource SetupEntryStyle }"
-               x:Name="Age">
+               x:Name="Age"
+               Keyboard="Numeric">
             <Entry.Behaviors>
                 <b:NumericValidatorBehavior />
             </Entry.Behaviors>
@@ -28,7 +29,8 @@
         <Entry Text="{Binding HeightMajor}"
                Placeholder="Height (ft/cm)"
                Style="{ StaticResource SetupEntryStyle }"
-               x:Name="HeightMajor">
+               x:Name="HeightMajor"
+               Keyboard="Numeric">
             <Entry.Behaviors>
                 <b:NumericValidatorBehavior />
             </Entry.Behaviors>
@@ -37,7 +39,8 @@
                Placeholder="Height (in/cm)"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="HeightMinor"
-               IsVisible="{Binding Units}">
+               IsVisible="{Binding Units}"
+               Keyboard="Numeric">
             <Entry.Behaviors>
                 <b:NumericValidatorBehavior />
             </Entry.Behaviors>
@@ -45,7 +48,8 @@
         <Entry Text="{Binding Weight}"
                Placeholder="Weight (lb/kg)"
                Style="{ StaticResource SetupEntryStyle }"
-               x:Name="Weight">
+               x:Name="Weight"
+               Keyboard="Numeric">
             <Entry.Behaviors>
                 <b:NumericValidatorBehavior />
             </Entry.Behaviors>

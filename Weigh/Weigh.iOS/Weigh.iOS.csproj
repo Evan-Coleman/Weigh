@@ -126,10 +126,10 @@
       <Version>1.4.118</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfChart">
-      <Version>15.4.0.17</Version>
+      <Version>15.4.0.20</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfGauge">
-      <Version>15.4.0.17</Version>
+      <Version>15.4.0.20</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
