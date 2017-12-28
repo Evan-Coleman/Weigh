@@ -106,25 +106,25 @@ namespace Weigh.ViewModels
         private async void SaveInfoAsync()
         {
             
-            Settings.Name = Name;
-            Settings.Sex = Sex;
-            Settings.Age = Convert.ToInt32(Age);
-            Settings.GoalWeight = Convert.ToDouble(GoalWeight);
-            Settings.GoalDate = DateTime.UtcNow.AddDays(Convert.ToDouble(GoalDate));
+            App.Name = Name;
+            App.Sex = Sex;
+            App.Age = Convert.ToInt32(Age);
+            App.GoalWeight = Convert.ToDouble(GoalWeight);
+            App.GoalDate = DateTime.UtcNow.AddDays(Convert.ToDouble(GoalDate));
 
-            Settings.HeightMajor = Convert.ToDouble(HeightMajor);
-            Settings.HeightMinor = Convert.ToInt32(HeightMinor);
-            Settings.Weight = Convert.ToDouble(Weight);
-            Settings.LastWeight = Convert.ToDouble(Weight);
-            Settings.InitialWeight = Convert.ToDouble(Weight);
+            App.HeightMajor = Convert.ToDouble(HeightMajor);
+            App.HeightMinor = Convert.ToInt32(HeightMinor);
+            App.Weight = Convert.ToDouble(Weight);
+            App.LastWeight = Convert.ToDouble(Weight);
+            App.InitialWeight = Convert.ToDouble(Weight);
             
-            Settings.LastWeighDate = DateTime.UtcNow;
-            Settings.InitialWeightDate = DateTime.UtcNow;
-            Settings.Units = Units;
-            Settings.PickerSelectedItem = PickerSelectedItem;
+            App.LastWeighDate = DateTime.UtcNow;
+            App.InitialWeightDate = DateTime.UtcNow;
+            App.Units = Units;
+            App.PickerSelectedItem = PickerSelectedItem;
             // Nav using absolute path so user can't hit the back button and come back here
             _newWeight = new WeightEntry();
-            _newWeight.Weight = Settings.Weight;
+            _newWeight.Weight = App.Weight;
             await App.Database.SaveWeightAsync(_newWeight);
             await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage/MainPage");
         }

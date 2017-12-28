@@ -76,27 +76,27 @@ namespace Weigh.ViewModels
             Title = "Setup";
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
 
-            Name = Settings.Name;
-            Sex = Settings.Sex;
-            Age = Settings.Age.ToString();
-            HeightMajor = Settings.HeightMajor.ToString();
-            HeightMinor = Settings.HeightMinor.ToString();
-            Weight = Settings.Weight.ToString();
-            Units = Settings.Units;
-            PickerSelectedItem = Settings.PickerSelectedItem;
+            Name = App.Name;
+            Sex = App.Sex;
+            Age = App.Age.ToString();
+            HeightMajor = App.HeightMajor.ToString();
+            HeightMinor = App.HeightMinor.ToString();
+            Weight = App.Weight.ToString();
+            Units = App.Units;
+            PickerSelectedItem = App.PickerSelectedItem;
             PickerSource = new List<string> { "No Exercise", "Light Exercise", "Moderate Exercise", "Heavy Exercise" };
         }
 
         private async void SaveInfoAsync()
         {
-            Settings.Name = Name;
-            Settings.Sex = Sex;
-            Settings.Age = Convert.ToInt32(Age);
-            Settings.HeightMajor = Convert.ToDouble(HeightMajor);
-            Settings.HeightMinor = Convert.ToInt32(HeightMinor);
-            Settings.Weight = Convert.ToDouble(Weight);
-            Settings.Units = Units;
-            Settings.PickerSelectedItem = PickerSelectedItem;
+            App.Name = Name;
+            App.Sex = Sex;
+            App.Age = Convert.ToInt32(Age);
+            App.HeightMajor = Convert.ToDouble(HeightMajor);
+            App.HeightMinor = Convert.ToInt32(HeightMinor);
+            App.Weight = Convert.ToDouble(Weight);
+            App.Units = Units;
+            App.PickerSelectedItem = PickerSelectedItem;
             await NavigationService.NavigateAsync(
                 $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
         }

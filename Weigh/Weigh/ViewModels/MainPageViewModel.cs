@@ -50,24 +50,24 @@ namespace Weigh.ViewModels
             ButtonEnabled = true;
             CalculateBMRBMI();
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
-            GoalWeight = Settings.GoalWeight;
-            DistanceToGoalWeight = Settings.Weight - GoalWeight;
-            TimeLeftToGoal = (Settings.GoalDate - DateTime.UtcNow).Days;
-            GoalDate = Settings.GoalDate;
-            CurrentWeight = Settings.Weight;
+            GoalWeight = App.GoalWeight;
+            DistanceToGoalWeight = App.Weight - GoalWeight;
+            TimeLeftToGoal = (App.GoalDate - DateTime.UtcNow).Days;
+            GoalDate = App.GoalDate;
+            CurrentWeight = App.Weight;
         }
 
         private void CalculateBMRBMI()
         {
-            double Feet = Settings.HeightMajor;
-            int Inches = Settings.HeightMinor;
-            double Weight = Settings.Weight;
+            double Feet = App.HeightMajor;
+            int Inches = App.HeightMinor;
+            double Weight = App.Weight;
 
             // Units are metric if false, so do conversion here
-            if (Settings.Units == false)
+            if (App.Units == false)
             {
-                (Feet, Inches) = Settings.HeightMajor.CentimetersToFeetInches();
-                Weight = Settings.Weight.KilogramsToPounds();
+                (Feet, Inches) = App.HeightMajor.CentimetersToFeetInches();
+                Weight = App.Weight.KilogramsToPounds();
             }
 
             BMI = (Weight / Math.Pow(((Feet * 12) + Inches), 2)) * 703;
@@ -96,27 +96,27 @@ namespace Weigh.ViewModels
             // BMR based on equations at https://en.wikipedia.org/wiki/Harris%E2%80%93Benedict_equation
             // According to http://www.exercise4weightloss.com/bmr-calculator.html
             // -- Go 1000 calories lower than this calculation to lose 2 pounds a week which is the max advisable
-            if (Settings.Sex == false)
+            if (App.Sex == false)
             {
-                BMR = 66 + (6.2 * Weight) + (12.7 * ((Feet * 12) + Inches)) - (6.76 * Settings.Age);
+                BMR = 66 + (6.2 * Weight) + (12.7 * ((Feet * 12) + Inches)) - (6.76 * App.Age);
             }
             else
             {
-                BMR = 655.1 + (4.35 * Weight) + (4.7 * ((Feet * 12) + Inches)) - (4.7 * Settings.Age);
+                BMR = 655.1 + (4.35 * Weight) + (4.7 * ((Feet * 12) + Inches)) - (4.7 * App.Age);
             }
-            if (Settings.PickerSelectedItem == "No Exercise")
+            if (App.PickerSelectedItem == "No Exercise")
             {
                 BMR *= 1.2;
             }
-            if (Settings.PickerSelectedItem == "Light Exercise")
+            if (App.PickerSelectedItem == "Light Exercise")
             {
                 BMR *= 1.375;
             }
-            if (Settings.PickerSelectedItem == "Moderate Exercise")
+            if (App.PickerSelectedItem == "Moderate Exercise")
             {
                 BMR *= 1.55;
             }
-            if (Settings.PickerSelectedItem == "Heavy Exercise")
+            if (App.PickerSelectedItem == "Heavy Exercise")
             {
                 BMR *= 1.725;
             }
@@ -127,7 +127,7 @@ namespace Weigh.ViewModels
         {
             ButtonEnabled = false;
             // Disabling the 12hr restriction for now
-            if ((Settings.LastWeighDate - DateTime.UtcNow).TotalHours > 11231232313232)
+            if ((App.LastWeighDate - DateTime.UtcNow).TotalHours > 11231232313232)
             {
                 ButtonEnabled = true;
                 // TODO: Add an error message, less than 12 hours since last entry
@@ -136,10 +136,11 @@ namespace Weigh.ViewModels
             else
             {
                 _newWeight = new WeightEntry();
-                Settings.LastWeight = Settings.Weight;
+                App.LastWeight = App.Weight;
                 _newWeight.Weight = NewWeightEntry;
-                Settings.Weight = _newWeight.Weight;
-                Settings.LastWeighDate = DateTime.UtcNow;
+                App.Weight = _newWeight.Weight;
+                CurrentWeight = _newWeight.Weight;
+                App.LastWeighDate = DateTime.UtcNow;
                 await App.Database.SaveWeightAsync(_newWeight);
                 _ea.GetEvent<AddWeightEvent>().Publish(_newWeight);
             }

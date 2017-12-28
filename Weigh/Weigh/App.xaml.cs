@@ -22,19 +22,130 @@ namespace Weigh
 
         #region App State Variables
 
-        public static bool Sex { get; set; }
-        public static int Age { get; set; }
-        public static double HeightMajor { get; set; }
-        public static int HeightMinor { get; set; }
-        public static double Weight { get; set; }
-        public static bool Units { get; set; }
-        public static string Picker { get; set; }
-        public static double LastWeight { get; set; }
-        public static double InitialWeight { get; set; }
-        public static DateTime InitialWeightDate { get; set; }
-        public static DateTime LastWeightDate { get; set; }
-        public static double GoalWeight { get; set; }
-        public static DateTime GoalDate { get; set; }
+        private static bool _sex;
+        public static bool Sex
+        {
+            set { Settings.Sex = value; _sex = value; }
+            get { return _sex; }
+        }
+
+        private static int _age;
+        public static int Age
+        {
+            set { Settings.Age = value; _age = value; }
+            get { return _age; }
+        }
+
+        private static double _heightMajor;
+        public static double HeightMajor
+        {
+            set { Settings.HeightMajor = value; _heightMajor = value; }
+            get { return _heightMajor; }
+        }
+
+        private static int _heightMinor;
+        public static int HeightMinor
+        {
+            set { Settings.HeightMinor = value; _heightMinor = value; }
+            get { return _heightMinor; }
+        }
+
+        private static double _weight;
+        public static double Weight
+        {
+            set { Settings.Weight = value; _weight = value;
+            }
+            get { return _weight; }
+        }
+        private static bool _units;
+        public static bool Units
+        {
+            set
+            {
+                Settings.Units = value; _units = value;
+            }
+            get { return _units; }
+        }
+
+        private static string _pickerSelectedItem;
+        public static string PickerSelectedItem
+        {
+            set
+            {
+                Settings.PickerSelectedItem = value; _pickerSelectedItem = value;
+            }
+            get { return _pickerSelectedItem; }
+        }
+
+        private static double _lastWeight;
+        public static double LastWeight
+        {
+            set
+            {
+                Settings.LastWeight = value; _lastWeight = value;
+            }
+            get { return _lastWeight; }
+        }
+
+        private static double _initialWeight;
+        public static double InitialWeight
+        {
+            set
+            {
+                Settings.InitialWeight = value; _initialWeight = value;
+            }
+            get { return _initialWeight; }
+        }
+
+        private static DateTime _initialWeightDate;
+        public static DateTime InitialWeightDate
+        {
+            set
+            {
+                Settings.InitialWeightDate = value; _initialWeightDate = value;
+            }
+            get { return _initialWeightDate; }
+        }
+
+        private static DateTime _lastWeighDate;
+        public static DateTime LastWeighDate
+        {
+            set
+            {
+                Settings.LastWeighDate = value; _lastWeighDate = value;
+            }
+            get { return _lastWeighDate; }
+        }
+
+        private static double _goalWeight;
+        public static double GoalWeight
+        {
+            set
+            {
+                Settings.GoalWeight = value; _goalWeight = value;
+            }
+            get { return _goalWeight; }
+        }
+
+        private static DateTime _goalDate;
+        public static DateTime GoalDate
+        {
+            set
+            {
+                Settings.GoalDate = value; _goalDate = value;
+            }
+            get { return _goalDate; }
+        }
+
+        private static string _name;
+        public static string Name
+        {
+            set
+            {
+                Settings.Name = value; _name = value;
+            }
+            get { return _name; }
+        }
 
         #endregion
 
@@ -94,11 +205,11 @@ namespace Weigh
             HeightMinor = Settings.HeightMinor;
             Weight = Settings.Weight;
             Units = Settings.Units;
-            Picker = Settings.PickerSelectedItem;
+            PickerSelectedItem = Settings.PickerSelectedItem;
             LastWeight = Settings.LastWeight;
             InitialWeight = Settings.InitialWeight;
             InitialWeightDate = Settings.InitialWeightDate;
-            LastWeightDate = Settings.LastWeighDate;
+            LastWeighDate = Settings.LastWeighDate;
             GoalWeight = Settings.GoalWeight;
             GoalDate = Settings.GoalDate;
         }
