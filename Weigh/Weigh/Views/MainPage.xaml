@@ -15,7 +15,12 @@
                    HorizontalOptions="StartAndExpand"
                 Text="{Binding BMICategory}"/>
         </StackLayout>
-        
+
+        <Label Text="{Binding GoalWeight, StringFormat='Goal Weight = {0}'}"/>
+        <Label Text="{Binding DistanceToGoalWeight, StringFormat='Distance to Goal Weight = {0}'}"/>
+        <Label Text="{Binding TimeLeftToGoal, StringFormat='Time Left to Reach Goal = {0}'}"/>
+        <Label Text="{Binding GoalDate, StringFormat='Date of Goal = {0:MM/dd/yy}'}"/>
+
         <Label Text="{Binding RecommendedDailyCaloricIntake, StringFormat='Recommended Caloric Intake = {0}'}" />
 
         <linear:SfLinearGauge>

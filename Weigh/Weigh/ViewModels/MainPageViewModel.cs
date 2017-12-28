@@ -20,6 +20,10 @@ namespace Weigh.ViewModels
         public int RecommendedDailyCaloricIntake { get; set; }
         public string BMICategory { get; set; }
         public DelegateCommand AddWeightToListCommand { get; set; }
+        public double GoalWeight { get; set; }
+        public double DistanceToGoalWeight { get; set; }
+        public int TimeLeftToGoal { get; set; }
+        public DateTime GoalDate { get; set; }
 
         private double _newWeightEntry;
         public double NewWeightEntry
@@ -45,6 +49,10 @@ namespace Weigh.ViewModels
             ButtonEnabled = true;
             CalculateBMRBMI();
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
+            GoalWeight = Settings.GoalWeight;
+            DistanceToGoalWeight = Settings.Weight - GoalWeight;
+            TimeLeftToGoal = (Settings.GoalDate - DateTime.UtcNow).Days;
+            GoalDate = Settings.GoalDate;
         }
 
         private void CalculateBMRBMI()
