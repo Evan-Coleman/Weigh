@@ -1,4 +1,5 @@
-﻿using Weigh.ViewModels;
+﻿using System;
+using Weigh.ViewModels;
 using Weigh.Views;
 using DryIoc;
 using Prism.DryIoc;
@@ -19,6 +20,24 @@ namespace Weigh
          * App(IPlatformInitializer initializer = null) cannot be handled by the Activator.
          */
 
+        #region App State Variables
+
+        public static bool Sex { get; set; }
+        public static int Age { get; set; }
+        public static double HeightMajor { get; set; }
+        public static int HeightMinor { get; set; }
+        public static double Weight { get; set; }
+        public static bool Units { get; set; }
+        public static string Picker { get; set; }
+        public static double LastWeight { get; set; }
+        public static double InitialWeight { get; set; }
+        public static DateTime InitialWeightDate { get; set; }
+        public static DateTime LastWeightDate { get; set; }
+        public static double GoalWeight { get; set; }
+        public static DateTime GoalDate { get; set; }
+
+        #endregion
+
         private static WeightDatabase database;
 
         public App() : this(null) { }
@@ -29,6 +48,8 @@ namespace Weigh
         {
             InitializeComponent();
 
+            // Will load all variables from storage in order to minimize disk time.
+            InitializeApplicationState();
             if (Settings.FirstUse == "yes")
             {
                 Settings.FirstUse = "no";
@@ -64,5 +85,22 @@ namespace Weigh
             }
         }
 
+
+        public void InitializeApplicationState()
+        {
+            Sex = Settings.Sex;
+            Age = Settings.Age;
+            HeightMajor = Settings.HeightMajor;
+            HeightMinor = Settings.HeightMinor;
+            Weight = Settings.Weight;
+            Units = Settings.Units;
+            Picker = Settings.PickerSelectedItem;
+            LastWeight = Settings.LastWeight;
+            InitialWeight = Settings.InitialWeight;
+            InitialWeightDate = Settings.InitialWeightDate;
+            LastWeightDate = Settings.LastWeighDate;
+            GoalWeight = Settings.GoalWeight;
+            GoalDate = Settings.GoalDate;
+        }
     }
 }
