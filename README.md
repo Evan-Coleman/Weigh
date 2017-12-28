@@ -1,5 +1,8 @@
 # Weigh
 
+Description: Simple weight loss app
+
+
 TODO:
 	General
 		think about changing to radial gague
