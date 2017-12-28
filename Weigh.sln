@@ -3,13 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weigh", "Weigh\Weigh\Weigh.csproj", "{D3D0BA88-36A0-470A-ADEF-E46F74C53C9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weigh", "Weigh\Weigh\Weigh.csproj", "{D3D0BA88-36A0-470A-ADEF-E46F74C53C9F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weigh.Android", "Weigh\Weigh.Android\Weigh.Android.csproj", "{43FE3AF9-7363-4074-AEA8-76CFC6D7AC7E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weigh.iOS", "Weigh\Weigh.iOS\Weigh.iOS.csproj", "{A77FC48A-E70B-4FF7-99C2-5C466A8C5883}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weigh.UWP", "Weigh\Weigh.UWP\Weigh.UWP.csproj", "{95C636C1-29CA-4842-A145-5238267FA083}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CD68B613-7791-48EF-8274-3321828D07DF}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
