@@ -7,13 +7,13 @@
              x:Class="Weigh.Views.GraphsPage"
              Title="{Binding Title}">
 
-    <StackLayout Padding="20">
+    <StackLayout Padding="10" Spacing="5">
 
         <chart:SfChart HeightRequest="250">
 
             <chart:SfChart.PrimaryAxis>
 
-                <chart:DateTimeAxis>
+                <chart:DateTimeAxis RangePadding="Round">
                     <chart:DateTimeAxis.LabelStyle>
                         <chart:ChartAxisLabelStyle LabelFormat="MM/dd"/>
                     </chart:DateTimeAxis.LabelStyle>
