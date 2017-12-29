@@ -21,14 +21,62 @@ namespace Weigh.ViewModels
             get { return _bmi; }
             set { SetProperty(ref _bmi, value); }
         }
-        public double BMR { get; set; }
-        public int RecommendedDailyCaloricIntake { get; set; }
-        public string BMICategory { get; set; }
-        public DelegateCommand AddWeightToListCommand { get; set; }
-        public double GoalWeight { get; set; }
-        public double DistanceToGoalWeight { get; set; }
-        public int TimeLeftToGoal { get; set; }
-        public DateTime GoalDate { get; set; }
+
+        private double _bmr;
+        public double BMR
+        {
+            get { return _bmr; }
+            set { SetProperty(ref _bmr, value); }
+        }
+
+        private double _recommendedDailyCaloricIntake;
+        public double RecommendedDailyCaloricIntake
+        {
+            get { return _recommendedDailyCaloricIntake; }
+            set { SetProperty(ref _recommendedDailyCaloricIntake, value); }
+        }
+
+        private string _bmiCategory;
+        public string BMICategory
+        {
+            get { return _bmiCategory; }
+            set { SetProperty(ref _bmiCategory, value); }
+        }
+
+        private DelegateCommand _addWeightToListCommand;
+        public DelegateCommand AddWeightToListCommand
+        {
+            get { return _addWeightToListCommand; }
+            set { SetProperty(ref _addWeightToListCommand, value); }
+        }
+
+        private double _goalWeight;
+        public double GoalWeight
+        {
+            get { return _goalWeight; }
+            set { SetProperty(ref _goalWeight, value); }
+        }
+
+        private double _distanceToGoalWeight;
+        public double DistanceToGoalWeight
+        {
+            get { return _distanceToGoalWeight; }
+            set { SetProperty(ref _distanceToGoalWeight, value); }
+        }
+
+        private int _timeLeftToGoal;
+        public int TimeLeftToGoal
+        {
+            get { return _timeLeftToGoal; }
+            set { SetProperty(ref _timeLeftToGoal, value); }
+        }
+
+        private DateTime _goalDate;
+        public DateTime GoalDate
+        {
+            get { return _goalDate; }
+            set { SetProperty(ref _goalDate, value); }
+        }
 
         private double _currentWeight;
         public double CurrentWeight
@@ -91,7 +139,7 @@ namespace Weigh.ViewModels
 
             if (BMI >= 18.5 && BMI <= 24.9)
             {
-                BMICategory = "Underweight";
+                BMICategory = "Normal Weight";
             }
 
             if (BMI >= 25 && BMI <= 29.9)
@@ -153,6 +201,7 @@ namespace Weigh.ViewModels
                 CurrentWeight = _newWeight.Weight;
                 App.LastWeighDate = DateTime.UtcNow;
                 CalculateBMRBMI();
+                DistanceToGoalWeight = App.Weight - GoalWeight;
                 await App.Database.SaveWeightAsync(_newWeight);
                 _ea.GetEvent<AddWeightEvent>().Publish(_newWeight);
             }
