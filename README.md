@@ -7,15 +7,15 @@ TODO:
 
 	General
 		think about changing to radial gague
-		~~Add extensions for imperial/metric changes
-		Find out maths to meet goal in timeline
 		Add google docs backend or way to backup
 		Add a way to know how on or off track you are to meet goal
+		~~Add extensions for imperial/metric changes
+		~~Find out maths to meet goal in timeline
 
 	Initial Setup Page & Settings Page
-		~Add entry for goal weight, and timeline
 		Add notes to entries
 		Change entry placeholders based on imperial/metric
+		~Add entry for goal weight, and timeline
 
 	Graphs Page
 		Add change from last entry
@@ -25,6 +25,9 @@ TODO:
 		Add area colors for bmi
 
 	Main Page
+		Implement timeline gague
+		Add Card styling
+		Handle case of goal met (new goal, or show maintain caloric intake)
 		~~Add goal weight & distance to it
 		~~Add current weight
 		~~Add time left to goal timeline
