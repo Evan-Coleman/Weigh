@@ -21,8 +21,22 @@
         <Label Text="{Binding DistanceToGoalWeight, StringFormat='Distance to Goal Weight = {0}'}"/>
         <Label Text="{Binding TimeLeftToGoal, StringFormat='Time Left to Reach Goal = {0}'}"/>
         <Label Text="{Binding GoalDate, StringFormat='Date of Goal = {0:MM/dd/yy}'}"/>
-
+        <Label Text="{Binding BMR, StringFormat='BMR = {0:0}'}" />
         <Label Text="{Binding RecommendedDailyCaloricIntake, StringFormat='Recommended Caloric Intake = {0:0}'}" />
+
+        <linear:SfLinearGauge>
+            <linear:SfLinearGauge.Scales>
+                <linear:LinearScale MinimumValue="0" MaximumValue="40"
+                                    Interval="10" ScaleBarLength="100"
+                                    ScaleBarColor="#FAECEC" MinorTicksPerInterval="2"
+                                    ScaleBarSize="13" ScalePosition="BackWard" >
+                    <linear:LinearScale.Pointers>
+                        <linear:SymbolPointer Value="{Binding BMI}"  Offset="0.0" Thickness="3" />
+                        <linear:BarPointer Value="{Binding BMI}"  Thickness="10" />
+                    </linear:LinearScale.Pointers>
+                </linear:LinearScale>
+            </linear:SfLinearGauge.Scales>
+        </linear:SfLinearGauge>
 
         <linear:SfLinearGauge>
             <linear:SfLinearGauge.Scales>
