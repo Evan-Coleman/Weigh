@@ -58,6 +58,21 @@
                 SelectedItem="{Binding PickerSelectedItem}"
                 Title="Level of Activity"
                 WidthRequest="150"/>
+
+        <Entry Text="{Binding GoalWeight}"
+               Placeholder="Goal Weight (lb/kg)"
+               Style="{ StaticResource SetupEntryStyle }"
+               x:Name="GoalWeight"
+               Keyboard="Numeric">
+            <Entry.Behaviors>
+                <b:NumericValidatorBehavior />
+            </Entry.Behaviors>
+        </Entry>
+
+        <DatePicker Date="{Binding GoalDate}"
+                    MinimumDate="{Binding MinDate}"></DatePicker>
+        
+        
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="CenterAndExpand"
                      Padding="0">

@@ -9,6 +9,7 @@ using Weigh.Events;
 using Weigh.Extensions;
 using Weigh.Helpers;
 using Weigh.Models;
+using Weigh.Behaviors;
 
 namespace Weigh.ViewModels
 {
@@ -71,6 +72,27 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _pickerSelectedItem, value); }
         }
 
+        private double _goalWeight;
+        public double GoalWeight
+        {
+            get { return _goalWeight; }
+            set { SetProperty(ref _goalWeight, value); }
+        }
+
+        private DateTime _goalDate;
+        public DateTime GoalDate
+        {
+            get { return _goalDate; }
+            set { SetProperty(ref _goalDate, value); }
+        }
+
+        private DateTime _minDate;
+        public DateTime MinDate
+        {
+            get { return _minDate; }
+            set { SetProperty(ref _minDate, value); }
+        }
+
         public DelegateCommand SaveInfoCommand { get; set; }
 
         public SettingsPageViewModel(INavigationService navigationService, IEventAggregator ea)
@@ -79,7 +101,10 @@ namespace Weigh.ViewModels
             ea.GetEvent<AddWeightEvent>().Subscribe(Handled);
             Title = "Setup";
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
+            MinDate = DateTime.UtcNow.AddDays(10);
 
+            GoalWeight = App.GoalWeight;
+            GoalDate = App.GoalDate;
             Name = App.Name;
             Sex = App.Sex;
             Age = App.Age.ToString();
@@ -100,6 +125,14 @@ namespace Weigh.ViewModels
             App.HeightMinor = Convert.ToInt32(HeightMinor);
             App.Weight = Convert.ToDouble(Weight);
             App.Units = Units;
+            if (GoalValidation.ValidateGoal() == true)
+            {
+                GoalDate = App.GoalDate;
+            }
+            else
+            {
+                App.GoalDate = GoalDate;
+            }
             App.PickerSelectedItem = PickerSelectedItem;
             await NavigationService.NavigateAsync(
                 $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");

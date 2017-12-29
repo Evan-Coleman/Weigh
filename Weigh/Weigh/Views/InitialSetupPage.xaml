@@ -69,15 +69,9 @@
             </Entry.Behaviors>
         </Entry>
 
-        <Entry Text="{Binding GoalDate}"
-               Placeholder="Days to Complete Goal"
-               Style="{ StaticResource SetupEntryStyle }"
-               x:Name="GoalDate"
-               Keyboard="Numeric">
-            <Entry.Behaviors>
-                <b:NumericValidatorBehavior />
-            </Entry.Behaviors>
-        </Entry>
+        <DatePicker Date="{Binding GoalDate}"
+                    MinimumDate="{Binding MinDate}"></DatePicker>
+
 
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="CenterAndExpand"

@@ -7,6 +7,7 @@ using System.Linq;
 using Weigh.Helpers;
 using Weigh.Models;
 using Weigh.Extensions;
+using Weigh.Behaviors;
 
 namespace Weigh.ViewModels
 {
@@ -77,11 +78,18 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _goalWeight, value); }
         }
 
-        private string _goalDate;
-        public string GoalDate
+        private DateTime _goalDate;
+        public DateTime GoalDate
         {
             get { return _goalDate; }
             set { SetProperty(ref _goalDate, value); }
+        }
+
+        private DateTime _minDate;
+        public DateTime MinDate
+        {
+            get { return _minDate; }
+            set { SetProperty(ref _minDate, value); }
         }
 
         public DelegateCommand SaveInfoCommand { get; set; }
@@ -94,6 +102,8 @@ namespace Weigh.ViewModels
             : base(navigationService)
         {
             Title = "Setup";
+            MinDate = DateTime.UtcNow.AddDays(10);
+            GoalDate = App.GoalDate;
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
             // Setting units to default imperial
             Units = true;
@@ -105,12 +115,11 @@ namespace Weigh.ViewModels
         #region Methods
         private async void SaveInfoAsync()
         {
-            
             App.Name = Name;
             App.Sex = Sex;
             App.Age = Convert.ToInt32(Age);
             App.GoalWeight = Convert.ToDouble(GoalWeight);
-            App.GoalDate = DateTime.UtcNow.AddDays(Convert.ToDouble(GoalDate));
+            App.GoalDate = GoalDate;
 
             App.HeightMajor = Convert.ToDouble(HeightMajor);
             App.HeightMinor = Convert.ToInt32(HeightMinor);
@@ -122,12 +131,17 @@ namespace Weigh.ViewModels
             App.InitialWeightDate = DateTime.UtcNow;
             App.Units = Units;
             App.PickerSelectedItem = PickerSelectedItem;
+
+            GoalValidation.ValidateGoal();
+
             // Nav using absolute path so user can't hit the back button and come back here
             _newWeight = new WeightEntry();
             _newWeight.Weight = App.Weight;
             await App.Database.SaveWeightAsync(_newWeight);
             await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage/MainPage");
         }
+
+
         #endregion
 
     }

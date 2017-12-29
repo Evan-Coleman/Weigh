@@ -13,6 +13,7 @@ TODO:
 		~~Find out maths to meet goal in timeline
 
 	Initial Setup Page & Settings Page
+		Add messaging from SettingsPage to MainPage
 		Add notes to entries
 		Change entry placeholders based on imperial/metric
 		~Add entry for goal weight, and timeline

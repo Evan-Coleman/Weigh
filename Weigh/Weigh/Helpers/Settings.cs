@@ -69,7 +69,7 @@ namespace Weigh.Helpers
         private static readonly double GoalWeightDefault = 0.0;
 
         private const string GoalDateKey = "goal_date_key";
-        private static readonly DateTime GoalDateDefault = DateTime.UtcNow;
+        private static readonly DateTime GoalDateDefault = DateTime.UtcNow.AddDays(180);
 
         #endregion
 

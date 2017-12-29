@@ -10,6 +10,7 @@ using Weigh.Events;
 using Weigh.Helpers;
 using Weigh.Models;
 using Weigh.Extensions;
+using Weigh.Behaviors;
 
 namespace Weigh.ViewModels
 {
@@ -192,12 +193,25 @@ namespace Weigh.ViewModels
             {
                 // Min calories/day for women is 1200
                 // TODO: Implement something to handle this case
+                GoalValidation.ValidateGoal();
+                UpdateAfterValidation();
             }
             if (App.Sex == false && RecommendedDailyCaloricIntake < 1800)
             {
                 // Min calories/day for men is 1800
                 // TODO: Implement something to handle this case
+                GoalValidation.ValidateGoal();
+                UpdateAfterValidation();
             }
+        }
+
+        private void UpdateAfterValidation()
+        {
+            TimeLeftToGoal = (int)(App.GoalDate.ToLocalTime() - DateTime.UtcNow.ToLocalTime()).TotalDays;
+            GoalDate = App.GoalDate;
+            double weightPerWeekToMeetGoal = (App.Weight - App.GoalWeight) / (App.GoalDate - DateTime.UtcNow).TotalDays * 7;
+            double RequiredCaloricDefecit = 500 * weightPerWeekToMeetGoal;
+            RecommendedDailyCaloricIntake = (int)BMR - RequiredCaloricDefecit;
         }
 
         public async void AddWeightToList()
@@ -220,6 +234,7 @@ namespace Weigh.ViewModels
                 App.LastWeighDate = DateTime.UtcNow;
                 CalculateBMRBMI();
                 DistanceToGoalWeight = App.Weight - GoalWeight;
+                GoalValidation.ValidateGoal();
                 await App.Database.SaveWeightAsync(_newWeight);
                 _ea.GetEvent<AddWeightEvent>().Publish(_newWeight);
             }
