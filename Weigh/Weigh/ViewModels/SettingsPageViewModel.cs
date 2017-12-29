@@ -4,8 +4,11 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Prism.Events;
+using Weigh.Events;
 using Weigh.Extensions;
 using Weigh.Helpers;
+using Weigh.Models;
 
 namespace Weigh.ViewModels
 {
@@ -70,9 +73,10 @@ namespace Weigh.ViewModels
 
         public DelegateCommand SaveInfoCommand { get; set; }
 
-        public SettingsPageViewModel(INavigationService navigationService)
+        public SettingsPageViewModel(INavigationService navigationService, IEventAggregator ea)
             : base(navigationService)
         {
+            ea.GetEvent<AddWeightEvent>().Subscribe(Handled);
             Title = "Setup";
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
 
@@ -100,5 +104,10 @@ namespace Weigh.ViewModels
             await NavigationService.NavigateAsync(
                 $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
         }
+
+	    private void Handled(WeightEntry weight)
+	    {
+	        Weight = weight.Weight.ToString();
+	    }
     }
 }

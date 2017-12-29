@@ -15,7 +15,12 @@ namespace Weigh.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        public double BMI { get; set; }
+        private double _bmi;
+        public double BMI
+        {
+            get { return _bmi; }
+            set { SetProperty(ref _bmi, value); }
+        }
         public double BMR { get; set; }
         public int RecommendedDailyCaloricIntake { get; set; }
         public string BMICategory { get; set; }
@@ -24,7 +29,13 @@ namespace Weigh.ViewModels
         public double DistanceToGoalWeight { get; set; }
         public int TimeLeftToGoal { get; set; }
         public DateTime GoalDate { get; set; }
-        public double CurrentWeight { get; set; }
+
+        private double _currentWeight;
+        public double CurrentWeight
+        {
+            get { return _currentWeight; }
+            set { SetProperty(ref _currentWeight, value); }
+        }
 
         private double _newWeightEntry;
         public double NewWeightEntry
@@ -141,6 +152,7 @@ namespace Weigh.ViewModels
                 App.Weight = _newWeight.Weight;
                 CurrentWeight = _newWeight.Weight;
                 App.LastWeighDate = DateTime.UtcNow;
+                CalculateBMRBMI();
                 await App.Database.SaveWeightAsync(_newWeight);
                 _ea.GetEvent<AddWeightEvent>().Publish(_newWeight);
             }
