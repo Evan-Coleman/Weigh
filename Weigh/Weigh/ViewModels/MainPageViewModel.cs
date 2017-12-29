@@ -179,7 +179,25 @@ namespace Weigh.ViewModels
             {
                 BMR *= 1.725;
             }
-            RecommendedDailyCaloricIntake = (int)BMR - 1000;
+
+            CalcDailyCaloricIntakeToMeetGoal();
+        }
+
+        private void CalcDailyCaloricIntakeToMeetGoal()
+        {
+            double weightPerWeekToMeetGoal = (App.Weight - App.GoalWeight) / (App.GoalDate - DateTime.UtcNow).TotalDays * 7;
+            double RequiredCaloricDefecit = 500 * weightPerWeekToMeetGoal;
+            RecommendedDailyCaloricIntake = (int)BMR - RequiredCaloricDefecit;
+            if (App.Sex == true && RecommendedDailyCaloricIntake < 1200)
+            {
+                // Min calories/day for women is 1200
+                // TODO: Implement something to handle this case
+            }
+            if (App.Sex == false && RecommendedDailyCaloricIntake < 1800)
+            {
+                // Min calories/day for men is 1800
+                // TODO: Implement something to handle this case
+            }
         }
 
         public async void AddWeightToList()
