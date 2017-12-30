@@ -8,12 +8,25 @@ using Xamarin.Forms;
 
 namespace Weigh.ViewModels
 {
-	public class NavigatingAwareTabbedPageViewModel : TabbedPage, INavigatingAware
+    /// <summary>
+    /// Page Contains all pages in tabs
+    /// 
+    /// Inputs:     
+    /// Outputs:    
+    /// </summary>
+    public class NavigatingAwareTabbedPageViewModel : TabbedPage, INavigatingAware
 	{
+        #region Fields
+        #endregion
+
+        #region Constructor
         public NavigatingAwareTabbedPageViewModel()
         {
 
         }
+        #endregion
+
+        #region Methods
         public void OnNavigatingTo(NavigationParameters parameters)
         {
             foreach (var child in Children)
@@ -22,5 +35,6 @@ namespace Weigh.ViewModels
                 (child?.BindingContext as INavigatingAware)?.OnNavigatingTo(parameters);
             }
         }
+        #endregion
     }
 }

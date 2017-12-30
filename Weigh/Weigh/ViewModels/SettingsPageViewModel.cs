@@ -13,8 +13,15 @@ using Weigh.Behaviors;
 
 namespace Weigh.ViewModels
 {
-	public class SettingsPageViewModel : ViewModelBase
+    /// <summary>
+    /// Page Displays Settings info and allows for editing
+    /// 
+    /// Inputs:     (AppState.cs)->AppStateInfo, (MainVM)->Weight+Goals
+    /// Outputs:    Goals->(MainVM,GraphsVM)
+    /// </summary>
+    public class SettingsPageViewModel : ViewModelBase
 	{
+        #region Fields
         private string _name;
         public string Name
         {
@@ -94,7 +101,9 @@ namespace Weigh.ViewModels
         }
 
         public DelegateCommand SaveInfoCommand { get; set; }
+        #endregion
 
+        #region Constructor
         public SettingsPageViewModel(INavigationService navigationService, IEventAggregator ea)
             : base(navigationService)
         {
@@ -103,44 +112,47 @@ namespace Weigh.ViewModels
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
             MinDate = DateTime.UtcNow.AddDays(10);
 
-            GoalWeight = App.GoalWeight;
-            GoalDate = App.GoalDate;
-            Name = App.Name;
-            Sex = App.Sex;
-            Age = App.Age.ToString();
-            HeightMajor = App.HeightMajor.ToString();
-            HeightMinor = App.HeightMinor.ToString();
-            Weight = App.Weight.ToString();
-            Units = App.Units;
-            PickerSelectedItem = App.PickerSelectedItem;
+            GoalWeight = AppState.GoalWeight;
+            GoalDate = AppState.GoalDate;
+            Name = AppState.Name;
+            Sex = AppState.Sex;
+            Age = AppState.Age.ToString();
+            HeightMajor = AppState.HeightMajor.ToString();
+            HeightMinor = AppState.HeightMinor.ToString();
+            Weight = AppState.Weight.ToString();
+            Units = AppState.Units;
+            PickerSelectedItem = AppState.PickerSelectedItem;
             PickerSource = new List<string> { "No Exercise", "Light Exercise", "Moderate Exercise", "Heavy Exercise" };
         }
+        #endregion
 
+        #region Methods
         private async void SaveInfoAsync()
         {
-            App.Name = Name;
-            App.Sex = Sex;
-            App.Age = Convert.ToInt32(Age);
-            App.HeightMajor = Convert.ToDouble(HeightMajor);
-            App.HeightMinor = Convert.ToInt32(HeightMinor);
-            App.Weight = Convert.ToDouble(Weight);
-            App.Units = Units;
+            AppState.Name = Name;
+            AppState.Sex = Sex;
+            AppState.Age = Convert.ToInt32(Age);
+            AppState.HeightMajor = Convert.ToDouble(HeightMajor);
+            AppState.HeightMinor = Convert.ToInt32(HeightMinor);
+            AppState.Weight = Convert.ToDouble(Weight);
+            AppState.Units = Units;
             if (GoalValidation.ValidateGoal() == true)
             {
-                GoalDate = App.GoalDate;
+                GoalDate = AppState.GoalDate;
             }
             else
             {
-                App.GoalDate = GoalDate;
+                AppState.GoalDate = GoalDate;
             }
-            App.PickerSelectedItem = PickerSelectedItem;
+            AppState.PickerSelectedItem = PickerSelectedItem;
             await NavigationService.NavigateAsync(
                 $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
         }
 
-	    private void Handled(WeightEntry weight)
+        private void Handled(WeightEntry weight)
 	    {
 	        Weight = weight.Weight.ToString();
 	    }
+        #endregion
     }
 }

@@ -6,6 +6,7 @@ Description: Simple weight loss app
 TODO:
 
 	General
+		Add Measurements for Waist, maybe more
 		think about changing to radial gague
 		Add google docs backend or way to backup
 		Add a way to know how on or off track you are to meet goal
@@ -13,7 +14,12 @@ TODO:
 		~~Find out maths to meet goal in timeline
 
 	Initial Setup Page & Settings Page
+		Disable Editing
+			Create Switch which enables/disables all editing
+			Disable Editing Weight from Settings
+		Add Labels to make it clear what you're editing
 		Add messaging from SettingsPage to MainPage
+			Goal Weight/Date -> Main Page
 		Add notes to entries
 		Change entry placeholders based on imperial/metric
 		~Add entry for goal weight, and timeline

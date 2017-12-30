@@ -11,7 +11,13 @@ using Weigh.Behaviors;
 
 namespace Weigh.ViewModels
 {
-	public class InitialSetupPageViewModel : ViewModelBase
+    /// <summary>
+    /// Page will Prompt user for all initial data to begin
+    /// 
+    /// Inputs:     None
+    /// Outputs:    WeightEntry->(Database), AppStateInfo->(AppState.cs)
+    /// </summary>
+    public class InitialSetupPageViewModel : ViewModelBase
 	{
         #region Fields
         private string _name;
@@ -103,7 +109,7 @@ namespace Weigh.ViewModels
         {
             Title = "Setup";
             MinDate = DateTime.UtcNow.AddDays(10);
-            GoalDate = App.GoalDate;
+            GoalDate = AppState.GoalDate;
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
             // Setting units to default imperial
             Units = true;
@@ -115,34 +121,33 @@ namespace Weigh.ViewModels
         #region Methods
         private async void SaveInfoAsync()
         {
-            App.Name = Name;
-            App.Sex = Sex;
-            App.Age = Convert.ToInt32(Age);
-            App.GoalWeight = Convert.ToDouble(GoalWeight);
-            App.GoalDate = GoalDate;
+            AppState.Name = Name;
+            AppState.Sex = Sex;
+            AppState.Age = Convert.ToInt32(Age);
+            AppState.GoalWeight = Convert.ToDouble(GoalWeight);
+            AppState.GoalDate = GoalDate;
 
-            App.HeightMajor = Convert.ToDouble(HeightMajor);
-            App.HeightMinor = Convert.ToInt32(HeightMinor);
-            App.Weight = Convert.ToDouble(Weight);
-            App.LastWeight = Convert.ToDouble(Weight);
-            App.InitialWeight = Convert.ToDouble(Weight);
+            AppState.HeightMajor = Convert.ToDouble(HeightMajor);
+            AppState.HeightMinor = Convert.ToInt32(HeightMinor);
+            AppState.Weight = Convert.ToDouble(Weight);
+            AppState.LastWeight = Convert.ToDouble(Weight);
+            AppState.InitialWeight = Convert.ToDouble(Weight);
             
-            App.LastWeighDate = DateTime.UtcNow;
-            App.InitialWeightDate = DateTime.UtcNow;
-            App.Units = Units;
-            App.PickerSelectedItem = PickerSelectedItem;
+            AppState.LastWeighDate = DateTime.UtcNow;
+            AppState.InitialWeightDate = DateTime.UtcNow;
+            AppState.Units = Units;
+            AppState.PickerSelectedItem = PickerSelectedItem;
 
             GoalValidation.ValidateGoal();
 
             // Nav using absolute path so user can't hit the back button and come back here
             _newWeight = new WeightEntry();
-            _newWeight.Weight = App.Weight;
+            _newWeight.Weight = AppState.Weight;
             await App.Database.SaveWeightAsync(_newWeight);
             await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage/MainPage");
         }
 
 
         #endregion
-
     }
 }

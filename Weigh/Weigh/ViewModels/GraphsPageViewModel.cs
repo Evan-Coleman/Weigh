@@ -16,8 +16,15 @@ using Weigh.Helpers;
 
 namespace Weigh.ViewModels
 {
+    /// <summary>
+    /// Page will display a historical graph of entered data as well as a list of entries with the ability to click on them to view in more detail
+    /// 
+    /// Inputs:     (MainPage)->New weight entries
+    /// Outputs:    None
+    /// </summary>
 	public class GraphsPageViewModel : ViewModelBase
 	{
+        #region Fields
         private ObservableCollection<WeightEntry> _weightList;
         public ObservableCollection<WeightEntry> WeightList
         {
@@ -31,9 +38,9 @@ namespace Weigh.ViewModels
             get { return _chartData; }
             set { SetProperty(ref _chartData, value); }
         }
+        #endregion
 
-      
-
+        #region Constructor
         public GraphsPageViewModel(INavigationService navigationService, IEventAggregator ea)
             : base(navigationService)
         {
@@ -62,7 +69,9 @@ namespace Weigh.ViewModels
             NewGraphInstance();
             PopulateWeightList();
         }
+        #endregion
 
+        #region Methods
         private void Handled(WeightEntry weight)
         {
             WeightList.Add(weight);
@@ -106,5 +115,6 @@ namespace Weigh.ViewModels
 
             ChartData = WeightList.Skip(Math.Max(0, WeightList.Count() - 7)).Take(7).ToObservableCollection();
         }
+        #endregion
     }
 }

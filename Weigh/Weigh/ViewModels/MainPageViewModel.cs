@@ -14,8 +14,15 @@ using Weigh.Behaviors;
 
 namespace Weigh.ViewModels
 {
+    /// <summary>
+    /// Page Displays all important information, and allows entry of new weights
+    /// 
+    /// Inputs:     (AppState.cs)->AppStateInfo
+    /// Outputs:    WeightEntry->(Database,AppState.cs,GraphVM), Goals->(SettingsVM)
+    /// </summary>
     public class MainPageViewModel : ViewModelBase
     {
+        #region Fields
         private double _bmi;
         public double BMI
         {
@@ -101,7 +108,9 @@ namespace Weigh.ViewModels
 
         private WeightEntry _newWeight;
         private IEventAggregator _ea;
+        #endregion
 
+        #region Constructor
         public MainPageViewModel(INavigationService navigationService, IEventAggregator ea) 
             : base (navigationService)
         {
@@ -110,24 +119,27 @@ namespace Weigh.ViewModels
             ButtonEnabled = true;
             CalculateBMRBMI();
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
-            GoalWeight = App.GoalWeight;
-            DistanceToGoalWeight = App.Weight - GoalWeight;
-            TimeLeftToGoal = (App.GoalDate - DateTime.UtcNow).Days;
-            GoalDate = App.GoalDate;
-            CurrentWeight = App.Weight;
+            GoalWeight = AppState.GoalWeight;
+            DistanceToGoalWeight = AppState.Weight - GoalWeight;
+            TimeLeftToGoal = (AppState.GoalDate - DateTime.UtcNow).Days;
+            GoalDate = AppState.GoalDate;
+            CurrentWeight = AppState.Weight;
+            
         }
+        #endregion
 
+        #region Methods
         private void CalculateBMRBMI()
         {
-            double Feet = App.HeightMajor;
-            int Inches = App.HeightMinor;
-            double Weight = App.Weight;
+            double Feet = AppState.HeightMajor;
+            int Inches = AppState.HeightMinor;
+            double Weight = AppState.Weight;
 
             // Units are metric if false, so do conversion here
-            if (App.Units == false)
+            if (AppState.Units == false)
             {
-                (Feet, Inches) = App.HeightMajor.CentimetersToFeetInches();
-                Weight = App.Weight.KilogramsToPounds();
+                (Feet, Inches) = AppState.HeightMajor.CentimetersToFeetInches();
+                Weight = AppState.Weight.KilogramsToPounds();
             }
 
             BMI = (Weight / Math.Pow(((Feet * 12) + Inches), 2)) * 703;
@@ -156,27 +168,27 @@ namespace Weigh.ViewModels
             // BMR based on equations at https://en.wikipedia.org/wiki/Harris%E2%80%93Benedict_equation
             // According to http://www.exercise4weightloss.com/bmr-calculator.html
             // -- Go 1000 calories lower than this calculation to lose 2 pounds a week which is the max advisable
-            if (App.Sex == false)
+            if (AppState.Sex == false)
             {
-                BMR = 66 + (6.2 * Weight) + (12.7 * ((Feet * 12) + Inches)) - (6.76 * App.Age);
+                BMR = 66 + (6.2 * Weight) + (12.7 * ((Feet * 12) + Inches)) - (6.76 * AppState.Age);
             }
             else
             {
-                BMR = 655.1 + (4.35 * Weight) + (4.7 * ((Feet * 12) + Inches)) - (4.7 * App.Age);
+                BMR = 655.1 + (4.35 * Weight) + (4.7 * ((Feet * 12) + Inches)) - (4.7 * AppState.Age);
             }
-            if (App.PickerSelectedItem == "No Exercise")
+            if (AppState.PickerSelectedItem == "No Exercise")
             {
                 BMR *= 1.2;
             }
-            if (App.PickerSelectedItem == "Light Exercise")
+            if (AppState.PickerSelectedItem == "Light Exercise")
             {
                 BMR *= 1.375;
             }
-            if (App.PickerSelectedItem == "Moderate Exercise")
+            if (AppState.PickerSelectedItem == "Moderate Exercise")
             {
                 BMR *= 1.55;
             }
-            if (App.PickerSelectedItem == "Heavy Exercise")
+            if (AppState.PickerSelectedItem == "Heavy Exercise")
             {
                 BMR *= 1.725;
             }
@@ -186,17 +198,17 @@ namespace Weigh.ViewModels
 
         private void CalcDailyCaloricIntakeToMeetGoal()
         {
-            double weightPerWeekToMeetGoal = (App.Weight - App.GoalWeight) / (App.GoalDate - DateTime.UtcNow).TotalDays * 7;
+            double weightPerWeekToMeetGoal = (AppState.Weight - AppState.GoalWeight) / (AppState.GoalDate - DateTime.UtcNow).TotalDays * 7;
             double RequiredCaloricDefecit = 500 * weightPerWeekToMeetGoal;
             RecommendedDailyCaloricIntake = (int)BMR - RequiredCaloricDefecit;
-            if (App.Sex == true && RecommendedDailyCaloricIntake < 1200)
+            if (AppState.Sex == true && RecommendedDailyCaloricIntake < 1200)
             {
                 // Min calories/day for women is 1200
                 // TODO: Implement something to handle this case
                 GoalValidation.ValidateGoal();
                 UpdateAfterValidation();
             }
-            if (App.Sex == false && RecommendedDailyCaloricIntake < 1800)
+            if (AppState.Sex == false && RecommendedDailyCaloricIntake < 1800)
             {
                 // Min calories/day for men is 1800
                 // TODO: Implement something to handle this case
@@ -207,9 +219,9 @@ namespace Weigh.ViewModels
 
         private void UpdateAfterValidation()
         {
-            TimeLeftToGoal = (int)(App.GoalDate.ToLocalTime() - DateTime.UtcNow.ToLocalTime()).TotalDays;
-            GoalDate = App.GoalDate;
-            double weightPerWeekToMeetGoal = (App.Weight - App.GoalWeight) / (App.GoalDate - DateTime.UtcNow).TotalDays * 7;
+            TimeLeftToGoal = (int)(AppState.GoalDate.ToLocalTime() - DateTime.UtcNow.ToLocalTime()).TotalDays;
+            GoalDate = AppState.GoalDate;
+            double weightPerWeekToMeetGoal = (AppState.Weight - AppState.GoalWeight) / (AppState.GoalDate - DateTime.UtcNow).TotalDays * 7;
             double RequiredCaloricDefecit = 500 * weightPerWeekToMeetGoal;
             RecommendedDailyCaloricIntake = (int)BMR - RequiredCaloricDefecit;
         }
@@ -218,7 +230,7 @@ namespace Weigh.ViewModels
         {
             ButtonEnabled = false;
             // Disabling the 12hr restriction for now
-            if ((App.LastWeighDate - DateTime.UtcNow).TotalHours > 11231232313232)
+            if ((AppState.LastWeighDate - DateTime.UtcNow).TotalHours > 11231232313232)
             {
                 ButtonEnabled = true;
                 // TODO: Add an error message, less than 12 hours since last entry
@@ -227,21 +239,19 @@ namespace Weigh.ViewModels
             else
             {
                 _newWeight = new WeightEntry();
-                App.LastWeight = App.Weight;
+                AppState.LastWeight = AppState.Weight;
                 _newWeight.Weight = NewWeightEntry;
-                App.Weight = _newWeight.Weight;
+                AppState.Weight = _newWeight.Weight;
                 CurrentWeight = _newWeight.Weight;
-                App.LastWeighDate = DateTime.UtcNow;
+                AppState.LastWeighDate = DateTime.UtcNow;
                 CalculateBMRBMI();
-                DistanceToGoalWeight = App.Weight - GoalWeight;
+                DistanceToGoalWeight = AppState.Weight - GoalWeight;
                 GoalValidation.ValidateGoal();
                 await App.Database.SaveWeightAsync(_newWeight);
                 _ea.GetEvent<AddWeightEvent>().Publish(_newWeight);
             }
             ButtonEnabled = true;
         }
-
-
-
+        #endregion
     }
 }
