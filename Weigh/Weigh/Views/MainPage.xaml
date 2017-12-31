@@ -7,16 +7,32 @@
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
         
-        <StackLayout Orientation="Horizontal">
-            <Label HorizontalTextAlignment="Center"
-                   HorizontalOptions="CenterAndExpand"
-                Text="{Binding BMI, StringFormat='BMI = {0:00.00}'}" />
-            <Label HorizontalTextAlignment="Center"
+
+
+        <Frame Padding="10,0,10,0"
+               HeightRequest="200">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Start"
+                   Text="{Binding CurrentWeight, StringFormat='{0}'}"/>
+                <Label Text=""/>
+                <Label Grid.Row="0" Grid.Column="1"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="End"
+                   Text="{Binding BMI, StringFormat='BMI = {0:00.00}'}" />
+            </Grid>
+        </Frame>
+        <Label HorizontalTextAlignment="Center"
                    HorizontalOptions="StartAndExpand"
                 Text="{Binding BMICategory}"/>
-        </StackLayout>
-
-        <Label Text="{Binding CurrentWeight, StringFormat='Current Weight = {0}'}"/>
         <Label Text="{Binding GoalWeight, StringFormat='Goal Weight = {0}'}"/>
         <Label Text="{Binding DistanceToGoalWeight, StringFormat='Distance to Goal Weight = {0}'}"/>
         <Label Text="{Binding TimeLeftToGoal, StringFormat='Time Left to Reach Goal = {0}'}"/>

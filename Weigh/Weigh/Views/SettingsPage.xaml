@@ -27,16 +27,24 @@
             </Entry.Behaviors>
         </Entry>
         <Entry Text="{Binding HeightMajor}"
-               Placeholder="Height (ft/cm)"
+               Placeholder="Height (ft)"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="HeightMajor"
                Keyboard="Numeric">
+            <Entry.Triggers>
+                <DataTrigger TargetType="Entry"
+                     Binding="{Binding Source={x:Reference UnitSwitch},
+                                       Path=IsToggled}"
+                     Value="false">
+                    <Setter Property="Placeholder" Value="Height (cm)" />
+                </DataTrigger>
+            </Entry.Triggers>
             <Entry.Behaviors>
                 <b:NumericValidatorBehavior />
             </Entry.Behaviors>
         </Entry>
         <Entry Text="{Binding HeightMinor}"
-               Placeholder="Height (in/cm)"
+               Placeholder="Height (in)"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="HeightMinor"
                IsVisible="{Binding Units}"
@@ -46,10 +54,18 @@
             </Entry.Behaviors>
         </Entry>
         <Entry Text="{Binding Weight}"
-               Placeholder="Weight (lb/kg)"
+               Placeholder="Weight (lb)"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="Weight"
                Keyboard="Numeric">
+            <Entry.Triggers>
+                <DataTrigger TargetType="Entry"
+                     Binding="{Binding Source={x:Reference UnitSwitch},
+                                       Path=IsToggled}"
+                     Value="false">
+                    <Setter Property="Placeholder" Value="Weight (kg)" />
+                </DataTrigger>
+            </Entry.Triggers>
             <Entry.Behaviors>
                 <b:NumericValidatorBehavior />
             </Entry.Behaviors>
@@ -60,10 +76,18 @@
                 WidthRequest="150"/>
 
         <Entry Text="{Binding GoalWeight}"
-               Placeholder="Goal Weight (lb/kg)"
+               Placeholder="Goal Weight (lb)"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="GoalWeight"
                Keyboard="Numeric">
+            <Entry.Triggers>
+                <DataTrigger TargetType="Entry"
+                     Binding="{Binding Source={x:Reference UnitSwitch},
+                                       Path=IsToggled}"
+                     Value="false">
+                    <Setter Property="Placeholder" Value="Goal Weight (kg)" />
+                </DataTrigger>
+            </Entry.Triggers>
             <Entry.Behaviors>
                 <b:NumericValidatorBehavior />
             </Entry.Behaviors>
@@ -71,8 +95,8 @@
 
         <DatePicker Date="{Binding GoalDate}"
                     MinimumDate="{Binding MinDate}"></DatePicker>
-        
-        
+
+
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="CenterAndExpand"
                      Padding="0">
