@@ -70,6 +70,23 @@
                 <b:NumericValidatorBehavior />
             </Entry.Behaviors>
         </Entry>
+        <Entry Text="{Binding WaistSize}"
+               Placeholder="Waist Size (in)"
+               Style="{ StaticResource SetupEntryStyle }"
+               x:Name="WaistSize"
+               Keyboard="Numeric">
+            <Entry.Triggers>
+                <DataTrigger TargetType="Entry"
+                     Binding="{Binding Source={x:Reference UnitSwitch},
+                                       Path=IsToggled}"
+                     Value="false">
+                    <Setter Property="Placeholder" Value="Waist Size (cm)" />
+                </DataTrigger>
+            </Entry.Triggers>
+            <Entry.Behaviors>
+                <b:NumericValidatorBehavior />
+            </Entry.Behaviors>
+        </Entry>
         <Picker ItemsSource="{Binding PickerSource}"
                 SelectedItem="{Binding PickerSelectedItem}"
                 Title="Level of Activity"

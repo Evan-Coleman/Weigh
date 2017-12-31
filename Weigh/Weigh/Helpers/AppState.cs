@@ -135,6 +135,16 @@ namespace Weigh.Helpers
             get { return _name; }
         }
 
+        private static double _waistSize;
+        public static double WaistSize
+        {
+            set
+            {
+                Settings.WaistSize = value; _waistSize = value;
+            }
+            get { return _waistSize; }
+        }
+
         #endregion
 
         #region Initialize
@@ -145,6 +155,7 @@ namespace Weigh.Helpers
             HeightMajor = Settings.HeightMajor;
             HeightMinor = Settings.HeightMinor;
             Weight = Settings.Weight;
+            WaistSize = Settings.WaistSize;
             Units = Settings.Units;
             PickerSelectedItem = Settings.PickerSelectedItem;
             LastWeight = Settings.LastWeight;

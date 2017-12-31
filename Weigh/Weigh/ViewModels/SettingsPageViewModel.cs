@@ -100,6 +100,13 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _minDate, value); }
         }
 
+        private string _waistSize;
+        public string WaistSize
+        {
+            get { return _waistSize; }
+            set { SetProperty(ref _waistSize, value); }
+        }
+
         public DelegateCommand SaveInfoCommand { get; set; }
         private IEventAggregator _ea;
         #endregion
@@ -123,6 +130,7 @@ namespace Weigh.ViewModels
             HeightMajor = AppState.HeightMajor.ToString();
             HeightMinor = AppState.HeightMinor.ToString();
             Weight = AppState.Weight.ToString();
+            WaistSize = AppState.WaistSize.ToString();
             Units = AppState.Units;
             PickerSelectedItem = AppState.PickerSelectedItem;
             PickerSource = new List<string> { "No Exercise", "Light Exercise", "Moderate Exercise", "Heavy Exercise" };
@@ -140,6 +148,7 @@ namespace Weigh.ViewModels
             AppState.Weight = Convert.ToDouble(Weight);
             AppState.Units = Units;
             AppState.GoalDate = GoalDate;
+            AppState.WaistSize = Convert.ToDouble(WaistSize);
             if (GoalValidation.ValidateGoal() == false)
             {
                 GoalDate = AppState.GoalDate;
@@ -153,6 +162,7 @@ namespace Weigh.ViewModels
         private void HandleNewWeightEntry(WeightEntry weight)
 	    {
 	        Weight = weight.Weight.ToString();
+            WaistSize = weight.WaistSize.ToString();
 	    }
         private void HandleNewGoal()
         {

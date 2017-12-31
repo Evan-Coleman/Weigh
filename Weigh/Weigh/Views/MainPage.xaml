@@ -5,80 +5,233 @@
              x:Class="Weigh.Views.MainPage"
              Title="{Binding Title}">
 
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="0" Padding="0,3,0,0">
         
-
-
         <Frame Padding="10,0,10,0"
-               HeightRequest="200">
-            <Grid>
+               HeightRequest="100"
+               BackgroundColor="{StaticResource primary_light}">
+            <Grid RowSpacing="0"
+                  VerticalOptions="Fill">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0"
+                
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Start"
+                       HorizontalTextAlignment="Center"
+                       Text="Current Stats"/>
+
+
+                <Label Grid.Row="0" Grid.Column="0"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Start" 
+                       HorizontalTextAlignment="Center"  
+                       FontSize="Micro"
+                       Text="Weight"/>
+                <Label Grid.Row="1" Grid.Column="0"
                    HorizontalTextAlignment="Center"
                    HorizontalOptions="Start"
-                   Text="{Binding CurrentWeight, StringFormat='{0}'}"/>
-                <Label Text=""/>
+                       VerticalTextAlignment="Center"
+                       Margin="0"
+                   Text="{Binding CurrentWeight, StringFormat='{0:00.00}'}"/>
+                <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Start"
+                       VerticalOptions="End"
+                       FontSize="Micro"
+                       Text="{Binding BMR, StringFormat='Daily caloric intake to maintain weight = {0:0}'}" />
+
+                
                 <Label Grid.Row="0" Grid.Column="1"
-                   HorizontalTextAlignment="Center"
-                   HorizontalOptions="End"
-                   Text="{Binding BMI, StringFormat='BMI = {0:00.00}'}" />
+                       HorizontalOptions="End"
+                       VerticalOptions="Start" 
+                       HorizontalTextAlignment="Center"
+                       FontSize="Micro"
+                       Text="BMR"/>
+                <Label Grid.Row="1" Grid.Column="1"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="End"
+                       Margin="0"
+                       Text="{Binding RecommendedDailyCaloricIntake, StringFormat='{0:00.00}'}" />
+                <Label Grid.Row="2" Grid.Column="1"
+                       HorizontalOptions="End"
+                       VerticalOptions="End"
+                       HorizontalTextAlignment="Center"
+                       FontSize="Micro"
+                       Text="{Binding BMR, StringFormat='{0:0}'}"/>
+                
             </Grid>
         </Frame>
-        <Label HorizontalTextAlignment="Center"
-                   HorizontalOptions="StartAndExpand"
-                Text="{Binding BMICategory}"/>
-        <Label Text="{Binding GoalWeight, StringFormat='Goal Weight = {0}'}"/>
-        <Label Text="{Binding DistanceToGoalWeight, StringFormat='Distance to Goal Weight = {0}'}"/>
-        <Label Text="{Binding TimeLeftToGoal, StringFormat='Time Left to Reach Goal = {0}'}"/>
-        <Label Text="{Binding GoalDate, StringFormat='Date of Goal = {0:MM/dd/yy}'}"/>
-        <Label Text="{Binding BMR, StringFormat='BMR = {0:0}'}" />
-        <Label Text="{Binding RecommendedDailyCaloricIntake, StringFormat='Recommended Caloric Intake = {0:0}'}" />
 
-        <linear:SfLinearGauge>
-            <linear:SfLinearGauge.Scales>
-                <linear:LinearScale MinimumValue="0" MaximumValue="40"
-                                    Interval="10" ScaleBarLength="100"
-                                    ScaleBarColor="#FAECEC" MinorTicksPerInterval="2"
-                                    ScaleBarSize="13" ScalePosition="BackWard" >
-                    <linear:LinearScale.Pointers>
-                        <linear:SymbolPointer Value="{Binding BMI}"  Offset="0.0" Thickness="3" />
-                        <linear:BarPointer Value="{Binding BMI}"  Thickness="10" />
-                    </linear:LinearScale.Pointers>
-                </linear:LinearScale>
-            </linear:SfLinearGauge.Scales>
-        </linear:SfLinearGauge>
+        <Frame Padding="10,0,10,0"
+               HeightRequest="100">
+            <Grid RowSpacing="0"
+                  VerticalOptions="Fill">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-        <linear:SfLinearGauge>
-            <linear:SfLinearGauge.Scales>
-                <linear:LinearScale x:Name="scale" MinimumValue="10" MaximumValue="40"
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Start"
+                       HorizontalTextAlignment="Center"
+                       Text="Goal Info"/>
+
+
+                <Label Grid.Row="0" Grid.Column="0"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Start" 
+                       HorizontalTextAlignment="Center"  
+                       FontSize="Micro"
+                       Text="Goal Weight"/>
+                <Label Grid.Row="1" Grid.Column="0"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Start"
+                       VerticalTextAlignment="Center"
+                       Margin="0"
+                   Text="{Binding GoalWeight, StringFormat='{0:00.00}'}"/>
+                <Label Grid.Row="2" Grid.Column="0"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Start"
+                       VerticalOptions="End"
+                       FontSize="Micro"
+                       Text="{Binding DistanceToGoalWeight, StringFormat='{0:00.00} Weight left to lose'}"/>
+
+                <Label Grid.Row="0" Grid.Column="1"
+                       HorizontalOptions="End"
+                       VerticalOptions="Start" 
+                       HorizontalTextAlignment="Center"
+                       FontSize="Micro"
+                       Text="Goal Date"/>
+                <Label Grid.Row="1" Grid.Column="1"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="End"
+                       Margin="0"
+                       Text="{Binding GoalDate, StringFormat='{0:MMM/dd/yy}'}" />
+                <Label Grid.Row="2" Grid.Column="1"
+                       HorizontalOptions="End"
+                       VerticalOptions="End"
+                       HorizontalTextAlignment="Center"
+                       FontSize="Micro"
+                       Text="{Binding TimeLeftToGoal, StringFormat='Days left until goal = {0}'}"/>
+
+            </Grid>
+        </Frame>
+
+
+        <Frame Padding="10,0,10,0"
+               HeightRequest="140">
+            <Grid RowSpacing="0"
+                  VerticalOptions="Fill">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="1"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Start"
+                       HorizontalTextAlignment="Center"
+                        Text="{Binding BMI, StringFormat='BMI - {0:00.00}'}" />
+
+                <Label Grid.Row="1" Grid.Column="1"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       Margin="0"
+                       Text="{Binding BMICategory, StringFormat='{0:00.00}'}" />
+
+                <linear:SfLinearGauge Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand" Margin="0">
+                    <linear:SfLinearGauge.Scales>
+                        <linear:LinearScale x:Name="scale" MinimumValue="10" MaximumValue="40"
                                     Interval="5" ScaleBarLength="100"
                                     ScaleBarColor="#FAECEC" MinorTicksPerInterval="1"
-                                    ScaleBarSize="13" ScalePosition="BackWard" >
-                    <linear:LinearScale.Ranges>
-                        <linear:LinearRange StartValue="10" Color="Red" Offset ="0.07" EndValue="18.5" StartWidth="10" EndWidth="10" />
-                        <linear:LinearRange StartValue="18.5" Color="Green" EndValue="24.9" Offset ="0.07" StartWidth="10" EndWidth="10" />
-                        <linear:LinearRange StartValue="25" Color="Orange" EndValue="29.9" Offset ="0.07" StartWidth="10" EndWidth="10" />
-                        <linear:LinearRange StartValue="30" Color="Red" EndValue="40" Offset ="0.07" StartWidth="10" EndWidth="10"/>
-                    </linear:LinearScale.Ranges>
-                    <linear:LinearScale.Pointers>
-                        <linear:SymbolPointer x:Name="symbolPointer" Value="{Binding BMI}"  Offset="0.0" Thickness="3" />
-                        <linear:BarPointer x:Name="rangePointer" Value="{Binding BMI}"  Thickness="10" />
-                    </linear:LinearScale.Pointers>
-                </linear:LinearScale>
-            </linear:SfLinearGauge.Scales>
-        </linear:SfLinearGauge>
+                                    ScaleBarSize="13" ScalePosition="BackWard"
+                                            LabelColor="{StaticResource primary_text}">
+                            <linear:LinearScale.Ranges>
+                                <linear:LinearRange StartValue="10" Color="#e91e63" Offset ="0.07" EndValue="18.5" StartWidth="10" EndWidth="10"/>
+                                <linear:LinearRange StartValue="18.5" Color="#1b5e20" EndValue="24.9" Offset ="0.07" StartWidth="10" EndWidth="10" />
+                                <linear:LinearRange StartValue="25" Color="#ff6d00" EndValue="29.9" Offset ="0.07" StartWidth="10" EndWidth="10" />
+                                <linear:LinearRange StartValue="30" Color="#d50000" EndValue="40" Offset ="0.07" StartWidth="10" EndWidth="10"/>
+                            </linear:LinearScale.Ranges>
+                            <linear:LinearScale.Pointers>
+                                <linear:SymbolPointer x:Name="symbolPointer" Value="{Binding BMI}"  Offset="0.0" Thickness="3" />
+                                <linear:BarPointer x:Name="rangePointer" Value="{Binding BMI}"  Thickness="10" />
+                            </linear:LinearScale.Pointers>
+                        </linear:LinearScale>
+                    </linear:SfLinearGauge.Scales>
+                </linear:SfLinearGauge>
+
+                <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Padding="10,0,10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Underweight" FontSize="Small" TextColor="#e91e63"/>
+                    <Label Grid.Column="1" Text="Normal" FontSize="Small" TextColor="#1b5e20" HorizontalOptions="Center"/>
+                    <Label Grid.Column="2" Text="Overweight" FontSize="Small" TextColor="#ff6d00"/>
+                    <Label Grid.Column="3" Text="Obese" FontSize="Small" TextColor="#d50000"/>
+                </Grid>
+
+
+            </Grid>
+        </Frame>
+
+
+
+
+
+
+
+
+        
 
         <StackLayout Orientation="Horizontal">
-            <Label Text="Enter today's weight: "/>
-            <Entry Placeholder="Weight (lb/kg)"
+            <Label Text="New Entry: "/>
+            <Entry Placeholder="Weight (lb)"
                    Style="{Binding DynamicResource SetupEntryStyle}"
-                   Text="{Binding NewWeightEntry}"/>
+                   Text="{Binding NewWeightEntry}">
+                <Entry.Triggers>
+                    <DataTrigger TargetType="Entry"
+                     Binding="{Binding Units}"
+                     Value="false">
+                        <Setter Property="Placeholder" Value="Weight (kg)" />
+                    </DataTrigger>
+                </Entry.Triggers>
+            </Entry>
+            <Entry Placeholder="Waist Size (in)"
+                   Style="{Binding DynamicResource SetupEntryStyle}"
+                   Text="{Binding NewWaistSizeEntry}">
+                <Entry.Triggers>
+                    <DataTrigger TargetType="Entry"
+                     Binding="{Binding Units}"
+                     Value="false">
+                        <Setter Property="Placeholder" Value="Waist Size (cm)" />
+                    </DataTrigger>
+                </Entry.Triggers>
+            </Entry>
             <Button Text="Add" 
                     IsEnabled="{Binding ButtonEnabled}"
                     Command="{Binding AddWeightToListCommand}"/>

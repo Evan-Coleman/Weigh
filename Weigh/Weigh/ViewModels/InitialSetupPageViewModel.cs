@@ -98,6 +98,13 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _minDate, value); }
         }
 
+        private string _waistSize;
+        public string WaistSize
+        {
+            get { return _waistSize; }
+            set { SetProperty(ref _waistSize, value); }
+        }
+
         public DelegateCommand SaveInfoCommand { get; set; }
 
         private WeightEntry _newWeight;
@@ -130,6 +137,7 @@ namespace Weigh.ViewModels
             AppState.HeightMajor = Convert.ToDouble(HeightMajor);
             AppState.HeightMinor = Convert.ToInt32(HeightMinor);
             AppState.Weight = Convert.ToDouble(Weight);
+            AppState.WaistSize = Convert.ToDouble(WaistSize);
             AppState.LastWeight = Convert.ToDouble(Weight);
             AppState.InitialWeight = Convert.ToDouble(Weight);
             
@@ -143,6 +151,7 @@ namespace Weigh.ViewModels
             // Nav using absolute path so user can't hit the back button and come back here
             _newWeight = new WeightEntry();
             _newWeight.Weight = AppState.Weight;
+            _newWeight.WaistSize = AppState.WaistSize;
             await App.Database.SaveWeightAsync(_newWeight);
             await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage/MainPage");
         }

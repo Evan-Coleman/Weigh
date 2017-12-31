@@ -71,6 +71,9 @@ namespace Weigh.Helpers
         private const string GoalDateKey = "goal_date_key";
         private static readonly DateTime GoalDateDefault = DateTime.UtcNow.AddDays(180);
 
+        private const string WaistSizeKey = "waist_size_key";
+        private static readonly double WaistSizeDefault = 0.0;
+
         #endregion
 
         public static double GoalWeight
@@ -82,6 +85,18 @@ namespace Weigh.Helpers
             set
             {
                 AppSettings.AddOrUpdateValue(GoalWeightKey, value);
+            }
+        }
+
+        public static double WaistSize
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(WaistSizeKey, WaistSizeDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(WaistSizeKey, value);
             }
         }
 

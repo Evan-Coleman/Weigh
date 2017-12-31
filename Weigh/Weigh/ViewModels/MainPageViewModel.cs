@@ -93,8 +93,15 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _currentWeight, value); }
         }
 
-        private double _newWeightEntry;
-        public double NewWeightEntry
+        private double _waistSize;
+        public double WaistSize
+        {
+            get { return _waistSize; }
+            set { SetProperty(ref _waistSize, value); }
+        }
+
+        private string _newWeightEntry;
+        public string NewWeightEntry
         {
             get { return _newWeightEntry; }
             set { SetProperty(ref _newWeightEntry, value); }
@@ -104,6 +111,20 @@ namespace Weigh.ViewModels
         {
             get { return _buttonEnabled; }
             set { SetProperty(ref _buttonEnabled, value); }
+        }
+
+        private string _newWaistSizeEntry;
+        public string NewWaistSizeEntry
+        {
+            get { return _newWaistSizeEntry; }
+            set { SetProperty(ref _newWaistSizeEntry, value); }
+        }
+
+        private bool _units;
+        public bool Units
+        {
+            get { return _units; }
+            set { SetProperty(ref _units, value); }
         }
 
         private WeightEntry _newWeight;
@@ -125,7 +146,8 @@ namespace Weigh.ViewModels
             TimeLeftToGoal = (AppState.GoalDate - DateTime.UtcNow).Days;
             GoalDate = AppState.GoalDate;
             CurrentWeight = AppState.Weight;
-            
+            WaistSize = AppState.WaistSize;
+            Units = AppState.Units;
         }
         #endregion
 
@@ -241,9 +263,12 @@ namespace Weigh.ViewModels
             {
                 _newWeight = new WeightEntry();
                 AppState.LastWeight = AppState.Weight;
-                _newWeight.Weight = NewWeightEntry;
+                _newWeight.Weight = Convert.ToDouble(NewWeightEntry);
+                _newWeight.WaistSize = Convert.ToDouble(NewWaistSizeEntry);
+                AppState.WaistSize = _newWeight.WaistSize;
                 AppState.Weight = _newWeight.Weight;
                 CurrentWeight = _newWeight.Weight;
+                WaistSize = _newWeight.WaistSize;
                 AppState.LastWeighDate = DateTime.UtcNow;
                 CalculateBMRBMI();
                 DistanceToGoalWeight = AppState.Weight - GoalWeight;
