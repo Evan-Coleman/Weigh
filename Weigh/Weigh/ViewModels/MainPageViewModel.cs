@@ -115,6 +115,7 @@ namespace Weigh.ViewModels
             : base (navigationService)
         {
             _ea = ea;
+            _ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
             Title = "Main Page";
             ButtonEnabled = true;
             CalculateBMRBMI();
@@ -246,11 +247,21 @@ namespace Weigh.ViewModels
                 AppState.LastWeighDate = DateTime.UtcNow;
                 CalculateBMRBMI();
                 DistanceToGoalWeight = AppState.Weight - GoalWeight;
-                GoalValidation.ValidateGoal();
+                if (GoalValidation.ValidateGoal() == false)
+                {
+                    GoalDate = AppState.GoalDate;
+                    _ea.GetEvent<NewGoalEvent>().Publish();
+                }
                 await App.Database.SaveWeightAsync(_newWeight);
                 _ea.GetEvent<AddWeightEvent>().Publish(_newWeight);
             }
             ButtonEnabled = true;
+        }
+
+        private void HandleNewGoal()
+        {
+            GoalDate = AppState.GoalDate;
+            GoalWeight = AppState.GoalWeight;
         }
         #endregion
     }

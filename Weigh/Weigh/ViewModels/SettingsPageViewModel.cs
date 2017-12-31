@@ -101,13 +101,16 @@ namespace Weigh.ViewModels
         }
 
         public DelegateCommand SaveInfoCommand { get; set; }
+        private IEventAggregator _ea;
         #endregion
 
         #region Constructor
         public SettingsPageViewModel(INavigationService navigationService, IEventAggregator ea)
             : base(navigationService)
         {
-            ea.GetEvent<AddWeightEvent>().Subscribe(Handled);
+            _ea = ea;
+            _ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry);
+            _ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
             Title = "Setup";
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
             MinDate = DateTime.UtcNow.AddDays(10);
@@ -136,23 +139,26 @@ namespace Weigh.ViewModels
             AppState.HeightMinor = Convert.ToInt32(HeightMinor);
             AppState.Weight = Convert.ToDouble(Weight);
             AppState.Units = Units;
-            if (GoalValidation.ValidateGoal() == true)
+            AppState.GoalDate = GoalDate;
+            if (GoalValidation.ValidateGoal() == false)
             {
                 GoalDate = AppState.GoalDate;
             }
-            else
-            {
-                AppState.GoalDate = GoalDate;
-            }
+            _ea.GetEvent<NewGoalEvent>().Publish();
             AppState.PickerSelectedItem = PickerSelectedItem;
             await NavigationService.NavigateAsync(
                 $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
         }
 
-        private void Handled(WeightEntry weight)
+        private void HandleNewWeightEntry(WeightEntry weight)
 	    {
 	        Weight = weight.Weight.ToString();
 	    }
+        private void HandleNewGoal()
+        {
+            GoalDate = AppState.GoalDate;
+            GoalWeight = AppState.GoalWeight;
+        }
         #endregion
     }
 }

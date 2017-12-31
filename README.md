@@ -18,8 +18,8 @@ TODO:
 			Create Switch which enables/disables all editing
 			Disable Editing Weight from Settings
 		Add Labels to make it clear what you're editing
-		Add messaging from SettingsPage to MainPage
-			Goal Weight/Date -> Main Page
+		~~Add messaging from SettingsPage to MainPage
+			~~Goal Weight/Date -> Main Page
 		Add notes to entries
 		Change entry placeholders based on imperial/metric
 		~Add entry for goal weight, and timeline

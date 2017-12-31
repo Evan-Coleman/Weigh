@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Acr.UserDialogs;
+using Weigh.Events;
 using Weigh.Extensions;
 using Weigh.Helpers;
 
@@ -59,7 +60,7 @@ namespace Weigh.Behaviors
             {
                 // Min calories/day for women is 1200
                 // TODO: Implement something to handle this case
-                RequiredCaloricDefecit = BMR - 1900;
+                RequiredCaloricDefecit = BMR - 1300;
                 weightPerWeekToMeetGoal = RequiredCaloricDefecit / 500;
                 daysToAddToMeetMinimum = (int)((AppState.Weight - AppState.GoalWeight) / (weightPerWeekToMeetGoal / 7));
                 AppState.GoalDate = DateTime.Now.ToLocalTime().AddDays(daysToAddToMeetMinimum);
