@@ -5,11 +5,10 @@
              x:Class="Weigh.Views.MainPage"
              Title="{Binding Title}">
 
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="0" Padding="0,3,0,0">
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" Margin="0" Padding="0,3,0,0">
         
         <Frame Padding="10,0,10,0"
-               HeightRequest="100"
-               BackgroundColor="{StaticResource primary_light}">
+               HeightRequest="100">
             <Grid RowSpacing="0"
                   VerticalOptions="Fill">
                 <Grid.RowDefinitions>
@@ -40,13 +39,14 @@
                    HorizontalOptions="Start"
                        VerticalTextAlignment="Center"
                        Margin="0"
+                       FontSize="Large"
                    Text="{Binding CurrentWeight, StringFormat='{0:00.00}'}"/>
                 <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                        HorizontalTextAlignment="Center"
                        HorizontalOptions="Start"
                        VerticalOptions="End"
                        FontSize="Micro"
-                       Text="{Binding BMR, StringFormat='Daily caloric intake to maintain weight = {0:0}'}" />
+                       Text="{Binding WeightLostToDate, StringFormat='Weight lost to date: {0:0}'}" />
 
                 
                 <Label Grid.Row="0" Grid.Column="1"
@@ -54,18 +54,23 @@
                        VerticalOptions="Start" 
                        HorizontalTextAlignment="Center"
                        FontSize="Micro"
-                       Text="BMR"/>
-                <Label Grid.Row="1" Grid.Column="1"
-                       HorizontalTextAlignment="Center"
+                       Text="BMR (Calories/Day)"/>
+                <StackLayout Grid.Row="1" Grid.Column="1">
+                <Label HorizontalTextAlignment="Center"
                        HorizontalOptions="End"
                        Margin="0"
-                       Text="{Binding RecommendedDailyCaloricIntake, StringFormat='{0:00.00}'}" />
+                       FontSize="Medium"
+                       Text="{Binding RecommendedDailyCaloricIntake, StringFormat='{0:0}'}"/>
+                    <Label Text="Cal/Day to  lose weight"
+                           HorizontalOptions="End"
+                           FontSize="Small"/>
+                </StackLayout>
                 <Label Grid.Row="2" Grid.Column="1"
                        HorizontalOptions="End"
                        VerticalOptions="End"
                        HorizontalTextAlignment="Center"
                        FontSize="Micro"
-                       Text="{Binding BMR, StringFormat='{0:0}'}"/>
+                       Text="{Binding BMR, StringFormat='{0:0} Cal/Day to maintain weight'}"/>
                 
             </Grid>
         </Frame>
@@ -102,6 +107,7 @@
                    HorizontalOptions="Start"
                        VerticalTextAlignment="Center"
                        Margin="0"
+                       FontSize="Large"
                    Text="{Binding GoalWeight, StringFormat='{0:00.00}'}"/>
                 <Label Grid.Row="2" Grid.Column="0"
                        HorizontalTextAlignment="Center"
@@ -120,6 +126,7 @@
                        HorizontalTextAlignment="Center"
                        HorizontalOptions="End"
                        Margin="0"
+                       FontSize="Large"
                        Text="{Binding GoalDate, StringFormat='{0:MMM/dd/yy}'}" />
                 <Label Grid.Row="2" Grid.Column="1"
                        HorizontalOptions="End"

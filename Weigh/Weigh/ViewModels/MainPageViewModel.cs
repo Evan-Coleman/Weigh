@@ -127,6 +127,13 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _units, value); }
         }
 
+        private string _weightLostToDate;
+        public string WeightLostToDate
+        {
+            get { return _weightLostToDate; }
+            set { SetProperty(ref _weightLostToDate, value); }
+        }
+
         private WeightEntry _newWeight;
         private IEventAggregator _ea;
         #endregion
@@ -148,6 +155,7 @@ namespace Weigh.ViewModels
             CurrentWeight = AppState.Weight;
             WaistSize = AppState.WaistSize;
             Units = AppState.Units;
+            WeightLostToDate = (AppState.InitialWeight - AppState.Weight).ToString();
         }
         #endregion
 
@@ -281,6 +289,7 @@ namespace Weigh.ViewModels
                 _ea.GetEvent<AddWeightEvent>().Publish(_newWeight);
             }
             ButtonEnabled = true;
+            WeightLostToDate = (AppState.InitialWeight - AppState.Weight).ToString();
         }
 
         private void HandleNewGoal()
