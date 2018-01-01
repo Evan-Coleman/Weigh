@@ -48,23 +48,20 @@
                        FontSize="Micro"
                        Text="{Binding WeightLostToDate, StringFormat='Weight lost to date: {0:0}'}" />
 
-                
+
                 <Label Grid.Row="0" Grid.Column="1"
                        HorizontalOptions="End"
                        VerticalOptions="Start" 
                        HorizontalTextAlignment="Center"
                        FontSize="Micro"
                        Text="BMR (Calories/Day)"/>
-                <StackLayout Grid.Row="1" Grid.Column="1">
-                <Label HorizontalTextAlignment="Center"
+                <Label Grid.Row="1" Grid.Column="1"
+                    HorizontalTextAlignment="End"
                        HorizontalOptions="End"
                        Margin="0"
                        FontSize="Medium"
-                       Text="{Binding RecommendedDailyCaloricIntake, StringFormat='{0:0}'}"/>
-                    <Label Text="Cal/Day to  lose weight"
-                           HorizontalOptions="End"
-                           FontSize="Small"/>
-                </StackLayout>
+                       Text="{Binding RecommendedDailyCaloricIntake, StringFormat='{0:0}&#10;Cal/Day to lose weight'}"/>
+
                 <Label Grid.Row="2" Grid.Column="1"
                        HorizontalOptions="End"
                        VerticalOptions="End"
