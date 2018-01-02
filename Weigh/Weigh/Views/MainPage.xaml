@@ -12,9 +12,9 @@
             <Grid RowSpacing="0"
                   VerticalOptions="Fill">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -77,9 +77,9 @@
             <Grid RowSpacing="0"
                   VerticalOptions="Fill">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -156,13 +156,14 @@
                        HorizontalOptions="CenterAndExpand"
                        VerticalOptions="Start"
                        HorizontalTextAlignment="Center"
+                       Margin="0,0,0,-20"
                         Text="{Binding BMI, StringFormat='BMI - {0:00.00}'}" />
 
                 <Label Grid.Row="1" Grid.Column="1"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
                        HorizontalTextAlignment="Center"
-                       Margin="0"
+                       Margin="0,0,0,-20"
                        Text="{Binding BMICategory, StringFormat='{0:00.00}'}" />
 
                 <linear:SfLinearGauge Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand" Margin="0">
@@ -187,16 +188,19 @@
                 </linear:SfLinearGauge>
 
                 <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Padding="10,0,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Text="Underweight" FontSize="Small" TextColor="#e91e63"/>
-                    <Label Grid.Column="1" Text="Normal" FontSize="Small" TextColor="#1b5e20" HorizontalOptions="Center"/>
-                    <Label Grid.Column="2" Text="Overweight" FontSize="Small" TextColor="#ff6d00"/>
-                    <Label Grid.Column="3" Text="Obese" FontSize="Small" TextColor="#d50000"/>
+                    <Label Grid.Row="0" Grid.Column="0" Text="Underweight" FontSize="Small" TextColor="#e91e63"/>
+                    <Label Grid.Row="0" Grid.Column="1" Text="Normal" FontSize="Small" TextColor="#1b5e20" HorizontalOptions="Center"/>
+                    <Label Grid.Row="0" Grid.Column="2" Text="Overweight" FontSize="Small" TextColor="#ff6d00"/>
+                    <Label Grid.Row="0" Grid.Column="3" Text="Obese" FontSize="Small" TextColor="#d50000"/>
                 </Grid>
 
 
