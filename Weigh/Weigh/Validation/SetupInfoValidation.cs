@@ -100,7 +100,70 @@ namespace Weigh.Validation
             }
 
         }
-        
+
+        public static ValidationResult HeightMinorValidation(string heightMinor)
+        {
+            bool isValid = true;
+            double HeightMinor;
+
+            // Perform validation logic here and set isValid to true or false.
+            HeightMinor = Convert.ToDouble(heightMinor);
+
+            if (AppState.Units == true)
+            {
+                if (HeightMinor < 0 || HeightMinor > 12)
+                {
+                    isValid = false;
+                }
+
+                if (isValid)
+                {
+                    return ValidationResult.Success;
+                }
+                else
+                {
+                    return new ValidationResult(
+                        "Must be in the range (0-12)");
+                }
+            }
+            else
+            {
+                return ValidationResult.Success;
+            }
+
+        }
+
+        public static ValidationResult HeightMinorLengthValidation(string heightMinor)
+        {
+            bool isValid = true;
+
+            // Perform validation logic here and set isValid to true or false.
+
+            if (AppState.Units == true)
+            {
+                if (heightMinor.Length < 1 || heightMinor.Length > 2)
+                {
+                    isValid = false;
+                }
+
+                if (isValid)
+                {
+                    return ValidationResult.Success;
+                }
+                else
+                {
+                    return new ValidationResult(
+                        "Minimum 1 chars, max 2 chars");
+                }
+            }
+            else
+            {
+                return ValidationResult.Success;
+            }
+
+        }
+
+
 
     }
 }

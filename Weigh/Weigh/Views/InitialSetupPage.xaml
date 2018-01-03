@@ -66,17 +66,20 @@
         <Label Text="{Binding SetupInfo.Errors[HeightMajor], Converter={StaticResource FirstErrorConverter}"
                FontSize="Small" TextColor="Red" />
 
-        
-        <Entry Text="{Binding HeightMinor}"
-               Placeholder="Height (in)"
+        <Entry Text="{Binding SetupInfo.HeightMinor, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[HeightMinor]}"
+               Placeholder="Enter Height (in) Here"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="HeightMinor"
-               IsVisible="{Binding Units}"
-               Keyboard="Numeric">
+               Keyboard="Numeric"
+               IsVisible="{Binding SetupInfo.Units}">
             <Entry.Behaviors>
-                <b:NumericValidatorBehavior />
+                <b:EntryLengthValidatorBehavior MaxLength="2" />
             </Entry.Behaviors>
         </Entry>
+        <Label Text="{Binding SetupInfo.Errors[HeightMinor], Converter={StaticResource FirstErrorConverter}"
+               FontSize="Small" TextColor="Red"
+               IsVisible="{Binding SetupInfo.Units}"/>
+
         
         <Entry Text="{Binding SetupInfo.Weight, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[Weight]}"
                Placeholder="Weight (lb)"

@@ -40,6 +40,8 @@ namespace Weigh.Models
         }
 
         private string _heightMinor;
+        [CustomValidation(typeof(SetupInfoValidation), "HeightMinorValidation")]
+        [CustomValidation(typeof(SetupInfoValidation), "HeightMinorLengthValidation")]
         public string HeightMinor
         {
             get { return _heightMinor; }
