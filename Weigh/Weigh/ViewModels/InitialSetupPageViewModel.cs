@@ -8,6 +8,10 @@ using Weigh.Helpers;
 using Weigh.Models;
 using Weigh.Extensions;
 using Weigh.Behaviors;
+using Weigh.Validations;
+using System.Windows.Input;
+using Xamarin.Forms;
+using Prism.Events;
 
 namespace Weigh.ViewModels
 {
@@ -56,6 +60,8 @@ namespace Weigh.ViewModels
             get { return _weight; }
             set { SetProperty(ref _weight, value); }
         }
+
+
         private bool _units;
         public bool Units
         {
@@ -105,23 +111,42 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _waistSize, value); }
         }
 
+        private ValidatableObject<double> _vWeight;
+        public ValidatableObject<double> VWeight
+        {
+            get { return _vWeight; }
+            set { SetProperty(ref _vWeight, value); }
+        }
+
+        private bool _isValid;
+        public bool IsValid
+        {
+            get { return _isValid; }
+            set { SetProperty(ref _isValid, value); }
+        }
+
         public DelegateCommand SaveInfoCommand { get; set; }
+        public DelegateCommand ValidateWeightCommand { get; set; }
+        
 
         private WeightEntry _newWeight;
         #endregion
 
         #region Constructor
-        public InitialSetupPageViewModel(INavigationService navigationService)
+        public InitialSetupPageViewModel(INavigationService navigationService, IEventAggregator ea)
             : base(navigationService)
         {
             Title = "Setup";
             MinDate = DateTime.UtcNow.AddDays(10);
             GoalDate = AppState.GoalDate;
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
+            ValidateWeightCommand = new DelegateCommand(DoNothing, ValidateWeight);
             // Setting units to default imperial
             Units = true;
             // TODO: get rid of hard coded strings!
             PickerSource = new List<string> { "No Exercise", "Light Exercise", "Moderate Exercise", "Heavy Exercise" };
+            _vWeight = new ValidatableObject<double>();
+            AddValidations();
         }
         #endregion
 
@@ -156,7 +181,32 @@ namespace Weigh.ViewModels
             await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage/MainPage");
         }
 
+        private void DoNothing()
+        {
 
+        }
+
+        private bool Validate()
+        {
+            //bool isValidWeight = _vWeight.IsValid;
+
+            //return isValidWeight;
+            VWeight.IsValid = _vWeight.IsValid;
+            return _vWeight.IsValid;
+        }
+
+        private bool ValidateWeight ()
+        {
+
+            _vWeight.IsValid = _vWeight.Validate();
+            VWeight = _vWeight;
+            return _vWeight.IsValid;
+        }
+
+        private void AddValidations()
+        {
+            _vWeight.Validations.Add(new WeightWithinLimitsRule<double> { ValidationMessage = "Weight required." });
+        }
         #endregion
     }
 }
