@@ -22,94 +22,7 @@ namespace Weigh.ViewModels
     /// </summary>
     public class InitialSetupPageViewModel : ViewModelBase
 	{
-        #region Fields
-        private string _name;
-        public string Name
-        {
-            get { return _name; }
-            set { SetProperty(ref _name, value); }
-        }
-        private bool _sex;
-        public bool Sex
-        {
-            get { return _sex; }
-            set { SetProperty(ref _sex, value); }
-        }
-        private string _age;
-        public string Age
-        {
-            get { return _age; }
-            set { SetProperty(ref _age, value); }
-        }
-        private string _heightMajor;
-        public string HeightMajor
-        {
-            get { return _heightMajor; }
-            set { SetProperty(ref _heightMajor, value); }
-        }
-        private string _heightMinor;
-        public string HeightMinor
-        {
-            get { return _heightMinor; }
-            set { SetProperty(ref _heightMinor, value); }
-        }
-        private string _weight;
-        public string Weight
-        {
-            get { return _weight; }
-            set { SetProperty(ref _weight, value); }
-        }
-
-
-        private bool _units;
-        public bool Units
-        {
-            get { return _units; }
-            set { SetProperty(ref _units, value); }
-        }
-
-        private List<string> _pickerSource;
-        public List<string> PickerSource
-        {
-            get { return _pickerSource; }
-            set { SetProperty(ref _pickerSource, value); }
-        }
-
-        private string _pickerSelectedItem;
-        public string PickerSelectedItem
-        {
-            get { return _pickerSelectedItem; }
-            set { SetProperty(ref _pickerSelectedItem, value); }
-        }
-
-        private string _goalWeight;
-        public string GoalWeight
-        {
-            get { return _goalWeight; }
-            set { SetProperty(ref _goalWeight, value); }
-        }
-
-        private DateTime _goalDate;
-        public DateTime GoalDate
-        {
-            get { return _goalDate; }
-            set { SetProperty(ref _goalDate, value); }
-        }
-
-        private DateTime _minDate;
-        public DateTime MinDate
-        {
-            get { return _minDate; }
-            set { SetProperty(ref _minDate, value); }
-        }
-
-        private string _waistSize;
-        public string WaistSize
-        {
-            get { return _waistSize; }
-            set { SetProperty(ref _waistSize, value); }
-        }
-
+        #region Fields      
         private SetupInfo _setupInfo;
         public SetupInfo SetupInfo
         {
@@ -117,16 +30,7 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _setupInfo, value); }
         }
 
-        private bool _isValid;
-        public bool IsValid
-        {
-            get { return _isValid; }
-            set { SetProperty(ref _isValid, value); }
-        }
-
-        public DelegateCommand SaveInfoCommand { get; set; }
-        public DelegateCommand ValidateWeightCommand { get; set; }
-        
+        public DelegateCommand SaveInfoCommand { get; set; }        
 
         private WeightEntry _newWeight;
         #endregion
@@ -136,41 +40,37 @@ namespace Weigh.ViewModels
             : base(navigationService)
         {
             Title = "Setup";
-
             SetupInfo = new SetupInfo();
-            MinDate = DateTime.UtcNow.AddDays(10);
-            GoalDate = AppState.GoalDate;
+            SetupInfo.MinDate = DateTime.UtcNow.AddDays(10);
+            SetupInfo.GoalDate = AppState.GoalDate;
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
-            //ValidateWeightCommand = new DelegateCommand(DoNothing, ValidateWeight);
             // Setting units to default imperial
-            Units = true;
+            SetupInfo.Units = true;
             // TODO: get rid of hard coded strings!
-            PickerSource = new List<string> { "No Exercise", "Light Exercise", "Moderate Exercise", "Heavy Exercise" };
-            //_vWeight = new ValidatableObject<double>();
-            AddValidations();
+            SetupInfo.PickerSource = new List<string> { "No Exercise", "Light Exercise", "Moderate Exercise", "Heavy Exercise" };
         }
         #endregion
 
         #region Methods
         private async void SaveInfoAsync()
         {
-            AppState.Name = Name;
-            AppState.Sex = Sex;
-            AppState.Age = Convert.ToInt32(Age);
-            AppState.GoalWeight = Convert.ToDouble(GoalWeight);
-            AppState.GoalDate = GoalDate;
+            AppState.Name = SetupInfo.Name;
+            AppState.Sex = SetupInfo.Sex;
+            AppState.Age = Convert.ToInt32(SetupInfo.Age);
+            AppState.GoalWeight = Convert.ToDouble(SetupInfo.GoalWeight);
+            AppState.GoalDate = SetupInfo.GoalDate;
 
-            AppState.HeightMajor = Convert.ToDouble(HeightMajor);
-            AppState.HeightMinor = Convert.ToInt32(HeightMinor);
-            AppState.Weight = Convert.ToDouble(Weight);
-            AppState.WaistSize = Convert.ToDouble(WaistSize);
-            AppState.LastWeight = Convert.ToDouble(Weight);
-            AppState.InitialWeight = Convert.ToDouble(Weight);
+            AppState.HeightMajor = Convert.ToDouble(SetupInfo.HeightMajor);
+            AppState.HeightMinor = Convert.ToInt32(SetupInfo.HeightMinor);
+            AppState.Weight = Convert.ToDouble(SetupInfo.Weight);
+            AppState.WaistSize = Convert.ToDouble(SetupInfo.WaistSize);
+            AppState.LastWeight = Convert.ToDouble(SetupInfo.Weight);
+            AppState.InitialWeight = Convert.ToDouble(SetupInfo.Weight);
             
             AppState.LastWeighDate = DateTime.UtcNow;
             AppState.InitialWeightDate = DateTime.UtcNow;
-            AppState.Units = Units;
-            AppState.PickerSelectedItem = PickerSelectedItem;
+            AppState.Units = SetupInfo.Units;
+            AppState.PickerSelectedItem = SetupInfo.PickerSelectedItem;
 
             GoalValidation.ValidateGoal();
 
@@ -180,35 +80,6 @@ namespace Weigh.ViewModels
             _newWeight.WaistSize = AppState.WaistSize;
             await App.Database.SaveWeightAsync(_newWeight);
             await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage/MainPage");
-        }
-
-        private void DoNothing()
-        {
-
-        }
-
-        /*
-        private bool Validate()
-        {
-            //bool isValidWeight = _vWeight.IsValid;
-
-            //return isValidWeight;
-            VWeight.IsValid = _vWeight.IsValid;
-            return _vWeight.IsValid;
-        }
-
-        private bool ValidateWeight ()
-        {
-
-            _vWeight.IsValid = _vWeight.Validate();
-            VWeight = _vWeight;
-            return _vWeight.IsValid;
-        }
-        */
-
-        private void AddValidations()
-        {
-            //_vWeight.Validations.Add(new WeightWithinLimitsRule<double> { ValidationMessage = "Weight required." });
         }
         #endregion
     }

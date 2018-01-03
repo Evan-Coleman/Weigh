@@ -14,10 +14,18 @@
     </ContentPage.Resources>
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Entry Text="{Binding Name}"
+        <Entry Text="{Binding SetupInfo.Name, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[Name]}"
                Placeholder="Enter Name Here"
                Style="{ StaticResource SetupEntryStyle }"
-               x:Name="Name"/>
+               x:Name="Name">
+            <Entry.Behaviors>
+                <b:EntryLengthValidatorBehavior MaxLength="15" />
+            </Entry.Behaviors>
+        </Entry>
+        <Label Text="{Binding SetupInfo.Errors[Name], Converter={StaticResource FirstErrorConverter}"
+               FontSize="Small" TextColor="Red" />
+
+
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="CenterAndExpand"
                      Padding="0">
@@ -25,32 +33,40 @@
             <Switch IsToggled="{Binding Sex}"/>
             <Label Text="Female"/>
         </StackLayout>
-        <Entry Text="{Binding Age}"
-               Placeholder="Age"
+
+        <Entry Text="{Binding SetupInfo.Age, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[Age]}"
+               Placeholder="Enter Age Here"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="Age"
                Keyboard="Numeric">
             <Entry.Behaviors>
-                <b:NumericValidatorBehavior />
+                <b:EntryLengthValidatorBehavior MaxLength="3" />
             </Entry.Behaviors>
         </Entry>
-        <Entry Text="{Binding HeightMajor}"
-               Placeholder="Height (ft)"
+        <Label Text="{Binding SetupInfo.Errors[Age], Converter={StaticResource FirstErrorConverter}"
+               FontSize="Small" TextColor="Red" />
+
+        <Entry Text="{Binding SetupInfo.HeightMajor, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[HeightMajor]}"
+               Placeholder="Enter Height (ft) Here"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="HeightMajor"
                Keyboard="Numeric">
+            <Entry.Behaviors>
+                <b:EntryLengthValidatorBehavior MaxLength="6" />
+            </Entry.Behaviors>
             <Entry.Triggers>
                 <DataTrigger TargetType="Entry"
                      Binding="{Binding Source={x:Reference UnitSwitch},
                                        Path=IsToggled}"
                      Value="false">
-                    <Setter Property="Placeholder" Value="Height (cm)" />
+                    <Setter Property="Placeholder" Value="Enter Height (cm) Here" />
                 </DataTrigger>
             </Entry.Triggers>
-            <Entry.Behaviors>
-                <b:NumericValidatorBehavior />
-            </Entry.Behaviors>
         </Entry>
+        <Label Text="{Binding SetupInfo.Errors[HeightMajor], Converter={StaticResource FirstErrorConverter}"
+               FontSize="Small" TextColor="Red" />
+
+        
         <Entry Text="{Binding HeightMinor}"
                Placeholder="Height (in)"
                Style="{ StaticResource SetupEntryStyle }"
@@ -61,6 +77,7 @@
                 <b:NumericValidatorBehavior />
             </Entry.Behaviors>
         </Entry>
+        
         <Entry Text="{Binding SetupInfo.Weight, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[Weight]}"
                Placeholder="Weight (lb)"
                Style="{ StaticResource SetupEntryStyle }"
@@ -79,6 +96,7 @@
             </Entry.Behaviors>
         </Entry>
         <Label Text="{Binding SetupInfo.Errors[Weight], Converter={StaticResource FirstErrorConverter}" FontSize="Small" TextColor="Red" />
+        
         <Entry Text="{Binding WaistSize}"
                Placeholder="Waist Size (in)"
                Style="{ StaticResource SetupEntryStyle }"
