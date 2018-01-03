@@ -62,7 +62,7 @@
             </Entry.Behaviors>
         </Entry>
         <Entry Text="{Binding SetupInfo.Weight, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[Weight]}"
-               Placeholder="Weight (lb1)"
+               Placeholder="Weight (lb)"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="Weight"
                Keyboard="Numeric">
@@ -75,7 +75,7 @@
                 </DataTrigger>
             </Entry.Triggers>
             <Entry.Behaviors>
-                <b:NumericValidatorBehavior />
+                <b:EntryLengthValidatorBehavior MaxLength="4" />
             </Entry.Behaviors>
         </Entry>
         <Label Text="{Binding SetupInfo.Errors[Weight], Converter={StaticResource FirstErrorConverter}" FontSize="Small" TextColor="Red" />
