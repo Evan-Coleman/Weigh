@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Prism.Mvvm;
+using Weigh.Helpers;
 using Weigh.Validation;
 
 namespace Weigh.Models
@@ -30,13 +31,14 @@ namespace Weigh.Models
 
         private string _heightMajor;
         [Required(ErrorMessage = "This field is required")]
-        [StringLength(6, MinimumLength = 2, ErrorMessage = "Minimum 1 chars, max 6 chars")]
+        [StringLength(6, MinimumLength = 1, ErrorMessage = "Minimum 1 chars, max 6 chars")]
         [CustomValidation(typeof(SetupInfoValidation), "HeightMajorValidation")]
         public string HeightMajor
         {
             get { return _heightMajor; }
             set { SetProperty(ref _heightMajor, value); }
         }
+
         private string _heightMinor;
         public string HeightMinor
         {
@@ -80,7 +82,9 @@ namespace Weigh.Models
         public bool Units
         {
             get { return _units; }
-            set { SetProperty(ref _units, value); }
+            set { SetProperty(ref _units, value);
+                AppState.Units = value;
+            }
         }
 
         private List<string> _pickerSource;

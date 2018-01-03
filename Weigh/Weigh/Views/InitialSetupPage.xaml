@@ -145,7 +145,7 @@
                      HorizontalOptions="CenterAndExpand"
                      Padding="0">
             <Label Text="Metric"/>
-            <Switch IsToggled="{Binding Units}"
+            <Switch IsToggled="{Binding SetupInfo.Units}"
                     x:Name="UnitSwitch"/>
             <Label Text="Imperial"/>
         </StackLayout>
