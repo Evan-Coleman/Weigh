@@ -2,8 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Weigh.Views.InitialSetupPage"
+             xmlns:validation="clr-namespace:Weigh.Validation;assembly=Weigh"
+             xmlns:converters="clr-namespace:Weigh.Converters;assembly=Weigh"
              xmlns:b="clr-namespace:Weigh.Behaviors"
              Title="{Binding Title}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:FirstErrorConverter x:Key="FirstErrorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
         <Entry Text="{Binding Name}"
@@ -53,8 +61,8 @@
                 <b:NumericValidatorBehavior />
             </Entry.Behaviors>
         </Entry>
-        <Entry Text="{Binding Weight}"
-               Placeholder="Weight (lb)"
+        <Entry Text="{Binding SetupInfo.Weight, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[Weight]}"
+               Placeholder="Weight (lb1)"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="Weight"
                Keyboard="Numeric">
@@ -70,6 +78,7 @@
                 <b:NumericValidatorBehavior />
             </Entry.Behaviors>
         </Entry>
+        <Label Text="{Binding SetupInfo.Errors[Weight], Converter={StaticResource FirstErrorConverter}" FontSize="Small" TextColor="Red" />
         <Entry Text="{Binding WaistSize}"
                Placeholder="Waist Size (in)"
                Style="{ StaticResource SetupEntryStyle }"

@@ -8,7 +8,6 @@ using Weigh.Helpers;
 using Weigh.Models;
 using Weigh.Extensions;
 using Weigh.Behaviors;
-using Weigh.Validations;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Prism.Events;
@@ -111,11 +110,11 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _waistSize, value); }
         }
 
-        private ValidatableObject<double> _vWeight;
-        public ValidatableObject<double> VWeight
+        private SetupInfo _setupInfo;
+        public SetupInfo SetupInfo
         {
-            get { return _vWeight; }
-            set { SetProperty(ref _vWeight, value); }
+            get { return _setupInfo; }
+            set { SetProperty(ref _setupInfo, value); }
         }
 
         private bool _isValid;
@@ -137,15 +136,17 @@ namespace Weigh.ViewModels
             : base(navigationService)
         {
             Title = "Setup";
+
+            SetupInfo = new SetupInfo();
             MinDate = DateTime.UtcNow.AddDays(10);
             GoalDate = AppState.GoalDate;
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
-            ValidateWeightCommand = new DelegateCommand(DoNothing, ValidateWeight);
+            //ValidateWeightCommand = new DelegateCommand(DoNothing, ValidateWeight);
             // Setting units to default imperial
             Units = true;
             // TODO: get rid of hard coded strings!
             PickerSource = new List<string> { "No Exercise", "Light Exercise", "Moderate Exercise", "Heavy Exercise" };
-            _vWeight = new ValidatableObject<double>();
+            //_vWeight = new ValidatableObject<double>();
             AddValidations();
         }
         #endregion
@@ -186,6 +187,7 @@ namespace Weigh.ViewModels
 
         }
 
+        /*
         private bool Validate()
         {
             //bool isValidWeight = _vWeight.IsValid;
@@ -202,10 +204,11 @@ namespace Weigh.ViewModels
             VWeight = _vWeight;
             return _vWeight.IsValid;
         }
+        */
 
         private void AddValidations()
         {
-            _vWeight.Validations.Add(new WeightWithinLimitsRule<double> { ValidationMessage = "Weight required." });
+            //_vWeight.Validations.Add(new WeightWithinLimitsRule<double> { ValidationMessage = "Weight required." });
         }
         #endregion
     }
