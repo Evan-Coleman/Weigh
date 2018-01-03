@@ -8,53 +8,6 @@ namespace Weigh.Validation
 {
     public class SetupInfoValidation
     {
-        public static ValidationResult WeightValidation(string weight)
-        {
-            bool isValid = true;
-            double Weight;
-
-            // Perform validation logic here and set isValid to true or false.
-            Weight = Convert.ToDouble(weight);
-
-            if (Weight < 50 || Weight > 800)
-            {
-                isValid = false;
-            }
-
-            if (isValid)
-            {
-                return ValidationResult.Success;
-            }
-            else
-            {
-                return new ValidationResult(
-                    "Must be in the range (50-800)");
-            }
-        }
-
-        public static ValidationResult AgeValidation(string age)
-        {
-            bool isValid = true;
-            double Age;
-
-            // Perform validation logic here and set isValid to true or false.
-            Age = Convert.ToDouble(age);
-
-            if (Age < 10 || Age > 120)
-            {
-                isValid = false;
-            }
-
-            if (isValid)
-            {
-                return ValidationResult.Success;
-            }
-            else
-            {
-                return new ValidationResult(
-                    "Must be in the range (10-120)");
-            }
-        }
 
         public static ValidationResult HeightMajorValidation(string heightMajor)
         {
@@ -64,9 +17,10 @@ namespace Weigh.Validation
             // Perform validation logic here and set isValid to true or false.
             HeightMajor = Convert.ToDouble(heightMajor);
 
+            // Units == true means imperial
             if (AppState.Units == true)
             {
-                if (HeightMajor < 1 || HeightMajor > 11)
+                if (HeightMajor < 1 || HeightMajor > 15)
                 {
                     isValid = false;
                 }
@@ -78,7 +32,7 @@ namespace Weigh.Validation
                 else
                 {
                     return new ValidationResult(
-                        "Must be in the range (1-300)");
+                        "Must be in the range (1-15)");
                 }
             }
             else
@@ -141,7 +95,7 @@ namespace Weigh.Validation
 
             if (AppState.Units == true)
             {
-                if (heightMinor.Length < 1 || heightMinor.Length > 2)
+                if (heightMinor.Length < 0 || heightMinor.Length > 2)
                 {
                     isValid = false;
                 }
@@ -153,7 +107,7 @@ namespace Weigh.Validation
                 else
                 {
                     return new ValidationResult(
-                        "Minimum 1 chars, max 2 chars");
+                        "Minimum 0 chars, max 2 chars");
                 }
             }
             else

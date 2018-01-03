@@ -12,7 +12,7 @@ namespace Weigh.Models
     {
         private string _name;
         [Required(ErrorMessage = "This field is required")]
-        [StringLength(15, MinimumLength = 2, ErrorMessage = "Minimum 2 chars, max 15 chars")]
+        [StringLength(25, MinimumLength = 1, ErrorMessage = "Minimum 1 chars, max 25 chars")]
         public string Name
         {
             get { return _name; }
@@ -22,7 +22,7 @@ namespace Weigh.Models
         private string _age;
         [Required(ErrorMessage = "This field is required")]
         [StringLength(3, MinimumLength = 2, ErrorMessage = "Minimum 2 chars, max 3 chars")]
-        [CustomValidation(typeof(SetupInfoValidation), "AgeValidation")]
+        [Range(1, 150, ErrorMessage = "Must be within range 1-150")]
         public string Age
         {
             get { return _age; }
@@ -31,7 +31,7 @@ namespace Weigh.Models
 
         private string _heightMajor;
         [Required(ErrorMessage = "This field is required")]
-        [StringLength(6, MinimumLength = 1, ErrorMessage = "Minimum 1 chars, max 6 chars")]
+        [StringLength(5, MinimumLength = 1, ErrorMessage = "Minimum 1 chars, max 5 chars")]        
         [CustomValidation(typeof(SetupInfoValidation), "HeightMajorValidation")]
         public string HeightMajor
         {
@@ -50,15 +50,19 @@ namespace Weigh.Models
 
         private string _weight;
         [Required(ErrorMessage = "This field is required")]
-        [StringLength(4, MinimumLength = 2, ErrorMessage = "Minimum 2 chars, max 4 chars")]
-        [CustomValidation(typeof(SetupInfoValidation), "WeightValidation")]
+        [StringLength(7, MinimumLength = 1, ErrorMessage = "Minimum 1 chars, max 7 chars")]
+        [Range(0.0, 1000.0, ErrorMessage = "Must be within range 0-1000")]
         public string Weight
         {
             get { return _weight; }
             set { SetProperty(ref _weight, value); }
         }
 
+
         private string _waistSize;
+        [Required(ErrorMessage = "This field is required")]
+        [StringLength(5, MinimumLength = 2, ErrorMessage = "Minimum 2 chars, max 5 chars")]
+        [Range(15.0, 200.0, ErrorMessage = "Must be within range 15-200")]
         public string WaistSize
         {
             get { return _waistSize; }
@@ -66,6 +70,9 @@ namespace Weigh.Models
         }
 
         private string _goalWeight;
+        [Required(ErrorMessage = "This field is required")]
+        [StringLength(7, MinimumLength = 1, ErrorMessage = "Minimum 1 chars, max 7 chars")]
+        [Range(0.0, 1000.0, ErrorMessage = "Must be within range 0-1000")]
         public string GoalWeight
         {
             get { return _goalWeight; }
