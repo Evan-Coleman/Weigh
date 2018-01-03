@@ -13,7 +13,9 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+    <StackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
+                 WidthRequest="250">
+        <!--
         <Entry Text="{Binding SetupInfo.Name, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[Name]}"
                Placeholder="Enter Name Here"
                Style="{ StaticResource SetupEntryStyle }"
@@ -24,15 +26,19 @@
         </Entry>
         <Label Text="{Binding SetupInfo.Errors[Name], Converter={StaticResource FirstErrorConverter}"
                FontSize="Small" TextColor="Red" />
-
+    -->
 
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="CenterAndExpand"
                      Padding="0">
-            <Label Text="Male"/>
-            <Switch IsToggled="{Binding Sex}"/>
-            <Label Text="Female"/>
+            <Label Text="Metric"/>
+            <Switch IsToggled="{Binding SetupInfo.Units}"
+                    x:Name="UnitSwitch"/>
+            <Label Text="Imperial"/>
         </StackLayout>
+
+
+
 
         <Entry Text="{Binding SetupInfo.Age, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[Age]}"
                Placeholder="Enter Age Here"
@@ -45,14 +51,10 @@
         </Entry>
         <Label Text="{Binding SetupInfo.Errors[Age], Converter={StaticResource FirstErrorConverter}"
                FontSize="Small" TextColor="Red" />
-        <Grid>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-            
-        <Entry Grid.Column="0"
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="CenterAndExpand">
+        <Entry 
             Text="{Binding SetupInfo.HeightMajor, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[HeightMajor]}"
                Placeholder="Enter Height (ft) Here"
                Style="{ StaticResource SetupEntryStyle }"
@@ -70,13 +72,13 @@
                 </DataTrigger>
             </Entry.Triggers>
         </Entry>
-            <Label Grid.Column="0"
+            <Label
             Text="{Binding SetupInfo.Errors[HeightMajor], Converter={StaticResource FirstErrorConverter}"
                FontSize="Small" TextColor="Red" />
 
-            <Entry Grid.Column="1"
+            <Entry WidthRequest="50"
             Text="{Binding SetupInfo.HeightMinor, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[HeightMinor]}"
-               Placeholder="Enter Height (in) Here"
+               Placeholder="(in)"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="HeightMinor"
                Keyboard="Numeric"
@@ -85,11 +87,11 @@
                 <b:EntryLengthValidatorBehavior MaxLength="2" />
             </Entry.Behaviors>
         </Entry>
-            <Label Grid.Column="1"
+            <Label 
             Text="{Binding SetupInfo.Errors[HeightMinor], Converter={StaticResource FirstErrorConverter}"
                FontSize="Small" TextColor="Red"
                IsVisible="{Binding SetupInfo.Units}"/>
-        </Grid>
+        </StackLayout>
 
 
         <Entry Text="{Binding SetupInfo.Weight, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[Weight]}"
@@ -133,9 +135,18 @@
         <Picker ItemsSource="{Binding PickerSource}"
                 SelectedItem="{Binding PickerSelectedItem}"
                 Title="Level of Activity"
+                 HorizontalOptions="FillAndExpand"
                 WidthRequest="150"/>
 
-        <Entry Text="{Binding SetupInfo.GoalWeight, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[GoalWeight]}"
+    <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="CenterAndExpand"
+                     Padding="0">
+        <Label Text="Male"/>
+        <Switch IsToggled="{Binding Sex}"/>
+        <Label Text="Female"/>
+    </StackLayout>
+
+    <Entry Text="{Binding SetupInfo.GoalWeight, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[GoalWeight]}"
                Placeholder="Goal Weight (lb)"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="GoalWeight"
@@ -158,14 +169,7 @@
                     MinimumDate="{Binding MinDate}"></DatePicker>
 
 
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="CenterAndExpand"
-                     Padding="0">
-            <Label Text="Metric"/>
-            <Switch IsToggled="{Binding SetupInfo.Units}"
-                    x:Name="UnitSwitch"/>
-            <Label Text="Imperial"/>
-        </StackLayout>
+
         <Button Text="Save"
                 Command="{Binding SaveInfoCommand}"
                 WidthRequest="150">
