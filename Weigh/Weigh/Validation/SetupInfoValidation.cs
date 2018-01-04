@@ -77,7 +77,7 @@ namespace Weigh.Validation
                 else
                 {
                     return new ValidationResult(
-                        "Must be in the range (0-12)");
+                        "(0-12)");
                 }
             }
             else
@@ -107,7 +107,7 @@ namespace Weigh.Validation
                 else
                 {
                     return new ValidationResult(
-                        "Minimum 0 chars, max 2 chars");
+                        "0-2chars");
                 }
             }
             else

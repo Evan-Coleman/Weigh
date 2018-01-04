@@ -22,6 +22,8 @@ namespace Weigh.Validation
             get { return validator; }
         }
 
+        public bool IsDirty { get; set; }
+
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged
         {
             add { validator.ErrorsChanged += value; }
@@ -31,6 +33,7 @@ namespace Weigh.Validation
         public ValidatableBase()
         {
             validator = new Validator(this);
+            IsDirty = false;
         }
 
         public ReadOnlyDictionary<string, ReadOnlyCollection<string>> GetAllErrors()
@@ -50,6 +53,16 @@ namespace Weigh.Validation
 
         protected override bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
         {
+            if (storage != null && value != null && storage.ToString() == "" && value.ToString() != "")
+            {
+                IsDirty = true;
+            }
+
+            if (propertyName == "GoalWeight")
+            {
+                Console.WriteLine(IsDirty);
+            }
+
             var result = base.SetProperty(ref storage, value, propertyName);
 
             if (result && !string.IsNullOrWhiteSpace(propertyName))

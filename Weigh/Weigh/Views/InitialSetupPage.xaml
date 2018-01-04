@@ -51,9 +51,9 @@
             </Entry.Behaviors>
         </Entry>
         <Label Text="{Binding SetupInfo.Errors[Age], Converter={StaticResource FirstErrorConverter}"
-               FontSize="Small" TextColor="Red" 
-               IsVisible="{Binding Source={x:Reference Age}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
-
+               Style="{StaticResource ErrorLabelStyle}"
+               IsVisible="{Binding SetupInfo.IsDirty[Age]}"/>
+        
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="CenterAndExpand">
             <StackLayout>
@@ -75,10 +75,9 @@
                         </DataTrigger>
                     </Entry.Triggers>
                 </Entry>
-                <Label
-            Text="{Binding SetupInfo.Errors[HeightMajor], Converter={StaticResource FirstErrorConverter}"
-               FontSize="Small" TextColor="Red"
-                IsVisible="{Binding Source={x:Reference HeightMajor}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+                <Label Text="{Binding SetupInfo.Errors[HeightMajor], Converter={StaticResource FirstErrorConverter}"
+               Style="{StaticResource ErrorLabelStyle}"
+               IsVisible="{Binding SetupInfo.IsDirty[HeightMajor]}"/>
             </StackLayout>
 
             <StackLayout>
@@ -93,10 +92,10 @@
                         <b:EntryLengthValidatorBehavior MaxLength="2" />
                     </Entry.Behaviors>
                 </Entry>
-                <Label 
-            Text="{Binding SetupInfo.Errors[HeightMinor], Converter={StaticResource FirstErrorConverter}"
-               FontSize="Micro" TextColor="Red"
-               IsVisible="{Binding SetupInfo.Units}"/>
+                <Label Text="{Binding SetupInfo.Errors[HeightMinor], Converter={StaticResource FirstErrorConverter}"
+                       Margin="10,-10,0,-10"
+               Style="{StaticResource ErrorLabelStyle}"
+               IsVisible="{Binding SetupInfo.IsDirty[HeightMinor]}"/>
             </StackLayout>
         </StackLayout>
 
@@ -118,8 +117,10 @@
                 <b:EntryLengthValidatorBehavior MaxLength="7" />
             </Entry.Behaviors>
         </Entry>
-        <Label Text="{Binding SetupInfo.Errors[Weight], Converter={StaticResource FirstErrorConverter}" FontSize="Small" TextColor="Red" 
-               IsVisible="{Binding Source={x:Reference Weight}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+        <Label Text="{Binding SetupInfo.Errors[Weight], Converter={StaticResource FirstErrorConverter}"
+               Style="{StaticResource ErrorLabelStyle}"
+               IsVisible="{Binding SetupInfo.IsDirty[Weight]}"/>
+
 
         <Entry Text="{Binding SetupInfo.WaistSize, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[WaistSize]}"
                Placeholder="Waist Size (in)"
@@ -138,8 +139,9 @@
                 <b:EntryLengthValidatorBehavior MaxLength="5" />
             </Entry.Behaviors>
         </Entry>
-        <Label Text="{Binding SetupInfo.Errors[WaistSize], Converter={StaticResource FirstErrorConverter}" FontSize="Small" TextColor="Red"
-               IsVisible="{Binding Source={x:Reference WaistSize}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+        <Label Text="{Binding SetupInfo.Errors[WaistSize], Converter={StaticResource FirstErrorConverter}"
+               Style="{StaticResource ErrorLabelStyle}"
+               IsVisible="{Binding SetupInfo.IsDirty[WaistSize]}"/>
 
         <Picker ItemsSource="{Binding SetupInfo.PickerSource}"
                 SelectedItem="{Binding SetupInfo.PickerSelectedItem}"
@@ -172,8 +174,9 @@
                 <b:EntryLengthValidatorBehavior MaxLength="7" />
             </Entry.Behaviors>
         </Entry>
-        <Label Text="{Binding SetupInfo.Errors[GoalWeight], Converter={StaticResource FirstErrorConverter}" FontSize="Small" TextColor="Red" 
-               IsVisible="{Binding Source={x:Reference GoalWeight}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}" />
+        <Label Text="{Binding SetupInfo.Errors[GoalWeight], Converter={StaticResource FirstErrorConverter}"
+               Style="{StaticResource ErrorLabelStyle}"
+               IsVisible="{Binding SetupInfo.IsDirty[GoalWeight]}"/>
 
         <DatePicker Date="{Binding SetupInfo.GoalDate}"
                     MinimumDate="{Binding SetupInfo.MinDate}"></DatePicker>

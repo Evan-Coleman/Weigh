@@ -29,7 +29,7 @@
 
             <Style TargetType="ContentPage"
                    ApplyToDerivedTypes="True">
-                
+
             </Style>
 
             <Style TargetType="ContentView">
@@ -87,6 +87,13 @@
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="WidthRequest" Value="{ StaticResource BaseEntryWidthRequest }"/>
             </Style>
+
+            <Style x:Key="ErrorLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Micro"/>
+                <Setter Property="TextColor" Value="Red"/>
+                <Setter Property="Margin" Value="5,-10,0,-10"/>
+            </Style>
+            
         </ResourceDictionary>
 
     </Application.Resources>

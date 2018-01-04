@@ -44,17 +44,12 @@ namespace Weigh.ViewModels
             SetupInfo = new SetupInfo();
             SetupInfo.MinDate = DateTime.UtcNow.AddDays(10);
             SetupInfo.GoalDate = AppState.GoalDate;
-            SetupInfo.Age = "";
-            SetupInfo.HeightMajor = "";
-            SetupInfo.HeightMinor = "";
-            SetupInfo.Weight = "";
-            SetupInfo.WaistSize = "";
-            SetupInfo.GoalWeight = "";
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
             // Setting units to default imperial
             SetupInfo.Units = true;
             // TODO: get rid of hard coded strings!
             SetupInfo.PickerSource = new List<string> { "No Exercise", "Light Exercise", "Moderate Exercise", "Heavy Exercise" };
+            SetupInfo.PickerSelectedItem = "Light Exercise";
         }
         #endregion
 
