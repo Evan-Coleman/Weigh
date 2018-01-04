@@ -10,6 +10,8 @@ namespace Weigh.Models
 {
     public class SetupInfo : ValidatableBase
     {
+
+        /*
         private string _name;
         [Required(ErrorMessage = "This field is required")]
         [StringLength(25, MinimumLength = 1, ErrorMessage = "Minimum 1 chars, max 25 chars")]
@@ -18,6 +20,7 @@ namespace Weigh.Models
             get { return _name; }
             set { SetProperty(ref _name, value); }
         }
+        */
 
         private string _age;
         [Required(ErrorMessage = "This field is required")]

@@ -10,6 +10,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:FirstErrorConverter x:Key="FirstErrorConverter" />
+            <converters:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -50,47 +51,53 @@
             </Entry.Behaviors>
         </Entry>
         <Label Text="{Binding SetupInfo.Errors[Age], Converter={StaticResource FirstErrorConverter}"
-               FontSize="Small" TextColor="Red" />
+               FontSize="Small" TextColor="Red" 
+               IsVisible="{Binding Source={x:Reference Age}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
 
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="CenterAndExpand">
-        <Entry 
+            <StackLayout>
+                <Entry 
             Text="{Binding SetupInfo.HeightMajor, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[HeightMajor]}"
                Placeholder="Enter Height (ft) Here"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="HeightMajor"
                Keyboard="Numeric">
-            <Entry.Behaviors>
-                <b:EntryLengthValidatorBehavior MaxLength="6" />
-            </Entry.Behaviors>
-            <Entry.Triggers>
-                <DataTrigger TargetType="Entry"
+                    <Entry.Behaviors>
+                        <b:EntryLengthValidatorBehavior MaxLength="6" />
+                    </Entry.Behaviors>
+                    <Entry.Triggers>
+                        <DataTrigger TargetType="Entry"
                      Binding="{Binding Source={x:Reference UnitSwitch},
                                        Path=IsToggled}"
                      Value="false">
-                    <Setter Property="Placeholder" Value="Enter Height (cm) Here" />
-                </DataTrigger>
-            </Entry.Triggers>
-        </Entry>
-            <Label
+                            <Setter Property="Placeholder" Value="Enter Height (cm) Here" />
+                        </DataTrigger>
+                    </Entry.Triggers>
+                </Entry>
+                <Label
             Text="{Binding SetupInfo.Errors[HeightMajor], Converter={StaticResource FirstErrorConverter}"
-               FontSize="Small" TextColor="Red" />
+               FontSize="Small" TextColor="Red"
+                IsVisible="{Binding Source={x:Reference HeightMajor}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
+            </StackLayout>
 
-            <Entry WidthRequest="50"
+            <StackLayout>
+                <Entry WidthRequest="50"
             Text="{Binding SetupInfo.HeightMinor, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[HeightMinor]}"
                Placeholder="(in)"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="HeightMinor"
                Keyboard="Numeric"
                IsVisible="{Binding SetupInfo.Units}">
-            <Entry.Behaviors>
-                <b:EntryLengthValidatorBehavior MaxLength="2" />
-            </Entry.Behaviors>
-        </Entry>
-            <Label 
+                    <Entry.Behaviors>
+                        <b:EntryLengthValidatorBehavior MaxLength="2" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Label 
             Text="{Binding SetupInfo.Errors[HeightMinor], Converter={StaticResource FirstErrorConverter}"
-               FontSize="Small" TextColor="Red"
+               FontSize="Micro" TextColor="Red"
                IsVisible="{Binding SetupInfo.Units}"/>
+            </StackLayout>
         </StackLayout>
 
 
@@ -111,7 +118,8 @@
                 <b:EntryLengthValidatorBehavior MaxLength="7" />
             </Entry.Behaviors>
         </Entry>
-        <Label Text="{Binding SetupInfo.Errors[Weight], Converter={StaticResource FirstErrorConverter}" FontSize="Small" TextColor="Red" />
+        <Label Text="{Binding SetupInfo.Errors[Weight], Converter={StaticResource FirstErrorConverter}" FontSize="Small" TextColor="Red" 
+               IsVisible="{Binding Source={x:Reference Weight}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
 
         <Entry Text="{Binding SetupInfo.WaistSize, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[WaistSize]}"
                Placeholder="Waist Size (in)"
@@ -130,23 +138,24 @@
                 <b:EntryLengthValidatorBehavior MaxLength="5" />
             </Entry.Behaviors>
         </Entry>
-        <Label Text="{Binding SetupInfo.Errors[WaistSize], Converter={StaticResource FirstErrorConverter}" FontSize="Small" TextColor="Red" />
+        <Label Text="{Binding SetupInfo.Errors[WaistSize], Converter={StaticResource FirstErrorConverter}" FontSize="Small" TextColor="Red"
+               IsVisible="{Binding Source={x:Reference WaistSize}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}"/>
 
-        <Picker ItemsSource="{Binding PickerSource}"
-                SelectedItem="{Binding PickerSelectedItem}"
+        <Picker ItemsSource="{Binding SetupInfo.PickerSource}"
+                SelectedItem="{Binding SetupInfo.PickerSelectedItem}"
                 Title="Level of Activity"
                  HorizontalOptions="FillAndExpand"
                 WidthRequest="150"/>
 
-    <StackLayout Orientation="Horizontal"
+        <StackLayout Orientation="Horizontal"
                      HorizontalOptions="CenterAndExpand"
                      Padding="0">
-        <Label Text="Male"/>
-        <Switch IsToggled="{Binding Sex}"/>
-        <Label Text="Female"/>
-    </StackLayout>
+            <Label Text="Male"/>
+            <Switch IsToggled="{Binding SetupInfo.Sex}"/>
+            <Label Text="Female"/>
+        </StackLayout>
 
-    <Entry Text="{Binding SetupInfo.GoalWeight, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[GoalWeight]}"
+        <Entry Text="{Binding SetupInfo.GoalWeight, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[GoalWeight]}"
                Placeholder="Goal Weight (lb)"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="GoalWeight"
@@ -163,44 +172,17 @@
                 <b:EntryLengthValidatorBehavior MaxLength="7" />
             </Entry.Behaviors>
         </Entry>
-        <Label Text="{Binding SetupInfo.Errors[GoalWeight], Converter={StaticResource FirstErrorConverter}" FontSize="Small" TextColor="Red" />
+        <Label Text="{Binding SetupInfo.Errors[GoalWeight], Converter={StaticResource FirstErrorConverter}" FontSize="Small" TextColor="Red" 
+               IsVisible="{Binding Source={x:Reference GoalWeight}, Path=Text, Converter={StaticResource StringNullOrEmptyBoolConverter}}" />
 
-        <DatePicker Date="{Binding GoalDate}"
-                    MinimumDate="{Binding MinDate}"></DatePicker>
+        <DatePicker Date="{Binding SetupInfo.GoalDate}"
+                    MinimumDate="{Binding SetupInfo.MinDate}"></DatePicker>
 
 
 
         <Button Text="Save"
                 Command="{Binding SaveInfoCommand}"
-                WidthRequest="150">
-            <Button.Triggers>
-                <DataTrigger TargetType="Button"
-                     Binding="{Binding Source={x:Reference Age},
-                                       Path=TextColor}"
-                     Value="Color.Red">
-                    <Setter Property="IsEnabled" Value="False" />
-                </DataTrigger>
-                <DataTrigger TargetType="Button"
-                     Binding="{Binding Source={x:Reference HeightMajor},
-                                       Path=TextColor}"
-                     Value="Color.Red">
-                    <Setter Property="IsEnabled" Value="False" />
-                </DataTrigger>
-                <DataTrigger TargetType="Button"
-                     Binding="{Binding Source={x:Reference HeightMinor},
-                                       Path=TextColor}"
-                     Value="Color.Red">
-                    <Setter Property="IsEnabled" Value="False" />
-                </DataTrigger>
-                <DataTrigger TargetType="Button"
-                     Binding="{Binding Source={x:Reference Weight},
-                                       Path=TextColor}"
-                     Value="Color.Red">
-                    <Setter Property="IsEnabled" Value="False" />
-                </DataTrigger>
-            </Button.Triggers>
-
-        </Button>
+                WidthRequest="150"/>
     </StackLayout>
 
 </ContentPage>

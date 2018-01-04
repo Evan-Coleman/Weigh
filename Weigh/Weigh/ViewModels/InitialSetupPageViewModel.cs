@@ -11,6 +11,8 @@ using Weigh.Behaviors;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Prism.Events;
+using Acr.UserDialogs;
+using System.Threading.Tasks;
 
 namespace Weigh.ViewModels
 {
@@ -29,7 +31,6 @@ namespace Weigh.ViewModels
             get { return _setupInfo; }
             set { SetProperty(ref _setupInfo, value); }
         }
-
         public DelegateCommand SaveInfoCommand { get; set; }        
 
         private WeightEntry _newWeight;
@@ -43,6 +44,12 @@ namespace Weigh.ViewModels
             SetupInfo = new SetupInfo();
             SetupInfo.MinDate = DateTime.UtcNow.AddDays(10);
             SetupInfo.GoalDate = AppState.GoalDate;
+            SetupInfo.Age = "";
+            SetupInfo.HeightMajor = "";
+            SetupInfo.HeightMinor = "";
+            SetupInfo.Weight = "";
+            SetupInfo.WaistSize = "";
+            SetupInfo.GoalWeight = "";
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
             // Setting units to default imperial
             SetupInfo.Units = true;
@@ -52,34 +59,72 @@ namespace Weigh.ViewModels
         #endregion
 
         #region Methods
+        private bool CanExecute()
+        {
+            return SetupInfo.ValidateProperties();
+        }
+
         private async void SaveInfoAsync()
         {
-            AppState.Name = SetupInfo.Name;
-            AppState.Sex = SetupInfo.Sex;
-            AppState.Age = Convert.ToInt32(SetupInfo.Age);
-            AppState.GoalWeight = Convert.ToDouble(SetupInfo.GoalWeight);
-            AppState.GoalDate = SetupInfo.GoalDate;
-
-            AppState.HeightMajor = Convert.ToDouble(SetupInfo.HeightMajor);
-            AppState.HeightMinor = Convert.ToInt32(SetupInfo.HeightMinor);
-            AppState.Weight = Convert.ToDouble(SetupInfo.Weight);
-            AppState.WaistSize = Convert.ToDouble(SetupInfo.WaistSize);
-            AppState.LastWeight = Convert.ToDouble(SetupInfo.Weight);
-            AppState.InitialWeight = Convert.ToDouble(SetupInfo.Weight);
-            
+            /*
+            //DEBUG ZONE
+            AppState.Sex = false;
+            AppState.Age = 29;
+            AppState.GoalWeight = 190;
+            AppState.GoalDate = DateTime.UtcNow.AddDays(180);
+            AppState.HeightMajor = 5;
+            AppState.HeightMinor = 10;
+            AppState.Weight = 235;
+            AppState.WaistSize = 40;
+            AppState.LastWeight = 235;
+            AppState.InitialWeight = 235;
             AppState.LastWeighDate = DateTime.UtcNow;
             AppState.InitialWeightDate = DateTime.UtcNow;
-            AppState.Units = SetupInfo.Units;
-            AppState.PickerSelectedItem = SetupInfo.PickerSelectedItem;
-
-            GoalValidation.ValidateGoal();
-
-            // Nav using absolute path so user can't hit the back button and come back here
+            AppState.Units = true;
+            AppState.PickerSelectedItem = "Light Exercise";
             _newWeight = new WeightEntry();
-            _newWeight.Weight = AppState.Weight;
-            _newWeight.WaistSize = AppState.WaistSize;
+            _newWeight.Weight = 235;
+            _newWeight.WaistSize = 40;
             await App.Database.SaveWeightAsync(_newWeight);
             await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage/MainPage");
+            return;
+            //DEBUG ZONE
+            */
+            if (CanExecute() == false)
+            {
+               UserDialogs.Instance.Alert("Please fill in all forms!");
+            }
+            else
+            {
+                /*
+                AppState.Name = SetupInfo.Name;
+                */
+                AppState.Sex = SetupInfo.Sex;
+                AppState.Age = Convert.ToInt32(SetupInfo.Age);
+                AppState.GoalWeight = Convert.ToDouble(SetupInfo.GoalWeight);
+                AppState.GoalDate = SetupInfo.GoalDate;
+
+                AppState.HeightMajor = Convert.ToDouble(SetupInfo.HeightMajor);
+                AppState.HeightMinor = Convert.ToInt32(SetupInfo.HeightMinor);
+                AppState.Weight = Convert.ToDouble(SetupInfo.Weight);
+                AppState.WaistSize = Convert.ToDouble(SetupInfo.WaistSize);
+                AppState.LastWeight = Convert.ToDouble(SetupInfo.Weight);
+                AppState.InitialWeight = Convert.ToDouble(SetupInfo.Weight);
+
+                AppState.LastWeighDate = DateTime.UtcNow;
+                AppState.InitialWeightDate = DateTime.UtcNow;
+                AppState.Units = SetupInfo.Units;
+                AppState.PickerSelectedItem = SetupInfo.PickerSelectedItem;
+
+                GoalValidation.ValidateGoal();
+                // Nav using absolute path so user can't hit the back button and come back here
+                _newWeight = new WeightEntry();
+                _newWeight.Weight = AppState.Weight;
+                _newWeight.WaistSize = AppState.WaistSize;
+                await App.Database.SaveWeightAsync(_newWeight);
+                
+                await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage/MainPage");
+            }
         }
         #endregion
     }

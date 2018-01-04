@@ -7,6 +7,7 @@ namespace Weigh.Behaviors
 {
     public class EntryLengthValidatorBehavior : Behavior<Entry>
     {
+
         public int MaxLength { get; set; }
 
         protected override void OnAttachedTo(Entry bindable)
@@ -21,18 +22,16 @@ namespace Weigh.Behaviors
             bindable.TextChanged -= OnEntryTextChanged;
         }
 
-        void OnEntryTextChanged(object sender, TextChangedEventArgs e)
+        private void OnEntryTextChanged(object sender, TextChangedEventArgs e)
         {
             var entry = (Entry)sender;
 
-            // if Entry text is longer then valid length
-            if (entry.Text.Length > this.MaxLength)
+            if (entry.Text != null && entry.Text.Length > this.MaxLength)
             {
                 string entryText = entry.Text;
-
-                entryText = entryText.Remove(entryText.Length - 1); // remove last char
-
-                entry.Text = entryText;
+                entry.TextChanged -= OnEntryTextChanged;
+                entry.Text = e.OldTextValue;
+                entry.TextChanged += OnEntryTextChanged;
             }
         }
     }

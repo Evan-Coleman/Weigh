@@ -87,7 +87,6 @@
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="WidthRequest" Value="{ StaticResource BaseEntryWidthRequest }"/>
             </Style>
-
         </ResourceDictionary>
 
     </Application.Resources>

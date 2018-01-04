@@ -22,9 +22,7 @@
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="Age"
                Keyboard="Numeric">
-            <Entry.Behaviors>
-                <b:NumericValidatorBehavior />
-            </Entry.Behaviors>
+
         </Entry>
         <Entry Text="{Binding HeightMajor}"
                Placeholder="Height (ft)"
@@ -39,9 +37,7 @@
                     <Setter Property="Placeholder" Value="Height (cm)" />
                 </DataTrigger>
             </Entry.Triggers>
-            <Entry.Behaviors>
-                <b:NumericValidatorBehavior />
-            </Entry.Behaviors>
+
         </Entry>
         <Entry Text="{Binding HeightMinor}"
                Placeholder="Height (in)"
@@ -49,9 +45,7 @@
                x:Name="HeightMinor"
                IsVisible="{Binding Units}"
                Keyboard="Numeric">
-            <Entry.Behaviors>
-                <b:NumericValidatorBehavior />
-            </Entry.Behaviors>
+
         </Entry>
         <Entry Text="{Binding Weight}"
                Placeholder="Weight (lb)"
@@ -66,9 +60,7 @@
                     <Setter Property="Placeholder" Value="Weight (kg)" />
                 </DataTrigger>
             </Entry.Triggers>
-            <Entry.Behaviors>
-                <b:NumericValidatorBehavior />
-            </Entry.Behaviors>
+
         </Entry>
         <Entry Text="{Binding WaistSize}"
                Placeholder="Waist Size (in)"
@@ -83,9 +75,7 @@
                     <Setter Property="Placeholder" Value="Waist Size (cm)" />
                 </DataTrigger>
             </Entry.Triggers>
-            <Entry.Behaviors>
-                <b:NumericValidatorBehavior />
-            </Entry.Behaviors>
+
         </Entry>
         <Picker ItemsSource="{Binding PickerSource}"
                 SelectedItem="{Binding PickerSelectedItem}"
@@ -105,9 +95,7 @@
                     <Setter Property="Placeholder" Value="Goal Weight (kg)" />
                 </DataTrigger>
             </Entry.Triggers>
-            <Entry.Behaviors>
-                <b:NumericValidatorBehavior />
-            </Entry.Behaviors>
+
         </Entry>
 
         <DatePicker Date="{Binding GoalDate}"
