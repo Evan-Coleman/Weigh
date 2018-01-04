@@ -22,89 +22,11 @@ namespace Weigh.ViewModels
     public class SettingsPageViewModel : ViewModelBase
 	{
         #region Fields
-        private string _name;
-        public string Name
+        private SetupInfo _setupInfo;
+        public SetupInfo SetupInfo
         {
-            get { return _name; }
-            set { SetProperty(ref _name, value); }
-        }
-        private bool _sex;
-        public bool Sex
-        {
-            get { return _sex; }
-            set { SetProperty(ref _sex, value); }
-        }
-        private string _age;
-        public string Age
-        {
-            get { return _age; }
-            set { SetProperty(ref _age, value); }
-        }
-        private string _heightMajor;
-        public string HeightMajor
-        {
-            get { return _heightMajor; }
-            set { SetProperty(ref _heightMajor, value); }
-        }
-        private string _heightMinor;
-        public string HeightMinor
-        {
-            get { return _heightMinor; }
-            set { SetProperty(ref _heightMinor, value); }
-        }
-        private string _weight;
-        public string Weight
-        {
-            get { return _weight; }
-            set { SetProperty(ref _weight, value); }
-        }
-        private bool _units;
-        public bool Units
-        {
-            get { return _units; }
-            set { SetProperty(ref _units, value); }
-        }
-
-        private List<string> _pickerSource;
-        public List<string> PickerSource
-        {
-            get { return _pickerSource; }
-            set { SetProperty(ref _pickerSource, value); }
-        }
-
-        private string _pickerSelectedItem;
-        public string PickerSelectedItem
-        {
-            get { return _pickerSelectedItem; }
-            set { SetProperty(ref _pickerSelectedItem, value); }
-        }
-
-        private double _goalWeight;
-        public double GoalWeight
-        {
-            get { return _goalWeight; }
-            set { SetProperty(ref _goalWeight, value); }
-        }
-
-        private DateTime _goalDate;
-        public DateTime GoalDate
-        {
-            get { return _goalDate; }
-            set { SetProperty(ref _goalDate, value); }
-        }
-
-        private DateTime _minDate;
-        public DateTime MinDate
-        {
-            get { return _minDate; }
-            set { SetProperty(ref _minDate, value); }
-        }
-
-        private string _waistSize;
-        public string WaistSize
-        {
-            get { return _waistSize; }
-            set { SetProperty(ref _waistSize, value); }
+            get { return _setupInfo; }
+            set { SetProperty(ref _setupInfo, value); }
         }
 
         public DelegateCommand SaveInfoCommand { get; set; }
@@ -115,59 +37,58 @@ namespace Weigh.ViewModels
         public SettingsPageViewModel(INavigationService navigationService, IEventAggregator ea)
             : base(navigationService)
         {
+            SetupInfo = new SetupInfo();
             _ea = ea;
             _ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry);
             _ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
             Title = "Setup";
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
-            MinDate = DateTime.UtcNow.AddDays(10);
+            SetupInfo.MinDate = DateTime.UtcNow.AddDays(10);
 
-            GoalWeight = AppState.GoalWeight;
-            GoalDate = AppState.GoalDate;
-            Name = AppState.Name;
-            Sex = AppState.Sex;
-            Age = AppState.Age.ToString();
-            HeightMajor = AppState.HeightMajor.ToString();
-            HeightMinor = AppState.HeightMinor.ToString();
-            Weight = AppState.Weight.ToString();
-            WaistSize = AppState.WaistSize.ToString();
-            Units = AppState.Units;
-            PickerSelectedItem = AppState.PickerSelectedItem;
-            PickerSource = new List<string> { "No Exercise", "Light Exercise", "Moderate Exercise", "Heavy Exercise" };
+            SetupInfo.GoalWeight = AppState.GoalWeight.ToString();
+            SetupInfo.GoalDate = AppState.GoalDate;
+            SetupInfo.Sex = AppState.Sex;
+            SetupInfo.Age = AppState.Age.ToString();
+            SetupInfo.HeightMajor = AppState.HeightMajor.ToString();
+            SetupInfo.HeightMinor = AppState.HeightMinor.ToString();
+            SetupInfo.Weight = AppState.Weight.ToString();
+            SetupInfo.WaistSize = AppState.WaistSize.ToString();
+            SetupInfo.Units = AppState.Units;
+            SetupInfo.PickerSelectedItem = AppState.PickerSelectedItem;
+            SetupInfo.PickerSource = new List<string> { "No Exercise", "Light Exercise", "Moderate Exercise", "Heavy Exercise" };
         }
         #endregion
 
         #region Methods
         private async void SaveInfoAsync()
         {
-            AppState.Name = Name;
-            AppState.Sex = Sex;
-            AppState.Age = Convert.ToInt32(Age);
-            AppState.HeightMajor = Convert.ToDouble(HeightMajor);
-            AppState.HeightMinor = Convert.ToInt32(HeightMinor);
-            AppState.Weight = Convert.ToDouble(Weight);
-            AppState.Units = Units;
-            AppState.GoalDate = GoalDate;
-            AppState.WaistSize = Convert.ToDouble(WaistSize);
+            AppState.Sex = SetupInfo.Sex;
+            AppState.Age = Convert.ToInt32(SetupInfo.Age);
+            AppState.HeightMajor = Convert.ToDouble(SetupInfo.HeightMajor);
+            AppState.HeightMinor = Convert.ToInt32(SetupInfo.HeightMinor);
+            AppState.Weight = Convert.ToDouble(SetupInfo.Weight);
+            AppState.Units = SetupInfo.Units;
+            AppState.GoalDate = SetupInfo.GoalDate;
+            AppState.WaistSize = Convert.ToDouble(SetupInfo.WaistSize);
             if (GoalValidation.ValidateGoal() == false)
             {
-                GoalDate = AppState.GoalDate;
+                SetupInfo.GoalDate = AppState.GoalDate;
             }
             _ea.GetEvent<NewGoalEvent>().Publish();
-            AppState.PickerSelectedItem = PickerSelectedItem;
+            AppState.PickerSelectedItem = SetupInfo.PickerSelectedItem;
             await NavigationService.NavigateAsync(
                 $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
         }
 
         private void HandleNewWeightEntry(WeightEntry weight)
 	    {
-	        Weight = weight.Weight.ToString();
-            WaistSize = weight.WaistSize.ToString();
+            SetupInfo.Weight = weight.Weight.ToString();
+            SetupInfo.WaistSize = weight.WaistSize.ToString();
 	    }
         private void HandleNewGoal()
         {
-            GoalDate = AppState.GoalDate;
-            GoalWeight = AppState.GoalWeight;
+            SetupInfo.GoalDate = AppState.GoalDate;
+            SetupInfo.GoalWeight = AppState.GoalWeight.ToString();
         }
         #endregion
     }
