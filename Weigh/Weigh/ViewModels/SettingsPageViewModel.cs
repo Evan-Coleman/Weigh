@@ -10,6 +10,7 @@ using Weigh.Extensions;
 using Weigh.Helpers;
 using Weigh.Models;
 using Weigh.Behaviors;
+using Weigh.Validation;
 
 namespace Weigh.ViewModels
 {
@@ -70,10 +71,12 @@ namespace Weigh.ViewModels
             AppState.Units = SetupInfo.Units;
             AppState.GoalDate = SetupInfo.GoalDate;
             AppState.WaistSize = Convert.ToDouble(SetupInfo.WaistSize);
-            if (GoalValidation.ValidateGoal() == false)
+            /*
+             if (GoalValidation.ValidateGoala() == false)
             {
                 SetupInfo.GoalDate = AppState.GoalDate;
             }
+            */
             _ea.GetEvent<NewGoalEvent>().Publish();
             AppState.PickerSelectedItem = SetupInfo.PickerSelectedItem;
             await NavigationService.NavigateAsync(

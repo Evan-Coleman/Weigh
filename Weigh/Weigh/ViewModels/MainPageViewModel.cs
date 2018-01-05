@@ -11,6 +11,7 @@ using Weigh.Helpers;
 using Weigh.Models;
 using Weigh.Extensions;
 using Weigh.Behaviors;
+using Weigh.Validation;
 
 namespace Weigh.ViewModels
 {
@@ -23,33 +24,11 @@ namespace Weigh.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
         #region Fields
-        private double _bmi;
-        public double BMI
-        {
-            get { return _bmi; }
-            set { SetProperty(ref _bmi, value); }
-        }
 
-        private double _bmr;
-        public double BMR
-        {
-            get { return _bmr; }
-            set { SetProperty(ref _bmr, value); }
-        }
 
-        private double _recommendedDailyCaloricIntake;
-        public double RecommendedDailyCaloricIntake
-        {
-            get { return _recommendedDailyCaloricIntake; }
-            set { SetProperty(ref _recommendedDailyCaloricIntake, value); }
-        }
 
-        private string _bmiCategory;
-        public string BMICategory
-        {
-            get { return _bmiCategory; }
-            set { SetProperty(ref _bmiCategory, value); }
-        }
+
+
 
         private DelegateCommand _addWeightToListCommand;
         public DelegateCommand AddWeightToListCommand
@@ -58,47 +37,8 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _addWeightToListCommand, value); }
         }
 
-        private double _goalWeight;
-        public double GoalWeight
-        {
-            get { return _goalWeight; }
-            set { SetProperty(ref _goalWeight, value); }
-        }
 
-        private double _distanceToGoalWeight;
-        public double DistanceToGoalWeight
-        {
-            get { return _distanceToGoalWeight; }
-            set { SetProperty(ref _distanceToGoalWeight, value); }
-        }
 
-        private int _timeLeftToGoal;
-        public int TimeLeftToGoal
-        {
-            get { return _timeLeftToGoal; }
-            set { SetProperty(ref _timeLeftToGoal, value); }
-        }
-
-        private DateTime _goalDate;
-        public DateTime GoalDate
-        {
-            get { return _goalDate; }
-            set { SetProperty(ref _goalDate, value); }
-        }
-
-        private double _currentWeight;
-        public double CurrentWeight
-        {
-            get { return _currentWeight; }
-            set { SetProperty(ref _currentWeight, value); }
-        }
-
-        private double _waistSize;
-        public double WaistSize
-        {
-            get { return _waistSize; }
-            set { SetProperty(ref _waistSize, value); }
-        }
 
         private string _newWeightEntry;
         public string NewWeightEntry
@@ -120,18 +60,15 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _newWaistSizeEntry, value); }
         }
 
-        private bool _units;
-        public bool Units
-        {
-            get { return _units; }
-            set { SetProperty(ref _units, value); }
-        }
 
-        private string _weightLostToDate;
-        public string WeightLostToDate
+
+
+
+        private SetupInfo _setupInfo;
+        public SetupInfo SetupInfo
         {
-            get { return _weightLostToDate; }
-            set { SetProperty(ref _weightLostToDate, value); }
+            get { return _setupInfo; }
+            set { SetProperty(ref _setupInfo, value); }
         }
 
         private WeightEntry _newWeight;
@@ -144,117 +81,36 @@ namespace Weigh.ViewModels
         {
             _ea = ea;
             _ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
+            _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo);
             Title = "Main Page";
             ButtonEnabled = true;
-            CalculateBMRBMI();
+            
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
-            GoalWeight = AppState.GoalWeight;
-            DistanceToGoalWeight = AppState.Weight - GoalWeight;
-            TimeLeftToGoal = (AppState.GoalDate - DateTime.UtcNow).Days;
-            GoalDate = AppState.GoalDate;
-            CurrentWeight = AppState.Weight;
-            WaistSize = AppState.WaistSize;
-            Units = AppState.Units;
-            WeightLostToDate = (AppState.InitialWeight - AppState.Weight).ToString();
+            if (SetupInfo == null)
+            {
+                GetSetupInfoFromDatabase();
+            }
+            SetupInfo.ValidateGoal();
+            SetupInfo.DistanceToGoalWeight = Convert.ToDouble(SetupInfo.Weight) - Convert.ToDouble(SetupInfo.GoalWeight);
+            SetupInfo.TimeLeftToGoal = (SetupInfo.GoalDate - DateTime.UtcNow).Days;
+            SetupInfo.WeightLostToDate = (Convert.ToDouble(SetupInfo.InitialWeight) - Convert.ToDouble(SetupInfo.Weight)).ToString();
         }
         #endregion
 
         #region Methods
-        private void CalculateBMRBMI()
+        private async void GetSetupInfoFromDatabase()
         {
-            double Feet = AppState.HeightMajor;
-            int Inches = AppState.HeightMinor;
-            double Weight = AppState.Weight;
-
-            // Units are metric if false, so do conversion here
-            if (AppState.Units == false)
-            {
-                (Feet, Inches) = AppState.HeightMajor.CentimetersToFeetInches();
-                Weight = AppState.Weight.KilogramsToPounds();
-            }
-
-            BMI = (Weight / Math.Pow(((Feet * 12) + Inches), 2)) * 703;
-
-            // Categories based on site here: https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm
-            if (BMI < 18.5)
-            {
-                BMICategory = "Underweight";
-            }
-
-            if (BMI >= 18.5 && BMI <= 24.9)
-            {
-                BMICategory = "Normal Weight";
-            }
-
-            if (BMI >= 25 && BMI <= 29.9)
-            {
-                BMICategory = "Overweight";
-            }
-
-            if (BMI >= 30)
-            {
-                BMICategory = "Obese";
-            }
-
-            // BMR based on equations at https://en.wikipedia.org/wiki/Harris%E2%80%93Benedict_equation
-            // According to http://www.exercise4weightloss.com/bmr-calculator.html
-            // -- Go 1000 calories lower than this calculation to lose 2 pounds a week which is the max advisable
-            if (AppState.Sex == false)
-            {
-                BMR = 66 + (6.2 * Weight) + (12.7 * ((Feet * 12) + Inches)) - (6.76 * AppState.Age);
-            }
-            else
-            {
-                BMR = 655.1 + (4.35 * Weight) + (4.7 * ((Feet * 12) + Inches)) - (4.7 * AppState.Age);
-            }
-            if (AppState.PickerSelectedItem == "No Exercise")
-            {
-                BMR *= 1.2;
-            }
-            if (AppState.PickerSelectedItem == "Light Exercise")
-            {
-                BMR *= 1.375;
-            }
-            if (AppState.PickerSelectedItem == "Moderate Exercise")
-            {
-                BMR *= 1.55;
-            }
-            if (AppState.PickerSelectedItem == "Heavy Exercise")
-            {
-                BMR *= 1.725;
-            }
-
-            CalcDailyCaloricIntakeToMeetGoal();
-        }
-
-        private void CalcDailyCaloricIntakeToMeetGoal()
-        {
-            double weightPerWeekToMeetGoal = (AppState.Weight - AppState.GoalWeight) / (AppState.GoalDate - DateTime.UtcNow).TotalDays * 7;
-            double RequiredCaloricDefecit = 500 * weightPerWeekToMeetGoal;
-            RecommendedDailyCaloricIntake = (int)BMR - RequiredCaloricDefecit;
-            if (AppState.Sex == true && RecommendedDailyCaloricIntake < 1200)
-            {
-                // Min calories/day for women is 1200
-                // TODO: Implement something to handle this case
-                GoalValidation.ValidateGoal();
-                UpdateAfterValidation();
-            }
-            if (AppState.Sex == false && RecommendedDailyCaloricIntake < 1800)
-            {
-                // Min calories/day for men is 1800
-                // TODO: Implement something to handle this case
-                GoalValidation.ValidateGoal();
-                UpdateAfterValidation();
-            }
+            SetupInfo = new SetupInfo();
+            SetupInfo = await App.Database.GetSetupInfoasync(1);
         }
 
         private void UpdateAfterValidation()
         {
-            TimeLeftToGoal = (int)(AppState.GoalDate.ToLocalTime() - DateTime.UtcNow.ToLocalTime()).TotalDays;
-            GoalDate = AppState.GoalDate;
+            SetupInfo.TimeLeftToGoal = (int)(AppState.GoalDate.ToLocalTime() - DateTime.UtcNow.ToLocalTime()).TotalDays;
+            SetupInfo.GoalDate = AppState.GoalDate;
             double weightPerWeekToMeetGoal = (AppState.Weight - AppState.GoalWeight) / (AppState.GoalDate - DateTime.UtcNow).TotalDays * 7;
             double RequiredCaloricDefecit = 500 * weightPerWeekToMeetGoal;
-            RecommendedDailyCaloricIntake = (int)BMR - RequiredCaloricDefecit;
+            SetupInfo.RecommendedDailyCaloricIntake = (int)SetupInfo.BMR - RequiredCaloricDefecit;
         }
 
         public async void AddWeightToList()
@@ -270,33 +126,35 @@ namespace Weigh.ViewModels
             else
             {
                 _newWeight = new WeightEntry();
-                AppState.LastWeight = AppState.Weight;
-                _newWeight.WeightDelta = AppState.LastWeight - Convert.ToDouble(NewWeightEntry);
+                SetupInfo.LastWeight = Convert.ToDouble(SetupInfo.Weight);
+                _newWeight.WeightDelta = SetupInfo.LastWeight - Convert.ToDouble(NewWeightEntry);
                 _newWeight.Weight = Convert.ToDouble(NewWeightEntry);
                 _newWeight.WaistSize = Convert.ToDouble(NewWaistSizeEntry);
-                AppState.WaistSize = _newWeight.WaistSize;
-                AppState.Weight = _newWeight.Weight;
-                CurrentWeight = _newWeight.Weight;
-                WaistSize = _newWeight.WaistSize;
-                AppState.LastWeighDate = DateTime.UtcNow;
-                CalculateBMRBMI();
-                DistanceToGoalWeight = AppState.Weight - GoalWeight;
-                if (GoalValidation.ValidateGoal() == false)
-                {
-                    GoalDate = AppState.GoalDate;
-                    _ea.GetEvent<NewGoalEvent>().Publish();
-                }
+                SetupInfo.WaistSize = _newWeight.WaistSize.ToString();
+                SetupInfo.Weight = _newWeight.Weight.ToString();
+                SetupInfo.Weight = _newWeight.Weight.ToString();
+                SetupInfo.WaistSize = _newWeight.WaistSize.ToString();
+                SetupInfo.LastWeighDate = DateTime.UtcNow;
+                SetupInfo.DistanceToGoalWeight = Convert.ToDouble(SetupInfo.Weight) - Convert.ToDouble(SetupInfo.GoalWeight);
+
+                SetupInfo.ValidateGoal();
+                _ea.GetEvent<UpdateSetupInfoEvent>().Publish(SetupInfo);
                 await App.Database.SaveWeightAsync(_newWeight);
-                _ea.GetEvent<AddWeightEvent>().Publish(_newWeight);
+                await App.Database.SaveSetupInfoAsync(SetupInfo);
             }
             ButtonEnabled = true;
-            WeightLostToDate = (AppState.InitialWeight - AppState.Weight).ToString();
+            SetupInfo.WeightLostToDate = (Convert.ToDouble(SetupInfo.InitialWeight) - Convert.ToDouble(SetupInfo.Weight)).ToString();
         }
 
         private void HandleNewGoal()
         {
-            GoalDate = AppState.GoalDate;
-            GoalWeight = AppState.GoalWeight;
+            //GoalDate = AppState.GoalDate;
+            //GoalWeight = AppState.GoalWeight;
+        }
+
+        private void HandleUpdateSetupInfo(SetupInfo _setupInfo)
+        {
+            SetupInfo = _setupInfo;
         }
         #endregion
     }

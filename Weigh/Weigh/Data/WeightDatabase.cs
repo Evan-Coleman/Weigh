@@ -19,6 +19,7 @@ namespace Weigh.Data
         {
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<WeightEntry>().Wait();
+            database.CreateTableAsync<SetupInfo>().Wait();
         }
         #endregion
 
@@ -32,8 +33,7 @@ namespace Weigh.Data
         public Task<List<WeightEntry>> GetLatestWeightsAsync()
 
         {
-            return database.Table<WeightEntry>().OrderByDescending(t => t.ID).Take(10).ToListAsync();
-               
+            return database.Table<WeightEntry>().OrderByDescending(t => t.ID).Take(10).ToListAsync();               
         }
 
         public Task<WeightEntry> GetWeightasync(int id)
@@ -55,9 +55,33 @@ namespace Weigh.Data
             }
         }
 
+
+
         public Task<int> DeleteWeightInfoAsync(WeightEntry weight)
         {
             return database.DeleteAsync(weight);
+        }
+
+
+
+        // SetupInfo section
+        public Task<SetupInfo> GetSetupInfoasync(int id)
+        {
+            return database.Table<SetupInfo>().
+                Where(i => i.ID == id).
+                FirstOrDefaultAsync();
+        }
+
+        public Task<int> NewSetupInfoAsync(SetupInfo setupInfo)
+        {
+            // TODO: Check if works
+            return database.InsertAsync(setupInfo);
+        }
+
+        public Task<int> SaveSetupInfoAsync(SetupInfo setupInfo)
+        {
+            // TODO: Check if works
+            return database.UpdateAsync(setupInfo);
         }
         #endregion
     }

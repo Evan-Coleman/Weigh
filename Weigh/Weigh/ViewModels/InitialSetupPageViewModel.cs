@@ -13,6 +13,8 @@ using Xamarin.Forms;
 using Prism.Events;
 using Acr.UserDialogs;
 using System.Threading.Tasks;
+using Weigh.Validation;
+using Weigh.Events;
 
 namespace Weigh.ViewModels
 {
@@ -25,26 +27,31 @@ namespace Weigh.ViewModels
     public class InitialSetupPageViewModel : ViewModelBase
 	{
         #region Fields      
+        public DelegateCommand SaveInfoCommand { get; set; }        
+
+        private WeightEntry _newWeight;
+
         private SetupInfo _setupInfo;
         public SetupInfo SetupInfo
         {
             get { return _setupInfo; }
             set { SetProperty(ref _setupInfo, value); }
         }
-        public DelegateCommand SaveInfoCommand { get; set; }        
-
-        private WeightEntry _newWeight;
+        IEventAggregator _ea;
         #endregion
 
         #region Constructor
         public InitialSetupPageViewModel(INavigationService navigationService, IEventAggregator ea)
             : base(navigationService)
         {
+            _ea = ea;
             Title = "Setup";
+            SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
+
+            // Initialize app SetupInfo
             SetupInfo = new SetupInfo();
             SetupInfo.MinDate = DateTime.UtcNow.AddDays(10);
-            SetupInfo.GoalDate = AppState.GoalDate;
-            SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
+            SetupInfo.GoalDate = DateTime.UtcNow.AddDays(180);
             // Setting units to default imperial
             SetupInfo.Units = true;
             // TODO: get rid of hard coded strings!
@@ -61,39 +68,19 @@ namespace Weigh.ViewModels
 
         private async void SaveInfoAsync()
         {
-            /*
-            //DEBUG ZONE
-            AppState.Sex = false;
-            AppState.Age = 29;
-            AppState.GoalWeight = 190;
-            AppState.GoalDate = DateTime.UtcNow.AddDays(180);
-            AppState.HeightMajor = 5;
-            AppState.HeightMinor = 10;
-            AppState.Weight = 235;
-            AppState.WaistSize = 40;
-            AppState.LastWeight = 235;
-            AppState.InitialWeight = 235;
-            AppState.LastWeighDate = DateTime.UtcNow;
-            AppState.InitialWeightDate = DateTime.UtcNow;
-            AppState.Units = true;
-            AppState.PickerSelectedItem = "Light Exercise";
-            _newWeight = new WeightEntry();
-            _newWeight.Weight = 235;
-            _newWeight.WaistSize = 40;
-            await App.Database.SaveWeightAsync(_newWeight);
-            await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage/MainPage");
-            return;
-            //DEBUG ZONE
-            */
             if (CanExecute() == false)
             {
                UserDialogs.Instance.Alert("Please fill in all forms!");
             }
             else
             {
+                double Weight = Convert.ToDouble(SetupInfo.Weight);
+                double WaistSize = Convert.ToDouble(SetupInfo.WaistSize);
+                // Remove if not wanted
+                // AppState.Name = SetupInfo.Name;
+
+                // Not needed in new SetupInfo model
                 /*
-                AppState.Name = SetupInfo.Name;
-                */
                 AppState.Sex = SetupInfo.Sex;
                 AppState.Age = Convert.ToInt32(SetupInfo.Age);
                 AppState.GoalWeight = Convert.ToDouble(SetupInfo.GoalWeight);
@@ -110,15 +97,19 @@ namespace Weigh.ViewModels
                 AppState.InitialWeightDate = DateTime.UtcNow;
                 AppState.Units = SetupInfo.Units;
                 AppState.PickerSelectedItem = SetupInfo.PickerSelectedItem;
+                */
 
-                GoalValidation.ValidateGoal();
+                SetupInfo.ValidateGoal();
                 // Nav using absolute path so user can't hit the back button and come back here
                 _newWeight = new WeightEntry();
-                _newWeight.Weight = AppState.Weight;
-                _newWeight.WaistSize = AppState.WaistSize;
+                _newWeight.Weight = Weight;
+                _newWeight.WaistSize = WaistSize;
                 _newWeight.WeightDelta = 0;
                 await App.Database.SaveWeightAsync(_newWeight);
-                
+                await App.Database.NewSetupInfoAsync(SetupInfo);
+
+                // Sending the setupinfo to main page
+                _ea.GetEvent<UpdateSetupInfoEvent>().Publish(SetupInfo);
                 await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage/MainPage");
             }
         }

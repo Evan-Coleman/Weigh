@@ -40,13 +40,13 @@
                        VerticalTextAlignment="Center"
                        Margin="0"
                        FontSize="Large"
-                   Text="{Binding CurrentWeight, StringFormat='{0:00.00}'}"/>
+                   Text="{Binding SetupInfo.Weight, StringFormat='{0:00.00}'}"/>
                 <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                        HorizontalTextAlignment="Center"
                        HorizontalOptions="Start"
                        VerticalOptions="End"
                        FontSize="Micro"
-                       Text="{Binding WeightLostToDate, StringFormat='Weight lost to date: {0:0}'}" />
+                       Text="{Binding SetupInfo.WeightLostToDate, StringFormat='Weight lost to date: {0:0}'}" />
 
 
                 <Label Grid.Row="0" Grid.Column="1"
@@ -60,14 +60,14 @@
                        HorizontalOptions="End"
                        Margin="0"
                        FontSize="Medium"
-                       Text="{Binding RecommendedDailyCaloricIntake, StringFormat='{0:0}&#10;Cal/Day to lose weight'}"/>
+                       Text="{Binding SetupInfo.RecommendedDailyCaloricIntake, StringFormat='{0:0}&#10;Cal/Day to lose weight'}"/>
 
                 <Label Grid.Row="2" Grid.Column="1"
                        HorizontalOptions="End"
                        VerticalOptions="End"
                        HorizontalTextAlignment="Center"
                        FontSize="Micro"
-                       Text="{Binding BMR, StringFormat='{0:0} Cal/Day to maintain weight'}"/>
+                       Text="{Binding SetupInfo.BMR, StringFormat='{0:0} Cal/Day to maintain weight'}"/>
                 
             </Grid>
         </Frame>
@@ -105,13 +105,13 @@
                        VerticalTextAlignment="Center"
                        Margin="0"
                        FontSize="Large"
-                   Text="{Binding GoalWeight, StringFormat='{0:00.00}'}"/>
+                   Text="{Binding SetupInfo.GoalWeight, StringFormat='{0:00.00}'}"/>
                 <Label Grid.Row="2" Grid.Column="0"
                        HorizontalTextAlignment="Center"
                        HorizontalOptions="Start"
                        VerticalOptions="End"
                        FontSize="Micro"
-                       Text="{Binding DistanceToGoalWeight, StringFormat='{0:00.00} Weight left to lose'}"/>
+                       Text="{Binding SetupInfo.DistanceToGoalWeight, StringFormat='{0:00.00} Weight left to lose'}"/>
 
                 <Label Grid.Row="0" Grid.Column="1"
                        HorizontalOptions="End"
@@ -124,13 +124,13 @@
                        HorizontalOptions="End"
                        Margin="0"
                        FontSize="Large"
-                       Text="{Binding GoalDate, StringFormat='{0:MMM/dd/yy}'}" />
+                       Text="{Binding SetupInfo.GoalDate, StringFormat='{0:MMM/dd/yy}'}" />
                 <Label Grid.Row="2" Grid.Column="1"
                        HorizontalOptions="End"
                        VerticalOptions="End"
                        HorizontalTextAlignment="Center"
                        FontSize="Micro"
-                       Text="{Binding TimeLeftToGoal, StringFormat='Days left until goal = {0}'}"/>
+                       Text="{Binding SetupInfo.TimeLeftToGoal, StringFormat='Days left until goal = {0}'}"/>
 
             </Grid>
         </Frame>
@@ -157,14 +157,14 @@
                        VerticalOptions="Start"
                        HorizontalTextAlignment="Center"
                        Margin="0,0,0,-20"
-                        Text="{Binding BMI, StringFormat='BMI - {0:00.00}'}" />
+                        Text="{Binding SetupInfo.BMI, StringFormat='BMI - {0:00.00}'}" />
 
                 <Label Grid.Row="1" Grid.Column="1"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
                        HorizontalTextAlignment="Center"
                        Margin="0,0,0,-20"
-                       Text="{Binding BMICategory, StringFormat='{0:00.00}'}" />
+                       Text="{Binding SetupInfo.BMICategory, StringFormat='{0:00.00}'}" />
 
                 <linear:SfLinearGauge Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand" Margin="0">
                     <linear:SfLinearGauge.Scales>
@@ -180,8 +180,8 @@
                                 <linear:LinearRange StartValue="30" Color="#d50000" EndValue="40" Offset ="0.07" StartWidth="10" EndWidth="10"/>
                             </linear:LinearScale.Ranges>
                             <linear:LinearScale.Pointers>
-                                <linear:SymbolPointer x:Name="symbolPointer" Value="{Binding BMI}"  Offset="0.0" Thickness="3" />
-                                <linear:BarPointer x:Name="rangePointer" Value="{Binding BMI}"  Thickness="10" />
+                                <linear:SymbolPointer x:Name="symbolPointer" Value="{Binding SetupInfo.BMI}"  Offset="0.0" Thickness="3" />
+                                <linear:BarPointer x:Name="rangePointer" Value="{Binding SetupInfo.BMI}"  Thickness="10" />
                             </linear:LinearScale.Pointers>
                         </linear:LinearScale>
                     </linear:SfLinearGauge.Scales>
@@ -220,10 +220,11 @@
             <Label Text="New Entry: "/>
             <Entry Placeholder="Weight (lb)"
                    Style="{Binding DynamicResource SetupEntryStyle}"
-                   Text="{Binding NewWeightEntry}">
+                   Text="{Binding NewWeightEntry}"
+                   Keyboard="Numeric">
                 <Entry.Triggers>
                     <DataTrigger TargetType="Entry"
-                     Binding="{Binding Units}"
+                     Binding="{Binding SetupInfo.Units}"
                      Value="false">
                         <Setter Property="Placeholder" Value="Weight (kg)" />
                     </DataTrigger>
@@ -231,10 +232,11 @@
             </Entry>
             <Entry Placeholder="Waist Size (in)"
                    Style="{Binding DynamicResource SetupEntryStyle}"
-                   Text="{Binding NewWaistSizeEntry}">
+                   Text="{Binding NewWaistSizeEntry}"
+                   Keyboard="Numeric">
                 <Entry.Triggers>
                     <DataTrigger TargetType="Entry"
-                     Binding="{Binding Units}"
+                     Binding="{Binding SetupInfo.Units}"
                      Value="false">
                         <Setter Property="Placeholder" Value="Waist Size (cm)" />
                     </DataTrigger>

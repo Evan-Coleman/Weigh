@@ -8,11 +8,14 @@ namespace Weigh.Helpers
     {
         #region App State Variables
 
-        private static bool _sex;
-        public static bool Sex
+        private static bool _units;
+        public static bool Units
         {
-            set { Settings.Sex = value; _sex = value; }
-            get { return _sex; }
+            set
+            {
+                Settings.Units = value; _units = value;
+            }
+            get { return _units; }
         }
 
         private static int _age;
@@ -45,14 +48,15 @@ namespace Weigh.Helpers
             }
             get { return _weight; }
         }
-        private static bool _units;
-        public static bool Units
+
+        private static double _waistSize;
+        public static double WaistSize
         {
             set
             {
-                Settings.Units = value; _units = value;
+                Settings.WaistSize = value; _waistSize = value;
             }
-            get { return _units; }
+            get { return _waistSize; }
         }
 
         private static string _pickerSelectedItem;
@@ -64,6 +68,39 @@ namespace Weigh.Helpers
             }
             get { return _pickerSelectedItem; }
         }
+
+
+
+
+        private static bool _sex;
+        public static bool Sex
+        {
+            set { Settings.Sex = value; _sex = value; }
+            get { return _sex; }
+        }
+
+        private static double _goalWeight;
+        public static double GoalWeight
+        {
+            set
+            {
+                Settings.GoalWeight = value; _goalWeight = value;
+            }
+            get { return _goalWeight; }
+        }
+
+        private static DateTime _goalDate;
+        public static DateTime GoalDate
+        {
+            set
+            {
+                Settings.GoalDate = value; _goalDate = value;
+            }
+            get { return _goalDate; }
+        }
+
+
+
 
         private static double _lastWeight;
         public static double LastWeight
@@ -95,6 +132,8 @@ namespace Weigh.Helpers
             get { return _initialWeightDate; }
         }
 
+
+
         private static DateTime _lastWeighDate;
         public static DateTime LastWeighDate
         {
@@ -105,26 +144,8 @@ namespace Weigh.Helpers
             get { return _lastWeighDate; }
         }
 
-        private static double _goalWeight;
-        public static double GoalWeight
-        {
-            set
-            {
-                Settings.GoalWeight = value; _goalWeight = value;
-            }
-            get { return _goalWeight; }
-        }
 
-        private static DateTime _goalDate;
-        public static DateTime GoalDate
-        {
-            set
-            {
-                Settings.GoalDate = value; _goalDate = value;
-            }
-            get { return _goalDate; }
-        }
-
+        /*
         private static string _name;
         public static string Name
         {
@@ -134,16 +155,8 @@ namespace Weigh.Helpers
             }
             get { return _name; }
         }
+        */
 
-        private static double _waistSize;
-        public static double WaistSize
-        {
-            set
-            {
-                Settings.WaistSize = value; _waistSize = value;
-            }
-            get { return _waistSize; }
-        }
 
         #endregion
 

@@ -8,6 +8,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Weigh.Helpers;
 using Weigh.Data;
+using Weigh.Models;
+using System.Collections.Generic;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Weigh
@@ -19,10 +21,7 @@ namespace Weigh
          * This imposes a limitation in which the App class must have a default constructor. 
          * App(IPlatformInitializer initializer = null) cannot be handled by the Activator.
          */
-
-
-
-        private static WeightDatabase database;
+        private static WeightDatabase _database;
 
         public App() : this(null) { }
 
@@ -36,7 +35,7 @@ namespace Weigh
             AppState.InitializeApplicationState();
             if (Settings.FirstUse == "yes")
             {
-                Settings.FirstUse = "no";
+                //Settings.FirstUse = "no";
                 await NavigationService.NavigateAsync("InitialSetupPage");
             }
             else
@@ -61,15 +60,12 @@ namespace Weigh
         {
             get
             {
-                if (database == null)
+                if (_database == null)
                 {
-                    database = new WeightDatabase(DependencyService.Get<IFileHelper>().GetPath("TodoSQLite.db3"));
+                    _database = new WeightDatabase(DependencyService.Get<IFileHelper>().GetPath("TodoSQLite.db3"));
                 }
-                return database;
+                return _database;
             }
         }
-
-
-
     }
 }
