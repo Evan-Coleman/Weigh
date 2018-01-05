@@ -116,6 +116,7 @@ namespace Weigh.ViewModels
                 _newWeight = new WeightEntry();
                 _newWeight.Weight = AppState.Weight;
                 _newWeight.WaistSize = AppState.WaistSize;
+                _newWeight.WeightDelta = 0;
                 await App.Database.SaveWeightAsync(_newWeight);
                 
                 await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage/MainPage");

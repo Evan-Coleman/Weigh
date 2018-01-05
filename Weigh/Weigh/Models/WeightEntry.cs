@@ -12,6 +12,7 @@ namespace Weigh.Models
 
         public double Weight { get; set; }
         public double WaistSize { get; set; }
+        public double WeightDelta { get; set; }
         public DateTime WeighDate { get; set; } = DateTime.UtcNow.ToLocalTime();
 
         public WeightEntry()

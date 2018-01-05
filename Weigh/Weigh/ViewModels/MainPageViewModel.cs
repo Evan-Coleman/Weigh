@@ -271,6 +271,7 @@ namespace Weigh.ViewModels
             {
                 _newWeight = new WeightEntry();
                 AppState.LastWeight = AppState.Weight;
+                _newWeight.WeightDelta = AppState.LastWeight - Convert.ToDouble(NewWeightEntry);
                 _newWeight.Weight = Convert.ToDouble(NewWeightEntry);
                 _newWeight.WaistSize = Convert.ToDouble(NewWaistSizeEntry);
                 AppState.WaistSize = _newWeight.WaistSize;

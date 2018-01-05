@@ -69,9 +69,11 @@
                    
 
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Path=Weight, StringFormat='Weight: {0}'}"
+                            <Label Text="{Binding Path=Weight, StringFormat='Weight: {0}'}"
                                            HorizontalOptions="StartAndExpand"/>
-                                    <Label Text="{Binding Path=WeighDate, StringFormat='Date: {0:MM/dd/yyyy hh:mm}'}"
+                            <Label Text="{Binding Path=WeightDelta, StringFormat='Change from last entry: {0}'}"
+                                           HorizontalOptions="StartAndExpand"/>
+                            <Label Text="{Binding Path=WeighDate, StringFormat='Date: {0:MM/dd/yyyy hh:mm}'}"
                                            HorizontalOptions="EndAndExpand"/>
                                 </StackLayout>
   

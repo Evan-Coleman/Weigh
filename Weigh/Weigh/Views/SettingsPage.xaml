@@ -28,6 +28,10 @@
         <Label Text="{Binding SetupInfo.Errors[Name], Converter={StaticResource FirstErrorConverter}"
                FontSize="Small" TextColor="Red" />
     -->
+        <StackLayout Orientation="Horizontal" Padding="0,0,0,10">
+        <Label Text="Enable Editing of info:"/>
+        <Switch x:Name="EditSwitch"/>
+        </StackLayout>
 
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="CenterAndExpand"
@@ -45,7 +49,8 @@
                Placeholder="Enter Age Here"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="Age"
-               Keyboard="Numeric">
+               Keyboard="Numeric"
+               IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}">
             <Entry.Behaviors>
                 <b:EntryLengthValidatorBehavior MaxLength="3" />
             </Entry.Behaviors>
@@ -62,7 +67,8 @@
                Placeholder="Enter Height (ft) Here"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="HeightMajor"
-               Keyboard="Numeric">
+               Keyboard="Numeric"
+                    IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}">
                     <Entry.Behaviors>
                         <b:EntryLengthValidatorBehavior MaxLength="6" />
                     </Entry.Behaviors>
@@ -87,7 +93,8 @@
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="HeightMinor"
                Keyboard="Numeric"
-               IsVisible="{Binding SetupInfo.Units}">
+               IsVisible="{Binding SetupInfo.Units}"
+                       IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}">
                     <Entry.Behaviors>
                         <b:EntryLengthValidatorBehavior MaxLength="2" />
                     </Entry.Behaviors>
@@ -104,7 +111,8 @@
                Placeholder="Weight (lb)"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="Weight"
-               Keyboard="Numeric">
+               Keyboard="Numeric"
+               IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}">
             <Entry.Triggers>
                 <DataTrigger TargetType="Entry"
                      Binding="{Binding Source={x:Reference UnitSwitch},
@@ -126,7 +134,8 @@
                Placeholder="Waist Size (in)"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="WaistSize"
-               Keyboard="Numeric">
+               Keyboard="Numeric"
+               IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}">
             <Entry.Triggers>
                 <DataTrigger TargetType="Entry"
                      Binding="{Binding Source={x:Reference UnitSwitch},
@@ -161,7 +170,8 @@
                Placeholder="Goal Weight (lb)"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="GoalWeight"
-               Keyboard="Numeric">
+               Keyboard="Numeric"
+               IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}">
             <Entry.Triggers>
                 <DataTrigger TargetType="Entry"
                      Binding="{Binding Source={x:Reference UnitSwitch},
