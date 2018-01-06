@@ -100,8 +100,7 @@ namespace Weigh.ViewModels
         #region Methods
         private async void GetSetupInfoFromDatabase()
         {
-            SetupInfo = new SetupInfo();
-            SetupInfo = await App.Database.GetSetupInfoasync(1);
+            SetupInfo = new SetupInfo(await App.Database.GetSetupInfoasync(1));
         }
 
         private void UpdateAfterValidation()
@@ -140,7 +139,7 @@ namespace Weigh.ViewModels
                 SetupInfo.ValidateGoal();
                 _ea.GetEvent<UpdateSetupInfoEvent>().Publish(SetupInfo);
                 await App.Database.SaveWeightAsync(_newWeight);
-                await App.Database.SaveSetupInfoAsync(SetupInfo);
+                await App.Database.SaveSetupInfoAsync(new SetupInfoDB(SetupInfo));
             }
             ButtonEnabled = true;
             SetupInfo.WeightLostToDate = (Convert.ToDouble(SetupInfo.InitialWeight) - Convert.ToDouble(SetupInfo.Weight)).ToString();

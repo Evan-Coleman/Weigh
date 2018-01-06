@@ -106,7 +106,7 @@ namespace Weigh.ViewModels
                 _newWeight.WaistSize = WaistSize;
                 _newWeight.WeightDelta = 0;
                 await App.Database.SaveWeightAsync(_newWeight);
-                await App.Database.NewSetupInfoAsync(SetupInfo);
+                await App.Database.NewSetupInfoAsync(new SetupInfoDB(SetupInfo));
 
                 // Sending the setupinfo to main page
                 _ea.GetEvent<UpdateSetupInfoEvent>().Publish(SetupInfo);
