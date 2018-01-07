@@ -44,7 +44,7 @@ namespace Weigh.ViewModels
         public GraphsPageViewModel(INavigationService navigationService, IEventAggregator ea)
             : base(navigationService)
         {
-            ea.GetEvent<AddWeightEvent>().Subscribe(Handled);
+            ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry);
             Title = "Graph Page";
             WeightList = new ObservableCollection<WeightEntry>();
             ChartData = new ObservableCollection<WeightEntry>();
@@ -72,7 +72,7 @@ namespace Weigh.ViewModels
         #endregion
 
         #region Methods
-        private void Handled(WeightEntry weight)
+        private void HandleNewWeightEntry(WeightEntry weight)
         {
             WeightList.Add(weight);
             ChartData.RemoveAt(0);
