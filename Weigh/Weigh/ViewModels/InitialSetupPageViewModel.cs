@@ -76,6 +76,7 @@ namespace Weigh.ViewModels
 
         private async void SaveInfoAsync()
         {
+            Console.WriteLine(App.SetupInfo.Age + "HELLO MANDAODA");
             if (CanExecute() == false)
             {
                UserDialogs.Instance.Alert(AppResources.FormValidationPopupLabel);
@@ -107,7 +108,7 @@ namespace Weigh.ViewModels
                 AppState.Units = SetupInfo.Units;
                 AppState.PickerSelectedItem = SetupInfo.PickerSelectedItem;
                 */
-
+                
                 if (SetupInfo.ValidateGoal() == false)
                 {
                     setupToDB.GoalDate = SetupInfo.GoalDate;
@@ -126,7 +127,11 @@ namespace Weigh.ViewModels
                 // Sending the setupinfo to main page
                 var p = new NavigationParameters();
                 p.Add("SetupInfo", SetupInfo);
-                await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage");
+
+                
+                //await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage");
+                await NavigationService.NavigateAsync(
+                $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage", p);
             }
         }
         #endregion

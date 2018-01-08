@@ -5,6 +5,7 @@
              xmlns:validation="clr-namespace:Weigh.Validation;assembly=Weigh"
              xmlns:converters="clr-namespace:Weigh.Converters;assembly=Weigh"
              xmlns:localization="clr-namespace:Weigh.Localization;assembly=Weigh"
+             xmlns:App="clr-namespace:Weigh;assembly=Weigh"
              xmlns:b="clr-namespace:Weigh.Behaviors"
              Title="{Binding Title}">
 
@@ -42,7 +43,7 @@
 
 
 
-        <Entry Text="{Binding SetupInfo.Age, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[Age]}"
+        <Entry Text="{Binding Age, Mode=TwoWay, Source={x:Static Application.Current.SetupInfo}}" validation:Validation.Errors="{Binding SetupInfo.Errors[Age]}"
                Placeholder="{localization:Translate NameEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="Age"

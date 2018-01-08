@@ -10,7 +10,7 @@ using Weigh.Validation;
 
 namespace Weigh.Models
 {
-    public class SetupInfo : ValidatableBase
+    public static class SetupInfo : ValidatableBase
     {
         public SetupInfo()
         {
