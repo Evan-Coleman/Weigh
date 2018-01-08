@@ -31,7 +31,6 @@ namespace Weigh
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            SetupInfo = new SetupInfo();
             // Will load all variables from storage in order to minimize disk time.
             AppState.InitializeApplicationState();
             if (Settings.FirstUse == "yes")
@@ -68,14 +67,5 @@ namespace Weigh
                 return _database;
             }
         }
-
-        private static SetupInfo _setupInfo;
-
-        public static SetupInfo SetupInfo
-        {
-            get { return _setupInfo; }
-            set { _setupInfo = value; }
-        }
-
     }
 }

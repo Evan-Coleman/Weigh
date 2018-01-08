@@ -19,7 +19,7 @@ namespace Weigh.Data
         {
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<WeightEntry>().Wait();
-            database.CreateTableAsync<SetupInfoDB>().Wait();
+            database.CreateTableAsync<SettingVals>().Wait();
         }
         #endregion
 
@@ -65,18 +65,18 @@ namespace Weigh.Data
 
 
         // SetupInfo section
-        public Task<List<SetupInfoDB>> GetSetupInfoasync()
+        public Task<List<SettingVals>> GetSetupInfoasync()
         {
-            return database.Table<SetupInfoDB>().ToListAsync();
+            return database.Table<SettingVals>().ToListAsync();
         }
 
-        public Task<int> NewSetupInfoAsync(SetupInfoDB setupInfo)
+        public Task<int> NewSetupInfoAsync(SettingVals setupInfo)
         {
             // TODO: Check if works
             return database.InsertAsync(setupInfo);
         }
 
-        public Task<int> SaveSetupInfoAsync(SetupInfoDB setupInfo)
+        public Task<int> SaveSetupInfoAsync(SettingVals setupInfo)
         {
             // TODO: Check if works
             return database.UpdateAsync(setupInfo);

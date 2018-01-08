@@ -39,11 +39,11 @@ namespace Weigh.ViewModels
 
         private WeightEntry _newWeight;
 
-        private SetupInfo _setupInfo;
-        public SetupInfo SetupInfo
+        private SettingValsValidated _settingValsValidated;
+        public SettingValsValidated SettingValsValidated
         {
-            get { return _setupInfo; }
-            set { SetProperty(ref _setupInfo, value); }
+            get { return _settingValsValidated; }
+            set { SetProperty(ref _settingValsValidated, value); }
         }
         IEventAggregator _ea;
         #endregion
@@ -56,36 +56,35 @@ namespace Weigh.ViewModels
             Title = AppResources.InitialSetupPageTitle;
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
 
-            // Initialize app SetupInfo
-            SetupInfo = new SetupInfo();
-            SetupInfo.MinDate = DateTime.UtcNow.AddDays(10);
-            SetupInfo.GoalDate = DateTime.UtcNow.AddDays(180);
+            // Initialize app SettingVals
+            SettingValsValidated = new SettingValsValidated();
+            SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
+            SettingVals.GoalDate = DateTime.UtcNow.AddDays(180);
             // Setting units to default imperial
-            SetupInfo.Units = true;
-            // TODO: get rid of hard coded strings!
+            SettingVals.Units = true;
             PickerSource = new List<string> { AppResources.LowActivityPickItem, AppResources.LightActivityPickItem, AppResources.MediumActivityPickItem, AppResources.HeavyActivityPickItem };
-            SetupInfo.PickerSelectedItem = AppResources.LightActivityPickItem;
+            SettingVals.PickerSelectedItem = AppResources.LightActivityPickItem;
         }
         #endregion
 
         #region Methods
         private bool CanExecute()
         {
-            return SetupInfo.ValidateProperties();
+            return SettingValsValidated.ValidateProperties();
         }
 
         private async void SaveInfoAsync()
         {
-            Console.WriteLine(App.SetupInfo.Age + "HELLO MANDAODA");
+            Console.WriteLine(SettingVals.Age + "HELLO MANDAODA");
             if (CanExecute() == false)
             {
                UserDialogs.Instance.Alert(AppResources.FormValidationPopupLabel);
             }
             else
             {
-                double Weight = Convert.ToDouble(SetupInfo.Weight);
-                double WaistSize = Convert.ToDouble(SetupInfo.WaistSize);
-                SetupInfoDB setupToDB = new SetupInfoDB(SetupInfo);
+                double Weight = Convert.ToDouble(SettingVals.Weight);
+                double WaistSize = Convert.ToDouble(SettingVals.WaistSize);
+                SettingVals.InitializeSettingVals(SettingValsValidated);
                 // Remove if not wanted
                 // AppState.Name = SetupInfo.Name;
 
@@ -108,21 +107,25 @@ namespace Weigh.ViewModels
                 AppState.Units = SetupInfo.Units;
                 AppState.PickerSelectedItem = SetupInfo.PickerSelectedItem;
                 */
-                
-                if (SetupInfo.ValidateGoal() == false)
+
+                // Need to check if the SettingVals static gets updated after calling validategoal here
+                /*
+                if (SettingValsValidated.ValidateGoal() == false)
                 {
-                    setupToDB.GoalDate = SetupInfo.GoalDate;
-                    setupToDB.RequiredCaloricDefecit = SetupInfo.RequiredCaloricDefecit;
-                    setupToDB.WeightPerWeekToMeetGoal = SetupInfo.WeightPerWeekToMeetGoal;
-                    setupToDB.DaysToAddToMeetMinimum = SetupInfo.DaysToAddToMeetMinimum;
+                    SettingVals.GoalDate = SettingValsValidated.GoalDate;
+                    SettingVals.RequiredCaloricDefecit = SettingValsValidated.RequiredCaloricDefecit;
+                    SettingVals.WeightPerWeekToMeetGoal = SettingValsValidated.WeightPerWeekToMeetGoal;
+                    SettingVals.DaysToAddToMeetMinimum = SettingValsValidated.DaysToAddToMeetMinimum;
                 }
+                */
+                SettingValsValidated.ValidateGoal();
                 // Nav using absolute path so user can't hit the back button and come back here
                 _newWeight = new WeightEntry();
                 _newWeight.Weight = Weight;
                 _newWeight.WaistSize = WaistSize;
                 _newWeight.WeightDelta = 0;
                 await App.Database.SaveWeightAsync(_newWeight);
-                await App.Database.NewSetupInfoAsync(setupToDB);
+                await App.Database.NewSetupInfoAsync(SettingVals);
 
                 // Sending the setupinfo to main page
                 var p = new NavigationParameters();

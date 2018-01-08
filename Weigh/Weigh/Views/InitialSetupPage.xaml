@@ -43,7 +43,7 @@
 
 
 
-        <Entry Text="{Binding Age, Mode=TwoWay, Source={x:Static Application.Current.SetupInfo}}" validation:Validation.Errors="{Binding SetupInfo.Errors[Age]}"
+        <Entry Text="{Binding Age, Mode=TwoWay, Source={x:Static App:Helpers.SettingValsValidated}}" validation:Validation.Errors="{Binding SetupInfo.Errors[Age]}"
                Placeholder="{localization:Translate NameEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="Age"

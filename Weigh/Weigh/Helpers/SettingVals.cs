@@ -9,24 +9,26 @@ using Weigh.Validation;
 
 namespace Weigh.Models
 {
-    public static class SetupInfoDB
+    public static class SettingVals
     {
         // We only want 1 instance of SetupInfo in the DB, so will always return 1
         [PrimaryKey]
         public static int ID { get { return 1; } }
 
-        /*
-        public SetupInfoDB(SetupInfo setupInfo)
+        
+        public static void InitializeSettingVals(SettingValsValidated setupInfo)
         {
-            Units = setupInfo.Units;
+           
             Age = setupInfo.Age;
             HeightMajor = setupInfo.HeightMajor;
             HeightMinor = setupInfo.HeightMinor;
             Weight = setupInfo.Weight;
             WaistSize = setupInfo.WaistSize;
+            GoalWeight = setupInfo.GoalWeight;
+            /*
+            Units = setupInfo.Units;
             PickerSelectedItem = setupInfo.PickerSelectedItem;
             Sex = setupInfo.Sex;
-            GoalWeight = setupInfo.GoalWeight;
             GoalDate = setupInfo.GoalDate;
             MinDate = setupInfo.MinDate;
             LastWeight = setupInfo.LastWeight;
@@ -44,8 +46,9 @@ namespace Weigh.Models
             WeightPerDayToMeetGoal = setupInfo.WeightPerDayToMeetGoal; ;
             DaysToAddToMeetMinimum = setupInfo.DaysToAddToMeetMinimum; ;
             WeightPerWeekToMeetGoal = setupInfo.WeightPerWeekToMeetGoal;
+            */
         }
-        */
+        
 
         private static bool _units;
 

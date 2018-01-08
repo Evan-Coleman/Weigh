@@ -31,8 +31,8 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _pickerSource, value); }
         }
 
-        private SetupInfo _setupInfo;
-        public SetupInfo SetupInfo
+        private SettingValsValidated _setupInfo;
+        public SettingValsValidated SetupInfo
         {
             get { return _setupInfo; }
             set { SetProperty(ref _setupInfo, value); }
@@ -46,7 +46,7 @@ namespace Weigh.ViewModels
         public SettingsPageViewModel(INavigationService navigationService, IEventAggregator ea)
             : base(navigationService)
         {
-            SetupInfo = new SetupInfo();
+            SetupInfo = new SettingValsValidated();
             _ea = ea;
             _ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
             _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo);
@@ -80,7 +80,7 @@ namespace Weigh.ViewModels
             SetupInfo.GoalDate = AppState.GoalDate;
             SetupInfo.GoalWeight = AppState.GoalWeight.ToString();
         }
-        private void HandleNewSetupInfo(SetupInfo _setupInfo)
+        private void HandleNewSetupInfo(SettingValsValidated _setupInfo)
         {
             SetupInfo = _setupInfo;
         }

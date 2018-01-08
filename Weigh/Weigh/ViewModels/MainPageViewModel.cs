@@ -51,8 +51,8 @@ namespace Weigh.ViewModels
             get { return _newWaistSizeEntry; }
             set { SetProperty(ref _newWaistSizeEntry, value); }
         }
-        private SetupInfo _setupInfo;
-        public SetupInfo SetupInfo
+        private SettingValsValidated _setupInfo;
+        public SettingValsValidated SetupInfo
         {
             get { return _setupInfo; }
             set { SetProperty(ref _setupInfo, value); }
@@ -69,7 +69,7 @@ namespace Weigh.ViewModels
             _ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
             _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo);
             Title = AppResources.MainPageTitle;
-            SetupInfo = new SetupInfo();
+            SetupInfo = new SettingValsValidated();
             ButtonEnabled = true;
             
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
@@ -85,9 +85,9 @@ namespace Weigh.ViewModels
         /// </summary>
         private async void GetSetupInfoFromDatabase()
         {
-            List<SetupInfoDB> setupFromDB = new List<SetupInfoDB>();
+            List<SettingVals> setupFromDB = new List<SettingVals>();
             setupFromDB = await App.Database.GetSetupInfoasync();
-            SetupInfo = new SetupInfo(setupFromDB[0]);
+            SetupInfo = new SettingValsValidated(setupFromDB[0]);
             if (SetupInfo.ValidateGoal() == false)
             {
                 UpdateAfterValidation();
@@ -143,7 +143,7 @@ namespace Weigh.ViewModels
                 _ea.GetEvent<AddWeightEvent>().Publish(_newWeight);
                 _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SetupInfo);
                 await App.Database.SaveWeightAsync(_newWeight);
-                await App.Database.SaveSetupInfoAsync(SetupInfoDB);
+                await App.Database.SaveSetupInfoAsync(Helpers.SettingVals);
             }
             ButtonEnabled = true;
             SetupInfo.WeightLostToDate = (Convert.ToDouble(SetupInfo.InitialWeight) - Convert.ToDouble(SetupInfo.Weight)).ToString();
@@ -155,7 +155,7 @@ namespace Weigh.ViewModels
             //GoalWeight = AppState.GoalWeight;
         }
 
-        private void HandleUpdateSetupInfo(SetupInfo _setupInfo)
+        private void HandleUpdateSetupInfo(SettingValsValidated _setupInfo)
         {
             SetupInfo = _setupInfo;
         }

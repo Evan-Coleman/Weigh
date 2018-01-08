@@ -11,7 +11,7 @@ namespace Weigh.Validation
 {
     public static class GoalValidation
     {
-        public static bool ValidateGoala(ref SetupInfo _setupInfo)
+        public static bool ValidateGoala(ref SettingValsValidated _setupInfo)
         {
             double Feet = Convert.ToDouble(_setupInfo.HeightMajor);
             int Inches = Convert.ToInt32(_setupInfo.HeightMinor);
