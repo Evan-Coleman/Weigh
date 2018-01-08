@@ -124,8 +124,9 @@ namespace Weigh.ViewModels
                 await App.Database.NewSetupInfoAsync(setupToDB);
 
                 // Sending the setupinfo to main page
-                _ea.GetEvent<UpdateSetupInfoEvent>().Publish(SetupInfo);
-                await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage/MainPage");
+                var p = new NavigationParameters();
+                p.Add("SetupInfo", SetupInfo);
+                await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage/MainPage", p);
             }
         }
         #endregion

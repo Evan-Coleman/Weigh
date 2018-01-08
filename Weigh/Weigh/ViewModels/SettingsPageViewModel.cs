@@ -48,23 +48,11 @@ namespace Weigh.ViewModels
         {
             SetupInfo = new SetupInfo();
             _ea = ea;
-            _ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry);
             _ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
-            _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleNewSetupInfo);
+            _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo);
             Title = AppResources.SettingsPageTitle;
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
             SetupInfo.MinDate = DateTime.UtcNow.AddDays(10);
-
-            SetupInfo.GoalWeight = AppState.GoalWeight.ToString();
-            SetupInfo.GoalDate = AppState.GoalDate;
-            SetupInfo.Sex = AppState.Sex;
-            SetupInfo.Age = AppState.Age.ToString();
-            SetupInfo.HeightMajor = AppState.HeightMajor.ToString();
-            SetupInfo.HeightMinor = AppState.HeightMinor.ToString();
-            SetupInfo.Weight = AppState.Weight.ToString();
-            SetupInfo.WaistSize = AppState.WaistSize.ToString();
-            SetupInfo.Units = AppState.Units;
-            SetupInfo.PickerSelectedItem = AppState.PickerSelectedItem;
             PickerSource = new List<string> { AppResources.LowActivityPickItem, AppResources.LightActivityPickItem, AppResources.MediumActivityPickItem, AppResources.HeavyActivityPickItem };
         }
         #endregion
@@ -72,31 +60,21 @@ namespace Weigh.ViewModels
         #region Methods
         private async void SaveInfoAsync()
         {
-            AppState.Sex = SetupInfo.Sex;
-            AppState.Age = Convert.ToInt32(SetupInfo.Age);
-            AppState.HeightMajor = Convert.ToDouble(SetupInfo.HeightMajor);
-            AppState.HeightMinor = Convert.ToInt32(SetupInfo.HeightMinor);
-            AppState.Weight = Convert.ToDouble(SetupInfo.Weight);
-            AppState.Units = SetupInfo.Units;
-            AppState.GoalDate = SetupInfo.GoalDate;
-            AppState.WaistSize = Convert.ToDouble(SetupInfo.WaistSize);
             /*
              if (GoalValidation.ValidateGoala() == false)
             {
                 SetupInfo.GoalDate = AppState.GoalDate;
             }
             */
-            _ea.GetEvent<NewGoalEvent>().Publish();
-            AppState.PickerSelectedItem = SetupInfo.PickerSelectedItem;
+            if (SetupInfo.ValidateGoal() == false)
+            {
+                _ea.GetEvent<NewGoalEvent>().Publish();
+            }
+
             await NavigationService.NavigateAsync(
                 $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
         }
 
-        private void HandleNewWeightEntry(WeightEntry weight)
-	    {
-            SetupInfo.Weight = weight.Weight.ToString();
-            SetupInfo.WaistSize = weight.WaistSize.ToString();
-	    }
         private void HandleNewGoal()
         {
             SetupInfo.GoalDate = AppState.GoalDate;
