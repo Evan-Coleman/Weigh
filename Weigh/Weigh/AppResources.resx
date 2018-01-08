@@ -117,6 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActivityLevelLabel" xml:space="preserve">
+    <value>Level of Activity</value>
+    <comment>Title of activity picker</comment>
+  </data>
+  <data name="BMILabel" xml:space="preserve">
+    <value>BMI - </value>
+    <comment>Shows BMI</comment>
+  </data>
+  <data name="BMRLabel" xml:space="preserve">
+    <value>BMR (Calories/Day)</value>
+    <comment>Shows BMR</comment>
+  </data>
+  <data name="CaloriesToLoseWeightLabel" xml:space="preserve">
+    <value>Cal/Day to lose weight</value>
+    <comment>Cals to lose weight</comment>
+  </data>
+  <data name="CaloriesToMaintainWeightLabel" xml:space="preserve">
+    <value> Cal/Day to maintain weight</value>
+    <comment>Cals to maintain weight</comment>
+  </data>
+  <data name="DateLabel" xml:space="preserve">
+    <value>Date: </value>
+    <comment>Shows date</comment>
+  </data>
+  <data name="DaysUntilGoalLabel" xml:space="preserve">
+    <value>Days left until goal = </value>
+    <comment>Days until goal</comment>
+  </data>
+  <data name="EnableEditSwitchLabel" xml:space="preserve">
+    <value>Enable Editing of info:</value>
+    <comment>Switch to enable editing</comment>
+  </data>
+  <data name="FemaleGenderSwitchLabel" xml:space="preserve">
+    <value>Female</value>
+    <comment>Female indicator for switch</comment>
+  </data>
+  <data name="FormValidationPopupLabel" xml:space="preserve">
+    <value>Please fill in all forms!</value>
+    <comment>Popup label if all forms aren't filled in correctly</comment>
+  </data>
+  <data name="GoalDateLabel" xml:space="preserve">
+    <value>Goal Date</value>
+    <comment>Date of the selected goal</comment>
+  </data>
+  <data name="GoalWeightImperialEntryPlaceholder" xml:space="preserve">
+    <value>Goal Weight (lb)</value>
+    <comment>If user set units to imperial, lets them know to enter their goal weight in pounds</comment>
+  </data>
+  <data name="GoalWeightLabel" xml:space="preserve">
+    <value>Goal Weight</value>
+    <comment>Goal weight</comment>
+  </data>
+  <data name="GoalWeightMetricEntryPlaceholder" xml:space="preserve">
+    <value>Goal Weight (kg)</value>
+    <comment>If user set units to metric, lets them know to enter their goal weight in kilograms</comment>
+  </data>
+  <data name="GraphPageTitle" xml:space="preserve">
+    <value>Graph Page</value>
+    <comment>GraphPage Title</comment>
+  </data>
+  <data name="HeavyActivityPickItem" xml:space="preserve">
+    <value>Heavy Exercise</value>
+    <comment>Picker item for heavy activity</comment>
+  </data>
   <data name="HeightMajorImperialEntryPlaceholder" xml:space="preserve">
     <value>Enter Height (ft) Here</value>
     <comment>If user set units to imperial, lets them know to enter their height in feet</comment>
@@ -129,114 +193,61 @@
     <value>(in)</value>
     <comment>lets user know to enter their height in inches</comment>
   </data>
+  <data name="InitialSetupPageTitle" xml:space="preserve">
+    <value>Setup</value>
+    <comment>InitialSetupPage Title</comment>
+  </data>
+  <data name="LightActivityPickItem" xml:space="preserve">
+    <value>Light Exercise</value>
+    <comment>Picker item for light activity</comment>
+  </data>
+  <data name="LowActivityPickItem" xml:space="preserve">
+    <value>No Exercise</value>
+    <comment>Picker item for low activity</comment>
+  </data>
+  <data name="MainPageTitle" xml:space="preserve">
+    <value>Main Page</value>
+    <comment>MainPage Title</comment>
+  </data>
+  <data name="MaleGenderSwitchLabel" xml:space="preserve">
+    <value>Male</value>
+    <comment>Male indicator for switch</comment>
+  </data>
+  <data name="MediumActivityPickItem" xml:space="preserve">
+    <value>Moderate Exercise</value>
+    <comment>Picker item for medium activity</comment>
+  </data>
   <data name="NameEntryPlaceholder" xml:space="preserve">
     <value>Enter Age Here</value>
     <comment>Lets user know to enter their name there</comment>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value>Waist Size (in)</value>
-  </data>
-  <data name="String10" xml:space="preserve">
-    <value>Light Exercise</value>
-  </data>
-  <data name="String11" xml:space="preserve">
-    <value>Moderate Exercise</value>
-  </data>
-  <data name="String12" xml:space="preserve">
-    <value>Heavy Exercise</value>
-  </data>
-  <data name="String13" xml:space="preserve">
-    <value>Please fill in all forms!</value>
-  </data>
-  <data name="String14" xml:space="preserve">
-    <value>Setup</value>
-    <comment>InitialSetupPage Title</comment>
-  </data>
-  <data name="String15" xml:space="preserve">
-    <value>Weight lost to date: </value>
-  </data>
-  <data name="String16" xml:space="preserve">
-    <value>BMR (Calories/Day)</value>
-  </data>
-  <data name="String17" xml:space="preserve">
-    <value>Cal/Day to lose weight</value>
-  </data>
-  <data name="String18" xml:space="preserve">
-    <value> Cal/Day to maintain weight</value>
-  </data>
-  <data name="String19" xml:space="preserve">
-    <value>Goal Weight</value>
-  </data>
-  <data name="String2" xml:space="preserve">
-    <value>Waist Size (cm)</value>
-  </data>
-  <data name="String20" xml:space="preserve">
-    <value> Weight left to lose</value>
-  </data>
-  <data name="String21" xml:space="preserve">
-    <value>Goal Date</value>
-  </data>
-  <data name="String22" xml:space="preserve">
-    <value>Days left until goal = </value>
-  </data>
-  <data name="String23" xml:space="preserve">
-    <value>BMI - </value>
-  </data>
-  <data name="String24" xml:space="preserve">
-    <value>Underweight</value>
-  </data>
-  <data name="String25" xml:space="preserve">
+  <data name="NormalWeightLabel" xml:space="preserve">
     <value>Normal</value>
+    <comment>Label on the BMI gague to show normal weight</comment>
   </data>
-  <data name="String26" xml:space="preserve">
-    <value>Overweight</value>
-  </data>
-  <data name="String27" xml:space="preserve">
+  <data name="ObeseLabel" xml:space="preserve">
     <value>Obese</value>
+    <comment>Label on the BMI gague to show obese</comment>
   </data>
-  <data name="String28" xml:space="preserve">
-    <value>Main Page</value>
-    <comment>MainPage Title</comment>
+  <data name="OverweightLabel" xml:space="preserve">
+    <value>Overweight</value>
+    <comment>Label on the BMI gague to show overweight</comment>
   </data>
-  <data name="String29" xml:space="preserve">
-    <value>Weight</value>
+  <data name="RemainingWeightToLoseLabel" xml:space="preserve">
+    <value> Weight left to lose</value>
+    <comment>Weight left to lose</comment>
   </data>
-  <data name="String3" xml:space="preserve">
-    <value>Level of Activity</value>
-  </data>
-  <data name="String30" xml:space="preserve">
-    <value>Weight: </value>
-  </data>
-  <data name="String31" xml:space="preserve">
-    <value>Change from last entry: </value>
-  </data>
-  <data name="String32" xml:space="preserve">
-    <value>Date: </value>
-  </data>
-  <data name="String33" xml:space="preserve">
-    <value>Graph Page</value>
-    <comment>GraphPage Title</comment>
-  </data>
-  <data name="String34" xml:space="preserve">
-    <value>Enable Editing of info:</value>
-  </data>
-  <data name="String4" xml:space="preserve">
-    <value>Male</value>
-  </data>
-  <data name="String5" xml:space="preserve">
-    <value>Female</value>
-  </data>
-  <data name="String6" xml:space="preserve">
-    <value>Goal Weight (lb)</value>
-  </data>
-  <data name="String7" xml:space="preserve">
-    <value>Goal Weight (kg)</value>
-  </data>
-  <data name="String8" xml:space="preserve">
+  <data name="SaveLabel" xml:space="preserve">
     <value>Save</value>
+    <comment>Save button</comment>
   </data>
-  <data name="String9" xml:space="preserve">
-    <value>No Exercise</value>
+  <data name="TotalWeightLostLabel" xml:space="preserve">
+    <value>Weight lost to date: </value>
+    <comment>Lets user know how much weight they have lost since starting the app</comment>
+  </data>
+  <data name="UnderWeightLabel" xml:space="preserve">
+    <value>Underweight</value>
+    <comment>Label on the BMI gague to show underweight</comment>
   </data>
   <data name="UnitSwitchImperialLabel" xml:space="preserve">
     <value>Imperial</value>
@@ -246,9 +257,25 @@
     <value>Metric</value>
     <comment>Shows next to switch that changes units used from imperial/metric</comment>
   </data>
+  <data name="WaistSizeImperialEntryPlaceholder" xml:space="preserve">
+    <value>Waist Size (in)</value>
+    <comment>If user set units to imperial, lets them know to enter their waist size in inches</comment>
+  </data>
+  <data name="WaistSizeMetricEntryPlaceholder" xml:space="preserve">
+    <value>Waist Size (cm)</value>
+    <comment>If user set units to metric, lets them know to enter their waist size in centimeters</comment>
+  </data>
+  <data name="WeightDeltaLabel" xml:space="preserve">
+    <value>Change from last entry: </value>
+    <comment>Shows weight change from last entry</comment>
+  </data>
   <data name="WeightImperialEntryPlaceholder" xml:space="preserve">
     <value>Weight (lb)</value>
     <comment>If user set units to imperial, lets them know to enter their weight in pounds</comment>
+  </data>
+  <data name="WeightLabel" xml:space="preserve">
+    <value>Weight</value>
+    <comment>Shows weight</comment>
   </data>
   <data name="WeightMetricEntryPlaceholder" xml:space="preserve">
     <value>Weight (kg)</value>

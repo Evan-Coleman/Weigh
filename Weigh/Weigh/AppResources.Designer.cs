@@ -61,6 +61,150 @@ namespace Weigh {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Level of Activity.
+        /// </summary>
+        internal static string ActivityLevelLabel {
+            get {
+                return ResourceManager.GetString("ActivityLevelLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BMI - .
+        /// </summary>
+        internal static string BMILabel {
+            get {
+                return ResourceManager.GetString("BMILabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BMR (Calories/Day).
+        /// </summary>
+        internal static string BMRLabel {
+            get {
+                return ResourceManager.GetString("BMRLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cal/Day to lose weight.
+        /// </summary>
+        internal static string CaloriesToLoseWeightLabel {
+            get {
+                return ResourceManager.GetString("CaloriesToLoseWeightLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Cal/Day to maintain weight.
+        /// </summary>
+        internal static string CaloriesToMaintainWeightLabel {
+            get {
+                return ResourceManager.GetString("CaloriesToMaintainWeightLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date: .
+        /// </summary>
+        internal static string DateLabel {
+            get {
+                return ResourceManager.GetString("DateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Days left until goal = .
+        /// </summary>
+        internal static string DaysUntilGoalLabel {
+            get {
+                return ResourceManager.GetString("DaysUntilGoalLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Editing of info:.
+        /// </summary>
+        internal static string EnableEditSwitchLabel {
+            get {
+                return ResourceManager.GetString("EnableEditSwitchLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Female.
+        /// </summary>
+        internal static string FemaleGenderSwitchLabel {
+            get {
+                return ResourceManager.GetString("FemaleGenderSwitchLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please fill in all forms!.
+        /// </summary>
+        internal static string FormValidationPopupLabel {
+            get {
+                return ResourceManager.GetString("FormValidationPopupLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Goal Date.
+        /// </summary>
+        internal static string GoalDateLabel {
+            get {
+                return ResourceManager.GetString("GoalDateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Goal Weight (lb).
+        /// </summary>
+        internal static string GoalWeightImperialEntryPlaceholder {
+            get {
+                return ResourceManager.GetString("GoalWeightImperialEntryPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Goal Weight.
+        /// </summary>
+        internal static string GoalWeightLabel {
+            get {
+                return ResourceManager.GetString("GoalWeightLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Goal Weight (kg).
+        /// </summary>
+        internal static string GoalWeightMetricEntryPlaceholder {
+            get {
+                return ResourceManager.GetString("GoalWeightMetricEntryPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Graph Page.
+        /// </summary>
+        internal static string GraphPageTitle {
+            get {
+                return ResourceManager.GetString("GraphPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heavy Exercise.
+        /// </summary>
+        internal static string HeavyActivityPickItem {
+            get {
+                return ResourceManager.GetString("HeavyActivityPickItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter Height (ft) Here.
         /// </summary>
         internal static string HeightMajorImperialEntryPlaceholder {
@@ -88,6 +232,60 @@ namespace Weigh {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Setup.
+        /// </summary>
+        internal static string InitialSetupPageTitle {
+            get {
+                return ResourceManager.GetString("InitialSetupPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light Exercise.
+        /// </summary>
+        internal static string LightActivityPickItem {
+            get {
+                return ResourceManager.GetString("LightActivityPickItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Exercise.
+        /// </summary>
+        internal static string LowActivityPickItem {
+            get {
+                return ResourceManager.GetString("LowActivityPickItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Main Page.
+        /// </summary>
+        internal static string MainPageTitle {
+            get {
+                return ResourceManager.GetString("MainPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Male.
+        /// </summary>
+        internal static string MaleGenderSwitchLabel {
+            get {
+                return ResourceManager.GetString("MaleGenderSwitchLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moderate Exercise.
+        /// </summary>
+        internal static string MediumActivityPickItem {
+            get {
+                return ResourceManager.GetString("MediumActivityPickItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter Age Here.
         /// </summary>
         internal static string NameEntryPlaceholder {
@@ -97,308 +295,65 @@ namespace Weigh {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Waist Size (in).
-        /// </summary>
-        internal static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Light Exercise.
-        /// </summary>
-        internal static string String10 {
-            get {
-                return ResourceManager.GetString("String10", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Moderate Exercise.
-        /// </summary>
-        internal static string String11 {
-            get {
-                return ResourceManager.GetString("String11", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Heavy Exercise.
-        /// </summary>
-        internal static string String12 {
-            get {
-                return ResourceManager.GetString("String12", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please fill in all forms!.
-        /// </summary>
-        internal static string String13 {
-            get {
-                return ResourceManager.GetString("String13", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Setup.
-        /// </summary>
-        internal static string String14 {
-            get {
-                return ResourceManager.GetString("String14", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Weight lost to date: .
-        /// </summary>
-        internal static string String15 {
-            get {
-                return ResourceManager.GetString("String15", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to BMR (Calories/Day).
-        /// </summary>
-        internal static string String16 {
-            get {
-                return ResourceManager.GetString("String16", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cal/Day to lose weight.
-        /// </summary>
-        internal static string String17 {
-            get {
-                return ResourceManager.GetString("String17", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  Cal/Day to maintain weight.
-        /// </summary>
-        internal static string String18 {
-            get {
-                return ResourceManager.GetString("String18", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Goal Weight.
-        /// </summary>
-        internal static string String19 {
-            get {
-                return ResourceManager.GetString("String19", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Waist Size (cm).
-        /// </summary>
-        internal static string String2 {
-            get {
-                return ResourceManager.GetString("String2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  Weight left to lose.
-        /// </summary>
-        internal static string String20 {
-            get {
-                return ResourceManager.GetString("String20", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Goal Date.
-        /// </summary>
-        internal static string String21 {
-            get {
-                return ResourceManager.GetString("String21", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Days left until goal = .
-        /// </summary>
-        internal static string String22 {
-            get {
-                return ResourceManager.GetString("String22", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to BMI - .
-        /// </summary>
-        internal static string String23 {
-            get {
-                return ResourceManager.GetString("String23", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Underweight.
-        /// </summary>
-        internal static string String24 {
-            get {
-                return ResourceManager.GetString("String24", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Normal.
         /// </summary>
-        internal static string String25 {
+        internal static string NormalWeightLabel {
             get {
-                return ResourceManager.GetString("String25", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Overweight.
-        /// </summary>
-        internal static string String26 {
-            get {
-                return ResourceManager.GetString("String26", resourceCulture);
+                return ResourceManager.GetString("NormalWeightLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Obese.
         /// </summary>
-        internal static string String27 {
+        internal static string ObeseLabel {
             get {
-                return ResourceManager.GetString("String27", resourceCulture);
+                return ResourceManager.GetString("ObeseLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Main Page.
+        ///   Looks up a localized string similar to Overweight.
         /// </summary>
-        internal static string String28 {
+        internal static string OverweightLabel {
             get {
-                return ResourceManager.GetString("String28", resourceCulture);
+                return ResourceManager.GetString("OverweightLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Weight.
+        ///   Looks up a localized string similar to  Weight left to lose.
         /// </summary>
-        internal static string String29 {
+        internal static string RemainingWeightToLoseLabel {
             get {
-                return ResourceManager.GetString("String29", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Level of Activity.
-        /// </summary>
-        internal static string String3 {
-            get {
-                return ResourceManager.GetString("String3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Weight: .
-        /// </summary>
-        internal static string String30 {
-            get {
-                return ResourceManager.GetString("String30", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Change from last entry: .
-        /// </summary>
-        internal static string String31 {
-            get {
-                return ResourceManager.GetString("String31", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Date: .
-        /// </summary>
-        internal static string String32 {
-            get {
-                return ResourceManager.GetString("String32", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Graph Page.
-        /// </summary>
-        internal static string String33 {
-            get {
-                return ResourceManager.GetString("String33", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enable Editing of info:.
-        /// </summary>
-        internal static string String34 {
-            get {
-                return ResourceManager.GetString("String34", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Male.
-        /// </summary>
-        internal static string String4 {
-            get {
-                return ResourceManager.GetString("String4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Female.
-        /// </summary>
-        internal static string String5 {
-            get {
-                return ResourceManager.GetString("String5", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Goal Weight (lb).
-        /// </summary>
-        internal static string String6 {
-            get {
-                return ResourceManager.GetString("String6", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Goal Weight (kg).
-        /// </summary>
-        internal static string String7 {
-            get {
-                return ResourceManager.GetString("String7", resourceCulture);
+                return ResourceManager.GetString("RemainingWeightToLoseLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
-        internal static string String8 {
+        internal static string SaveLabel {
             get {
-                return ResourceManager.GetString("String8", resourceCulture);
+                return ResourceManager.GetString("SaveLabel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No Exercise.
+        ///   Looks up a localized string similar to Weight lost to date: .
         /// </summary>
-        internal static string String9 {
+        internal static string TotalWeightLostLabel {
             get {
-                return ResourceManager.GetString("String9", resourceCulture);
+                return ResourceManager.GetString("TotalWeightLostLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Underweight.
+        /// </summary>
+        internal static string UnderWeightLabel {
+            get {
+                return ResourceManager.GetString("UnderWeightLabel", resourceCulture);
             }
         }
         
@@ -421,11 +376,47 @@ namespace Weigh {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Waist Size (in).
+        /// </summary>
+        internal static string WaistSizeImperialEntryPlaceholder {
+            get {
+                return ResourceManager.GetString("WaistSizeImperialEntryPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waist Size (cm).
+        /// </summary>
+        internal static string WaistSizeMetricEntryPlaceholder {
+            get {
+                return ResourceManager.GetString("WaistSizeMetricEntryPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change from last entry: .
+        /// </summary>
+        internal static string WeightDeltaLabel {
+            get {
+                return ResourceManager.GetString("WeightDeltaLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Weight (lb).
         /// </summary>
         internal static string WeightImperialEntryPlaceholder {
             get {
                 return ResourceManager.GetString("WeightImperialEntryPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weight.
+        /// </summary>
+        internal static string WeightLabel {
+            get {
+                return ResourceManager.GetString("WeightLabel", resourceCulture);
             }
         }
         
