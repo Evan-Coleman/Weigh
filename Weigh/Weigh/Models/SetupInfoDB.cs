@@ -13,11 +13,11 @@ namespace Weigh.Models
     {
         // We only want 1 instance of SetupInfo in the DB, so will always return 1
         [PrimaryKey]
-        public int ID { get { return 1; }}
+        public int ID { get; set; }
 
         public SetupInfoDB()
         {
-
+            ID = 1;
         }
 
         public SetupInfoDB(SetupInfo setupInfo)

@@ -65,11 +65,9 @@ namespace Weigh.Data
 
 
         // SetupInfo section
-        public Task<SetupInfoDB> GetSetupInfoasync(int id)
+        public Task<List<SetupInfoDB>> GetSetupInfoasync()
         {
-            return database.Table<SetupInfoDB>().
-                Where(i => i.ID == id).
-                FirstOrDefaultAsync();
+            return database.Table<SetupInfoDB>().ToListAsync();
         }
 
         public Task<int> NewSetupInfoAsync(SetupInfoDB setupInfo)

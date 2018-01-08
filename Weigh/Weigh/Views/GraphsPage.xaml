@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:localization="clr-namespace:Weigh.Localization;assembly=Weigh"
              xmlns:rangenavigator="clr-namespace:Syncfusion.RangeNavigator.XForms;assembly=Syncfusion.SfChart.XForms" 
              x:Class="Weigh.Views.GraphsPage"
              Title="{Binding Title}">
@@ -27,7 +28,7 @@
 
                     <chart:NumericalAxis.Title>
 
-                        <chart:ChartAxisTitle Text="Weight"></chart:ChartAxisTitle>
+                        <chart:ChartAxisTitle Text="{localization:Translate WeightLabel}"></chart:ChartAxisTitle>
 
                     </chart:NumericalAxis.Title>
 
@@ -69,11 +70,11 @@
                    
 
                                 <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Path=Weight, StringFormat='Weight: {0}'}"
+                            <Label Text="{Binding Path=Weight, StringFormat={localization:Translate WeightLabelListviewItem}}"
                                            HorizontalOptions="StartAndExpand"/>
-                            <Label Text="{Binding Path=WeightDelta, StringFormat='Change from last entry: {0}'}"
+                            <Label Text="{Binding Path=WeightDelta, StringFormat={localization:Translate WeightDeltaLabelListviewItem}}"
                                            HorizontalOptions="StartAndExpand"/>
-                            <Label Text="{Binding Path=WeighDate, StringFormat='Date: {0:MM/dd/yyyy hh:mm}'}"
+                            <Label Text="{Binding Path=WeighDate, StringFormat={localization:Translate DateLabelListviewItem}}"
                                            HorizontalOptions="EndAndExpand"/>
                                 </StackLayout>
   

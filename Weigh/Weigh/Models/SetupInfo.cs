@@ -5,6 +5,7 @@ using System.Text;
 using Prism.Mvvm;
 using SQLite;
 using Weigh.Helpers;
+using Weigh.Localization;
 using Weigh.Validation;
 
 namespace Weigh.Models
@@ -49,17 +50,13 @@ namespace Weigh.Models
         public bool Units
         {
             get { return _units; }
-            set
-            {
-                SetProperty(ref _units, value);
-                AppState.Units = value;
-            }
+            set { SetProperty(ref _units, value); }
         }
 
         private string _age;
-        [Required(ErrorMessage = "This field is required")]
-        [StringLength(3, MinimumLength = 2, ErrorMessage = "Minimum 2 chars, max 3 chars")]
-        [Range(1, 150, ErrorMessage = "Must be within range 1-150")]
+        [Required(ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "ValidationRequiredErrorMessage")]
+        [StringLength(3, MinimumLength = 2, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "AgeLengthValidationErrorMessage")]
+        [Range(1, 150, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "AgeValueValidationErrorMessage")]
         public string Age
         {
             get { return _age; }
@@ -67,8 +64,8 @@ namespace Weigh.Models
         }
 
         private string _heightMajor;
-        [Required(ErrorMessage = "This field is required")]
-        [StringLength(5, MinimumLength = 1, ErrorMessage = "Minimum 1 chars, max 5 chars")]        
+        [Required(ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "ValidationRequiredErrorMessage")]
+        [StringLength(5, MinimumLength = 1, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "HeightMajorLengthValidationErrorMessage")]        
         [CustomValidation(typeof(SetupInfoValidation), "HeightMajorValidation")]
         public string HeightMajor
         {
@@ -86,9 +83,9 @@ namespace Weigh.Models
         }
 
         private string _weight;
-        [Required(ErrorMessage = "This field is required")]
-        [StringLength(7, MinimumLength = 1, ErrorMessage = "Minimum 1 chars, max 7 chars")]
-        [Range(0.0, 1000.0, ErrorMessage = "Must be within range 0-1000")]
+        [Required(ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "ValidationRequiredErrorMessage")]
+        [StringLength(7, MinimumLength = 1, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "WeightLengthValidationErrorMessage")]
+        [Range(0.0, 1000.0, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "WeightValueValidationErrorMessage")]
         public string Weight
         {
             get { return _weight; }
@@ -96,9 +93,9 @@ namespace Weigh.Models
         }
 
         private string _waistSize;
-        [Required(ErrorMessage = "This field is required")]
-        [StringLength(5, MinimumLength = 2, ErrorMessage = "Minimum 2 chars, max 5 chars")]
-        [Range(15.0, 200.0, ErrorMessage = "Must be within range 15-200")]
+        [Required(ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "ValidationRequiredErrorMessage")]
+        [StringLength(5, MinimumLength = 2, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "WaistLengthValidationErrorMessage")]
+        [Range(15.0, 200.0, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "WaistValueValidationErrorMessage")]
         public string WaistSize
         {
             get { return _waistSize; }
@@ -120,9 +117,9 @@ namespace Weigh.Models
         }        
 
         private string _goalWeight;
-        [Required(ErrorMessage = "This field is required")]
-        [StringLength(7, MinimumLength = 1, ErrorMessage = "Minimum 1 chars, max 7 chars")]
-        [Range(0.0, 1000.0, ErrorMessage = "Must be within range 0-1000")]
+        [Required(ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "ValidationRequiredErrorMessage")]
+        [StringLength(7, MinimumLength = 1, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "GoalWeightLengthValidationErrorMessage")]
+        [Range(0.0, 1000.0, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "GoalWeightValueValidationErrorMessage")]
         public string GoalWeight
         {
             get { return _goalWeight; }

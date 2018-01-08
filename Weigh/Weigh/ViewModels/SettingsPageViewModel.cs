@@ -11,6 +11,7 @@ using Weigh.Helpers;
 using Weigh.Models;
 using Weigh.Behaviors;
 using Weigh.Validation;
+using Weigh.Localization;
 
 namespace Weigh.ViewModels
 {
@@ -23,6 +24,13 @@ namespace Weigh.ViewModels
     public class SettingsPageViewModel : ViewModelBase
 	{
         #region Fields
+        private List<string> _pickerSource;
+        public List<string> PickerSource
+        {
+            get { return _pickerSource; }
+            set { SetProperty(ref _pickerSource, value); }
+        }
+
         private SetupInfo _setupInfo;
         public SetupInfo SetupInfo
         {
@@ -42,7 +50,7 @@ namespace Weigh.ViewModels
             _ea = ea;
             _ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry);
             _ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
-            Title = "Setup";
+            Title = AppResources.SettingsPageTitle;
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
             SetupInfo.MinDate = DateTime.UtcNow.AddDays(10);
 
@@ -56,7 +64,7 @@ namespace Weigh.ViewModels
             SetupInfo.WaistSize = AppState.WaistSize.ToString();
             SetupInfo.Units = AppState.Units;
             SetupInfo.PickerSelectedItem = AppState.PickerSelectedItem;
-            SetupInfo.PickerSource = new List<string> { "No Exercise", "Light Exercise", "Moderate Exercise", "Heavy Exercise" };
+            PickerSource = new List<string> { AppResources.LowActivityPickItem, AppResources.LightActivityPickItem, AppResources.MediumActivityPickItem, AppResources.HeavyActivityPickItem };
         }
         #endregion
 

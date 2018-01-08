@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Weigh {
+namespace Weigh.Localization {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Weigh {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Weigh.AppResources", typeof(AppResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Weigh.Localization.AppResources", typeof(AppResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -70,7 +70,34 @@ namespace Weigh {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BMI - .
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        internal static string AddEntryLabel {
+            get {
+                return ResourceManager.GetString("AddEntryLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum 2 chars, max 3 chars.
+        /// </summary>
+        internal static string AgeLengthValidationErrorMessage {
+            get {
+                return ResourceManager.GetString("AgeLengthValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must be within range 1-150.
+        /// </summary>
+        internal static string AgeValueValidationErrorMessage {
+            get {
+                return ResourceManager.GetString("AgeValueValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BMI - {0:00.00}.
         /// </summary>
         internal static string BMILabel {
             get {
@@ -88,7 +115,7 @@ namespace Weigh {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cal/Day to lose weight.
+        ///   Looks up a localized string similar to {0:0}&amp;#10;Cal/Day to lose weight.
         /// </summary>
         internal static string CaloriesToLoseWeightLabel {
             get {
@@ -97,7 +124,7 @@ namespace Weigh {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  Cal/Day to maintain weight.
+        ///   Looks up a localized string similar to {0:0} Cal/Day to maintain weight.
         /// </summary>
         internal static string CaloriesToMaintainWeightLabel {
             get {
@@ -115,7 +142,16 @@ namespace Weigh {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Days left until goal = .
+        ///   Looks up a localized string similar to Date: {0:MM/dd/yyyy hh:mm}.
+        /// </summary>
+        internal static string DateLabelListviewItem {
+            get {
+                return ResourceManager.GetString("DateLabelListviewItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Days left until goal = {0}.
         /// </summary>
         internal static string DaysUntilGoalLabel {
             get {
@@ -160,6 +196,24 @@ namespace Weigh {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Goal Info.
+        /// </summary>
+        internal static string GoalInfoLabel {
+            get {
+                return ResourceManager.GetString("GoalInfoLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Goal date was too soon, and has been set to: {0:MM/dd/yy}.
+        /// </summary>
+        internal static string GoalTooSoonPopup {
+            get {
+                return ResourceManager.GetString("GoalTooSoonPopup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Goal Weight (lb).
         /// </summary>
         internal static string GoalWeightImperialEntryPlaceholder {
@@ -178,11 +232,29 @@ namespace Weigh {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Minimum 1 chars, max 7 chars.
+        /// </summary>
+        internal static string GoalWeightLengthValidationErrorMessage {
+            get {
+                return ResourceManager.GetString("GoalWeightLengthValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Goal Weight (kg).
         /// </summary>
         internal static string GoalWeightMetricEntryPlaceholder {
             get {
                 return ResourceManager.GetString("GoalWeightMetricEntryPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must be within range 0-1000.
+        /// </summary>
+        internal static string GoalWeightValueValidationErrorMessage {
+            get {
+                return ResourceManager.GetString("GoalWeightValueValidationErrorMessage", resourceCulture);
             }
         }
         
@@ -214,11 +286,38 @@ namespace Weigh {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Must be in the range (1-15).
+        /// </summary>
+        internal static string HeightMajorImperialValidationErrorMessage {
+            get {
+                return ResourceManager.GetString("HeightMajorImperialValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum 1 chars, max 5 chars.
+        /// </summary>
+        internal static string HeightMajorLengthValidationErrorMessage {
+            get {
+                return ResourceManager.GetString("HeightMajorLengthValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter Height (cm) Here.
         /// </summary>
         internal static string HeightMajorMetricEntryPlaceholder {
             get {
                 return ResourceManager.GetString("HeightMajorMetricEntryPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must be in the range (50-300).
+        /// </summary>
+        internal static string HeightMajorMetricValidationErrorMessage {
+            get {
+                return ResourceManager.GetString("HeightMajorMetricValidationErrorMessage", resourceCulture);
             }
         }
         
@@ -295,6 +394,24 @@ namespace Weigh {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Entry:.
+        /// </summary>
+        internal static string NewEntryLabel {
+            get {
+                return ResourceManager.GetString("NewEntryLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal Weight.
+        /// </summary>
+        internal static string NormalWeightBMICategory {
+            get {
+                return ResourceManager.GetString("NormalWeightBMICategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Normal.
         /// </summary>
         internal static string NormalWeightLabel {
@@ -313,6 +430,24 @@ namespace Weigh {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Obese.
+        /// </summary>
+        internal static string ObeseWeightBMICategory {
+            get {
+                return ResourceManager.GetString("ObeseWeightBMICategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overweight.
+        /// </summary>
+        internal static string OverweightBMICategory {
+            get {
+                return ResourceManager.GetString("OverweightBMICategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Overweight.
         /// </summary>
         internal static string OverweightLabel {
@@ -322,7 +457,7 @@ namespace Weigh {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  Weight left to lose.
+        ///   Looks up a localized string similar to {0:00.00} Weight left to lose.
         /// </summary>
         internal static string RemainingWeightToLoseLabel {
             get {
@@ -340,11 +475,38 @@ namespace Weigh {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Weight lost to date: .
+        ///   Looks up a localized string similar to Setup.
+        /// </summary>
+        internal static string SettingsPageTitle {
+            get {
+                return ResourceManager.GetString("SettingsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Stats.
+        /// </summary>
+        internal static string StatsLabel {
+            get {
+                return ResourceManager.GetString("StatsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weight lost to date: {0:0}.
         /// </summary>
         internal static string TotalWeightLostLabel {
             get {
                 return ResourceManager.GetString("TotalWeightLostLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Under Weight.
+        /// </summary>
+        internal static string UnderweightBMICategory {
+            get {
+                return ResourceManager.GetString("UnderweightBMICategory", resourceCulture);
             }
         }
         
@@ -376,6 +538,24 @@ namespace Weigh {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This field is required.
+        /// </summary>
+        internal static string ValidationRequiredErrorMessage {
+            get {
+                return ResourceManager.GetString("ValidationRequiredErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum 2 chars, max 5 chars.
+        /// </summary>
+        internal static string WaistLengthValidationErrorMessage {
+            get {
+                return ResourceManager.GetString("WaistLengthValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Waist Size (in).
         /// </summary>
         internal static string WaistSizeImperialEntryPlaceholder {
@@ -394,11 +574,29 @@ namespace Weigh {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Must be within range 15-200.
+        /// </summary>
+        internal static string WaistValueValidationErrorMessage {
+            get {
+                return ResourceManager.GetString("WaistValueValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change from last entry: .
         /// </summary>
         internal static string WeightDeltaLabel {
             get {
                 return ResourceManager.GetString("WeightDeltaLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change from last entry: {0}.
+        /// </summary>
+        internal static string WeightDeltaLabelListviewItem {
+            get {
+                return ResourceManager.GetString("WeightDeltaLabelListviewItem", resourceCulture);
             }
         }
         
@@ -421,11 +619,38 @@ namespace Weigh {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Weight: {0}.
+        /// </summary>
+        internal static string WeightLabelListviewItem {
+            get {
+                return ResourceManager.GetString("WeightLabelListviewItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum 1 chars, max 7 chars.
+        /// </summary>
+        internal static string WeightLengthValidationErrorMessage {
+            get {
+                return ResourceManager.GetString("WeightLengthValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Weight (kg).
         /// </summary>
         internal static string WeightMetricEntryPlaceholder {
             get {
                 return ResourceManager.GetString("WeightMetricEntryPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must be within range 0-1000.
+        /// </summary>
+        internal static string WeightValueValidationErrorMessage {
+            get {
+                return ResourceManager.GetString("WeightValueValidationErrorMessage", resourceCulture);
             }
         }
     }

@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:linear="clr-namespace:Syncfusion.SfGauge.XForms;assembly=Syncfusion.SfGauge.XForms"
+             xmlns:localization="clr-namespace:Weigh.Localization;assembly=Weigh"
              x:Class="Weigh.Views.MainPage"
              Title="{Binding Title}">
 
@@ -25,7 +26,7 @@
                        HorizontalOptions="Center"
                        VerticalOptions="Start"
                        HorizontalTextAlignment="Center"
-                       Text="Current Stats"/>
+                       Text="{localization:Translate StatsLabel}"/>
 
 
                 <Label Grid.Row="0" Grid.Column="0"
@@ -33,7 +34,7 @@
                        VerticalOptions="Start" 
                        HorizontalTextAlignment="Center"  
                        FontSize="Micro"
-                       Text="Weight"/>
+                       Text="{localization:Translate WeightLabel}"/>
                 <Label Grid.Row="1" Grid.Column="0"
                    HorizontalTextAlignment="Center"
                    HorizontalOptions="Start"
@@ -46,7 +47,7 @@
                        HorizontalOptions="Start"
                        VerticalOptions="End"
                        FontSize="Micro"
-                       Text="{Binding SetupInfo.WeightLostToDate, StringFormat='Weight lost to date: {0:0}'}" />
+                       Text="{Binding SetupInfo.WeightLostToDate, StringFormat={localization:Translate TotalWeightLostLabel}}" />
 
 
                 <Label Grid.Row="0" Grid.Column="1"
@@ -54,20 +55,20 @@
                        VerticalOptions="Start" 
                        HorizontalTextAlignment="Center"
                        FontSize="Micro"
-                       Text="BMR (Calories/Day)"/>
+                       Text="{localization:Translate BMRLabel}"/>
                 <Label Grid.Row="1" Grid.Column="1"
                     HorizontalTextAlignment="End"
                        HorizontalOptions="End"
                        Margin="0"
                        FontSize="Medium"
-                       Text="{Binding SetupInfo.RecommendedDailyCaloricIntake, StringFormat='{0:0}&#10;Cal/Day to lose weight'}"/>
+                       Text="{Binding SetupInfo.RecommendedDailyCaloricIntake, StringFormat={localization:Translate CaloriesToLoseWeightLabel}}"/>
 
                 <Label Grid.Row="2" Grid.Column="1"
                        HorizontalOptions="End"
                        VerticalOptions="End"
                        HorizontalTextAlignment="Center"
                        FontSize="Micro"
-                       Text="{Binding SetupInfo.BMR, StringFormat='{0:0} Cal/Day to maintain weight'}"/>
+                       Text="{Binding SetupInfo.BMR, StringFormat={localization:Translate CaloriesToMaintainWeightLabel}}"/>
                 
             </Grid>
         </Frame>
@@ -90,7 +91,7 @@
                        HorizontalOptions="Center"
                        VerticalOptions="Start"
                        HorizontalTextAlignment="Center"
-                       Text="Goal Info"/>
+                       Text="{localization:Translate GoalInfoLabel}"/>
 
 
                 <Label Grid.Row="0" Grid.Column="0"
@@ -98,7 +99,7 @@
                        VerticalOptions="Start" 
                        HorizontalTextAlignment="Center"  
                        FontSize="Micro"
-                       Text="Goal Weight"/>
+                       Text="{localization:Translate GoalWeightLabel}"/>
                 <Label Grid.Row="1" Grid.Column="0"
                    HorizontalTextAlignment="Center"
                    HorizontalOptions="Start"
@@ -111,14 +112,14 @@
                        HorizontalOptions="Start"
                        VerticalOptions="End"
                        FontSize="Micro"
-                       Text="{Binding SetupInfo.DistanceToGoalWeight, StringFormat='{0:00.00} Weight left to lose'}"/>
+                       Text="{Binding SetupInfo.DistanceToGoalWeight, StringFormat={localization:Translate RemainingWeightToLoseLabel}}"/>
 
                 <Label Grid.Row="0" Grid.Column="1"
                        HorizontalOptions="End"
                        VerticalOptions="Start" 
                        HorizontalTextAlignment="Center"
                        FontSize="Micro"
-                       Text="Goal Date"/>
+                       Text="{localization:Translate GoalDateLabel}"/>
                 <Label Grid.Row="1" Grid.Column="1"
                        HorizontalTextAlignment="Center"
                        HorizontalOptions="End"
@@ -130,7 +131,7 @@
                        VerticalOptions="End"
                        HorizontalTextAlignment="Center"
                        FontSize="Micro"
-                       Text="{Binding SetupInfo.TimeLeftToGoal, StringFormat='Days left until goal = {0}'}"/>
+                       Text="{Binding SetupInfo.TimeLeftToGoal, StringFormat={localization:Translate DaysUntilGoalLabel}}"/>
 
             </Grid>
         </Frame>
@@ -157,7 +158,7 @@
                        VerticalOptions="Start"
                        HorizontalTextAlignment="Center"
                        Margin="0,0,0,-20"
-                        Text="{Binding SetupInfo.BMI, StringFormat='BMI - {0:00.00}'}" />
+                        Text="{Binding SetupInfo.BMI, StringFormat={localization:Translate BMILabel}}" />
 
                 <Label Grid.Row="1" Grid.Column="1"
                        HorizontalOptions="Center"
@@ -197,10 +198,10 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Text="Underweight" FontSize="Small" TextColor="#e91e63"/>
-                    <Label Grid.Row="0" Grid.Column="1" Text="Normal" FontSize="Small" TextColor="#1b5e20" HorizontalOptions="Center"/>
-                    <Label Grid.Row="0" Grid.Column="2" Text="Overweight" FontSize="Small" TextColor="#ff6d00"/>
-                    <Label Grid.Row="0" Grid.Column="3" Text="Obese" FontSize="Small" TextColor="#d50000"/>
+                    <Label Grid.Row="0" Grid.Column="0" Text="{localization:Translate UnderWeightLabel}" FontSize="Small" TextColor="#e91e63"/>
+                    <Label Grid.Row="0" Grid.Column="1" Text="{localization:Translate NormalWeightLabel}" FontSize="Small" TextColor="#1b5e20" HorizontalOptions="Center"/>
+                    <Label Grid.Row="0" Grid.Column="2" Text="{localization:Translate OverweightLabel}" FontSize="Small" TextColor="#ff6d00"/>
+                    <Label Grid.Row="0" Grid.Column="3" Text="{localization:Translate ObeseLabel}" FontSize="Small" TextColor="#d50000"/>
                 </Grid>
 
 
@@ -217,8 +218,8 @@
         
 
         <StackLayout Orientation="Horizontal">
-            <Label Text="New Entry: "/>
-            <Entry Placeholder="Weight (lb)"
+            <Label Text="{localization:Translate NewEntryLabel}"/>
+            <Entry Placeholder="{localization:Translate WeightImperialEntryPlaceholder}"
                    Style="{Binding DynamicResource SetupEntryStyle}"
                    Text="{Binding NewWeightEntry}"
                    Keyboard="Numeric">
@@ -226,11 +227,11 @@
                     <DataTrigger TargetType="Entry"
                      Binding="{Binding SetupInfo.Units}"
                      Value="false">
-                        <Setter Property="Placeholder" Value="Weight (kg)" />
+                        <Setter Property="Placeholder" Value="{localization:Translate WeightMetricEntryPlaceholder}" />
                     </DataTrigger>
                 </Entry.Triggers>
             </Entry>
-            <Entry Placeholder="Waist Size (in)"
+            <Entry Placeholder="{localization:Translate WaistSizeImperialEntryPlaceholder}"
                    Style="{Binding DynamicResource SetupEntryStyle}"
                    Text="{Binding NewWaistSizeEntry}"
                    Keyboard="Numeric">
@@ -238,11 +239,11 @@
                     <DataTrigger TargetType="Entry"
                      Binding="{Binding SetupInfo.Units}"
                      Value="false">
-                        <Setter Property="Placeholder" Value="Waist Size (cm)" />
+                        <Setter Property="Placeholder" Value="{localization:Translate WaistSizeMetricEntryPlaceholder}" />
                     </DataTrigger>
                 </Entry.Triggers>
             </Entry>
-            <Button Text="Add" 
+            <Button Text="{localization:Translate AddEntryLabel}" 
                     IsEnabled="{Binding ButtonEnabled}"
                     Command="{Binding AddWeightToListCommand}"/>
         </StackLayout>

@@ -119,166 +119,266 @@
   </resheader>
   <data name="ActivityLevelLabel" xml:space="preserve">
     <value>Level of Activity</value>
-    <comment>Title of activity picker</comment>
+    <comment>(InitialSetupPage / SettingsPage) Title of activity picker</comment>
+  </data>
+  <data name="AddEntryLabel" xml:space="preserve">
+    <value>Add</value>
+    <comment>(MainPage) Button that adds new entry</comment>
   </data>
   <data name="BMILabel" xml:space="preserve">
-    <value>BMI - </value>
-    <comment>Shows BMI</comment>
+    <value>BMI - {0:00.00}</value>
+    <comment>(MainPage) Shows BMI</comment>
   </data>
   <data name="BMRLabel" xml:space="preserve">
     <value>BMR (Calories/Day)</value>
-    <comment>Shows BMR</comment>
+    <comment>(MainPage) Shows BMR</comment>
   </data>
   <data name="CaloriesToLoseWeightLabel" xml:space="preserve">
-    <value>Cal/Day to lose weight</value>
-    <comment>Cals to lose weight</comment>
+    <value>{0:0}&amp;#10;Cal/Day to lose weight</value>
+    <comment>(MainPage) Cals to lose weight</comment>
   </data>
   <data name="CaloriesToMaintainWeightLabel" xml:space="preserve">
-    <value> Cal/Day to maintain weight</value>
-    <comment>Cals to maintain weight</comment>
+    <value>{0:0} Cal/Day to maintain weight</value>
+    <comment>(MainPage) Cals to maintain weight</comment>
   </data>
   <data name="DateLabel" xml:space="preserve">
     <value>Date: </value>
-    <comment>Shows date</comment>
+    <comment>(MainPage) Shows date</comment>
+  </data>
+  <data name="DateLabelListviewItem" xml:space="preserve">
+    <value>Date: {0:MM/dd/yyyy hh:mm}</value>
+    <comment>(GraphsPage) Label on listview template</comment>
   </data>
   <data name="DaysUntilGoalLabel" xml:space="preserve">
-    <value>Days left until goal = </value>
-    <comment>Days until goal</comment>
+    <value>Days left until goal = {0}</value>
+    <comment>(MainPage) Days until goal</comment>
   </data>
   <data name="EnableEditSwitchLabel" xml:space="preserve">
     <value>Enable Editing of info:</value>
-    <comment>Switch to enable editing</comment>
+    <comment>(SettingsPage) Switch to enable editing</comment>
   </data>
   <data name="FemaleGenderSwitchLabel" xml:space="preserve">
     <value>Female</value>
-    <comment>Female indicator for switch</comment>
+    <comment>(InitialSetupPage / SettingsPage) Female indicator for switch</comment>
   </data>
   <data name="FormValidationPopupLabel" xml:space="preserve">
     <value>Please fill in all forms!</value>
-    <comment>Popup label if all forms aren't filled in correctly</comment>
+    <comment>(InitialSetupPage / SettingsPage) Popup label if all forms aren't filled in correctly</comment>
   </data>
   <data name="GoalDateLabel" xml:space="preserve">
     <value>Goal Date</value>
-    <comment>Date of the selected goal</comment>
+    <comment>(MainPage) Date of the selected goal</comment>
+  </data>
+  <data name="GoalInfoLabel" xml:space="preserve">
+    <value>Goal Info</value>
+    <comment>(MainPage) Goal frame title</comment>
+  </data>
+  <data name="GoalTooSoonPopup" xml:space="preserve">
+    <value>Goal date was too soon, and has been set to: {0:MM/dd/yy}</value>
+    <comment>(SetupInfoExtensions) Pops up when goal date has been adjusted</comment>
   </data>
   <data name="GoalWeightImperialEntryPlaceholder" xml:space="preserve">
     <value>Goal Weight (lb)</value>
-    <comment>If user set units to imperial, lets them know to enter their goal weight in pounds</comment>
+    <comment>(InitialSetupPage / SettingsPage) If user set units to imperial, lets them know to enter their goal weight in pounds</comment>
   </data>
   <data name="GoalWeightLabel" xml:space="preserve">
     <value>Goal Weight</value>
-    <comment>Goal weight</comment>
+    <comment>(MainPage) Goal weight</comment>
   </data>
   <data name="GoalWeightMetricEntryPlaceholder" xml:space="preserve">
     <value>Goal Weight (kg)</value>
-    <comment>If user set units to metric, lets them know to enter their goal weight in kilograms</comment>
+    <comment>(InitialSetupPage / SettingsPage) If user set units to metric, lets them know to enter their goal weight in kilograms</comment>
   </data>
   <data name="GraphPageTitle" xml:space="preserve">
     <value>Graph Page</value>
-    <comment>GraphPage Title</comment>
+    <comment>(GraphPage) GraphPage Title</comment>
   </data>
   <data name="HeavyActivityPickItem" xml:space="preserve">
     <value>Heavy Exercise</value>
-    <comment>Picker item for heavy activity</comment>
+    <comment>(InitialSetupPage / SettingsPage) Picker item for heavy activity</comment>
   </data>
   <data name="HeightMajorImperialEntryPlaceholder" xml:space="preserve">
     <value>Enter Height (ft) Here</value>
-    <comment>If user set units to imperial, lets them know to enter their height in feet</comment>
+    <comment>(InitialSetupPage / SettingsPage) If user set units to imperial, lets them know to enter their height in feet</comment>
   </data>
   <data name="HeightMajorMetricEntryPlaceholder" xml:space="preserve">
     <value>Enter Height (cm) Here</value>
-    <comment>If user set units to metric, lets them know to enter their height in centimeters</comment>
+    <comment>(InitialSetupPage / SettingsPage) If user set units to metric, lets them know to enter their height in centimeters</comment>
   </data>
   <data name="HeightMinorImperialEntryPlaceholder" xml:space="preserve">
     <value>(in)</value>
-    <comment>lets user know to enter their height in inches</comment>
+    <comment>(InitialSetupPage / SettingsPage) lets user know to enter their height in inches</comment>
   </data>
   <data name="InitialSetupPageTitle" xml:space="preserve">
     <value>Setup</value>
-    <comment>InitialSetupPage Title</comment>
+    <comment>(InitialSetupPage) InitialSetupPage Title</comment>
   </data>
   <data name="LightActivityPickItem" xml:space="preserve">
     <value>Light Exercise</value>
-    <comment>Picker item for light activity</comment>
+    <comment>(InitialSetupPage / SettingsPage) Picker item for light activity</comment>
   </data>
   <data name="LowActivityPickItem" xml:space="preserve">
     <value>No Exercise</value>
-    <comment>Picker item for low activity</comment>
+    <comment>(InitialSetupPage / SettingsPage) Picker item for low activity</comment>
   </data>
   <data name="MainPageTitle" xml:space="preserve">
     <value>Main Page</value>
-    <comment>MainPage Title</comment>
+    <comment>(MainPage) MainPage Title</comment>
   </data>
   <data name="MaleGenderSwitchLabel" xml:space="preserve">
     <value>Male</value>
-    <comment>Male indicator for switch</comment>
+    <comment>(InitialSetupPage / SettingsPage) Male indicator for switch</comment>
   </data>
   <data name="MediumActivityPickItem" xml:space="preserve">
     <value>Moderate Exercise</value>
-    <comment>Picker item for medium activity</comment>
+    <comment>(InitialSetupPage / SettingsPage) Picker item for medium activity</comment>
   </data>
   <data name="NameEntryPlaceholder" xml:space="preserve">
     <value>Enter Age Here</value>
-    <comment>Lets user know to enter their name there</comment>
+    <comment>(InitialSetupPage / SettingsPage) Lets user know to enter their name there</comment>
+  </data>
+  <data name="NewEntryLabel" xml:space="preserve">
+    <value>New Entry:</value>
+    <comment>(MainPage) Label for a new entry</comment>
+  </data>
+  <data name="NormalWeightBMICategory" xml:space="preserve">
+    <value>Normal Weight</value>
+    <comment>(SetupInfoExtensions) BMI Category</comment>
   </data>
   <data name="NormalWeightLabel" xml:space="preserve">
     <value>Normal</value>
-    <comment>Label on the BMI gague to show normal weight</comment>
+    <comment>(MainPage) Label on the BMI gague to show normal weight</comment>
   </data>
   <data name="ObeseLabel" xml:space="preserve">
     <value>Obese</value>
-    <comment>Label on the BMI gague to show obese</comment>
+    <comment>(MainPage) Label on the BMI gague to show obese</comment>
+  </data>
+  <data name="ObeseWeightBMICategory" xml:space="preserve">
+    <value>Obese</value>
+    <comment>(SetupInfoExtensions) BMI Category</comment>
+  </data>
+  <data name="OverweightBMICategory" xml:space="preserve">
+    <value>Overweight</value>
+    <comment>(SetupInfoExtensions) BMI Category</comment>
   </data>
   <data name="OverweightLabel" xml:space="preserve">
     <value>Overweight</value>
-    <comment>Label on the BMI gague to show overweight</comment>
+    <comment>(MainPage) Label on the BMI gague to show overweight</comment>
   </data>
   <data name="RemainingWeightToLoseLabel" xml:space="preserve">
-    <value> Weight left to lose</value>
-    <comment>Weight left to lose</comment>
+    <value>{0:00.00} Weight left to lose</value>
+    <comment>(MainPage) Weight left to lose</comment>
   </data>
   <data name="SaveLabel" xml:space="preserve">
     <value>Save</value>
-    <comment>Save button</comment>
+    <comment>(InitialSetupPage / SettingsPage) Save button</comment>
+  </data>
+  <data name="SettingsPageTitle" xml:space="preserve">
+    <value>Setup</value>
+    <comment>(SettingsPage) title of page</comment>
+  </data>
+  <data name="StatsLabel" xml:space="preserve">
+    <value>Current Stats</value>
+    <comment>(MainPage) Title for main stats frame</comment>
   </data>
   <data name="TotalWeightLostLabel" xml:space="preserve">
-    <value>Weight lost to date: </value>
-    <comment>Lets user know how much weight they have lost since starting the app</comment>
+    <value>Weight lost to date: {0:0}</value>
+    <comment>(MainPage) Lets user know how much weight they have lost since starting the app</comment>
+  </data>
+  <data name="UnderweightBMICategory" xml:space="preserve">
+    <value>Under Weight</value>
+    <comment>(SetupInfoExtensions) BMI Category</comment>
   </data>
   <data name="UnderWeightLabel" xml:space="preserve">
     <value>Underweight</value>
-    <comment>Label on the BMI gague to show underweight</comment>
+    <comment>(MainPage) Label on the BMI gague to show underweight</comment>
   </data>
   <data name="UnitSwitchImperialLabel" xml:space="preserve">
     <value>Imperial</value>
-    <comment>Shows next to switch that changes units used from imperial/metric</comment>
+    <comment>(InitialSetupPage / SettingsPage) Shows next to switch that changes units used from imperial/metric</comment>
   </data>
   <data name="UnitSwitchMetricLabel" xml:space="preserve">
     <value>Metric</value>
-    <comment>Shows next to switch that changes units used from imperial/metric</comment>
+    <comment>(InitialSetupPage / SettingsPage) Shows next to switch that changes units used from imperial/metric</comment>
   </data>
   <data name="WaistSizeImperialEntryPlaceholder" xml:space="preserve">
     <value>Waist Size (in)</value>
-    <comment>If user set units to imperial, lets them know to enter their waist size in inches</comment>
+    <comment>(InitialSetupPage / SettingsPage / MainPage) If user set units to imperial, lets them know to enter their waist size in inches</comment>
   </data>
   <data name="WaistSizeMetricEntryPlaceholder" xml:space="preserve">
     <value>Waist Size (cm)</value>
-    <comment>If user set units to metric, lets them know to enter their waist size in centimeters</comment>
+    <comment>(InitialSetupPage / SettingsPage / MainPage) If user set units to metric, lets them know to enter their waist size in centimeters</comment>
   </data>
   <data name="WeightDeltaLabel" xml:space="preserve">
     <value>Change from last entry: </value>
-    <comment>Shows weight change from last entry</comment>
+    <comment>(GraphPage) Shows weight change from last entry</comment>
+  </data>
+  <data name="WeightDeltaLabelListviewItem" xml:space="preserve">
+    <value>Change from last entry: {0}</value>
+    <comment>(GraphsPage) Label on listview template</comment>
   </data>
   <data name="WeightImperialEntryPlaceholder" xml:space="preserve">
     <value>Weight (lb)</value>
-    <comment>If user set units to imperial, lets them know to enter their weight in pounds</comment>
+    <comment>(InitialSetupPage / SettingsPage / MainPage) If user set units to imperial, lets them know to enter their weight in pounds</comment>
   </data>
   <data name="WeightLabel" xml:space="preserve">
     <value>Weight</value>
-    <comment>Shows weight</comment>
+    <comment>(MainPage / GraphsPage) Shows weight</comment>
+  </data>
+  <data name="WeightLabelListviewItem" xml:space="preserve">
+    <value>Weight: {0}</value>
+    <comment>(GraphsPage) Label on listview template</comment>
   </data>
   <data name="WeightMetricEntryPlaceholder" xml:space="preserve">
     <value>Weight (kg)</value>
-    <comment>If user set units to metric, lets them know to enter their weight in kilograms</comment>
+    <comment>(InitialSetupPage / SettingsPage / MainPage) If user set units to metric, lets them know to enter their weight in kilograms</comment>
+  </data>
+  <data name="AgeLengthValidationErrorMessage" xml:space="preserve">
+    <value>Minimum 2 chars, max 3 chars</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+  <data name="AgeValueValidationErrorMessage" xml:space="preserve">
+    <value>Must be within range 1-150</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+  <data name="GoalWeightLengthValidationErrorMessage" xml:space="preserve">
+    <value>Minimum 1 chars, max 7 chars</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+  <data name="GoalWeightValueValidationErrorMessage" xml:space="preserve">
+    <value>Must be within range 0-1000</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+  <data name="HeightMajorImperialValidationErrorMessage" xml:space="preserve">
+    <value>Must be in the range (1-15)</value>
+    <comment>(SetupInfoValidation) Error message</comment>
+  </data>
+  <data name="HeightMajorLengthValidationErrorMessage" xml:space="preserve">
+    <value>Minimum 1 chars, max 5 chars</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+  <data name="HeightMajorMetricValidationErrorMessage" xml:space="preserve">
+    <value>Must be in the range (50-300)</value>
+    <comment>(SetupInfoValidation) Error message</comment>
+  </data>
+  <data name="ValidationRequiredErrorMessage" xml:space="preserve">
+    <value>This field is required</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+  <data name="WaistLengthValidationErrorMessage" xml:space="preserve">
+    <value>Minimum 2 chars, max 5 chars</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+  <data name="WaistValueValidationErrorMessage" xml:space="preserve">
+    <value>Must be within range 15-200</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+  <data name="WeightLengthValidationErrorMessage" xml:space="preserve">
+    <value>Minimum 1 chars, max 7 chars</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+  <data name="WeightValueValidationErrorMessage" xml:space="preserve">
+    <value>Must be within range 0-1000</value>
+    <comment>(SetupInfo) Validation error message</comment>
   </data>
 </root>

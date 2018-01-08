@@ -12,6 +12,7 @@ using Weigh.Models;
 using Weigh.Extensions;
 using Weigh.Behaviors;
 using Weigh.Validation;
+using Weigh.Localization;
 
 namespace Weigh.ViewModels
 {
@@ -82,7 +83,7 @@ namespace Weigh.ViewModels
             _ea = ea;
             _ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
             _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo);
-            Title = "Main Page";
+            Title = AppResources.MainPageTitle;
             ButtonEnabled = true;
             
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
@@ -90,17 +91,26 @@ namespace Weigh.ViewModels
             {
                 GetSetupInfoFromDatabase();
             }
-            SetupInfo.ValidateGoal();
-            SetupInfo.DistanceToGoalWeight = Convert.ToDouble(SetupInfo.Weight) - Convert.ToDouble(SetupInfo.GoalWeight);
-            SetupInfo.TimeLeftToGoal = (SetupInfo.GoalDate - DateTime.UtcNow).Days;
-            SetupInfo.WeightLostToDate = (Convert.ToDouble(SetupInfo.InitialWeight) - Convert.ToDouble(SetupInfo.Weight)).ToString();
+            else
+            {
+                SetupInfo.ValidateGoal();
+                SetupInfo.DistanceToGoalWeight = Convert.ToDouble(SetupInfo.Weight) - Convert.ToDouble(SetupInfo.GoalWeight);
+                SetupInfo.TimeLeftToGoal = (SetupInfo.GoalDate - DateTime.UtcNow).Days;
+                SetupInfo.WeightLostToDate = (Convert.ToDouble(SetupInfo.InitialWeight) - Convert.ToDouble(SetupInfo.Weight)).ToString();
+            }
         }
         #endregion
 
         #region Methods
         private async void GetSetupInfoFromDatabase()
         {
-            SetupInfo = new SetupInfo(await App.Database.GetSetupInfoasync(1));
+            List<SetupInfoDB> setupFromDB = new List<SetupInfoDB>();
+            setupFromDB = await App.Database.GetSetupInfoasync();
+            SetupInfo = new SetupInfo(setupFromDB[0]);
+            SetupInfo.ValidateGoal();
+            SetupInfo.DistanceToGoalWeight = Convert.ToDouble(SetupInfo.Weight) - Convert.ToDouble(SetupInfo.GoalWeight);
+            SetupInfo.TimeLeftToGoal = (SetupInfo.GoalDate - DateTime.UtcNow).Days;
+            SetupInfo.WeightLostToDate = (Convert.ToDouble(SetupInfo.InitialWeight) - Convert.ToDouble(SetupInfo.Weight)).ToString();
         }
 
         private void UpdateAfterValidation()

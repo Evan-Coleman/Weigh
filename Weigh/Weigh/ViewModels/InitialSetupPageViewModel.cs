@@ -15,6 +15,7 @@ using Acr.UserDialogs;
 using System.Threading.Tasks;
 using Weigh.Validation;
 using Weigh.Events;
+using Weigh.Localization;
 
 namespace Weigh.ViewModels
 {
@@ -27,7 +28,14 @@ namespace Weigh.ViewModels
     public class InitialSetupPageViewModel : ViewModelBase
 	{
         #region Fields      
-        public DelegateCommand SaveInfoCommand { get; set; }        
+        public DelegateCommand SaveInfoCommand { get; set; }
+
+        private List<string> _pickerSource;
+        public List<string> PickerSource
+        {
+            get { return _pickerSource; }
+            set { SetProperty(ref _pickerSource, value); }
+        }
 
         private WeightEntry _newWeight;
 
@@ -45,7 +53,7 @@ namespace Weigh.ViewModels
             : base(navigationService)
         {
             _ea = ea;
-            Title = "Setup";
+            Title = AppResources.InitialSetupPageTitle;
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
 
             // Initialize app SetupInfo
@@ -55,8 +63,8 @@ namespace Weigh.ViewModels
             // Setting units to default imperial
             SetupInfo.Units = true;
             // TODO: get rid of hard coded strings!
-            SetupInfo.PickerSource = new List<string> { "No Exercise", "Light Exercise", "Moderate Exercise", "Heavy Exercise" };
-            SetupInfo.PickerSelectedItem = "Light Exercise";
+            PickerSource = new List<string> { AppResources.LowActivityPickItem, AppResources.LightActivityPickItem, AppResources.MediumActivityPickItem, AppResources.HeavyActivityPickItem };
+            SetupInfo.PickerSelectedItem = AppResources.LightActivityPickItem;
         }
         #endregion
 
@@ -70,12 +78,13 @@ namespace Weigh.ViewModels
         {
             if (CanExecute() == false)
             {
-               UserDialogs.Instance.Alert("Please fill in all forms!");
+               UserDialogs.Instance.Alert(AppResources.FormValidationPopupLabel);
             }
             else
             {
                 double Weight = Convert.ToDouble(SetupInfo.Weight);
                 double WaistSize = Convert.ToDouble(SetupInfo.WaistSize);
+                SetupInfoDB setupToDB = new SetupInfoDB(SetupInfo);
                 // Remove if not wanted
                 // AppState.Name = SetupInfo.Name;
 
@@ -99,14 +108,20 @@ namespace Weigh.ViewModels
                 AppState.PickerSelectedItem = SetupInfo.PickerSelectedItem;
                 */
 
-                SetupInfo.ValidateGoal();
+                if (SetupInfo.ValidateGoal() == false)
+                {
+                    setupToDB.GoalDate = SetupInfo.GoalDate;
+                    setupToDB.RequiredCaloricDefecit = SetupInfo.RequiredCaloricDefecit;
+                    setupToDB.WeightPerWeekToMeetGoal = SetupInfo.WeightPerWeekToMeetGoal;
+                    setupToDB.DaysToAddToMeetMinimum = SetupInfo.DaysToAddToMeetMinimum;
+                }
                 // Nav using absolute path so user can't hit the back button and come back here
                 _newWeight = new WeightEntry();
                 _newWeight.Weight = Weight;
                 _newWeight.WaistSize = WaistSize;
                 _newWeight.WeightDelta = 0;
                 await App.Database.SaveWeightAsync(_newWeight);
-                await App.Database.NewSetupInfoAsync(new SetupInfoDB(SetupInfo));
+                await App.Database.NewSetupInfoAsync(setupToDB);
 
                 // Sending the setupinfo to main page
                 _ea.GetEvent<UpdateSetupInfoEvent>().Publish(SetupInfo);

@@ -4,6 +4,7 @@
              x:Class="Weigh.Views.SettingsPage"
              xmlns:validation="clr-namespace:Weigh.Validation;assembly=Weigh"
              xmlns:converters="clr-namespace:Weigh.Converters;assembly=Weigh"
+             xmlns:localization="clr-namespace:Weigh.Localization;assembly=Weigh"
              xmlns:b="clr-namespace:Weigh.Behaviors"
              Title="{Binding Title}">
 
@@ -28,25 +29,26 @@
         <Label Text="{Binding SetupInfo.Errors[Name], Converter={StaticResource FirstErrorConverter}"
                FontSize="Small" TextColor="Red" />
     -->
+
         <StackLayout Orientation="Horizontal" Padding="0,0,0,10">
-        <Label Text="Enable Editing of info:"/>
-        <Switch x:Name="EditSwitch"/>
+            <Label Text="{localization:Translate EnableEditSwitchLabel}"/>
+            <Switch x:Name="EditSwitch"/>
         </StackLayout>
 
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="CenterAndExpand"
                      Padding="0">
-            <Label Text="Metric"/>
+            <Label Text="{localization:Translate UnitSwitchMetricLabel}"/>
             <Switch IsToggled="{Binding SetupInfo.Units}"
                     x:Name="UnitSwitch"/>
-            <Label Text="Imperial"/>
+            <Label Text="{localization:Translate UnitSwitchImperialLabel}"/>
         </StackLayout>
 
 
 
 
         <Entry Text="{Binding SetupInfo.Age, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[Age]}"
-               Placeholder="Enter Age Here"
+               Placeholder="{localization:Translate NameEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="Age"
                Keyboard="Numeric"
@@ -64,7 +66,7 @@
             <StackLayout>
                 <Entry 
             Text="{Binding SetupInfo.HeightMajor, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[HeightMajor]}"
-               Placeholder="Enter Height (ft) Here"
+               Placeholder="{localization:Translate HeightMajorImperialEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="HeightMajor"
                Keyboard="Numeric"
@@ -77,7 +79,7 @@
                      Binding="{Binding Source={x:Reference UnitSwitch},
                                        Path=IsToggled}"
                      Value="false">
-                            <Setter Property="Placeholder" Value="Enter Height (cm) Here" />
+                            <Setter Property="Placeholder" Value="{localization:Translate HeightMajorMetricEntryPlaceholder}" />
                         </DataTrigger>
                     </Entry.Triggers>
                 </Entry>
@@ -108,7 +110,7 @@
 
 
         <Entry Text="{Binding SetupInfo.Weight, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[Weight]}"
-               Placeholder="Weight (lb)"
+               Placeholder="{localization:Translate WeightImperialEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="Weight"
                Keyboard="Numeric"
@@ -118,7 +120,7 @@
                      Binding="{Binding Source={x:Reference UnitSwitch},
                                        Path=IsToggled}"
                      Value="false">
-                    <Setter Property="Placeholder" Value="Weight (kg)" />
+                    <Setter Property="Placeholder" Value="{localization:Translate WeightMetricEntryPlaceholder}" />
                 </DataTrigger>
             </Entry.Triggers>
             <Entry.Behaviors>
@@ -131,7 +133,7 @@
 
 
         <Entry Text="{Binding SetupInfo.WaistSize, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[WaistSize]}"
-               Placeholder="Waist Size (in)"
+               Placeholder="{localization:Translate WaistSizeImperialEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="WaistSize"
                Keyboard="Numeric"
@@ -141,7 +143,7 @@
                      Binding="{Binding Source={x:Reference UnitSwitch},
                                        Path=IsToggled}"
                      Value="false">
-                    <Setter Property="Placeholder" Value="Waist Size (cm)" />
+                    <Setter Property="Placeholder" Value="{localization:Translate WaistSizeMetricEntryPlaceholder}" />
                 </DataTrigger>
             </Entry.Triggers>
             <Entry.Behaviors>
@@ -152,22 +154,22 @@
                Style="{StaticResource ErrorLabelStyle}"
                IsVisible="{Binding SetupInfo.IsDirty[WaistSize]}"/>
 
-        <Picker ItemsSource="{Binding SetupInfo.PickerSource}"
+        <Picker ItemsSource="{Binding PickerSource}"
                 SelectedItem="{Binding SetupInfo.PickerSelectedItem}"
-                Title="Level of Activity"
+                Title="{localization:Translate ActivityLevelLabel}"
                  HorizontalOptions="FillAndExpand"
                 WidthRequest="150"/>
 
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="CenterAndExpand"
                      Padding="0">
-            <Label Text="Male"/>
+            <Label Text="{localization:Translate MaleGenderSwitchLabel}"/>
             <Switch IsToggled="{Binding SetupInfo.Sex}"/>
-            <Label Text="Female"/>
+            <Label Text="{localization:Translate FemaleGenderSwitchLabel}"/>
         </StackLayout>
 
         <Entry Text="{Binding SetupInfo.GoalWeight, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[GoalWeight]}"
-               Placeholder="Goal Weight (lb)"
+               Placeholder="{localization:Translate GoalWeightImperialEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="GoalWeight"
                Keyboard="Numeric"
@@ -177,7 +179,7 @@
                      Binding="{Binding Source={x:Reference UnitSwitch},
                                        Path=IsToggled}"
                      Value="false">
-                    <Setter Property="Placeholder" Value="Goal Weight (kg)" />
+                    <Setter Property="Placeholder" Value="{localization:Translate GoalWeightMetricEntryPlaceholder}" />
                 </DataTrigger>
             </Entry.Triggers>
             <Entry.Behaviors>
@@ -193,7 +195,7 @@
 
 
 
-        <Button Text="Save"
+        <Button Text="{localization:Translate SaveLabel}"
                 Command="{Binding SaveInfoCommand}"
                 WidthRequest="150"/>
     </StackLayout>

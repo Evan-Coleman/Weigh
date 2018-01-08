@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Weigh.Helpers;
+using Weigh.Localization;
 
 namespace Weigh.Validation
 {
@@ -32,7 +33,7 @@ namespace Weigh.Validation
                 else
                 {
                     return new ValidationResult(
-                        "Must be in the range (1-15)");
+                        AppResources.HeightMajorImperialValidationErrorMessage);
                 }
             }
             else
@@ -49,7 +50,7 @@ namespace Weigh.Validation
                 else
                 {
                     return new ValidationResult(
-                        "Must be in the range (50-300)");
+                        AppResources.HeightMajorMetricValidationErrorMessage);
                 }
             }
 
@@ -106,6 +107,7 @@ namespace Weigh.Validation
                 }
                 else
                 {
+                    // TODO: Add to localization if used
                     return new ValidationResult(
                         "0-2chars");
                 }

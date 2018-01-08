@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Acr.UserDialogs;
+using Weigh.Localization;
 using Weigh.Models;
 
 namespace Weigh.Extensions
@@ -29,22 +30,22 @@ namespace Weigh.Extensions
             // Categories based on site here: https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm
             if (_setupInfo.BMI < 18.5)
             {
-                _setupInfo.BMICategory = "Underweight";
+                _setupInfo.BMICategory = AppResources.UnderweightBMICategory;
             }
 
             if (_setupInfo.BMI >= 18.5 && _setupInfo.BMI <= 24.9)
             {
-                _setupInfo.BMICategory = "Normal Weight";
+                _setupInfo.BMICategory = AppResources.NormalWeightBMICategory;
             }
 
             if (_setupInfo.BMI >= 25 && _setupInfo.BMI <= 29.9)
             {
-                _setupInfo.BMICategory = "Overweight";
+                _setupInfo.BMICategory = AppResources.OverweightBMICategory;
             }
 
             if (_setupInfo.BMI >= 30)
             {
-                _setupInfo.BMICategory = "Obese";
+                _setupInfo.BMICategory = AppResources.ObeseWeightBMICategory;
             }
 
             if (_setupInfo.Sex == false)
@@ -55,19 +56,19 @@ namespace Weigh.Extensions
             {
                 _setupInfo.BMR = 655.1 + (4.35 * Weight) + (4.7 * ((Feet * 12) + Inches)) - (4.7 * Age);
             }
-            if (_setupInfo.PickerSelectedItem == "No Exercise")
+            if (_setupInfo.PickerSelectedItem == AppResources.LowActivityPickItem)
             {
                 _setupInfo.BMR *= 1.2;
             }
-            if (_setupInfo.PickerSelectedItem == "Light Exercise")
+            if (_setupInfo.PickerSelectedItem == AppResources.LightActivityPickItem)
             {
                 _setupInfo.BMR *= 1.375;
             }
-            if (_setupInfo.PickerSelectedItem == "Moderate Exercise")
+            if (_setupInfo.PickerSelectedItem == AppResources.MediumActivityPickItem)
             {
                 _setupInfo.BMR *= 1.55;
             }
-            if (_setupInfo.PickerSelectedItem == "Heavy Exercise")
+            if (_setupInfo.PickerSelectedItem == AppResources.HeavyActivityPickItem)
             {
                 _setupInfo.BMR *= 1.725;
             }
@@ -92,7 +93,7 @@ namespace Weigh.Extensions
                 _setupInfo.WeightPerWeekToMeetGoal = _setupInfo.RequiredCaloricDefecit / 500;
                 _setupInfo.DaysToAddToMeetMinimum = (int)((Weight - GoalWeight) / (_setupInfo.WeightPerWeekToMeetGoal / 7));
                 _setupInfo.GoalDate = DateTime.Now.ToLocalTime().AddDays(_setupInfo.DaysToAddToMeetMinimum);
-                UserDialogs.Instance.Alert(string.Format("Goal date was too soon, and has been set to: {0:MM/dd/yy}", _setupInfo.GoalDate));
+                UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, _setupInfo.GoalDate));
                 return false;
                 //Create(async token => await this.Dialogs.AlertAsync("Test alert", "Alert Title", null, token));
             }
@@ -103,7 +104,7 @@ namespace Weigh.Extensions
                 _setupInfo.WeightPerWeekToMeetGoal = _setupInfo.RequiredCaloricDefecit / 500;
                 _setupInfo.DaysToAddToMeetMinimum = (int)((Weight - GoalWeight) / (_setupInfo.WeightPerWeekToMeetGoal / 7));
                 _setupInfo.GoalDate = DateTime.Now.ToLocalTime().AddDays(_setupInfo.DaysToAddToMeetMinimum);
-                UserDialogs.Instance.Alert(string.Format("Goal date was too soon, and has been set to: {0:MM/dd/yy}", _setupInfo.GoalDate));
+                UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, _setupInfo.GoalDate));
                 return false;
                 // Keeping for future use maybe
                 /*

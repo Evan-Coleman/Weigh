@@ -10,6 +10,7 @@ using Weigh.Helpers;
 using Weigh.Data;
 using Weigh.Models;
 using System.Collections.Generic;
+using Weigh.Localization;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Weigh
@@ -35,7 +36,7 @@ namespace Weigh
             AppState.InitializeApplicationState();
             if (Settings.FirstUse == "yes")
             {
-                //Settings.FirstUse = "no";
+                Settings.FirstUse = "no";
                 await NavigationService.NavigateAsync("InitialSetupPage");
             }
             else

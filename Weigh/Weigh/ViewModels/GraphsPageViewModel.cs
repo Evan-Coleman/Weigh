@@ -13,6 +13,7 @@ using Weigh.Events;
 using Syncfusion.RangeNavigator.XForms;
 using Syncfusion.SfChart.XForms;
 using Weigh.Helpers;
+using Weigh.Localization;
 
 namespace Weigh.ViewModels
 {
@@ -45,7 +46,7 @@ namespace Weigh.ViewModels
             : base(navigationService)
         {
             ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry);
-            Title = "Graph Page";
+            Title = AppResources.GraphPageTitle;
             WeightList = new ObservableCollection<WeightEntry>();
             ChartData = new ObservableCollection<WeightEntry>();
             SfDateTimeRangeNavigator rangeNavigator = new SfDateTimeRangeNavigator();
