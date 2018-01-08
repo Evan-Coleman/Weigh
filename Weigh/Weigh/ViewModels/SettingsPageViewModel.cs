@@ -72,7 +72,7 @@ namespace Weigh.ViewModels
             }
 
             await NavigationService.NavigateAsync(
-                $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
+                $"Weigh://NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
         }
 
         private void HandleNewGoal()

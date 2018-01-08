@@ -126,7 +126,7 @@ namespace Weigh.ViewModels
                 // Sending the setupinfo to main page
                 var p = new NavigationParameters();
                 p.Add("SetupInfo", SetupInfo);
-                await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage/MainPage", p);
+                await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage");
             }
         }
         #endregion

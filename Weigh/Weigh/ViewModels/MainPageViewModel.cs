@@ -13,6 +13,7 @@ using Weigh.Extensions;
 using Weigh.Behaviors;
 using Weigh.Validation;
 using Weigh.Localization;
+using System.Threading.Tasks;
 
 namespace Weigh.ViewModels
 {
@@ -68,6 +69,7 @@ namespace Weigh.ViewModels
             _ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
             _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo);
             Title = AppResources.MainPageTitle;
+            SetupInfo = new SetupInfo();
             ButtonEnabled = true;
             
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
@@ -91,6 +93,8 @@ namespace Weigh.ViewModels
                 UpdateAfterValidation();
             }
             _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SetupInfo);
+
+            return;
         }
 
         private void UpdateAfterValidation()
