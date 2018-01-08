@@ -147,6 +147,7 @@ namespace Weigh.ViewModels
                 SetupInfo.DistanceToGoalWeight = Convert.ToDouble(SetupInfo.Weight) - Convert.ToDouble(SetupInfo.GoalWeight);
 
                 SetupInfo.ValidateGoal();
+                _ea.GetEvent<AddWeightEvent>().Publish(_newWeight);
                 _ea.GetEvent<UpdateSetupInfoEvent>().Publish(SetupInfo);
                 await App.Database.SaveWeightAsync(_newWeight);
                 await App.Database.SaveSetupInfoAsync(new SetupInfoDB(SetupInfo));

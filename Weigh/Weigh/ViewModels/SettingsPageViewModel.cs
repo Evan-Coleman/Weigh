@@ -50,6 +50,7 @@ namespace Weigh.ViewModels
             _ea = ea;
             _ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry);
             _ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
+            _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleNewSetupInfo);
             Title = AppResources.SettingsPageTitle;
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
             SetupInfo.MinDate = DateTime.UtcNow.AddDays(10);
@@ -100,6 +101,10 @@ namespace Weigh.ViewModels
         {
             SetupInfo.GoalDate = AppState.GoalDate;
             SetupInfo.GoalWeight = AppState.GoalWeight.ToString();
+        }
+        private void HandleNewSetupInfo(SetupInfo _setupInfo)
+        {
+            SetupInfo = _setupInfo;
         }
         #endregion
     }
