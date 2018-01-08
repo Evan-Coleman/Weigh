@@ -51,11 +51,11 @@ namespace Weigh.ViewModels
             get { return _newWaistSizeEntry; }
             set { SetProperty(ref _newWaistSizeEntry, value); }
         }
-        private SettingValsValidated _setupInfo;
-        public SettingValsValidated SetupInfo
+        private SettingValsValidated _settingValsValidated;
+        public SettingValsValidated SettingValsValidated
         {
-            get { return _setupInfo; }
-            set { SetProperty(ref _setupInfo, value); }
+            get { return _settingValsValidated; }
+            set { SetProperty(ref _settingValsValidated, value); }
         }
         private WeightEntry _newWeight;
         private IEventAggregator _ea;
@@ -69,7 +69,7 @@ namespace Weigh.ViewModels
             _ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
             _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo);
             Title = AppResources.MainPageTitle;
-            SetupInfo = new SettingValsValidated();
+            SettingValsValidated = new SettingValsValidated();
             ButtonEnabled = true;
             
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
@@ -80,6 +80,7 @@ namespace Weigh.ViewModels
         #endregion
 
         #region Methods
+        /*
         /// <summary>
         /// Gets all info from DB on initialization and sends it to subscribers
         /// </summary>
@@ -96,7 +97,9 @@ namespace Weigh.ViewModels
 
             return;
         }
+        */
 
+            /*
         private void UpdateAfterValidation()
         {
             SetupInfo.DistanceToGoalWeight = Convert.ToDouble(SetupInfo.Weight) - Convert.ToDouble(SetupInfo.GoalWeight);
@@ -109,7 +112,13 @@ namespace Weigh.ViewModels
             double weightPerWeekToMeetGoal = (AppState.Weight - AppState.GoalWeight) / (AppState.GoalDate - DateTime.UtcNow).TotalDays * 7;
             double RequiredCaloricDefecit = 500 * weightPerWeekToMeetGoal;
             SetupInfo.RecommendedDailyCaloricIntake = (int)SetupInfo.BMR - RequiredCaloricDefecit;
-            */
+            // end linecomment here
+        }
+    */
+
+        private void GetSetupInfoFromSettingsStore()
+        {
+            SettingValsValidated.InitializeSettingVals();
         }
 
         public async void AddWeightToList()
@@ -162,19 +171,19 @@ namespace Weigh.ViewModels
 
         public override void OnNavigatingTo(NavigationParameters parameters)
         {
-            if (parameters.ContainsKey("SetupInfo"))
+            if (parameters.ContainsKey("SettingValsValidated"))
             {
-                SetupInfo = (SetupInfo)parameters["SetupInfo"];
+                SettingValsValidated = (SettingValsValidated)parameters["SettingValsValidated"];
             }
             else
             {
-                GetSetupInfoFromDatabase();
+                GetSetupInfoFromSettingsStore();
             }
-            if (SetupInfo.ValidateGoal() == false)
+            if (SettingValsValidated.ValidateGoal() == false)
             {
-                UpdateAfterValidation();
+                //UpdateAfterValidation();
             }
-            _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SetupInfo);
+            _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SettingValsValidated);
         }
         #endregion
     }

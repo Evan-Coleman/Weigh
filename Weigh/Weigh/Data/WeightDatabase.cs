@@ -61,26 +61,6 @@ namespace Weigh.Data
         {
             return database.DeleteAsync(weight);
         }
-
-
-
-        // SetupInfo section
-        public Task<List<SettingVals>> GetSetupInfoasync()
-        {
-            return database.Table<SettingVals>().ToListAsync();
-        }
-
-        public Task<int> NewSetupInfoAsync(SettingVals setupInfo)
-        {
-            // TODO: Check if works
-            return database.InsertAsync(setupInfo);
-        }
-
-        public Task<int> SaveSetupInfoAsync(SettingVals setupInfo)
-        {
-            // TODO: Check if works
-            return database.UpdateAsync(setupInfo);
-        }
         #endregion
     }
 }

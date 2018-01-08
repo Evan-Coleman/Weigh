@@ -7,70 +7,70 @@ using Weigh.Models;
 
 namespace Weigh.Extensions
 {
-    public static class SetupInfoExtensions
+    public static class SettingValsExtensions
     {
         public static void CalculateBMIBMRRDCI(this SettingValsValidated _setupInfo)
         {
-            double Weight = Convert.ToDouble(_setupInfo.Weight);
-            double Feet = Convert.ToDouble(_setupInfo.HeightMajor);
-            int Inches = Convert.ToInt32(_setupInfo.HeightMinor);
-            double HeightMajor = Convert.ToDouble(_setupInfo.HeightMajor);
-            double GoalWeight = Convert.ToDouble(_setupInfo.GoalWeight);
-            int Age = Convert.ToInt32(_setupInfo.Age);
+            double Weight = _setupInfo.Weight;
+            double Feet = _setupInfo.HeightMajor;
+            int Inches = _setupInfo.HeightMinor;
+            double HeightMajor = _setupInfo.HeightMajor;
+            double GoalWeight = _setupInfo.GoalWeight;
+            int Age = _setupInfo.Age;
 
             // Units are metric if false, so do conversion here
-            if (SettingVals.Units == false)
+            if (_setupInfo.Units == false)
             {
                 (Feet, Inches) = HeightMajor.CentimetersToFeetInches();
                 Weight = Weight.KilogramsToPounds();
             }
 
-            SettingVals.BMI = (Weight / Math.Pow(((Feet * 12) + Inches), 2)) * 703;
+            _setupInfo.BMI = (Weight / Math.Pow(((Feet * 12) + Inches), 2)) * 703;
 
             // Categories based on site here: https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm
-            if (SettingVals.BMI < 18.5)
+            if (_setupInfo.BMI < 18.5)
             {
-                SettingVals.BMICategory = AppResources.UnderweightBMICategory;
+                _setupInfo.BMICategory = AppResources.UnderweightBMICategory;
             }
 
-            if (SettingVals.BMI >= 18.5 && SettingVals.BMI <= 24.9)
+            if (_setupInfo.BMI >= 18.5 && SettingVals.BMI <= 24.9)
             {
-                SettingVals.BMICategory = AppResources.NormalWeightBMICategory;
+                _setupInfo.BMICategory = AppResources.NormalWeightBMICategory;
             }
 
-            if (SettingVals.BMI >= 25 && SettingVals.BMI <= 29.9)
+            if (_setupInfo.BMI >= 25 && SettingVals.BMI <= 29.9)
             {
-                SettingVals.BMICategory = AppResources.OverweightBMICategory;
+                _setupInfo.BMICategory = AppResources.OverweightBMICategory;
             }
 
-            if (SettingVals.BMI >= 30)
+            if (_setupInfo.BMI >= 30)
             {
-                SettingVals.BMICategory = AppResources.ObeseWeightBMICategory;
+                _setupInfo.BMICategory = AppResources.ObeseWeightBMICategory;
             }
 
-            if (SettingVals.Sex == false)
+            if (_setupInfo.Sex == false)
             {
-                SettingVals.BMR = 66 + (6.2 * Weight) + (12.7 * ((Feet * 12) + Inches)) - (6.76 * Age);
+                _setupInfo.BMR = 66 + (6.2 * Weight) + (12.7 * ((Feet * 12) + Inches)) - (6.76 * Age);
             }
             else
             {
-                SettingVals.BMR = 655.1 + (4.35 * Weight) + (4.7 * ((Feet * 12) + Inches)) - (4.7 * Age);
+                _setupInfo.BMR = 655.1 + (4.35 * Weight) + (4.7 * ((Feet * 12) + Inches)) - (4.7 * Age);
             }
-            if (SettingVals.PickerSelectedItem == AppResources.LowActivityPickItem)
+            if (_setupInfo.PickerSelectedItem == AppResources.LowActivityPickItem)
             {
-                SettingVals.BMR *= 1.2;
+                _setupInfo.BMR *= 1.2;
             }
-            if (SettingVals.PickerSelectedItem == AppResources.LightActivityPickItem)
+            if (_setupInfo.PickerSelectedItem == AppResources.LightActivityPickItem)
             {
-                SettingVals.BMR *= 1.375;
+                _setupInfo.BMR *= 1.375;
             }
-            if (SettingVals.PickerSelectedItem == AppResources.MediumActivityPickItem)
+            if (_setupInfo.PickerSelectedItem == AppResources.MediumActivityPickItem)
             {
-                SettingVals.BMR *= 1.55;
+                _setupInfo.BMR *= 1.55;
             }
-            if (SettingVals.PickerSelectedItem == AppResources.HeavyActivityPickItem)
+            if (_setupInfo.PickerSelectedItem == AppResources.HeavyActivityPickItem)
             {
-                SettingVals.BMR *= 1.725;
+                _setupInfo.BMR *= 1.725;
             }
 
             SettingVals.WeightPerDayToMeetGoal = (Weight - GoalWeight) / (SettingVals.GoalDate - DateTime.UtcNow).TotalDays;

@@ -74,7 +74,66 @@ namespace Weigh.Helpers
         private const string WaistSizeKey = "waist_size_key";
         private static readonly double WaistSizeDefault = 0.0;
 
+        private const string BMIKey = "BMI_key";
+        private static readonly double BMIDefault = 0.0;
+
+        private const string BMRKey = "BMR_key";
+        private static readonly double BMRDefault = 0.0;
+
+        private const string RecommendedDailyCaloricIntakeKey = "RecommendedDailyCaloricIntake_key";
+        private static readonly double RecommendedDailyCaloricIntakeDefault = 0.0;
+
+        private const string BMICategoryKey = "BMICategory_key";
+        private static readonly string BMICategoryDefault = string.Empty;
+
         #endregion
+        public static string BMICategory
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(BMICategoryKey, BMICategoryDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(BMICategoryKey, value);
+            }
+        }
+
+        public static double RecommendedDailyCaloricIntake
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(RecommendedDailyCaloricIntakeKey, RecommendedDailyCaloricIntakeDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(RecommendedDailyCaloricIntakeKey, value);
+            }
+        }
+
+        public static double BMR
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(BMRKey, BMRDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(BMRKey, value);
+            }
+        }
+
+        public static double BMI
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(BMIKey, BMIDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(BMIKey, value);
+            }
+        }
 
         public static double GoalWeight
         {

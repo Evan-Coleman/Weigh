@@ -58,12 +58,12 @@ namespace Weigh.ViewModels
 
             // Initialize app SettingVals
             SettingValsValidated = new SettingValsValidated();
-            SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
-            SettingVals.GoalDate = DateTime.UtcNow.AddDays(180);
+            SettingValsValidated.MinDate = DateTime.UtcNow.AddDays(10);
+            SettingValsValidated.GoalDate = DateTime.UtcNow.AddDays(180);
             // Setting units to default imperial
-            SettingVals.Units = true;
+            SettingValsValidated.Units = true;
+            SettingValsValidated.PickerSelectedItem = AppResources.LightActivityPickItem;
             PickerSource = new List<string> { AppResources.LowActivityPickItem, AppResources.LightActivityPickItem, AppResources.MediumActivityPickItem, AppResources.HeavyActivityPickItem };
-            SettingVals.PickerSelectedItem = AppResources.LightActivityPickItem;
         }
         #endregion
 
@@ -75,16 +75,15 @@ namespace Weigh.ViewModels
 
         private async void SaveInfoAsync()
         {
-            Console.WriteLine(SettingVals.Age + "HELLO MANDAODA");
             if (CanExecute() == false)
             {
                UserDialogs.Instance.Alert(AppResources.FormValidationPopupLabel);
             }
             else
             {
-                double Weight = Convert.ToDouble(SettingVals.Weight);
-                double WaistSize = Convert.ToDouble(SettingVals.WaistSize);
-                SettingVals.InitializeSettingVals(SettingValsValidated);
+                //double Weight = Convert.ToDouble(SettingVals.Weight);
+                //double WaistSize = Convert.ToDouble(SettingVals.WaistSize);
+                //SettingVals.InitializeSettingVals(SettingValsValidated);
                 // Remove if not wanted
                 // AppState.Name = SetupInfo.Name;
 
@@ -121,16 +120,13 @@ namespace Weigh.ViewModels
                 SettingValsValidated.ValidateGoal();
                 // Nav using absolute path so user can't hit the back button and come back here
                 _newWeight = new WeightEntry();
-                _newWeight.Weight = Weight;
-                _newWeight.WaistSize = WaistSize;
+                _newWeight.Weight = SettingValsValidated.Weight;
+                _newWeight.WaistSize = SettingValsValidated.WaistSize;
                 _newWeight.WeightDelta = 0;
                 await App.Database.SaveWeightAsync(_newWeight);
-                await App.Database.NewSetupInfoAsync(SettingVals);
 
-                // Sending the setupinfo to main page
                 var p = new NavigationParameters();
-                p.Add("SetupInfo", SetupInfo);
-
+                p.Add("SettingValsValidated", SettingValsValidated);
                 
                 //await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage");
                 await NavigationService.NavigateAsync(

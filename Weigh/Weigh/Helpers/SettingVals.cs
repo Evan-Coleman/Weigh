@@ -140,13 +140,7 @@ namespace Weigh.Models
             set { _goalDate = value; }
         }
 
-        private static DateTime _minDate;
 
-        public static DateTime MinDate
-        {
-            get { return _minDate; }
-            set { _minDate = value; }
-        }
 
         private static double _lastWeight;
 
