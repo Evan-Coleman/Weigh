@@ -143,7 +143,7 @@ namespace Weigh.ViewModels
                 _ea.GetEvent<AddWeightEvent>().Publish(_newWeight);
                 _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SetupInfo);
                 await App.Database.SaveWeightAsync(_newWeight);
-                await App.Database.SaveSetupInfoAsync(new SetupInfoDB(SetupInfo));
+                await App.Database.SaveSetupInfoAsync(SetupInfoDB);
             }
             ButtonEnabled = true;
             SetupInfo.WeightLostToDate = (Convert.ToDouble(SetupInfo.InitialWeight) - Convert.ToDouble(SetupInfo.Weight)).ToString();

@@ -10,12 +10,13 @@ using Weigh.Validation;
 
 namespace Weigh.Models
 {
-    public static class SetupInfo : ValidatableBase
+    public class SetupInfo : ValidatableBase
     {
         public SetupInfo()
         {
 
         }
+        /*
         public SetupInfo(SetupInfoDB setupInfo)
         {
             Units = setupInfo.Units;
@@ -45,6 +46,7 @@ namespace Weigh.Models
             DaysToAddToMeetMinimum = setupInfo.DaysToAddToMeetMinimum; ;
             WeightPerWeekToMeetGoal = setupInfo.WeightPerWeekToMeetGoal;
         }
+        */
 
         private bool _units;
         public bool Units

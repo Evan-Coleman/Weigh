@@ -9,17 +9,13 @@ using Weigh.Validation;
 
 namespace Weigh.Models
 {
-    public class SetupInfoDB
+    public static class SetupInfoDB
     {
         // We only want 1 instance of SetupInfo in the DB, so will always return 1
         [PrimaryKey]
-        public int ID { get; set; }
+        public static int ID { get { return 1; } }
 
-        public SetupInfoDB()
-        {
-            ID = 1;
-        }
-
+        /*
         public SetupInfoDB(SetupInfo setupInfo)
         {
             Units = setupInfo.Units;
@@ -49,214 +45,215 @@ namespace Weigh.Models
             DaysToAddToMeetMinimum = setupInfo.DaysToAddToMeetMinimum; ;
             WeightPerWeekToMeetGoal = setupInfo.WeightPerWeekToMeetGoal;
         }
+        */
 
-        private bool _units;
+        private static bool _units;
 
-        public bool Units
+        public static bool Units
         {
             get { return _units; }
             set { _units = value; }
         }
 
 
-        private string _age;
+        private static string _age;
 
-        public string Age
+        public static string Age
         {
             get { return _age; }
             set { _age = value; }
         }
 
-        private string _heightMajor;
+        private static string _heightMajor;
 
-        public string HeightMajor
+        public static string HeightMajor
         {
             get { return _heightMajor; }
             set { _heightMajor = value; }
         }
 
-        private string _heightMinor;
+        private static string _heightMinor;
 
-        public string HeightMinor
+        public static string HeightMinor
         {
             get { return _heightMinor; }
             set { _heightMinor = value; }
         }
 
-        private string _weight;
+        private static string _weight;
 
-        public string Weight
+        public static string Weight
         {
             get { return _weight; }
             set { _weight = value; }
         }
 
-        private string _waistSize;
+        private static string _waistSize;
 
-        public string WaistSize
+        public static string WaistSize
         {
             get { return _waistSize; }
             set { _waistSize = value; }
         }
 
-        private string _pickerSelectedItem;
+        private static string _pickerSelectedItem;
 
-        public string PickerSelectedItem
+        public static string PickerSelectedItem
         {
             get { return _pickerSelectedItem; }
             set { _pickerSelectedItem = value; }
         }
 
         /*
-        private List<string> _pickerSource;
-        public List<string> PickerSource
+        private static List<string> _pickerSource;
+        public static List<string> PickerSource
         {
             get { return _pickerSource; }
             set { SetProperty(ref _pickerSource, value); }
         }
         */
 
-        private bool _sex;
+        private static bool _sex;
 
-        public bool Sex
+        public static bool Sex
         {
             get { return _sex; }
             set { _sex = value; }
         }
 
-        private string _goalWeight;
+        private static string _goalWeight;
 
-        public string GoalWeight
+        public static string GoalWeight
         {
             get { return _goalWeight; }
             set { _goalWeight = value; }
         }
 
-        private DateTime _goalDate;
+        private static DateTime _goalDate;
 
-        public DateTime GoalDate
+        public static DateTime GoalDate
         {
             get { return _goalDate; }
             set { _goalDate = value; }
         }
 
-        private DateTime _minDate;
+        private static DateTime _minDate;
 
-        public DateTime MinDate
+        public static DateTime MinDate
         {
             get { return _minDate; }
             set { _minDate = value; }
         }
 
-        private double _lastWeight;
+        private static double _lastWeight;
 
-        public double LastWeight
+        public static double LastWeight
         {
             get { return _lastWeight; }
             set { _lastWeight = value; }
         }
 
-        private DateTime _lastWeighDate;
+        private static DateTime _lastWeighDate;
 
-        public DateTime LastWeighDate
+        public static DateTime LastWeighDate
         {
             get { return _lastWeighDate; }
             set { _lastWeighDate = value; }
         }
 
-        private double _initialWeight;
+        private static double _initialWeight;
 
-        public double InitialWeight
+        public static double InitialWeight
         {
             get { return _initialWeight; }
             set { _initialWeight = value; }
         }
 
 
-        private DateTime _initialWeighDate;
+        private static DateTime _initialWeighDate;
 
-        public DateTime InitialWeighDate
+        public static DateTime InitialWeighDate
         {
             get { return _initialWeighDate; }
             set { _initialWeighDate = value; }
         }
 
-        private double _BMR;
+        private static double _BMR;
 
-        public double BMR
+        public static double BMR
         {
             get { return _BMR; }
             set { _BMR = value; }
         }
 
-        private double _BMI;
+        private static double _BMI;
 
-        public double BMI
+        public static double BMI
         {
             get { return _BMI; }
             set { _BMI = value; }
         }
 
-        private double _recommendedDailyCaloricIntake;
+        private static double _recommendedDailyCaloricIntake;
 
-        public double RecommendedDailyCaloricIntake
+        public static double RecommendedDailyCaloricIntake
         {
             get { return _recommendedDailyCaloricIntake; }
             set { _recommendedDailyCaloricIntake = value; }
         }
 
-        private string _bmiCategory;
+        private static string _bmiCategory;
 
-        public string BMICategory
+        public static string BMICategory
         {
             get { return _bmiCategory; }
             set { _bmiCategory = value; }
         }
 
-        private double _distanceToGoalWeight;
-        public double DistanceToGoalWeight
+        private static double _distanceToGoalWeight;
+        public static double DistanceToGoalWeight
         {
             get { return _distanceToGoalWeight; }
             set { _distanceToGoalWeight = value; }
         }
 
-        private int _timeLeftToGoal;
-        public int TimeLeftToGoal
+        private static int _timeLeftToGoal;
+        public static int TimeLeftToGoal
         {
             get { return _timeLeftToGoal; }
             set { _timeLeftToGoal = value; }
         }
 
-        private string _weightLostToDate;
-        public string WeightLostToDate
+        private static string _weightLostToDate;
+        public static string WeightLostToDate
         {
             get { return _weightLostToDate; }
             set { _weightLostToDate = value; }
         }
 
-        private double _requiredCaloricDefecit;
-        public double RequiredCaloricDefecit
+        private static double _requiredCaloricDefecit;
+        public static double RequiredCaloricDefecit
         {
             get { return _requiredCaloricDefecit; }
             set { _requiredCaloricDefecit = value; }
         }
 
-        private double _weightPerDayToMeetGoal;
-        public double WeightPerDayToMeetGoal
+        private static double _weightPerDayToMeetGoal;
+        public static double WeightPerDayToMeetGoal
         {
             get { return _weightPerDayToMeetGoal; }
             set { _weightPerDayToMeetGoal = value; }
         }
 
-        private int _daysToAddToMeetMinimum;
-        public int DaysToAddToMeetMinimum
+        private static int _daysToAddToMeetMinimum;
+        public static int DaysToAddToMeetMinimum
         {
             get { return _daysToAddToMeetMinimum; }
             set { _daysToAddToMeetMinimum = value; }
         }
 
-        private double _weightPerWeekToMeetGoal;
-        public double WeightPerWeekToMeetGoal
+        private static double _weightPerWeekToMeetGoal;
+        public static double WeightPerWeekToMeetGoal
         {
             get { return _weightPerWeekToMeetGoal; }
             set { _weightPerWeekToMeetGoal = value; }
