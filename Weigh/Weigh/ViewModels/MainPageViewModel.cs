@@ -32,8 +32,8 @@ namespace Weigh.ViewModels
             get { return _addWeightToListCommand; }
             set { SetProperty(ref _addWeightToListCommand, value); }
         }
-        private string _newWeightEntry;
-        public string NewWeightEntry
+        private double _newWeightEntry;
+        public double NewWeightEntry
         {
             get { return _newWeightEntry; }
             set { SetProperty(ref _newWeightEntry, value); }
@@ -45,8 +45,8 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _buttonEnabled, value); }
         }
 
-        private string _newWaistSizeEntry;
-        public string NewWaistSizeEntry
+        private double _newWaistSizeEntry;
+        public double NewWaistSizeEntry
         {
             get { return _newWaistSizeEntry; }
             set { SetProperty(ref _newWaistSizeEntry, value); }

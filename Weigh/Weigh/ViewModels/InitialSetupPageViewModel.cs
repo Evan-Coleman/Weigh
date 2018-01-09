@@ -81,42 +81,6 @@ namespace Weigh.ViewModels
             }
             else
             {
-                //double Weight = Convert.ToDouble(SettingVals.Weight);
-                //double WaistSize = Convert.ToDouble(SettingVals.WaistSize);
-                //SettingVals.InitializeSettingVals(SettingValsValidated);
-                // Remove if not wanted
-                // AppState.Name = SetupInfo.Name;
-
-                // Not needed in new SetupInfo model
-                /*
-                AppState.Sex = SetupInfo.Sex;
-                AppState.Age = Convert.ToInt32(SetupInfo.Age);
-                AppState.GoalWeight = Convert.ToDouble(SetupInfo.GoalWeight);
-                AppState.GoalDate = SetupInfo.GoalDate;
-
-                AppState.HeightMajor = Convert.ToDouble(SetupInfo.HeightMajor);
-                AppState.HeightMinor = Convert.ToInt32(SetupInfo.HeightMinor);
-                AppState.Weight = Convert.ToDouble(SetupInfo.Weight);
-                AppState.WaistSize = Convert.ToDouble(SetupInfo.WaistSize);
-                AppState.LastWeight = Convert.ToDouble(SetupInfo.Weight);
-                AppState.InitialWeight = Convert.ToDouble(SetupInfo.Weight);
-
-                AppState.LastWeighDate = DateTime.UtcNow;
-                AppState.InitialWeightDate = DateTime.UtcNow;
-                AppState.Units = SetupInfo.Units;
-                AppState.PickerSelectedItem = SetupInfo.PickerSelectedItem;
-                */
-
-                // Need to check if the SettingVals static gets updated after calling validategoal here
-                /*
-                if (SettingValsValidated.ValidateGoal() == false)
-                {
-                    SettingVals.GoalDate = SettingValsValidated.GoalDate;
-                    SettingVals.RequiredCaloricDefecit = SettingValsValidated.RequiredCaloricDefecit;
-                    SettingVals.WeightPerWeekToMeetGoal = SettingValsValidated.WeightPerWeekToMeetGoal;
-                    SettingVals.DaysToAddToMeetMinimum = SettingValsValidated.DaysToAddToMeetMinimum;
-                }
-                */
                 SettingValsValidated.ValidateGoal();
                 // Nav using absolute path so user can't hit the back button and come back here
                 _newWeight = new WeightEntry();
@@ -124,7 +88,7 @@ namespace Weigh.ViewModels
                 _newWeight.WaistSize = SettingValsValidated.WaistSize;
                 _newWeight.WeightDelta = 0;
                 await App.Database.SaveWeightAsync(_newWeight);
-
+                SettingValsValidated.SaveSettingValsToDevice();
                 var p = new NavigationParameters();
                 p.Add("SettingValsValidated", SettingValsValidated);
                 

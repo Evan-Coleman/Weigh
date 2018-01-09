@@ -6,7 +6,9 @@ using Prism.Mvvm;
 using SQLite;
 using Weigh.Helpers;
 using Weigh.Localization;
+using Weigh.Extensions;
 using Weigh.Validation;
+using Acr.UserDialogs;
 
 namespace Weigh.Models
 {
@@ -140,42 +142,42 @@ namespace Weigh.Models
         public double BMI
         {
             get { return _BMI; }
-            set { SetProperty(ref _BMI, value); }
+            set { SetProperty(ref _BMI, value); Settings.BMI = value; }
         }
 
         private bool _sex;
         public bool Sex
         {
             get { return _sex; }
-            set { SetProperty(ref _sex, value); }
+            set { SetProperty(ref _sex, value); Settings.Sex = value; }
         }
 
         private double _BMR;
         public double BMR
         {
             get { return _BMR; }
-            set { SetProperty(ref _BMR, value); }
+            set { SetProperty(ref _BMR, value); Settings.BMR = value; }
         }
 
         private double _recommendedDailyCaloricIntake;
         public double RecommendedDailyCaloricIntake
         {
             get { return _recommendedDailyCaloricIntake; }
-            set { SetProperty(ref _recommendedDailyCaloricIntake, value); }
+            set { SetProperty(ref _recommendedDailyCaloricIntake, value); Settings.RecommendedDailyCaloricIntake = value; }
         }
 
         private string _BMICategory;
         public string BMICategory
         {
             get { return _BMICategory; }
-            set { SetProperty(ref _BMICategory, value); }
+            set { SetProperty(ref _BMICategory, value); Settings.BMICategory = value; }
         }
 
         private double _weightPerWeekToMeetGoal;
         public double WeightPerWeekToMeetGoal
         {
             get { return _weightPerWeekToMeetGoal; }
-            set { SetProperty(ref _weightPerWeekToMeetGoal, value); }
+            set { SetProperty(ref _weightPerWeekToMeetGoal, value); Settings.WeightPerWeekToMeetGoal = value; }
         }
 
         public void InitializeSettingVals()
@@ -195,6 +197,156 @@ namespace Weigh.Models
             RecommendedDailyCaloricIntake = Settings.RecommendedDailyCaloricIntake;
             BMICategory = Settings.BMICategory;
             WeightPerWeekToMeetGoal = Settings.WeightPerWeekToMeetGoal;
+        }
+        public void SaveSettingValsToDevice()
+        {
+        Settings.Age = Age;
+        Settings.HeightMajor = HeightMajor;
+        Settings.HeightMinor = HeightMinor;
+        Settings.Weight = Weight;
+        Settings.WaistSize = WaistSize;
+        Settings.GoalWeight = GoalWeight;
+        Settings.GoalDate = GoalDate;
+        Settings.Units = Units;
+        Settings.PickerSelectedItem = PickerSelectedItem;
+        Settings.Sex = Sex;
+        Settings.BMI = BMI;
+        Settings.BMR = BMR;
+        Settings.RecommendedDailyCaloricIntake = RecommendedDailyCaloricIntake;
+        Settings.BMICategory = BMICategory;
+        Settings.WeightPerWeekToMeetGoal = WeightPerWeekToMeetGoal;
+        }
+
+        public void CalculateBMI()
+        {
+            double Feet = HeightMajor;
+            int Inches = HeightMinor;
+            double _weight = Weight;
+            // Units are metric if false, so do conversion here
+            if (Units == false)
+            {
+                (Feet, Inches) = HeightMajor.CentimetersToFeetInches();
+                _weight = Weight.KilogramsToPounds();
+            }
+
+            BMI = (_weight / Math.Pow(((Feet * 12) + Inches), 2)) * 703;
+        }
+        public void SetBMICategory()
+        {
+            // Categories based on site here: https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm
+            if (BMI < 18.5)
+            {
+                BMICategory = AppResources.UnderweightBMICategory;
+            }
+
+            if (BMI >= 18.5 && BMI <= 24.9)
+            {
+                BMICategory = AppResources.NormalWeightBMICategory;
+            }
+
+            if (BMI >= 25 && BMI <= 29.9)
+            {
+                BMICategory = AppResources.OverweightBMICategory;
+            }
+
+            if (BMI >= 30)
+            {
+                BMICategory = AppResources.ObeseWeightBMICategory;
+            }
+        }
+        public void CalculateBMR()
+        {
+            double Feet = HeightMajor;
+            int Inches = HeightMinor;
+            double _weight = Weight;
+            // Units are metric if false, so do conversion here
+            if (Units == false)
+            {
+                (Feet, Inches) = HeightMajor.CentimetersToFeetInches();
+                _weight = Weight.KilogramsToPounds();
+            }
+
+            if (Sex == false)
+            {
+                BMR = 66 + (6.2 * _weight) + (12.7 * ((Feet * 12) + Inches)) - (6.76 * Age);
+            }
+            else
+            {
+                BMR = 655.1 + (4.35 * _weight) + (4.7 * ((Feet * 12) + Inches)) - (4.7 * Age);
+            }
+            if (PickerSelectedItem == AppResources.LowActivityPickItem)
+            {
+                BMR *= 1.2;
+            }
+            if (PickerSelectedItem == AppResources.LightActivityPickItem)
+            {
+                BMR *= 1.375;
+            }
+            if (PickerSelectedItem == AppResources.MediumActivityPickItem)
+            {
+                BMR *= 1.55;
+            }
+            if (PickerSelectedItem == AppResources.HeavyActivityPickItem)
+            {
+                BMR *= 1.725;
+            }
+        }
+
+        public bool ValidateGoal()
+        {
+            CalculateBMI();
+            CalculateBMR();
+            SetBMICategory();
+
+            double Feet = HeightMajor;
+            int Inches = HeightMinor;
+            double _weight = Weight;
+            double _goalWeight = GoalWeight;
+            // Units are metric if false, so do conversion here
+            if (Units == false)
+            {
+                (Feet, Inches) = HeightMajor.CentimetersToFeetInches();
+                _weight = Weight.KilogramsToPounds();
+                _goalWeight = GoalWeight.KilogramsToPounds();
+            }
+
+
+
+
+
+            double WeightPerDayToMeetGoal = (_weight - _goalWeight) / (GoalDate - DateTime.UtcNow).TotalDays;
+            WeightPerWeekToMeetGoal = WeightPerDayToMeetGoal * 7;
+            double RequiredCaloricDefecit = 500 * WeightPerWeekToMeetGoal;
+            RecommendedDailyCaloricIntake = (int)BMR - RequiredCaloricDefecit;
+
+            if (Sex == true && RecommendedDailyCaloricIntake < 1200)
+            {
+                // Min calories/day for women is 1200
+               RequiredCaloricDefecit = BMR - 1300;
+               WeightPerWeekToMeetGoal = RequiredCaloricDefecit / 500;
+               int DaysToAddToMeetMinimum = (int)((_weight - _goalWeight) / (WeightPerWeekToMeetGoal / 7));
+               GoalDate = DateTime.Now.ToLocalTime().AddDays(DaysToAddToMeetMinimum);
+                UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, _goalDate));
+                return false;
+                //Create(async token => await this.Dialogs.AlertAsync("Test alert", "Alert Title", null, token));
+            }
+            if (Sex == false && RecommendedDailyCaloricIntake < 1800)
+            {
+                // Min calories/day for men is 1800
+                RequiredCaloricDefecit = BMR - 1900;
+                WeightPerWeekToMeetGoal = RequiredCaloricDefecit / 500;
+                int DaysToAddToMeetMinimum = (int)((_weight - _goalWeight) / (WeightPerWeekToMeetGoal / 7));
+                GoalDate = DateTime.Now.ToLocalTime().AddDays(DaysToAddToMeetMinimum);
+                UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, GoalDate));
+                return false;
+                // Keeping for future use maybe
+                /*
+                UserDialogs.Instance.Toast(new ToastConfig(string.Format("Goal date has been set to: {0:MM/dd/yy}", AppState.GoalDate))
+                    .SetDuration(TimeSpan.FromSeconds(3))
+                    .SetPosition(ToastPosition.Bottom));
+                    */
+            }
+            return true;
         }
     }
 }
