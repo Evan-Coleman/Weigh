@@ -6,35 +6,35 @@ Description: Simple weight loss app
 TODO:
 
 	General
-		Add Measurements for Waist, maybe more
-		think about changing to radial gague
 		Add google docs backend or way to backup
 		Add a way to know how on or off track you are to meet goal
+		~~Add Measurements for Waist, maybe more
 		~~Add extensions for imperial/metric changes
 		~~Find out maths to meet goal in timeline
 
 	Initial Setup Page & Settings Page
-		Disable Editing
-			Create Switch which enables/disables all editing
-			Disable Editing Weight from Settings
+		Add notes to entries
 		Add Labels to make it clear what you're editing
+		~~Disable Editing
+			~~Create Switch which enables/disables all editing
+			~~Disable Editing Weight from Settings
 		~~Add messaging from SettingsPage to MainPage
 			~~Goal Weight/Date -> Main Page
-		Add notes to entries
-		Change entry placeholders based on imperial/metric
+		
+		~~Change entry placeholders based on imperial/metric
 		~Add entry for goal weight, and timeline
 
 	Graphs Page
-		Add change from last entry
-		Add day to listview
 		Add ability to click listview items
 			Add view for item details
 		Add area colors for bmi
+		~~Add change from last entry
+		~~Add day to listview
+		
 
 	Main Page
-		Implement timeline gague
-		Add Card styling
 		Handle case of goal met (new goal, or show maintain caloric intake)
+		~~Add Card styling
 		~~Add goal weight & distance to it
 		~~Add current weight
 		~~Add time left to goal timeline
