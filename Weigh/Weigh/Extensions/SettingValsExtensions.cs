@@ -9,7 +9,7 @@ namespace Weigh.Extensions
 {
     public static class SettingValsExtensions
     {
-        public static void CalculateBMIBMRRDCI(this SettingValsValidated _setupInfo)
+        public static bool  ValidateGoal(this SettingValsValidated _setupInfo)
         {
             double Weight = _setupInfo.Weight;
             double Feet = _setupInfo.HeightMajor;
@@ -73,18 +73,10 @@ namespace Weigh.Extensions
                 _setupInfo.BMR *= 1.725;
             }
 
-            SettingVals.WeightPerDayToMeetGoal = (Weight - GoalWeight) / (SettingVals.GoalDate - DateTime.UtcNow).TotalDays;
+            double WeightPerDayToMeetGoal = (Weight - GoalWeight) / (SettingVals.GoalDate - DateTime.UtcNow).TotalDays;
             SettingVals.WeightPerWeekToMeetGoal = SettingVals.WeightPerDayToMeetGoal * 7;
             SettingVals.RequiredCaloricDefecit = 500 * SettingVals.WeightPerWeekToMeetGoal;
             SettingVals.RecommendedDailyCaloricIntake = (int)SettingVals.BMR - SettingVals.RequiredCaloricDefecit;
-        }
-
-        public static bool  ValidateGoal(this SettingValsValidated _setupInfo)
-        {
-            double Weight = Convert.ToDouble(_setupInfo.Weight);
-            double GoalWeight = Convert.ToDouble(_setupInfo.GoalWeight);
-
-            _setupInfo.CalculateBMIBMRRDCI();
 
             if (SettingVals.Sex == true && SettingVals.RecommendedDailyCaloricIntake < 1200)
             {

@@ -171,6 +171,13 @@ namespace Weigh.Models
             set { SetProperty(ref _BMICategory, value); }
         }
 
+        private double _weightPerWeekToMeetGoal;
+        public double WeightPerWeekToMeetGoal
+        {
+            get { return _weightPerWeekToMeetGoal; }
+            set { SetProperty(ref _weightPerWeekToMeetGoal, value); }
+        }
+
         public void InitializeSettingVals()
         {
             Age = Settings.Age;
@@ -187,6 +194,7 @@ namespace Weigh.Models
             BMR = Settings.BMR;
             RecommendedDailyCaloricIntake = Settings.RecommendedDailyCaloricIntake;
             BMICategory = Settings.BMICategory;
+            WeightPerWeekToMeetGoal = Settings.WeightPerWeekToMeetGoal;
         }
     }
 }

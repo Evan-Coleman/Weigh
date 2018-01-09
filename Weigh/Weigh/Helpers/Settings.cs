@@ -86,7 +86,22 @@ namespace Weigh.Helpers
         private const string BMICategoryKey = "BMICategory_key";
         private static readonly string BMICategoryDefault = string.Empty;
 
+        private const string WeightPerWeekToMeetGoalKey = "WeightPerWeekToMeetGoal_key";
+        private static readonly double WeightPerWeekToMeetGoalDefault = 0.0;
+
         #endregion
+        public static double WeightPerWeekToMeetGoal
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(WeightPerWeekToMeetGoalKey, WeightPerWeekToMeetGoalDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(WeightPerWeekToMeetGoalKey, value);
+            }
+        }
+
         public static string BMICategory
         {
             get
