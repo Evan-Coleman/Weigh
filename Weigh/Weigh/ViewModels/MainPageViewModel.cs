@@ -125,7 +125,10 @@ namespace Weigh.ViewModels
             {
                 SettingValsValidated.InitializeSettingVals();
             }
-            SettingValsValidated.ValidateGoal();
+            if (SettingValsValidated.ValidateGoal() == false)
+            {
+                SettingValsValidated.SaveSettingValsToDevice();
+            }
 
             _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SettingValsValidated);
         }

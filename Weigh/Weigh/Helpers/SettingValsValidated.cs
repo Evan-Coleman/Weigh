@@ -337,7 +337,7 @@ namespace Weigh.Models
                RequiredCaloricDefecit = BMR - 1300;
                WeightPerWeekToMeetGoal = RequiredCaloricDefecit / 500;
                int DaysToAddToMeetMinimum = (int)((_weight - _goalWeight) / (WeightPerWeekToMeetGoal / 7));
-               GoalDate = DateTime.Now.ToLocalTime().AddDays(DaysToAddToMeetMinimum);
+               GoalDate = DateTime.Now.ToLocalTime().AddDays(DaysToAddToMeetMinimum + 10);
                 UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, _goalDate));
                 return false;
                 //Create(async token => await this.Dialogs.AlertAsync("Test alert", "Alert Title", null, token));
@@ -348,7 +348,7 @@ namespace Weigh.Models
                 RequiredCaloricDefecit = BMR - 1900;
                 WeightPerWeekToMeetGoal = RequiredCaloricDefecit / 500;
                 int DaysToAddToMeetMinimum = (int)((_weight - _goalWeight) / (WeightPerWeekToMeetGoal / 7));
-                GoalDate = DateTime.Now.ToLocalTime().AddDays(DaysToAddToMeetMinimum);
+                GoalDate = DateTime.Now.ToLocalTime().AddDays(DaysToAddToMeetMinimum + 10);
                 UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, GoalDate));
                 return false;
                 // Keeping for future use maybe

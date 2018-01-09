@@ -381,4 +381,28 @@
     <value>Must be within range 0-1000</value>
     <comment>(SetupInfo) Validation error message</comment>
   </data>
+  <data name="ShowMonthGraphButton" xml:space="preserve">
+    <value>Month</value>
+    <comment>(GraphsPage) Button to show last Month in graph</comment>
+  </data>
+  <data name="ShowWeekGraphButton" xml:space="preserve">
+    <value>Week</value>
+    <comment>(GraphsPage) Button to show last week in graph</comment>
+  </data>
+  <data name="ShowYearGraphButton" xml:space="preserve">
+    <value>Year</value>
+    <comment>(GraphsPage) Button to show last Month in graph</comment>
+  </data>
+  <data name="ToggleWaistSizeGraphButton" xml:space="preserve">
+    <value>Waist Size / Weight</value>
+    <comment>(GraphsPage) Button to toggle waist size in graph</comment>
+  </data>
+  <data name="WaistSizeLabel" xml:space="preserve">
+    <value>Waist Size</value>
+    <comment>(GraphsPage) Label on graph for Waist Size</comment>
+  </data>
+  <data name="WaistSizeLabelListviewItem" xml:space="preserve">
+    <value>Waist Size: {0}</value>
+    <comment>(GraphsPage) Label for waist size in the listview</comment>
+  </data>
 </root>

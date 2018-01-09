@@ -40,7 +40,8 @@
                      Padding="0">
             <Label Text="{localization:Translate UnitSwitchMetricLabel}"/>
             <Switch IsToggled="{Binding SettingValsValidated.Units}"
-                    x:Name="UnitSwitch"/>
+                    x:Name="UnitSwitch"
+                    IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}"/>
             <Label Text="{localization:Translate UnitSwitchImperialLabel}"/>
         </StackLayout>
 
@@ -158,13 +159,15 @@
                 SelectedItem="{Binding SettingValsValidated.PickerSelectedItem}"
                 Title="{localization:Translate ActivityLevelLabel}"
                  HorizontalOptions="FillAndExpand"
-                WidthRequest="150"/>
+                WidthRequest="150"
+                IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}"/>
 
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="CenterAndExpand"
                      Padding="0">
             <Label Text="{localization:Translate MaleGenderSwitchLabel}"/>
-            <Switch IsToggled="{Binding SettingValsValidated.Sex}"/>
+            <Switch IsToggled="{Binding SettingValsValidated.Sex}"
+                    IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}"/>
             <Label Text="{localization:Translate FemaleGenderSwitchLabel}"/>
         </StackLayout>
 
@@ -191,7 +194,8 @@
                IsVisible="{Binding SettingValsValidated.IsDirty[GoalWeight]}"/>
 
         <DatePicker Date="{Binding SettingValsValidated.GoalDate}"
-                    MinimumDate="{Binding SettingValsValidated.MinDate}"></DatePicker>
+                    MinimumDate="{Binding SettingValsValidated.MinDate}"
+                    IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}"></DatePicker>
 
 
 

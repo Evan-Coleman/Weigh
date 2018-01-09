@@ -484,11 +484,47 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Month.
+        /// </summary>
+        internal static string ShowMonthGraphButton {
+            get {
+                return ResourceManager.GetString("ShowMonthGraphButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Week.
+        /// </summary>
+        internal static string ShowWeekGraphButton {
+            get {
+                return ResourceManager.GetString("ShowWeekGraphButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year.
+        /// </summary>
+        internal static string ShowYearGraphButton {
+            get {
+                return ResourceManager.GetString("ShowYearGraphButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Stats.
         /// </summary>
         internal static string StatsLabel {
             get {
                 return ResourceManager.GetString("StatsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waist Size / Weight.
+        /// </summary>
+        internal static string ToggleWaistSizeGraphButton {
+            get {
+                return ResourceManager.GetString("ToggleWaistSizeGraphButton", resourceCulture);
             }
         }
         
@@ -561,6 +597,24 @@ namespace Weigh.Localization {
         internal static string WaistSizeImperialEntryPlaceholder {
             get {
                 return ResourceManager.GetString("WaistSizeImperialEntryPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waist Size.
+        /// </summary>
+        internal static string WaistSizeLabel {
+            get {
+                return ResourceManager.GetString("WaistSizeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waist Size: {0}.
+        /// </summary>
+        internal static string WaistSizeLabelListviewItem {
+            get {
+                return ResourceManager.GetString("WaistSizeLabelListviewItem", resourceCulture);
             }
         }
         

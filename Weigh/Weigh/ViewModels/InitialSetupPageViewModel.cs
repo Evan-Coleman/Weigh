@@ -81,7 +81,6 @@ namespace Weigh.ViewModels
             }
             else
             {
-                SettingValsValidated.ValidateGoal();
                 // Nav using absolute path so user can't hit the back button and come back here
                 _newWeight = new WeightEntry();
                 _newWeight.Weight = Convert.ToDouble(SettingValsValidated.Weight);

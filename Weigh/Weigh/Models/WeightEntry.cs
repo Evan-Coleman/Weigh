@@ -20,10 +20,11 @@ namespace Weigh.Models
 
         }
 
-        public WeightEntry(double weight, DateTime date)
+        public WeightEntry(double weight, DateTime date, double waistSize)
         {
             Weight = weight;
             WeighDate = date;
+            WaistSize = waistSize;
         }
     }
 }
