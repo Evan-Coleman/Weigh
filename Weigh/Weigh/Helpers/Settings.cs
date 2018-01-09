@@ -89,7 +89,22 @@ namespace Weigh.Helpers
         private const string WeightPerWeekToMeetGoalKey = "WeightPerWeekToMeetGoal_key";
         private static readonly double WeightPerWeekToMeetGoalDefault = 0.0;
 
+        private const string DistanceToGoalWeightKey = "DistanceToGoalWeight_Key";
+        private static readonly double DistanceToGoalWeightDefault = 0.0;
+
         #endregion
+        public static double DistanceToGoalWeight
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(DistanceToGoalWeightKey, DistanceToGoalWeightDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(DistanceToGoalWeightKey, value);
+            }
+        }
+
         public static double WeightPerWeekToMeetGoal
         {
             get

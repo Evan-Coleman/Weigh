@@ -80,52 +80,11 @@ namespace Weigh.ViewModels
         #endregion
 
         #region Methods
-        /*
-        /// <summary>
-        /// Gets all info from DB on initialization and sends it to subscribers
-        /// </summary>
-        private async void GetSetupInfoFromDatabase()
-        {
-            List<SettingVals> setupFromDB = new List<SettingVals>();
-            setupFromDB = await App.Database.GetSetupInfoasync();
-            SetupInfo = new SettingValsValidated(setupFromDB[0]);
-            if (SetupInfo.ValidateGoal() == false)
-            {
-                UpdateAfterValidation();
-            }
-            _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SetupInfo);
-
-            return;
-        }
-        */
-
-            /*
-        private void UpdateAfterValidation()
-        {
-            SetupInfo.DistanceToGoalWeight = Convert.ToDouble(SetupInfo.Weight) - Convert.ToDouble(SetupInfo.GoalWeight);
-            SetupInfo.TimeLeftToGoal = (SetupInfo.GoalDate - DateTime.UtcNow).Days;
-            SetupInfo.WeightLostToDate = (Convert.ToDouble(SetupInfo.InitialWeight) - Convert.ToDouble(SetupInfo.Weight)).ToString();
-
-            /*
-            SetupInfo.TimeLeftToGoal = (int)(AppState.GoalDate.ToLocalTime() - DateTime.UtcNow.ToLocalTime()).TotalDays;
-            SetupInfo.GoalDate = AppState.GoalDate;
-            double weightPerWeekToMeetGoal = (AppState.Weight - AppState.GoalWeight) / (AppState.GoalDate - DateTime.UtcNow).TotalDays * 7;
-            double RequiredCaloricDefecit = 500 * weightPerWeekToMeetGoal;
-            SetupInfo.RecommendedDailyCaloricIntake = (int)SetupInfo.BMR - RequiredCaloricDefecit;
-            // end linecomment here
-        }
-    */
-
-        private void GetSetupInfoFromSettingsStore()
-        {
-            SettingValsValidated.InitializeSettingVals();
-        }
-
         public async void AddWeightToList()
         {
             ButtonEnabled = false;
             // Disabling the 12hr restriction for now
-            if ((AppState.LastWeighDate - DateTime.UtcNow).TotalHours > 11231232313232)
+            if ((SettingValsValidated.LastWeighDate - DateTime.UtcNow).TotalHours > 11231232313232)
             {
                 ButtonEnabled = true;
                 // TODO: Add an error message, less than 12 hours since last entry
@@ -134,16 +93,16 @@ namespace Weigh.ViewModels
             else
             {
                 _newWeight = new WeightEntry();
-                SetupInfo.LastWeight = Convert.ToDouble(SetupInfo.Weight);
-                _newWeight.WeightDelta = SetupInfo.LastWeight - Convert.ToDouble(NewWeightEntry);
-                _newWeight.Weight = Convert.ToDouble(NewWeightEntry);
-                _newWeight.WaistSize = Convert.ToDouble(NewWaistSizeEntry);
-                SetupInfo.WaistSize = _newWeight.WaistSize.ToString();
-                SetupInfo.Weight = _newWeight.Weight.ToString();
-                SetupInfo.Weight = _newWeight.Weight.ToString();
-                SetupInfo.WaistSize = _newWeight.WaistSize.ToString();
-                SetupInfo.LastWeighDate = DateTime.UtcNow;
-                SetupInfo.DistanceToGoalWeight = Convert.ToDouble(SetupInfo.Weight) - Convert.ToDouble(SetupInfo.GoalWeight);
+                SettingValsValidated.LastWeight = SettingValsValidated.Weight;
+                _newWeight.WeightDelta = SettingValsValidated.LastWeight - NewWeightEntry;
+                _newWeight.Weight = NewWeightEntry;
+                _newWeight.WaistSize = NewWaistSizeEntry;
+                SettingValsValidated.WaistSize = _newWeight.WaistSize;
+                SettingValsValidated.Weight = _newWeight.Weight;
+                SettingValsValidated.Weight = _newWeight.Weight;
+                SettingValsValidated.WaistSize = _newWeight.WaistSize;
+                SettingValsValidated.LastWeighDate = DateTime.UtcNow;
+                SettingValsValidated.DistanceToGoalWeight = SettingValsValidated.Weight - SettingValsValidated.GoalWeight;
 
                 if (SetupInfo.ValidateGoal() == false)
                 {
@@ -166,7 +125,7 @@ namespace Weigh.ViewModels
 
         private void HandleUpdateSetupInfo(SettingValsValidated _setupInfo)
         {
-            SetupInfo = _setupInfo;
+            SettingValsValidated = _setupInfo;
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)
@@ -177,12 +136,10 @@ namespace Weigh.ViewModels
             }
             else
             {
-                GetSetupInfoFromSettingsStore();
+                SettingValsValidated.InitializeSettingVals();
             }
-            if (SettingValsValidated.ValidateGoal() == false)
-            {
-                //UpdateAfterValidation();
-            }
+            SettingValsValidated.ValidateGoal();
+
             _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SettingValsValidated);
         }
         #endregion
