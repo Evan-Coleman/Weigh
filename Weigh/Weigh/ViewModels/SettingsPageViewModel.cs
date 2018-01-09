@@ -31,11 +31,11 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _pickerSource, value); }
         }
 
-        private SettingValsValidated _setupInfo;
-        public SettingValsValidated SetupInfo
+        private SettingValsValidated _settingValsValidated;
+        public SettingValsValidated SettingValsValidated
         {
-            get { return _setupInfo; }
-            set { SetProperty(ref _setupInfo, value); }
+            get { return _settingValsValidated; }
+            set { SetProperty(ref _settingValsValidated, value); }
         }
 
         public DelegateCommand SaveInfoCommand { get; set; }
@@ -46,13 +46,13 @@ namespace Weigh.ViewModels
         public SettingsPageViewModel(INavigationService navigationService, IEventAggregator ea)
             : base(navigationService)
         {
-            SetupInfo = new SettingValsValidated();
+            SettingValsValidated = new SettingValsValidated();
             _ea = ea;
             _ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
             _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo);
             Title = AppResources.SettingsPageTitle;
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
-            SetupInfo.MinDate = DateTime.UtcNow.AddDays(10);
+            SettingValsValidated.MinDate = DateTime.UtcNow.AddDays(10);
             PickerSource = new List<string> { AppResources.LowActivityPickItem, AppResources.LightActivityPickItem, AppResources.MediumActivityPickItem, AppResources.HeavyActivityPickItem };
         }
         #endregion
@@ -60,29 +60,23 @@ namespace Weigh.ViewModels
         #region Methods
         private async void SaveInfoAsync()
         {
-            /*
-             if (GoalValidation.ValidateGoala() == false)
-            {
-                SetupInfo.GoalDate = AppState.GoalDate;
-            }
-            */
-            if (SetupInfo.ValidateGoal() == false)
-            {
-                _ea.GetEvent<NewGoalEvent>().Publish();
-            }
+            SettingValsValidated.ValidateGoal();
+            SettingValsValidated.SaveSettingValsToDevice();
+            var p = new NavigationParameters();
+            p.Add("SettingValsValidated", SettingValsValidated);
 
             await NavigationService.NavigateAsync(
-                $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
+                $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage", p);
         }
 
         private void HandleNewGoal()
         {
-            SetupInfo.GoalDate = AppState.GoalDate;
-            SetupInfo.GoalWeight = AppState.GoalWeight.ToString();
+            SettingValsValidated.GoalDate = Settings.GoalDate;
+            SettingValsValidated.GoalWeight = Settings.GoalWeight.ToString();
         }
         private void HandleNewSetupInfo(SettingValsValidated _setupInfo)
         {
-            SetupInfo = _setupInfo;
+            SettingValsValidated = _setupInfo;
         }
         #endregion
     }

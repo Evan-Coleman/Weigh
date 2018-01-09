@@ -84,8 +84,8 @@ namespace Weigh.ViewModels
                 SettingValsValidated.ValidateGoal();
                 // Nav using absolute path so user can't hit the back button and come back here
                 _newWeight = new WeightEntry();
-                _newWeight.Weight = SettingValsValidated.Weight;
-                _newWeight.WaistSize = SettingValsValidated.WaistSize;
+                _newWeight.Weight = Convert.ToDouble(SettingValsValidated.Weight);
+                _newWeight.WaistSize = Convert.ToDouble(SettingValsValidated.WaistSize);
                 _newWeight.WeightDelta = 0;
                 await App.Database.SaveWeightAsync(_newWeight);
                 SettingValsValidated.SaveSettingValsToDevice();

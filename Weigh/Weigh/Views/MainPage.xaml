@@ -41,13 +41,13 @@
                        VerticalTextAlignment="Center"
                        Margin="0"
                        FontSize="Large"
-                   Text="{Binding SetupInfo.Weight, StringFormat='{0:00.00}'}"/>
+                   Text="{Binding SettingValsValidated.Weight, StringFormat='{0:00.00}'}"/>
                 <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                        HorizontalTextAlignment="Center"
                        HorizontalOptions="Start"
                        VerticalOptions="End"
                        FontSize="Micro"
-                       Text="{Binding SetupInfo.WeightLostToDate, StringFormat={localization:Translate TotalWeightLostLabel}}" />
+                       Text="{Binding SettingValsValidated.WeightLostToDate, StringFormat={localization:Translate TotalWeightLostLabel}}" />
 
 
                 <Label Grid.Row="0" Grid.Column="1"
@@ -61,14 +61,14 @@
                        HorizontalOptions="End"
                        Margin="0"
                        FontSize="Medium"
-                       Text="{Binding SetupInfo.RecommendedDailyCaloricIntake, StringFormat={localization:Translate CaloriesToLoseWeightLabel}}"/>
+                       Text="{Binding SettingValsValidated.RecommendedDailyCaloricIntake, StringFormat={localization:Translate CaloriesToLoseWeightLabel}}"/>
 
                 <Label Grid.Row="2" Grid.Column="1"
                        HorizontalOptions="End"
                        VerticalOptions="End"
                        HorizontalTextAlignment="Center"
                        FontSize="Micro"
-                       Text="{Binding SetupInfo.BMR, StringFormat={localization:Translate CaloriesToMaintainWeightLabel}}"/>
+                       Text="{Binding SettingValsValidated.BMR, StringFormat={localization:Translate CaloriesToMaintainWeightLabel}}"/>
                 
             </Grid>
         </Frame>
@@ -106,13 +106,13 @@
                        VerticalTextAlignment="Center"
                        Margin="0"
                        FontSize="Large"
-                   Text="{Binding SetupInfo.GoalWeight, StringFormat='{0:00.00}'}"/>
+                   Text="{Binding SettingValsValidated.GoalWeight, StringFormat='{0:00.00}'}"/>
                 <Label Grid.Row="2" Grid.Column="0"
                        HorizontalTextAlignment="Center"
                        HorizontalOptions="Start"
                        VerticalOptions="End"
                        FontSize="Micro"
-                       Text="{Binding SetupInfo.DistanceToGoalWeight, StringFormat={localization:Translate RemainingWeightToLoseLabel}}"/>
+                       Text="{Binding SettingValsValidated.DistanceToGoalWeight, StringFormat={localization:Translate RemainingWeightToLoseLabel}}"/>
 
                 <Label Grid.Row="0" Grid.Column="1"
                        HorizontalOptions="End"
@@ -125,13 +125,13 @@
                        HorizontalOptions="End"
                        Margin="0"
                        FontSize="Large"
-                       Text="{Binding SetupInfo.GoalDate, StringFormat='{0:MMM/dd/yy}'}" />
+                       Text="{Binding SettingValsValidated.GoalDate, StringFormat='{0:MMM/dd/yy}'}" />
                 <Label Grid.Row="2" Grid.Column="1"
                        HorizontalOptions="End"
                        VerticalOptions="End"
                        HorizontalTextAlignment="Center"
                        FontSize="Micro"
-                       Text="{Binding SetupInfo.TimeLeftToGoal, StringFormat={localization:Translate DaysUntilGoalLabel}}"/>
+                       Text="{Binding SettingValsValidated.TimeLeftToGoal, StringFormat={localization:Translate DaysUntilGoalLabel}}"/>
 
             </Grid>
         </Frame>
@@ -158,14 +158,14 @@
                        VerticalOptions="Start"
                        HorizontalTextAlignment="Center"
                        Margin="0,0,0,-20"
-                        Text="{Binding SetupInfo.BMI, StringFormat={localization:Translate BMILabel}}" />
+                        Text="{Binding SettingValsValidated.BMI, StringFormat={localization:Translate BMILabel}}" />
 
                 <Label Grid.Row="1" Grid.Column="1"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
                        HorizontalTextAlignment="Center"
                        Margin="0,0,0,-20"
-                       Text="{Binding SetupInfo.BMICategory, StringFormat='{0:00.00}'}" />
+                       Text="{Binding SettingValsValidated.BMICategory, StringFormat='{0:00.00}'}" />
 
                 <linear:SfLinearGauge Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand" Margin="0">
                     <linear:SfLinearGauge.Scales>
@@ -181,8 +181,8 @@
                                 <linear:LinearRange StartValue="30" Color="#d50000" EndValue="40" Offset ="0.07" StartWidth="10" EndWidth="10"/>
                             </linear:LinearScale.Ranges>
                             <linear:LinearScale.Pointers>
-                                <linear:SymbolPointer x:Name="symbolPointer" Value="{Binding SetupInfo.BMI}"  Offset="0.0" Thickness="3" />
-                                <linear:BarPointer x:Name="rangePointer" Value="{Binding SetupInfo.BMI}"  Thickness="10" />
+                                <linear:SymbolPointer x:Name="symbolPointer" Value="{Binding SettingValsValidated.BMI}"  Offset="0.0" Thickness="3" />
+                                <linear:BarPointer x:Name="rangePointer" Value="{Binding SettingValsValidated.BMI}"  Thickness="10" />
                             </linear:LinearScale.Pointers>
                         </linear:LinearScale>
                     </linear:SfLinearGauge.Scales>
@@ -225,7 +225,7 @@
                    Keyboard="Numeric">
                 <Entry.Triggers>
                     <DataTrigger TargetType="Entry"
-                     Binding="{Binding SetupInfo.Units}"
+                     Binding="{Binding SettingValsValidated.Units}"
                      Value="false">
                         <Setter Property="Placeholder" Value="{localization:Translate WeightMetricEntryPlaceholder}" />
                     </DataTrigger>
@@ -237,7 +237,7 @@
                    Keyboard="Numeric">
                 <Entry.Triggers>
                     <DataTrigger TargetType="Entry"
-                     Binding="{Binding SetupInfo.Units}"
+                     Binding="{Binding SettingValsValidated.Units}"
                      Value="false">
                         <Setter Property="Placeholder" Value="{localization:Translate WaistSizeMetricEntryPlaceholder}" />
                     </DataTrigger>

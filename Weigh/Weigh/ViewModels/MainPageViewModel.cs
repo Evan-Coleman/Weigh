@@ -66,16 +66,12 @@ namespace Weigh.ViewModels
             : base (navigationService)
         {
             _ea = ea;
-            _ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
+            //_ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
             _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo);
             Title = AppResources.MainPageTitle;
             SettingValsValidated = new SettingValsValidated();
-            ButtonEnabled = true;
-            
+            ButtonEnabled = true;            
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
-
-
-
         }
         #endregion
 
@@ -93,34 +89,25 @@ namespace Weigh.ViewModels
             else
             {
                 _newWeight = new WeightEntry();
-                SettingValsValidated.LastWeight = SettingValsValidated.Weight;
+                SettingValsValidated.LastWeight = Convert.ToDouble(SettingValsValidated.Weight);
                 _newWeight.WeightDelta = SettingValsValidated.LastWeight - NewWeightEntry;
                 _newWeight.Weight = NewWeightEntry;
                 _newWeight.WaistSize = NewWaistSizeEntry;
-                SettingValsValidated.WaistSize = _newWeight.WaistSize;
-                SettingValsValidated.Weight = _newWeight.Weight;
-                SettingValsValidated.Weight = _newWeight.Weight;
-                SettingValsValidated.WaistSize = _newWeight.WaistSize;
+                SettingValsValidated.WaistSize = _newWeight.WaistSize.ToString();
+                SettingValsValidated.Weight = _newWeight.Weight.ToString();
+                SettingValsValidated.Weight = _newWeight.Weight.ToString();
+                SettingValsValidated.WaistSize = _newWeight.WaistSize.ToString();
                 SettingValsValidated.LastWeighDate = DateTime.UtcNow;
-                SettingValsValidated.DistanceToGoalWeight = SettingValsValidated.Weight - SettingValsValidated.GoalWeight;
+                SettingValsValidated.DistanceToGoalWeight = Convert.ToDouble(SettingValsValidated.Weight) - Convert.ToDouble(SettingValsValidated.GoalWeight);
 
-                if (SetupInfo.ValidateGoal() == false)
-                {
-                    UpdateAfterValidation();
-                }
+                SettingValsValidated.ValidateGoal();
+
                 _ea.GetEvent<AddWeightEvent>().Publish(_newWeight);
-                _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SetupInfo);
+                _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SettingValsValidated);
                 await App.Database.SaveWeightAsync(_newWeight);
-                await App.Database.SaveSetupInfoAsync(Helpers.SettingVals);
             }
             ButtonEnabled = true;
-            SetupInfo.WeightLostToDate = (Convert.ToDouble(SetupInfo.InitialWeight) - Convert.ToDouble(SetupInfo.Weight)).ToString();
-        }
-
-        private void HandleNewGoal()
-        {
-            //GoalDate = AppState.GoalDate;
-            //GoalWeight = AppState.GoalWeight;
+            SettingValsValidated.WeightLostToDate = Convert.ToDouble(SettingValsValidated.InitialWeight) - Convert.ToDouble(SettingValsValidated.Weight);
         }
 
         private void HandleUpdateSetupInfo(SettingValsValidated _setupInfo)

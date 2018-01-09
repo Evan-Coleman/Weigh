@@ -19,7 +19,6 @@ namespace Weigh.Data
         {
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<WeightEntry>().Wait();
-            database.CreateTableAsync<SettingVals>().Wait();
         }
         #endregion
 

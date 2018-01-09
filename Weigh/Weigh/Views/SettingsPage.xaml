@@ -18,7 +18,7 @@
     <StackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
                  WidthRequest="250">
         <!--
-        <Entry Text="{Binding SetupInfo.Name, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[Name]}"
+        <Entry Text="{Binding SettingValsValidated.Name, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[Name]}"
                Placeholder="Enter Name Here"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="Name">
@@ -26,7 +26,7 @@
                 <b:EntryLengthValidatorBehavior MaxLength="25" />
             </Entry.Behaviors>
         </Entry>
-        <Label Text="{Binding SetupInfo.Errors[Name], Converter={StaticResource FirstErrorConverter}"
+        <Label Text="{Binding SettingValsValidated.Errors[Name], Converter={StaticResource FirstErrorConverter}"
                FontSize="Small" TextColor="Red" />
     -->
 
@@ -39,7 +39,7 @@
                      HorizontalOptions="CenterAndExpand"
                      Padding="0">
             <Label Text="{localization:Translate UnitSwitchMetricLabel}"/>
-            <Switch IsToggled="{Binding SetupInfo.Units}"
+            <Switch IsToggled="{Binding SettingValsValidated.Units}"
                     x:Name="UnitSwitch"/>
             <Label Text="{localization:Translate UnitSwitchImperialLabel}"/>
         </StackLayout>
@@ -47,7 +47,7 @@
 
 
 
-        <Entry Text="{Binding SetupInfo.Age, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[Age]}"
+        <Entry Text="{Binding SettingValsValidated.Age, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[Age]}"
                Placeholder="{localization:Translate NameEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="Age"
@@ -57,15 +57,15 @@
                 <b:EntryLengthValidatorBehavior MaxLength="3" />
             </Entry.Behaviors>
         </Entry>
-        <Label Text="{Binding SetupInfo.Errors[Age], Converter={StaticResource FirstErrorConverter}"
+        <Label Text="{Binding SettingValsValidated.Errors[Age], Converter={StaticResource FirstErrorConverter}"
                Style="{StaticResource ErrorLabelStyle}"
-               IsVisible="{Binding SetupInfo.IsDirty[Age]}"/>
+               IsVisible="{Binding SettingValsValidated.IsDirty[Age]}"/>
 
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="CenterAndExpand">
             <StackLayout>
                 <Entry 
-            Text="{Binding SetupInfo.HeightMajor, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[HeightMajor]}"
+            Text="{Binding SettingValsValidated.HeightMajor, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[HeightMajor]}"
                Placeholder="{localization:Translate HeightMajorImperialEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="HeightMajor"
@@ -83,33 +83,33 @@
                         </DataTrigger>
                     </Entry.Triggers>
                 </Entry>
-                <Label Text="{Binding SetupInfo.Errors[HeightMajor], Converter={StaticResource FirstErrorConverter}"
+                <Label Text="{Binding SettingValsValidated.Errors[HeightMajor], Converter={StaticResource FirstErrorConverter}"
                Style="{StaticResource ErrorLabelStyle}"
-               IsVisible="{Binding SetupInfo.IsDirty[HeightMajor]}"/>
+               IsVisible="{Binding SettingValsValidated.IsDirty[HeightMajor]}"/>
             </StackLayout>
 
             <StackLayout>
                 <Entry WidthRequest="50"
-            Text="{Binding SetupInfo.HeightMinor, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[HeightMinor]}"
+            Text="{Binding SettingValsValidated.HeightMinor, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[HeightMinor]}"
                Placeholder="(in)"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="HeightMinor"
                Keyboard="Numeric"
-               IsVisible="{Binding SetupInfo.Units}"
+               IsVisible="{Binding SettingValsValidated.Units}"
                        IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}">
                     <Entry.Behaviors>
                         <b:EntryLengthValidatorBehavior MaxLength="2" />
                     </Entry.Behaviors>
                 </Entry>
-                <Label Text="{Binding SetupInfo.Errors[HeightMinor], Converter={StaticResource FirstErrorConverter}"
+                <Label Text="{Binding SettingValsValidated.Errors[HeightMinor], Converter={StaticResource FirstErrorConverter}"
                        Margin="10,-10,0,-10"
                Style="{StaticResource ErrorLabelStyle}"
-               IsVisible="{Binding SetupInfo.IsDirty[HeightMinor]}"/>
+               IsVisible="{Binding SettingValsValidated.IsDirty[HeightMinor]}"/>
             </StackLayout>
         </StackLayout>
 
 
-        <Entry Text="{Binding SetupInfo.Weight, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[Weight]}"
+        <Entry Text="{Binding SettingValsValidated.Weight, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[Weight]}"
                Placeholder="{localization:Translate WeightImperialEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="Weight"
@@ -127,12 +127,12 @@
                 <b:EntryLengthValidatorBehavior MaxLength="7" />
             </Entry.Behaviors>
         </Entry>
-        <Label Text="{Binding SetupInfo.Errors[Weight], Converter={StaticResource FirstErrorConverter}"
+        <Label Text="{Binding SettingValsValidated.Errors[Weight], Converter={StaticResource FirstErrorConverter}"
                Style="{StaticResource ErrorLabelStyle}"
-               IsVisible="{Binding SetupInfo.IsDirty[Weight]}"/>
+               IsVisible="{Binding SettingValsValidated.IsDirty[Weight]}"/>
 
 
-        <Entry Text="{Binding SetupInfo.WaistSize, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[WaistSize]}"
+        <Entry Text="{Binding SettingValsValidated.WaistSize, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[WaistSize]}"
                Placeholder="{localization:Translate WaistSizeImperialEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="WaistSize"
@@ -150,12 +150,12 @@
                 <b:EntryLengthValidatorBehavior MaxLength="5" />
             </Entry.Behaviors>
         </Entry>
-        <Label Text="{Binding SetupInfo.Errors[WaistSize], Converter={StaticResource FirstErrorConverter}"
+        <Label Text="{Binding SettingValsValidated.Errors[WaistSize], Converter={StaticResource FirstErrorConverter}"
                Style="{StaticResource ErrorLabelStyle}"
-               IsVisible="{Binding SetupInfo.IsDirty[WaistSize]}"/>
+               IsVisible="{Binding SettingValsValidated.IsDirty[WaistSize]}"/>
 
         <Picker ItemsSource="{Binding PickerSource}"
-                SelectedItem="{Binding SetupInfo.PickerSelectedItem}"
+                SelectedItem="{Binding SettingValsValidated.PickerSelectedItem}"
                 Title="{localization:Translate ActivityLevelLabel}"
                  HorizontalOptions="FillAndExpand"
                 WidthRequest="150"/>
@@ -164,11 +164,11 @@
                      HorizontalOptions="CenterAndExpand"
                      Padding="0">
             <Label Text="{localization:Translate MaleGenderSwitchLabel}"/>
-            <Switch IsToggled="{Binding SetupInfo.Sex}"/>
+            <Switch IsToggled="{Binding SettingValsValidated.Sex}"/>
             <Label Text="{localization:Translate FemaleGenderSwitchLabel}"/>
         </StackLayout>
 
-        <Entry Text="{Binding SetupInfo.GoalWeight, Mode=TwoWay}" validation:Validation.Errors="{Binding SetupInfo.Errors[GoalWeight]}"
+        <Entry Text="{Binding SettingValsValidated.GoalWeight, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[GoalWeight]}"
                Placeholder="{localization:Translate GoalWeightImperialEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="GoalWeight"
@@ -186,12 +186,12 @@
                 <b:EntryLengthValidatorBehavior MaxLength="7" />
             </Entry.Behaviors>
         </Entry>
-        <Label Text="{Binding SetupInfo.Errors[GoalWeight], Converter={StaticResource FirstErrorConverter}"
+        <Label Text="{Binding SettingValsValidated.Errors[GoalWeight], Converter={StaticResource FirstErrorConverter}"
                Style="{StaticResource ErrorLabelStyle}"
-               IsVisible="{Binding SetupInfo.IsDirty[GoalWeight]}"/>
+               IsVisible="{Binding SettingValsValidated.IsDirty[GoalWeight]}"/>
 
-        <DatePicker Date="{Binding SetupInfo.GoalDate}"
-                    MinimumDate="{Binding SetupInfo.MinDate}"></DatePicker>
+        <DatePicker Date="{Binding SettingValsValidated.GoalDate}"
+                    MinimumDate="{Binding SettingValsValidated.MinDate}"></DatePicker>
 
 
 

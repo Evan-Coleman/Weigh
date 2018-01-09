@@ -49,7 +49,7 @@ namespace Weigh.ViewModels
             Title = AppResources.GraphPageTitle;
             WeightList = new ObservableCollection<WeightEntry>();
             ChartData = new ObservableCollection<WeightEntry>();
-            SfDateTimeRangeNavigator rangeNavigator = new SfDateTimeRangeNavigator();
+            //SfDateTimeRangeNavigator rangeNavigator = new SfDateTimeRangeNavigator();
             /*
             ViewStartDateRange = Settings.LastWeighDate.AddDays(-10).ToString("MM/dd/yyyy");
             ViewEndDateRange = Settings.LastWeighDate.ToString("MM/dd/yyyy");

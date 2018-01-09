@@ -80,19 +80,34 @@ namespace Weigh.Helpers
         private const string BMRKey = "BMR_key";
         private static readonly double BMRDefault = 0.0;
 
-        private const string RecommendedDailyCaloricIntakeKey = "RecommendedDailyCaloricIntake_key";
+        private const string RecommendedDailyCaloricIntakeKey = "Recommended_Daily_Caloric_Intake_key";
         private static readonly double RecommendedDailyCaloricIntakeDefault = 0.0;
 
-        private const string BMICategoryKey = "BMICategory_key";
+        private const string BMICategoryKey = "BMI_Category_key";
         private static readonly string BMICategoryDefault = string.Empty;
 
-        private const string WeightPerWeekToMeetGoalKey = "WeightPerWeekToMeetGoal_key";
+        private const string WeightPerWeekToMeetGoalKey = "Weight_Per_Week_To_Meet_Goal_key";
         private static readonly double WeightPerWeekToMeetGoalDefault = 0.0;
 
-        private const string DistanceToGoalWeightKey = "DistanceToGoalWeight_Key";
+        private const string DistanceToGoalWeightKey = "Distance_To_Goal_Weight_Key";
         private static readonly double DistanceToGoalWeightDefault = 0.0;
 
+        private const string WeightLostToDateKey = "Weight_Lost_To_Date_Key";
+        private static readonly double WeightLostToDateDefault = 0.0;
+
         #endregion
+        public static double WeightLostToDate
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(WeightLostToDateKey, WeightLostToDateDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(WeightLostToDateKey, value);
+            }
+        }
+
         public static double DistanceToGoalWeight
         {
             get

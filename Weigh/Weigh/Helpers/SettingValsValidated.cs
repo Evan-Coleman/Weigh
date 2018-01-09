@@ -15,60 +15,60 @@ namespace Weigh.Models
     public class SettingValsValidated : ValidatableBase
     {
         #region Fields
-        private int _age;
+        private string _age;
         [Required(ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "ValidationRequiredErrorMessage")]
         [StringLength(3, MinimumLength = 2, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "AgeLengthValidationErrorMessage")]
         [Range(1, 150, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "AgeValueValidationErrorMessage")]
-        public int Age
+        public string Age
         {
             get { return _age; }
             set { SetProperty(ref _age, value); }
         }
 
-        private double _heightMajor;
+        private string _heightMajor;
         [Required(ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "ValidationRequiredErrorMessage")]
         [StringLength(5, MinimumLength = 1, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "HeightMajorLengthValidationErrorMessage")]        
         [CustomValidation(typeof(SetupInfoValidation), "HeightMajorValidation")]
-        public double HeightMajor
+        public string HeightMajor
         {
             get { return _heightMajor; }
             set { SetProperty(ref _heightMajor, value); }
         }
 
-        private int _heightMinor;
+        private string _heightMinor;
         [CustomValidation(typeof(SetupInfoValidation), "HeightMinorValidation")]
         [CustomValidation(typeof(SetupInfoValidation), "HeightMinorLengthValidation")]
-        public int HeightMinor
+        public string HeightMinor
         {
             get { return _heightMinor; }
             set { SetProperty(ref _heightMinor, value); }
         }
 
-        private double _weight;
+        private string _weight;
         [Required(ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "ValidationRequiredErrorMessage")]
         [StringLength(7, MinimumLength = 1, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "WeightLengthValidationErrorMessage")]
         [Range(0.0, 1000.0, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "WeightValueValidationErrorMessage")]
-        public double Weight
+        public string Weight
         {
             get { return _weight; }
             set { SetProperty(ref _weight, value); }
         }
 
-        private double _waistSize;
+        private string _waistSize;
         [Required(ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "ValidationRequiredErrorMessage")]
         [StringLength(5, MinimumLength = 2, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "WaistLengthValidationErrorMessage")]
         [Range(15.0, 200.0, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "WaistValueValidationErrorMessage")]
-        public double WaistSize
+        public string WaistSize
         {
             get { return _waistSize; }
             set { SetProperty(ref _waistSize, value); }
         }
         
-        private double _goalWeight;
+        private string _goalWeight;
         [Required(ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "ValidationRequiredErrorMessage")]
         [StringLength(7, MinimumLength = 1, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "GoalWeightLengthValidationErrorMessage")]
         [Range(0.0, 1000.0, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "GoalWeightValueValidationErrorMessage")]
-        public double GoalWeight
+        public string GoalWeight
         {
             get { return _goalWeight; }
             set { SetProperty(ref _goalWeight, value); }
@@ -164,17 +164,31 @@ namespace Weigh.Models
             get { return _distanceToGoalWeight; }
             set { SetProperty(ref _distanceToGoalWeight, value); }
         }
+
+        private double _weightLostToDate;
+        public double WeightLostToDate
+        {
+            get { return _weightLostToDate; }
+            set { SetProperty(ref _weightLostToDate, value); }
+        }
+
+        private double _initialWeight;
+        public double InitialWeight
+        {
+            get { return _initialWeight; }
+            set { SetProperty(ref _initialWeight, value); }
+        }
         #endregion
 
         #region Methods
         public void InitializeSettingVals()
         {
-            Age = Settings.Age;
-            HeightMajor = Settings.HeightMajor;
-            HeightMinor = Settings.HeightMinor;
-            Weight = Settings.Weight;
-            WaistSize = Settings.WaistSize;
-            GoalWeight = Settings.GoalWeight;
+            Age = Settings.Age.ToString();
+            HeightMajor = Settings.HeightMajor.ToString();
+            HeightMinor = Settings.HeightMinor.ToString();
+            Weight = Settings.Weight.ToString();
+            WaistSize = Settings.WaistSize.ToString();
+            GoalWeight = Settings.GoalWeight.ToString();
             GoalDate = Settings.GoalDate;
             Units = Settings.Units;
             PickerSelectedItem = Settings.PickerSelectedItem;
@@ -187,15 +201,17 @@ namespace Weigh.Models
             LastWeighDate = Settings.LastWeighDate;
             LastWeight = Settings.LastWeight;
             DistanceToGoalWeight = Settings.DistanceToGoalWeight;
+            WeightLostToDate = Settings.WeightLostToDate;
+            InitialWeight = Settings.InitialWeight;
         }
         public void SaveSettingValsToDevice()
         {
-            Settings.Age = Age;
-            Settings.HeightMajor = HeightMajor;
-            Settings.HeightMinor = HeightMinor;
-            Settings.Weight = Weight;
-            Settings.WaistSize = WaistSize;
-            Settings.GoalWeight = GoalWeight;
+            Settings.Age = Convert.ToInt32(Age);
+            Settings.HeightMajor = Convert.ToDouble(HeightMajor);
+            Settings.HeightMinor = Convert.ToInt32(HeightMinor);
+            Settings.Weight = Convert.ToDouble(Weight);
+            Settings.WaistSize = Convert.ToDouble(WaistSize);
+            Settings.GoalWeight = Convert.ToDouble(GoalWeight);
             Settings.GoalDate = GoalDate;
             Settings.Units = Units;
             Settings.PickerSelectedItem = PickerSelectedItem;
@@ -208,18 +224,20 @@ namespace Weigh.Models
             Settings.LastWeighDate = LastWeighDate;
             Settings.LastWeight = LastWeight;
             Settings.DistanceToGoalWeight = DistanceToGoalWeight;
+            Settings.WeightLostToDate = WeightLostToDate;
+            Settings.InitialWeight = InitialWeight;
         }
 
         public void CalculateBMI()
         {
-            double Feet = HeightMajor;
-            int Inches = HeightMinor;
-            double _weight = Weight;
+            double Feet = Convert.ToDouble(HeightMajor);
+            int Inches = Convert.ToInt32(HeightMinor);
+            double _weight = Convert.ToDouble(Weight);
             // Units are metric if false, so do conversion here
             if (Units == false)
             {
-                (Feet, Inches) = HeightMajor.CentimetersToFeetInches();
-                _weight = Weight.KilogramsToPounds();
+                (Feet, Inches) = Convert.ToDouble(HeightMajor).CentimetersToFeetInches();
+                _weight = Convert.ToDouble(Weight).KilogramsToPounds();
             }
 
             BMI = (_weight / Math.Pow(((Feet * 12) + Inches), 2)) * 703;
@@ -249,23 +267,24 @@ namespace Weigh.Models
         }
         public void CalculateBMR()
         {
-            double Feet = HeightMajor;
-            int Inches = HeightMinor;
-            double _weight = Weight;
+            double Feet = Convert.ToDouble(HeightMajor);
+            int Inches = Convert.ToInt32(HeightMinor);
+            double _weight = Convert.ToDouble(Weight);
+            int _age = Convert.ToInt32(Age);
             // Units are metric if false, so do conversion here
             if (Units == false)
             {
-                (Feet, Inches) = HeightMajor.CentimetersToFeetInches();
-                _weight = Weight.KilogramsToPounds();
+                (Feet, Inches) = Convert.ToDouble(HeightMajor).CentimetersToFeetInches();
+                _weight = Convert.ToDouble(Weight).KilogramsToPounds();
             }
 
             if (Sex == false)
             {
-                BMR = 66 + (6.2 * _weight) + (12.7 * ((Feet * 12) + Inches)) - (6.76 * Age);
+                BMR = 66 + (6.2 * _weight) + (12.7 * ((Feet * 12) + Inches)) - (6.76 * _age);
             }
             else
             {
-                BMR = 655.1 + (4.35 * _weight) + (4.7 * ((Feet * 12) + Inches)) - (4.7 * Age);
+                BMR = 655.1 + (4.35 * _weight) + (4.7 * ((Feet * 12) + Inches)) - (4.7 * _age);
             }
             if (PickerSelectedItem == AppResources.LowActivityPickItem)
             {
@@ -291,16 +310,16 @@ namespace Weigh.Models
             CalculateBMR();
             SetBMICategory();
 
-            double Feet = HeightMajor;
-            int Inches = HeightMinor;
-            double _weight = Weight;
-            double _goalWeight = GoalWeight;
+            double Feet = Convert.ToDouble(HeightMajor);
+            int Inches = Convert.ToInt32(HeightMinor);
+            double _weight = Convert.ToDouble(Weight);
+            double _goalWeight = Convert.ToDouble(GoalWeight);
             // Units are metric if false, so do conversion here
             if (Units == false)
             {
-                (Feet, Inches) = HeightMajor.CentimetersToFeetInches();
-                _weight = Weight.KilogramsToPounds();
-                _goalWeight = GoalWeight.KilogramsToPounds();
+                (Feet, Inches) = Convert.ToDouble(HeightMajor).CentimetersToFeetInches();
+                _weight = Convert.ToDouble(Weight).KilogramsToPounds();
+                _goalWeight = Convert.ToDouble(GoalWeight).KilogramsToPounds();
             }
 
 

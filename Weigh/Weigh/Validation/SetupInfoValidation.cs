@@ -19,7 +19,7 @@ namespace Weigh.Validation
             HeightMajor = Convert.ToDouble(heightMajor);
 
             // Units == true means imperial
-            if (AppState.Units == true)
+            if (Settings.Units == true)
             {
                 if (HeightMajor < 1 || HeightMajor > 15)
                 {
@@ -64,7 +64,7 @@ namespace Weigh.Validation
             // Perform validation logic here and set isValid to true or false.
             HeightMinor = Convert.ToDouble(heightMinor);
 
-            if (AppState.Units == true)
+            if (Settings.Units == true)
             {
                 if (HeightMinor < 0 || HeightMinor > 12)
                 {
@@ -94,7 +94,7 @@ namespace Weigh.Validation
 
             // Perform validation logic here and set isValid to true or false.
 
-            if (AppState.Units == true)
+            if (Settings.Units == true)
             {
                 if (heightMinor.Length < 0 || heightMinor.Length > 2)
                 {

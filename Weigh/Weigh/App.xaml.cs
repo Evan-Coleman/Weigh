@@ -32,7 +32,6 @@ namespace Weigh
         {
             InitializeComponent();
             // Will load all variables from storage in order to minimize disk time.
-            AppState.InitializeApplicationState();
             if (Settings.FirstUse == "yes")
             {
                 Settings.FirstUse = "no";
