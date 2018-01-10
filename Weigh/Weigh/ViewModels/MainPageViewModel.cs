@@ -94,7 +94,7 @@ namespace Weigh.ViewModels
             {
                 _newWeight = new WeightEntry();
                 SettingValsValidated.LastWeight = Convert.ToDouble(SettingValsValidated.Weight);
-                _newWeight.WeightDelta = SettingValsValidated.LastWeight - NewWeightEntry;
+                _newWeight.WeightDelta = NewWeightEntry - SettingValsValidated.LastWeight;
                 _newWeight.Weight = NewWeightEntry;
                 _newWeight.WaistSize = NewWaistSizeEntry;
                 SettingValsValidated.WaistSize = _newWeight.WaistSize.ToString();
@@ -120,20 +120,14 @@ namespace Weigh.ViewModels
 
         public override void OnNavigatingTo(NavigationParameters parameters)
         {
-            if (parameters.ContainsKey("SettingValsValidated"))
-            {
-                SettingValsValidated = (SettingValsValidated)parameters["SettingValsValidated"];
-            }
-            else
-            {
-                SettingValsValidated.InitializeSettingVals();
-            }
+            SettingValsValidated.InitializeSettingVals();
+            
             if (SettingValsValidated.ValidateGoal() == false)
             {
                 SettingValsValidated.SaveSettingValsToDevice();
             }
-
             _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SettingValsValidated);
+            _ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Publish(SettingValsValidated.WaistSizeEnabled);
         }
         #endregion
     }

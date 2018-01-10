@@ -48,7 +48,6 @@ namespace Weigh.ViewModels
         {
             SettingValsValidated = new SettingValsValidated();
             _ea = ea;
-            _ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
             _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo);
             Title = AppResources.SettingsPageTitle;
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
@@ -60,23 +59,15 @@ namespace Weigh.ViewModels
         #region Methods
         private async void SaveInfoAsync()
         {
-            SettingValsValidated.ValidateGoal();
             SettingValsValidated.SaveSettingValsToDevice();
-            var p = new NavigationParameters();
-            p.Add("SettingValsValidated", SettingValsValidated);
-
             await NavigationService.NavigateAsync(
-                $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage", p);
-        }
-
-        private void HandleNewGoal()
-        {
-            SettingValsValidated.GoalDate = Settings.GoalDate;
-            SettingValsValidated.GoalWeight = Settings.GoalWeight.ToString();
+                $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
         }
         private void HandleNewSetupInfo(SettingValsValidated _setupInfo)
         {
             SettingValsValidated = _setupInfo;
+            SettingValsValidated.MinDate = DateTime.UtcNow.AddDays(10);
+            SettingValsValidated.PickerSelectedItem = Settings.PickerSelectedItem;
         }
         #endregion
     }

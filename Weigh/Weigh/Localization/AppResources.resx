@@ -393,9 +393,9 @@
     <value>Year</value>
     <comment>(GraphsPage) Button to show last Month in graph</comment>
   </data>
-  <data name="ToggleWaistSizeGraphButton" xml:space="preserve">
-    <value>Waist Size / Weight</value>
-    <comment>(GraphsPage) Button to toggle waist size in graph</comment>
+  <data name="NumberOfEntriesLabel" xml:space="preserve">
+    <value># Of Entries:</value>
+    <comment>(GraphsPage) Label to say how many entries on the graph will show</comment>
   </data>
   <data name="WaistSizeLabel" xml:space="preserve">
     <value>Waist Size</value>

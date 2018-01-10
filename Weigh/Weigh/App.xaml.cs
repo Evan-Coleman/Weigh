@@ -34,7 +34,6 @@ namespace Weigh
             // Will load all variables from storage in order to minimize disk time.
             if (Settings.FirstUse == "yes")
             {
-                Settings.FirstUse = "no";
                 await NavigationService.NavigateAsync("InitialSetupPage");
             }
             else

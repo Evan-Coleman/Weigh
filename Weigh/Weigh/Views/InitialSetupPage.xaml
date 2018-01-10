@@ -123,12 +123,14 @@
                Style="{StaticResource ErrorLabelStyle}"
                IsVisible="{Binding SettingValsValidated.IsDirty[Weight]}"/>
 
-
+        <StackLayout Orientation="Horizontal">
+        <Switch IsToggled="{Binding SettingValsValidated.WaistSizeEnabled}" x:Name="EnableWaistSizeSwitch" />
         <Entry Text="{Binding SettingValsValidated.WaistSize, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[WaistSize]}"
                Placeholder="{localization:Translate WaistSizeImperialEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="WaistSize"
-               Keyboard="Numeric">
+               Keyboard="Numeric"
+               IsEnabled="{Binding Source={x:Reference EnableWaistSizeSwitch}, Path=IsToggled}">
             <Entry.Triggers>
                 <DataTrigger TargetType="Entry"
                      Binding="{Binding Source={x:Reference UnitSwitch},
@@ -141,9 +143,11 @@
                 <b:EntryLengthValidatorBehavior MaxLength="5" />
             </Entry.Behaviors>
         </Entry>
+        </StackLayout>
         <Label Text="{Binding SettingValsValidated.Errors[WaistSize], Converter={StaticResource FirstErrorConverter}"
                Style="{StaticResource ErrorLabelStyle}"
-               IsVisible="{Binding SettingValsValidated.IsDirty[WaistSize]}"/>
+               IsVisible="{Binding SettingValsValidated.IsDirty[WaistSize]}"
+               Margin="65,0,0,0"/>
 
         <Picker ItemsSource="{Binding PickerSource}"
                 SelectedItem="{Binding SettingValsValidated.PickerSelectedItem}"

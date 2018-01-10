@@ -116,10 +116,25 @@ namespace Weigh.Validation
             {
                 return ValidationResult.Success;
             }
-
         }
 
+        public static ValidationResult WaistSizeValidation(string waistSize)
+        {
+            double WaistSize = Convert.ToDouble(waistSize);
 
-
+            // Perform validation logic here and set isValid to true or false.
+            if (Settings.WaistSizeEnabled == true)
+            {
+                if (waistSize.Length < 2 || waistSize.Length > 5)
+                {
+                    return new ValidationResult(AppResources.WaistLengthValidationErrorMessage);
+                }
+                if (WaistSize > 200 || WaistSize < 15)
+                {
+                    return new ValidationResult(AppResources.WaistValueValidationErrorMessage);
+                }
+            }
+            return ValidationResult.Success;
+        }
     }
 }

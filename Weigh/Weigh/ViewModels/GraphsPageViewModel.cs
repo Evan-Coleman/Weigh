@@ -89,6 +89,13 @@ namespace Weigh.ViewModels
             get { return _toggleWeightOrWaistSizeLabel; }
             set { SetProperty(ref _toggleWeightOrWaistSizeLabel, value); }
         }
+
+        private bool _waistSizeEnabled;
+        public bool WaistSizeEnabled
+        {
+            get { return _waistSizeEnabled; }
+            set { SetProperty(ref _waistSizeEnabled, value); }
+        }
         #endregion
 
         #region Constructor
@@ -96,6 +103,7 @@ namespace Weigh.ViewModels
             : base(navigationService)
         {
             ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry);
+            ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Subscribe(UpdateWaistSizeEnabled);
             Title = AppResources.GraphPageTitle;
             WeightList = new ObservableCollection<WeightEntry>();
             ChartData = new ObservableCollection<WeightEntry>();
@@ -108,6 +116,7 @@ namespace Weigh.ViewModels
             CurrentlySelectedGraphTimeline = "week";
             ToggleWeightOrWaistSize = "Weight";
             ToggleWeightOrWaistSizeLabel = AppResources.WeightLabel;
+            WaistSizeEnabled = Settings.WaistSizeEnabled;
             //SfDateTimeRangeNavigator rangeNavigator = new SfDateTimeRangeNavigator();
             /*
             ViewStartDateRange = Settings.LastWeighDate.AddDays(-10).ToString("MM/dd/yyyy");
@@ -148,6 +157,12 @@ namespace Weigh.ViewModels
             
 
 
+        }
+
+        // Doesn't work to hide/show
+        private void UpdateWaistSizeEnabled(bool enabled)
+        {
+            WaistSizeEnabled = enabled;
         }
 
         private void ToggleWeightWaistSize()
@@ -197,9 +212,9 @@ namespace Weigh.ViewModels
         private async void PopulateWeightList()
         {
             DataFromDatabase = await App.Database.GetWeightsAsync();
-            //WeightList = data.ToObservableCollection();
+            WeightList = DataFromDatabase.ToObservableCollection();
 
-
+            /*
             // REMOVE WHEN NOT DEBUG
             WeightList.Add(new WeightEntry(173, new DateTime(2017, 8, 11),40));
             WeightList.Add(new WeightEntry(173, new DateTime(2017, 8, 10),39.5));
@@ -347,7 +362,6 @@ namespace Weigh.ViewModels
             WeightList.Add(new WeightEntry(299, new DateTime(2017, 1, 2)));
             WeightList.Add(new WeightEntry(300, new DateTime(2017, 1, 1)));
             */
-
             ChartData = WeightList.Skip(Math.Max(0, WeightList.Count() - 7)).Take(7).ToObservableCollection();
         }
         #endregion

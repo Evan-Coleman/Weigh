@@ -55,9 +55,7 @@ namespace Weigh.Models
         }
 
         private string _waistSize;
-        [Required(ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "ValidationRequiredErrorMessage")]
-        [StringLength(5, MinimumLength = 2, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "WaistLengthValidationErrorMessage")]
-        [Range(15.0, 200.0, ErrorMessageResourceType = typeof(AppResources), ErrorMessageResourceName = "WaistValueValidationErrorMessage")]
+        [CustomValidation(typeof(SetupInfoValidation), "WaistSizeValidation")]
         public string WaistSize
         {
             get { return _waistSize; }
@@ -185,6 +183,20 @@ namespace Weigh.Models
             get { return _timeLeftToGoal; }
             set { SetProperty(ref _timeLeftToGoal, value); }
         }
+
+        private DateTime _initialWeighDate;
+        public DateTime InitialWeighDate
+        {
+            get { return _initialWeighDate; }
+            set { SetProperty(ref _initialWeighDate, value); }
+        }
+
+        private bool _waistSizeEnabled;
+        public bool WaistSizeEnabled
+        {
+            get { return _waistSizeEnabled; }
+            set { SetProperty(ref _waistSizeEnabled, value); }
+        }
         #endregion
 
         #region Methods
@@ -211,6 +223,9 @@ namespace Weigh.Models
             WeightLostToDate = Settings.WeightLostToDate;
             InitialWeight = Settings.InitialWeight;
             TimeLeftToGoal = Settings.TimeLeftToGoal;
+            MinDate = Settings.MinDate;
+            InitialWeighDate = Settings.InitialWeightDate;
+            WaistSizeEnabled = Settings.WaistSizeEnabled;
         }
         public void SaveSettingValsToDevice()
         {
@@ -235,6 +250,9 @@ namespace Weigh.Models
             Settings.WeightLostToDate = WeightLostToDate;
             Settings.InitialWeight = InitialWeight;
             Settings.TimeLeftToGoal = TimeLeftToGoal;
+            Settings.MinDate = MinDate;
+            Settings.InitialWeightDate = InitialWeighDate;
+            Settings.WaistSizeEnabled = WaistSizeEnabled;
         }
 
         public void CalculateBMI()

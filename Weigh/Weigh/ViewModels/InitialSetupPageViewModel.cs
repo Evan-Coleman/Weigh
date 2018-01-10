@@ -62,6 +62,7 @@ namespace Weigh.ViewModels
             SettingValsValidated.GoalDate = DateTime.UtcNow.AddDays(180);
             // Setting units to default imperial
             SettingValsValidated.Units = true;
+            SettingValsValidated.WaistSizeEnabled = true;
             SettingValsValidated.PickerSelectedItem = AppResources.LightActivityPickItem;
             PickerSource = new List<string> { AppResources.LowActivityPickItem, AppResources.LightActivityPickItem, AppResources.MediumActivityPickItem, AppResources.HeavyActivityPickItem };
         }
@@ -88,13 +89,15 @@ namespace Weigh.ViewModels
                 _newWeight.WeightDelta = 0;
                 await App.Database.SaveWeightAsync(_newWeight);
                 SettingValsValidated.InitialWeight = Convert.ToDouble(SettingValsValidated.Weight);
+                SettingValsValidated.InitialWeighDate = DateTime.UtcNow;
+                SettingValsValidated.LastWeight = SettingValsValidated.InitialWeight;
+                SettingValsValidated.LastWeighDate = DateTime.UtcNow;
+                SettingValsValidated.ValidateGoal();
                 SettingValsValidated.SaveSettingValsToDevice();
-                var p = new NavigationParameters();
-                p.Add("SettingValsValidated", SettingValsValidated);
-                
+                Settings.FirstUse = "no";
                 //await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage");
                 await NavigationService.NavigateAsync(
-                $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage", p);
+                $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
             }
         }
         #endregion

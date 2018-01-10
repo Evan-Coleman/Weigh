@@ -23,14 +23,8 @@ namespace Weigh.Helpers
 
         #region Setting Constants
 
-        private const string SettingsKey = "settings_key";
-        private static readonly string SettingsDefault = string.Empty;
-
         private const string FirstUseKey = "first_use_key";
         private static readonly string FirstUseDefault = "yes";
-
-        private const string NameKey = "name_key";
-        private static readonly string NameDefault = string.Empty;
 
         private const string SexKey = "sex_key";
         private static readonly bool SexDefault = false;
@@ -98,7 +92,37 @@ namespace Weigh.Helpers
         private const string TimeLeftToGoalKey = "Time_Left_To_Goal_Key";
         private static readonly int TimeLeftToGoalDefault = 0;
 
+        private const string MinDateKey = "Min_Date_Key";
+        private static readonly DateTime MinDateDefault = DateTime.UtcNow.AddDays(10);
+
+        private const string WaistSizeEnabledKey = "Waist_Size_Enabled_Key";
+        private static readonly bool WaistSizeEnabledDefault = true;
+
         #endregion
+        public static bool WaistSizeEnabled
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(WaistSizeEnabledKey, WaistSizeEnabledDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(WaistSizeEnabledKey, value);
+            }
+        }
+
+        public static DateTime MinDate
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(MinDateKey, MinDateDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(MinDateKey, value);
+            }
+        }
+
         public static int TimeLeftToGoal
         {
             get
@@ -291,18 +315,6 @@ namespace Weigh.Helpers
             }
         }
 
-        public static string GeneralSettings
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(SettingsKey, SettingsDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(SettingsKey, value);
-            }
-        }
-
         public static string FirstUse
         {
             get
@@ -312,18 +324,6 @@ namespace Weigh.Helpers
             set
             {
                 AppSettings.AddOrUpdateValue(FirstUseKey, value);
-            }
-        }
-
-        public static string Name
-        {
-            get
-            {
-                return AppSettings.GetValueOrDefault(NameKey, NameDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue(NameKey, value);
             }
         }
 

@@ -4,6 +4,7 @@
              xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
              xmlns:localization="clr-namespace:Weigh.Localization;assembly=Weigh"
+             xmlns:b="clr-namespace:Weigh.Behaviors"
              xmlns:rangenavigator="clr-namespace:Syncfusion.RangeNavigator.XForms;assembly=Syncfusion.SfChart.XForms" 
              x:Class="Weigh.Views.GraphsPage"
              Title="{Binding Title}">
@@ -65,22 +66,20 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <Button Text="{localization:Translate NumberOfEntriesLabel}" IsEnabled="False"
+                    Grid.Column="0"/>
             <Button Text="{localization:Translate ShowWeekGraphButton}"
                     Command="{Binding ShowWeekCommand}"
-                    Grid.Column="0"
+                    Grid.Column="1"
                     TextColor="{Binding WeekSelectedBorderColor}"/>
             <Button Text="{localization:Translate ShowMonthGraphButton}"
                     Command="{Binding ShowMonthCommand}"
-                    Grid.Column="1"
+                    Grid.Column="2"
                     TextColor="{Binding MonthSelectedBorderColor}"/>
             <Button Text="{localization:Translate ShowYearGraphButton}"
                     Command="{Binding ShowYearCommand}"
-                    Grid.Column="2"
+                    Grid.Column="3"
                     TextColor="{Binding YearSelectedBorderColor}"/>
-            <Button Text="{localization:Translate ToggleWaistSizeGraphButton}"
-                    FontSize="Small"
-                    Command="{Binding ToggleWeightWaistSizeCommand}"
-                    Grid.Column="3"/>
         </Grid>
         <ListView ItemsSource="{Binding WeightList}"
                   VerticalOptions="FillAndExpand"
@@ -111,8 +110,10 @@
                                 Text="{Binding Path=WeightDelta, StringFormat={localization:Translate WeightDeltaLabelListviewItem}}"
                                            HorizontalOptions="StartAndExpand"/>
                             <Label Grid.Row="1" Grid.Column="1"
-                                Text="{Binding Path=WaistSize, StringFormat={localization:Translate WaistSizeLabelListviewItem}}"
-                                           HorizontalOptions="EndAndExpand"/>
+                                           Text="{Binding Path=WaistSize, StringFormat={localization:Translate WaistSizeLabelListviewItem}}"
+                                           HorizontalOptions="EndAndExpand"
+                                   IsVisible="{Binding WaistSizeEnabled}">
+                            </Label>
                         </Grid>
   
            

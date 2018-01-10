@@ -430,6 +430,15 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to # Of Entries:.
+        /// </summary>
+        internal static string NumberOfEntriesLabel {
+            get {
+                return ResourceManager.GetString("NumberOfEntriesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Obese.
         /// </summary>
         internal static string ObeseLabel {
@@ -516,15 +525,6 @@ namespace Weigh.Localization {
         internal static string ShowYearGraphButton {
             get {
                 return ResourceManager.GetString("ShowYearGraphButton", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Waist Size / Weight.
-        /// </summary>
-        internal static string ToggleWaistSizeGraphButton {
-            get {
-                return ResourceManager.GetString("ToggleWaistSizeGraphButton", resourceCulture);
             }
         }
         
