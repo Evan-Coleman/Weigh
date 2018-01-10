@@ -126,7 +126,7 @@
     <comment>(MainPage) Button that adds new entry</comment>
   </data>
   <data name="BMILabel" xml:space="preserve">
-    <value>BMI - {0:00.00}</value>
+    <value>BMI</value>
     <comment>(MainPage) Shows BMI</comment>
   </data>
   <data name="BMRLabel" xml:space="preserve">
@@ -134,11 +134,11 @@
     <comment>(MainPage) Shows BMR</comment>
   </data>
   <data name="CaloriesToLoseWeightLabel" xml:space="preserve">
-    <value>{0:0}&amp;#10;Cal/Day to lose weight</value>
+    <value>Cal/Day to lose weight</value>
     <comment>(MainPage) Cals to lose weight</comment>
   </data>
   <data name="CaloriesToMaintainWeightLabel" xml:space="preserve">
-    <value>{0:0} Cal/Day to maintain weight</value>
+    <value>Cal/Day to maintain weight</value>
     <comment>(MainPage) Cals to maintain weight</comment>
   </data>
   <data name="DateLabel" xml:space="preserve">
@@ -150,7 +150,7 @@
     <comment>(GraphsPage) Label on listview template</comment>
   </data>
   <data name="DaysUntilGoalLabel" xml:space="preserve">
-    <value>Days left until goal = {0}</value>
+    <value>Days left until goal</value>
     <comment>(MainPage) Days until goal</comment>
   </data>
   <data name="EnableEditSwitchLabel" xml:space="preserve">
@@ -166,7 +166,7 @@
     <comment>(InitialSetupPage / SettingsPage) Popup label if all forms aren't filled in correctly</comment>
   </data>
   <data name="GoalDateLabel" xml:space="preserve">
-    <value>Goal Date</value>
+    <value>Goal Date: {0:MM/dd/yyyy}</value>
     <comment>(MainPage) Date of the selected goal</comment>
   </data>
   <data name="GoalInfoLabel" xml:space="preserve">
@@ -182,7 +182,7 @@
     <comment>(InitialSetupPage / SettingsPage) If user set units to imperial, lets them know to enter their goal weight in pounds</comment>
   </data>
   <data name="GoalWeightLabel" xml:space="preserve">
-    <value>Goal Weight</value>
+    <value>Goal Weight: {0:0.0}</value>
     <comment>(MainPage) Goal weight</comment>
   </data>
   <data name="GoalWeightMetricEntryPlaceholder" xml:space="preserve">
@@ -266,7 +266,7 @@
     <comment>(MainPage) Label on the BMI gague to show overweight</comment>
   </data>
   <data name="RemainingWeightToLoseLabel" xml:space="preserve">
-    <value>{0:00.00} Weight left to lose</value>
+    <value>Weight left to lose</value>
     <comment>(MainPage) Weight left to lose</comment>
   </data>
   <data name="SaveLabel" xml:space="preserve">
@@ -277,12 +277,12 @@
     <value>Setup</value>
     <comment>(SettingsPage) title of page</comment>
   </data>
-  <data name="StatsLabel" xml:space="preserve">
-    <value>Current Stats</value>
+  <data name="CurrentWeightLabel" xml:space="preserve">
+    <value>Current Weight</value>
     <comment>(MainPage) Title for main stats frame</comment>
   </data>
   <data name="TotalWeightLostLabel" xml:space="preserve">
-    <value>Weight lost to date: {0:0}</value>
+    <value>Weight lost to date</value>
     <comment>(MainPage) Lets user know how much weight they have lost since starting the app</comment>
   </data>
   <data name="UnderweightBMICategory" xml:space="preserve">

@@ -7,7 +7,8 @@
              Title="{Binding Title}">
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" Margin="0" Padding="0,3,0,0">
-        
+
+        <!-- WEIGHT FRAME -->
         <Frame Padding="10,0,10,0"
                HeightRequest="100">
             <Grid RowSpacing="0"
@@ -26,7 +27,64 @@
                        HorizontalOptions="Center"
                        VerticalOptions="Start"
                        HorizontalTextAlignment="Center"
-                       Text="{localization:Translate StatsLabel}"/>
+                       FontSize="30"
+                       Text="{localization:Translate WeightLabel}"/>
+
+
+
+                <Label Grid.Row="1" Grid.Column="0"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Start"
+                       VerticalTextAlignment="Center"
+                       Margin="0"
+                       FontSize="50"
+                   Text="{Binding SettingValsValidated.Weight, StringFormat='{0:00.00}'}"/>
+                <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                       HorizontalOptions="Start"
+                       VerticalOptions="End" 
+                       HorizontalTextAlignment="Center"  
+                       FontSize="Medium"
+                       Text="{localization:Translate CurrentWeightLabel}"/>
+
+
+
+
+                <Label Grid.Row="1" Grid.Column="1"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="End"
+                       VerticalOptions="Start"
+                       FontSize="50"
+                       Text="{Binding SettingValsValidated.WeightLostToDate, StringFormat='{0:0.0}'}" />
+                <Label Grid.Row="2" Grid.Column="1"
+                       HorizontalOptions="End"
+                       VerticalOptions="End" 
+                       HorizontalTextAlignment="Center"
+                       FontSize="Medium"
+                       Text="{localization:Translate TotalWeightLostLabel}"/>
+            </Grid>
+        </Frame>
+
+        <!-- GOAL FRAME -->
+        <Frame Padding="10,0,10,0"
+               HeightRequest="100">
+            <Grid RowSpacing="0"
+                  VerticalOptions="Fill">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Start"
+                       HorizontalTextAlignment="Center"
+                       FontSize="30"
+                       Text="{localization:Translate GoalInfoLabel}"/>
 
 
                 <Label Grid.Row="0" Grid.Column="0"
@@ -34,45 +92,48 @@
                        VerticalOptions="Start" 
                        HorizontalTextAlignment="Center"  
                        FontSize="Micro"
-                       Text="{localization:Translate WeightLabel}"/>
+                       Margin="0,0,0,0"
+                       Text="{localization:Translate RemainingWeightToLoseLabel}"/>
                 <Label Grid.Row="1" Grid.Column="0"
                    HorizontalTextAlignment="Center"
                    HorizontalOptions="Start"
                        VerticalTextAlignment="Center"
-                       Margin="0"
-                       FontSize="Large"
-                   Text="{Binding SettingValsValidated.Weight, StringFormat='{0:00.00}'}"/>
-                <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                       FontSize="40"
+                       Margin="0,-10,0,-10"
+                   Text="{Binding SettingValsValidated.DistanceToGoalWeight, StringFormat='{0:0.0}'}"/>
+                <Label Grid.Row="2" Grid.Column="0"
                        HorizontalTextAlignment="Center"
                        HorizontalOptions="Start"
                        VerticalOptions="End"
                        FontSize="Micro"
-                       Text="{Binding SettingValsValidated.WeightLostToDate, StringFormat={localization:Translate TotalWeightLostLabel}}" />
-
+                       Margin="0,0,0,0"
+                       Text="{Binding SettingValsValidated.GoalWeight, StringFormat={localization:Translate GoalWeightLabel}}"/>
 
                 <Label Grid.Row="0" Grid.Column="1"
                        HorizontalOptions="End"
                        VerticalOptions="Start" 
                        HorizontalTextAlignment="Center"
                        FontSize="Micro"
-                       Text="{localization:Translate BMRLabel}"/>
+                       Margin="0,0,0,0"
+                       Text="{localization:Translate DaysUntilGoalLabel}"/>
                 <Label Grid.Row="1" Grid.Column="1"
-                    HorizontalTextAlignment="End"
+                       HorizontalTextAlignment="Center"
                        HorizontalOptions="End"
                        Margin="0"
-                       FontSize="Medium"
-                       Text="{Binding SettingValsValidated.RecommendedDailyCaloricIntake, StringFormat={localization:Translate CaloriesToLoseWeightLabel}}"/>
-
+                       FontSize="40"
+                       Text="{Binding SettingValsValidated.TimeLeftToGoal, StringFormat='{0:0}'}" />
                 <Label Grid.Row="2" Grid.Column="1"
                        HorizontalOptions="End"
                        VerticalOptions="End"
                        HorizontalTextAlignment="Center"
                        FontSize="Micro"
-                       Text="{Binding SettingValsValidated.BMR, StringFormat={localization:Translate CaloriesToMaintainWeightLabel}}"/>
-                
+                       Margin="0,0,0,0"
+                       Text="{Binding SettingValsValidated.GoalDate, StringFormat={localization:Translate GoalDateLabel}}"/>
+
             </Grid>
         </Frame>
 
+        <!-- BMR FRAME -->
         <Frame Padding="10,0,10,0"
                HeightRequest="100">
             <Grid RowSpacing="0"
@@ -87,65 +148,51 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3"
                        HorizontalOptions="Center"
                        VerticalOptions="Start"
                        HorizontalTextAlignment="Center"
-                       Text="{localization:Translate GoalInfoLabel}"/>
+                       Text="{localization:Translate BMRLabel}"/>
 
-
-                <Label Grid.Row="0" Grid.Column="0"
-                       HorizontalOptions="Start"
-                       VerticalOptions="Start" 
-                       HorizontalTextAlignment="Center"  
-                       FontSize="Micro"
-                       Text="{localization:Translate GoalWeightLabel}"/>
                 <Label Grid.Row="1" Grid.Column="0"
                    HorizontalTextAlignment="Center"
                    HorizontalOptions="Start"
                        VerticalTextAlignment="Center"
                        Margin="0"
-                       FontSize="Large"
-                   Text="{Binding SettingValsValidated.GoalWeight, StringFormat='{0:00.00}'}"/>
-                <Label Grid.Row="2" Grid.Column="0"
-                       HorizontalTextAlignment="Center"
+                       FontSize="40"
+                   Text="{Binding SettingValsValidated.RecommendedDailyCaloricIntake, StringFormat='{0:0}'}"/>
+                <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
                        HorizontalOptions="Start"
-                       VerticalOptions="End"
-                       FontSize="Micro"
-                       Text="{Binding SettingValsValidated.DistanceToGoalWeight, StringFormat={localization:Translate RemainingWeightToLoseLabel}}"/>
+                       VerticalOptions="Start" 
+                       HorizontalTextAlignment="Center"  
+                       FontSize="Small"
+                       Text="{localization:Translate CaloriesToLoseWeightLabel}"/>
 
-                <Label Grid.Row="0" Grid.Column="1"
+                <Label Grid.Row="1" Grid.Column="1"
+                    HorizontalTextAlignment="End"
+                       HorizontalOptions="End"
+                       Margin="0"
+                       FontSize="40"
+                       Text="{Binding SettingValsValidated.BMR, StringFormat='{0:0}'}"/>
+
+                <Label Grid.Row="3" Grid.Column="1"
                        HorizontalOptions="End"
                        VerticalOptions="Start" 
                        HorizontalTextAlignment="Center"
-                       FontSize="Micro"
-                       Text="{localization:Translate GoalDateLabel}"/>
-                <Label Grid.Row="1" Grid.Column="1"
-                       HorizontalTextAlignment="Center"
-                       HorizontalOptions="End"
-                       Margin="0"
-                       FontSize="Large"
-                       Text="{Binding SettingValsValidated.GoalDate, StringFormat='{0:MMM/dd/yy}'}" />
-                <Label Grid.Row="2" Grid.Column="1"
-                       HorizontalOptions="End"
-                       VerticalOptions="End"
-                       HorizontalTextAlignment="Center"
-                       FontSize="Micro"
-                       Text="{Binding SettingValsValidated.TimeLeftToGoal, StringFormat={localization:Translate DaysUntilGoalLabel}}"/>
-
+                       FontSize="Small"
+                       Text="{localization:Translate CaloriesToMaintainWeightLabel}"/>
             </Grid>
         </Frame>
 
-
+        <!-- BMI FRAME -->
         <Frame Padding="10,0,10,0"
                HeightRequest="140">
             <Grid RowSpacing="0"
                   VerticalOptions="Fill">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -153,21 +200,31 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="1"
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2"
                        HorizontalOptions="CenterAndExpand"
                        VerticalOptions="Start"
                        HorizontalTextAlignment="Center"
-                       Margin="0,0,0,-20"
+                       Margin="0,-10,0,0"
+                       FontSize="40"
                         Text="{Binding SettingValsValidated.BMI, StringFormat={localization:Translate BMILabel}}" />
 
-                <Label Grid.Row="1" Grid.Column="1"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center"
+                <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Start"
                        HorizontalTextAlignment="Center"
-                       Margin="0,0,0,-20"
-                       Text="{Binding SettingValsValidated.BMICategory, StringFormat='{0:00.00}'}" />
+                       Margin="0,-10,0,0"
+                       FontSize="40"
+                        Text="{Binding SettingValsValidated.BMI, StringFormat='{0:0.0}'}" />
 
-                <linear:SfLinearGauge Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand" Margin="0">
+                <Label Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"
+                       HorizontalOptions="End"
+                       VerticalOptions="Start"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,-10,0,0"
+                       FontSize="30"
+                       Text="{Binding SettingValsValidated.BMICategory, StringFormat='{0:0}'}" />
+
+                <linear:SfLinearGauge Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand" Margin="0,0,0,-10">
                     <linear:SfLinearGauge.Scales>
                         <linear:LinearScale x:Name="scale" MinimumValue="10" MaximumValue="40"
                                     Interval="5" ScaleBarLength="100"
@@ -188,7 +245,7 @@
                     </linear:SfLinearGauge.Scales>
                 </linear:SfLinearGauge>
 
-                <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Padding="10,0,10,0">
+                <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Padding="10,-10,10,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
@@ -198,10 +255,14 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Text="{localization:Translate UnderWeightLabel}" FontSize="Small" TextColor="#e91e63"/>
-                    <Label Grid.Row="0" Grid.Column="1" Text="{localization:Translate NormalWeightLabel}" FontSize="Small" TextColor="#1b5e20" HorizontalOptions="Center"/>
-                    <Label Grid.Row="0" Grid.Column="2" Text="{localization:Translate OverweightLabel}" FontSize="Small" TextColor="#ff6d00"/>
-                    <Label Grid.Row="0" Grid.Column="3" Text="{localization:Translate ObeseLabel}" FontSize="Small" TextColor="#d50000"/>
+                    <Label Grid.Row="0" Grid.Column="0" VerticalOptions="Start"
+                           Text="{localization:Translate UnderWeightLabel}" FontSize="Small" TextColor="#e91e63"/>
+                    <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Start"
+                           Text="{localization:Translate NormalWeightLabel}" FontSize="Small" TextColor="#1b5e20" HorizontalOptions="Center"/>
+                    <Label Grid.Row="0" Grid.Column="2" VerticalOptions="Start"
+                           Text="{localization:Translate OverweightLabel}" FontSize="Small" TextColor="#ff6d00"/>
+                    <Label Grid.Row="0" Grid.Column="3" VerticalOptions="Start"
+                           Text="{localization:Translate ObeseLabel}" FontSize="Small" TextColor="#d50000"/>
                 </Grid>
 
 

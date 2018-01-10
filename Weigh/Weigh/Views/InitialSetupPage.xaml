@@ -187,8 +187,7 @@
 
         <Button Text="{localization:Translate SaveLabel}"
                 Command="{Binding SaveInfoCommand}"
-                WidthRequest="150"
-                IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}"/>
+                WidthRequest="150"/>
     </StackLayout>
 
 </ContentPage>

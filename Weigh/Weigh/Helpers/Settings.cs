@@ -95,7 +95,22 @@ namespace Weigh.Helpers
         private const string WeightLostToDateKey = "Weight_Lost_To_Date_Key";
         private static readonly double WeightLostToDateDefault = 0.0;
 
+        private const string TimeLeftToGoalKey = "Time_Left_To_Goal_Key";
+        private static readonly int TimeLeftToGoalDefault = 0;
+
         #endregion
+        public static int TimeLeftToGoal
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(TimeLeftToGoalKey, TimeLeftToGoalDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(TimeLeftToGoalKey, value);
+            }
+        }
+
         public static double WeightLostToDate
         {
             get

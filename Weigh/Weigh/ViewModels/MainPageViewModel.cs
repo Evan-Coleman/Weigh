@@ -59,6 +59,8 @@ namespace Weigh.ViewModels
         }
         private WeightEntry _newWeight;
         private IEventAggregator _ea;
+
+
         #endregion
 
         #region Constructor
@@ -72,6 +74,7 @@ namespace Weigh.ViewModels
             SettingValsValidated = new SettingValsValidated();
             ButtonEnabled = true;            
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
+            NewWaistSizeEntry = Settings.WaistSize;
         }
         #endregion
 

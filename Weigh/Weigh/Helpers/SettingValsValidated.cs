@@ -178,6 +178,13 @@ namespace Weigh.Models
             get { return _initialWeight; }
             set { SetProperty(ref _initialWeight, value); }
         }
+
+        private int _timeLeftToGoal;
+        public int TimeLeftToGoal
+        {
+            get { return _timeLeftToGoal; }
+            set { SetProperty(ref _timeLeftToGoal, value); }
+        }
         #endregion
 
         #region Methods
@@ -203,6 +210,7 @@ namespace Weigh.Models
             DistanceToGoalWeight = Settings.DistanceToGoalWeight;
             WeightLostToDate = Settings.WeightLostToDate;
             InitialWeight = Settings.InitialWeight;
+            TimeLeftToGoal = Settings.TimeLeftToGoal;
         }
         public void SaveSettingValsToDevice()
         {
@@ -226,6 +234,7 @@ namespace Weigh.Models
             Settings.DistanceToGoalWeight = DistanceToGoalWeight;
             Settings.WeightLostToDate = WeightLostToDate;
             Settings.InitialWeight = InitialWeight;
+            Settings.TimeLeftToGoal = TimeLeftToGoal;
         }
 
         public void CalculateBMI()
@@ -309,6 +318,9 @@ namespace Weigh.Models
             CalculateBMI();
             CalculateBMR();
             SetBMICategory();
+
+            TimeLeftToGoal = (GoalDate - DateTime.UtcNow).Days;
+            DistanceToGoalWeight = Convert.ToDouble(Weight) - Convert.ToDouble(GoalWeight);
 
             double Feet = Convert.ToDouble(HeightMajor);
             int Inches = Convert.ToInt32(HeightMinor);

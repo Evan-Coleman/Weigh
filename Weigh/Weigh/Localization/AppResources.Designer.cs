@@ -97,7 +97,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BMI - {0:00.00}.
+        ///   Looks up a localized string similar to BMI.
         /// </summary>
         internal static string BMILabel {
             get {
@@ -115,7 +115,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0:0}&amp;#10;Cal/Day to lose weight.
+        ///   Looks up a localized string similar to Cal/Day to lose weight.
         /// </summary>
         internal static string CaloriesToLoseWeightLabel {
             get {
@@ -124,11 +124,20 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0:0} Cal/Day to maintain weight.
+        ///   Looks up a localized string similar to Cal/Day to maintain weight.
         /// </summary>
         internal static string CaloriesToMaintainWeightLabel {
             get {
                 return ResourceManager.GetString("CaloriesToMaintainWeightLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Weight.
+        /// </summary>
+        internal static string CurrentWeightLabel {
+            get {
+                return ResourceManager.GetString("CurrentWeightLabel", resourceCulture);
             }
         }
         
@@ -151,7 +160,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Days left until goal = {0}.
+        ///   Looks up a localized string similar to Days left until goal.
         /// </summary>
         internal static string DaysUntilGoalLabel {
             get {
@@ -187,7 +196,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Goal Date.
+        ///   Looks up a localized string similar to Goal Date: {0:MM/dd/yyyy}.
         /// </summary>
         internal static string GoalDateLabel {
             get {
@@ -223,7 +232,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Goal Weight.
+        ///   Looks up a localized string similar to Goal Weight: {0:0.0}.
         /// </summary>
         internal static string GoalWeightLabel {
             get {
@@ -457,7 +466,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0:00.00} Weight left to lose.
+        ///   Looks up a localized string similar to Weight left to lose.
         /// </summary>
         internal static string RemainingWeightToLoseLabel {
             get {
@@ -511,15 +520,6 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current Stats.
-        /// </summary>
-        internal static string StatsLabel {
-            get {
-                return ResourceManager.GetString("StatsLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Waist Size / Weight.
         /// </summary>
         internal static string ToggleWaistSizeGraphButton {
@@ -529,7 +529,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Weight lost to date: {0:0}.
+        ///   Looks up a localized string similar to Weight lost to date.
         /// </summary>
         internal static string TotalWeightLostLabel {
             get {
