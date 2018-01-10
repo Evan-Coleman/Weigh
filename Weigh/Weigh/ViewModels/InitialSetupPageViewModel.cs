@@ -87,6 +87,7 @@ namespace Weigh.ViewModels
                 _newWeight.WaistSize = Convert.ToDouble(SettingValsValidated.WaistSize);
                 _newWeight.WeightDelta = 0;
                 await App.Database.SaveWeightAsync(_newWeight);
+                SettingValsValidated.InitialWeight = Convert.ToDouble(SettingValsValidated.Weight);
                 SettingValsValidated.SaveSettingValsToDevice();
                 var p = new NavigationParameters();
                 p.Add("SettingValsValidated", SettingValsValidated);

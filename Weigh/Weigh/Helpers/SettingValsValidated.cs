@@ -321,6 +321,7 @@ namespace Weigh.Models
 
             TimeLeftToGoal = (GoalDate - DateTime.UtcNow).Days;
             DistanceToGoalWeight = Convert.ToDouble(Weight) - Convert.ToDouble(GoalWeight);
+            WeightLostToDate = InitialWeight - Convert.ToDouble(Weight);
 
             double Feet = Convert.ToDouble(HeightMajor);
             int Inches = Convert.ToInt32(HeightMinor);

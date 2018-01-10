@@ -81,6 +81,7 @@ namespace Weigh.ViewModels
         #region Methods
         public async void AddWeightToList()
         {
+            // URGENT TODO: Issue with validation (Fresh install -> Enter info (235lb) -> Enter weight (234lb) = validation fail CHECK INTO IT
             ButtonEnabled = false;
             // Disabling the 12hr restriction for now
             if ((SettingValsValidated.LastWeighDate - DateTime.UtcNow).TotalHours > 11231232313232)
@@ -104,13 +105,12 @@ namespace Weigh.ViewModels
                 SettingValsValidated.DistanceToGoalWeight = Convert.ToDouble(SettingValsValidated.Weight) - Convert.ToDouble(SettingValsValidated.GoalWeight);
 
                 SettingValsValidated.ValidateGoal();
-
+                SettingValsValidated.SaveSettingValsToDevice();
                 _ea.GetEvent<AddWeightEvent>().Publish(_newWeight);
                 _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SettingValsValidated);
                 await App.Database.SaveWeightAsync(_newWeight);
             }
             ButtonEnabled = true;
-            SettingValsValidated.WeightLostToDate = Convert.ToDouble(SettingValsValidated.InitialWeight) - Convert.ToDouble(SettingValsValidated.Weight);
         }
 
         private void HandleUpdateSetupInfo(SettingValsValidated _setupInfo)
