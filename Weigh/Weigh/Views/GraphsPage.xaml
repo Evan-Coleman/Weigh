@@ -15,7 +15,7 @@
 
             <chart:SfChart.PrimaryAxis>
 
-                <chart:DateTimeAxis RangePadding="Round">
+                <chart:DateTimeAxis RangePadding="Additional">
                     <chart:DateTimeAxis.LabelStyle>
                         <chart:ChartAxisLabelStyle LabelFormat="MM/dd"/>
                     </chart:DateTimeAxis.LabelStyle>
@@ -40,14 +40,17 @@
             <chart:SfChart.Series>
 
                 <chart:LineSeries ItemsSource="{Binding ChartData}" XBindingPath="WeighDate" YBindingPath="{Binding ToggleWeightOrWaistSize}"
-                                  EnableDataPointSelection="False">
+                                  EnableDataPointSelection="False"
+                                  Color="{StaticResource primary_dark}">
                     <chart:LineSeries.DataMarker>
 
                         <chart:ChartDataMarker ShowLabel="{Binding ShowDataMarker}">
 
                             <chart:ChartDataMarker.LabelStyle>
 
-                                <chart:DataMarkerLabelStyle/>
+                                <chart:DataMarkerLabelStyle BackgroundColor="{StaticResource secondary}"
+                                                            TextColor="{StaticResource secondary_text}" LabelPosition="Auto"
+                                                            BorderColor="{StaticResource primary_light}"/>
 
                             </chart:ChartDataMarker.LabelStyle>
 
@@ -67,21 +70,25 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Text="{localization:Translate NumberOfEntriesLabel}" IsEnabled="False"
-                    Grid.Column="0"/>
+                    Grid.Column="0"
+                    FontSize="Small"/>
             <Button Text="{localization:Translate ShowWeekGraphButton}"
                     Command="{Binding ShowWeekCommand}"
                     Grid.Column="1"
+                    FontSize="Small"
                     TextColor="{Binding WeekSelectedBorderColor}"/>
             <Button Text="{localization:Translate ShowMonthGraphButton}"
                     Command="{Binding ShowMonthCommand}"
                     Grid.Column="2"
+                    FontSize="Small"
                     TextColor="{Binding MonthSelectedBorderColor}"/>
             <Button Text="{localization:Translate ShowYearGraphButton}"
                     Command="{Binding ShowYearCommand}"
                     Grid.Column="3"
+                    FontSize="Small"
                     TextColor="{Binding YearSelectedBorderColor}"/>
         </Grid>
-        <ListView ItemsSource="{Binding WeightList}"
+        <ListView ItemsSource="{Binding WeightListReversed}"
                   VerticalOptions="FillAndExpand"
                   HasUnevenRows="True"
                   x:Name="bob">

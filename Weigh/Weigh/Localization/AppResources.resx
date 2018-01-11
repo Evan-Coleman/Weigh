@@ -382,19 +382,19 @@
     <comment>(SetupInfo) Validation error message</comment>
   </data>
   <data name="ShowMonthGraphButton" xml:space="preserve">
-    <value>Month</value>
+    <value>Month (31)</value>
     <comment>(GraphsPage) Button to show last Month in graph</comment>
   </data>
   <data name="ShowWeekGraphButton" xml:space="preserve">
-    <value>Week</value>
+    <value>Week (7)</value>
     <comment>(GraphsPage) Button to show last week in graph</comment>
   </data>
   <data name="ShowYearGraphButton" xml:space="preserve">
-    <value>Year</value>
+    <value>Year (365)</value>
     <comment>(GraphsPage) Button to show last Month in graph</comment>
   </data>
   <data name="NumberOfEntriesLabel" xml:space="preserve">
-    <value># Of Entries:</value>
+    <value># Points:</value>
     <comment>(GraphsPage) Label to say how many entries on the graph will show</comment>
   </data>
   <data name="WaistSizeLabel" xml:space="preserve">

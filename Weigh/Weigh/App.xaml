@@ -24,7 +24,7 @@
             </Style>
 
             <Style TargetType="ActivityIndicator">
-                <Setter Property="Color" Value="{ DynamicResource accent }"/>
+                <Setter Property="Color" Value="{ DynamicResource secondary }"/>
             </Style>
 
             <Style TargetType="ContentPage"
@@ -54,7 +54,7 @@
 
             <Style TargetType="ListView">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
-                <Setter Property="SeparatorColor" Value="{ DynamicResource divider }"/>
+                <Setter Property="SeparatorColor" Value="{ DynamicResource secondary_dark }"/>
                 <Setter Property="SeparatorVisibility" Value="Default"/>
             </Style>
 
@@ -75,7 +75,7 @@
                 <Setter Property="BorderWidth" Value="0"/>
                 <Setter Property="BorderColor" Value="Transparent"/>
                 <Setter Property="HeightRequest" Value="{StaticResource BaseButtonHeight}"/>
-                <Setter Property="BackgroundColor" Value="{StaticResource accent}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource primary_dark}"/>
 
             </Style>
 

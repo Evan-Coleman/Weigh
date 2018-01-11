@@ -40,6 +40,13 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _chartData, value); }
         }
 
+        private List<WeightEntry> _weightListReversed;
+        public List<WeightEntry> WeightListReversed
+        {
+            get { return _weightListReversed; }
+            set { SetProperty(ref _weightListReversed, value); }
+        }
+
         public List<WeightEntry> DataFromDatabase { get; set; }
 
         public DelegateCommand ShowWeekCommand { get; set; }
@@ -144,7 +151,10 @@ namespace Weigh.ViewModels
         private void HandleNewWeightEntry(WeightEntry weight)
         {
             WeightList.Add(weight);
-            if (CurrentlySelectedGraphTimeline == "week" && ChartData.Count > 7 || CurrentlySelectedGraphTimeline == "month" && ChartData.Count > 31 || CurrentlySelectedGraphTimeline == "year" && ChartData.Count > 365)
+            WeightListReversed = WeightList.ToList<WeightEntry>();
+            WeightListReversed.Reverse();
+            WeightListReversed.ToObservableCollection();
+            if (CurrentlySelectedGraphTimeline == "week" && ChartData.Count >= 7 || CurrentlySelectedGraphTimeline == "month" && ChartData.Count >= 31 || CurrentlySelectedGraphTimeline == "year" && ChartData.Count >= 365)
             {
                 ChartData.RemoveAt(0);
             }            
@@ -213,7 +223,10 @@ namespace Weigh.ViewModels
         {
             DataFromDatabase = await App.Database.GetWeightsAsync();
             WeightList = DataFromDatabase.ToObservableCollection();
-
+            WeightListReversed = WeightList.ToList<WeightEntry>();
+            WeightListReversed.Reverse();
+            WeightListReversed.ToObservableCollection();
+            ChartData = DataFromDatabase.Skip(Math.Max(0, WeightList.Count() - 7)).Take(7).ToObservableCollection();
             /*
             // REMOVE WHEN NOT DEBUG
             WeightList.Add(new WeightEntry(173, new DateTime(2017, 8, 11),40));
@@ -362,7 +375,6 @@ namespace Weigh.ViewModels
             WeightList.Add(new WeightEntry(299, new DateTime(2017, 1, 2)));
             WeightList.Add(new WeightEntry(300, new DateTime(2017, 1, 1)));
             */
-            ChartData = WeightList.Skip(Math.Max(0, WeightList.Count() - 7)).Take(7).ToObservableCollection();
         }
         #endregion
     }

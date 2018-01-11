@@ -430,7 +430,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to # Of Entries:.
+        ///   Looks up a localized string similar to # Points:.
         /// </summary>
         internal static string NumberOfEntriesLabel {
             get {
@@ -502,7 +502,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Month.
+        ///   Looks up a localized string similar to Month (31).
         /// </summary>
         internal static string ShowMonthGraphButton {
             get {
@@ -511,7 +511,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Week.
+        ///   Looks up a localized string similar to Week (7).
         /// </summary>
         internal static string ShowWeekGraphButton {
             get {
@@ -520,7 +520,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Year.
+        ///   Looks up a localized string similar to Year (365).
         /// </summary>
         internal static string ShowYearGraphButton {
             get {

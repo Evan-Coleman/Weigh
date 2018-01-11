@@ -59,6 +59,7 @@ namespace Weigh.ViewModels
         #region Methods
         private async void SaveInfoAsync()
         {
+            SettingValsValidated.ValidateGoal();
             SettingValsValidated.SaveSettingValsToDevice();
             await NavigationService.NavigateAsync(
                 $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
