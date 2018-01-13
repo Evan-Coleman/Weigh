@@ -73,7 +73,7 @@
                 <Setter Property="FontSize" Value="{ DynamicResource BaseFontSize }"/>
                 <Setter Property="BorderRadius" Value="{ DynamicResource BaseButtonBorderRadius }"/>
                 <Setter Property="BorderWidth" Value="0"/>
-                <Setter Property="BorderColor" Value="Transparent"/>
+                <Setter Property="BorderColor" Value="{DynamicResource secondary}"/>
                 <Setter Property="HeightRequest" Value="{StaticResource BaseButtonHeight}"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource primary_dark}"/>
 
