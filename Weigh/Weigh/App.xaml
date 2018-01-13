@@ -83,15 +83,13 @@
 
             <!-- Base Styles -->
             <Style x:Key="SetupEntryStyle"  TargetType="Entry">
-                <Setter Property="HorizontalTextAlignment" Value="Center"/>
-                <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="WidthRequest" Value="{ StaticResource BaseEntryWidthRequest }"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
             </Style>
 
             <Style x:Key="ErrorLabelStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="Micro"/>
                 <Setter Property="TextColor" Value="Red"/>
-                <Setter Property="Margin" Value="5,-10,0,-10"/>
+                <Setter Property="Margin" Value="5,0,0,0"/>
             </Style>
             
         </ResourceDictionary>

@@ -405,4 +405,44 @@
     <value>Waist Size: {0}</value>
     <comment>(GraphsPage) Label for waist size in the listview</comment>
   </data>
+  <data name="AddNewEntryLabel" xml:space="preserve">
+    <value>Add New Weight Entry</value>
+    <comment>(MainPage) Button to add a new entry</comment>
+  </data>
+  <data name="AgeLabel" xml:space="preserve">
+    <value>Age:</value>
+    <comment>(InitialSetupPage) Label to indicate entry is for age</comment>
+  </data>
+  <data name="GoalDateEntryLabel" xml:space="preserve">
+    <value>Goal Date:</value>
+    <comment>(InitialSetupPage) Label to indicate entry is for goal date</comment>
+  </data>
+  <data name="GoalWeightEntryLabel" xml:space="preserve">
+    <value>Goal Weight:</value>
+    <comment>(InitialSetupPage) Label to indicate entry is for goal weight</comment>
+  </data>
+  <data name="HeightLabel" xml:space="preserve">
+    <value>Height:</value>
+    <comment>(InitialSetupPage) Label to indicate entry is for height</comment>
+  </data>
+  <data name="LevelOfActivityLabel" xml:space="preserve">
+    <value>Activity Level:</value>
+    <comment>(InitialSetupPage) Label to indicate entry is for activity</comment>
+  </data>
+  <data name="SexLabel" xml:space="preserve">
+    <value>Sex:</value>
+    <comment>(InitialSetupPage) Label to indicate entry is for sex</comment>
+  </data>
+  <data name="UnitsLabel" xml:space="preserve">
+    <value>Units:</value>
+    <comment>(InitialSetupPage) Label to indicate entry is for units</comment>
+  </data>
+  <data name="WaistSizeEntryLabel" xml:space="preserve">
+    <value>Waist Size:</value>
+    <comment>(InitialSetupPage) Label to indicate entry is for waist size</comment>
+  </data>
+  <data name="WeightEntryLabel" xml:space="preserve">
+    <value>Weight:</value>
+    <comment>(InitialSetupPage) Label to indicate entry is for weight</comment>
+  </data>
 </root>

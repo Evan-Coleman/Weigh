@@ -308,6 +308,7 @@
                     IsEnabled="{Binding ButtonEnabled}"
                     Command="{Binding AddWeightToListCommand}"/>
         </StackLayout>
+        <Button Text="{localization:Translate AddNewEntryLabel}" />
     </StackLayout>
 
 </ContentPage>

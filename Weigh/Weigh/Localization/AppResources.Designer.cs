@@ -79,6 +79,24 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add New Weight Entry.
+        /// </summary>
+        internal static string AddNewEntryLabel {
+            get {
+                return ResourceManager.GetString("AddNewEntryLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Age:.
+        /// </summary>
+        internal static string AgeLabel {
+            get {
+                return ResourceManager.GetString("AgeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minimum 2 chars, max 3 chars.
         /// </summary>
         internal static string AgeLengthValidationErrorMessage {
@@ -196,6 +214,15 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Goal Date:.
+        /// </summary>
+        internal static string GoalDateEntryLabel {
+            get {
+                return ResourceManager.GetString("GoalDateEntryLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Goal Date: {0:MM/dd/yyyy}.
         /// </summary>
         internal static string GoalDateLabel {
@@ -219,6 +246,15 @@ namespace Weigh.Localization {
         internal static string GoalTooSoonPopup {
             get {
                 return ResourceManager.GetString("GoalTooSoonPopup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Goal Weight:.
+        /// </summary>
+        internal static string GoalWeightEntryLabel {
+            get {
+                return ResourceManager.GetString("GoalWeightEntryLabel", resourceCulture);
             }
         }
         
@@ -286,6 +322,15 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Height:.
+        /// </summary>
+        internal static string HeightLabel {
+            get {
+                return ResourceManager.GetString("HeightLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter Height (ft) Here.
         /// </summary>
         internal static string HeightMajorImperialEntryPlaceholder {
@@ -345,6 +390,15 @@ namespace Weigh.Localization {
         internal static string InitialSetupPageTitle {
             get {
                 return ResourceManager.GetString("InitialSetupPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activity Level:.
+        /// </summary>
+        internal static string LevelOfActivityLabel {
+            get {
+                return ResourceManager.GetString("LevelOfActivityLabel", resourceCulture);
             }
         }
         
@@ -502,6 +556,15 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sex:.
+        /// </summary>
+        internal static string SexLabel {
+            get {
+                return ResourceManager.GetString("SexLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Month (31).
         /// </summary>
         internal static string ShowMonthGraphButton {
@@ -556,6 +619,15 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Units:.
+        /// </summary>
+        internal static string UnitsLabel {
+            get {
+                return ResourceManager.GetString("UnitsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Imperial.
         /// </summary>
         internal static string UnitSwitchImperialLabel {
@@ -588,6 +660,15 @@ namespace Weigh.Localization {
         internal static string WaistLengthValidationErrorMessage {
             get {
                 return ResourceManager.GetString("WaistLengthValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waist Size:.
+        /// </summary>
+        internal static string WaistSizeEntryLabel {
+            get {
+                return ResourceManager.GetString("WaistSizeEntryLabel", resourceCulture);
             }
         }
         
@@ -651,6 +732,15 @@ namespace Weigh.Localization {
         internal static string WeightDeltaLabelListviewItem {
             get {
                 return ResourceManager.GetString("WeightDeltaLabelListviewItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weight:.
+        /// </summary>
+        internal static string WeightEntryLabel {
+            get {
+                return ResourceManager.GetString("WeightEntryLabel", resourceCulture);
             }
         }
         
