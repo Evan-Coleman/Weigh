@@ -473,4 +473,8 @@
     <value>To Goal Of: {0:0} kg</value>
     <comment>(MainPage) label showing goal weight metric</comment>
   </data>
+  <data name="AddEntryPageTitle" xml:space="preserve">
+    <value>Add New Weight Entry</value>
+    <comment>(AddEntry)</comment>
+  </data>
 </root>

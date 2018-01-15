@@ -122,7 +122,8 @@
 
         <!-- Add New Button -->
         <Button Grid.Column="1" Grid.Row="2"              
-                Text="{localization:Translate AddEntryLabel}"/>
+                Text="{localization:Translate AddEntryLabel}"
+                Command="AddWeightToListCommand"/>
 
         <!-- Time Left Section -->
         <Grid Grid.Column="2" Grid.Row="2" Margin="0" Padding="3" ColumnSpacing="0">

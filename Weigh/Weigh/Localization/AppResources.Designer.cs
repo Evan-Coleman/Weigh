@@ -81,6 +81,15 @@ namespace Weigh.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Add New Weight Entry.
         /// </summary>
+        internal static string AddEntryPageTitle {
+            get {
+                return ResourceManager.GetString("AddEntryPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add New Weight Entry.
+        /// </summary>
         internal static string AddNewEntryLabel {
             get {
                 return ResourceManager.GetString("AddNewEntryLabel", resourceCulture);

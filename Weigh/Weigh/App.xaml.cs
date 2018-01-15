@@ -52,6 +52,7 @@ namespace Weigh
             Container.RegisterTypeForNavigation<NavigatingAwareTabbedPage>();
             Container.RegisterTypeForNavigation<SettingsPage>();
             Container.RegisterTypeForNavigation<GraphsPage>();
+            Container.RegisterTypeForNavigation<AddEntryPage>();
         }
 
         public static WeightDatabase Database
