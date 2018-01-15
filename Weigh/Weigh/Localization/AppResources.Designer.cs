@@ -70,7 +70,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add.
+        ///   Looks up a localized string similar to Add New Weight.
         /// </summary>
         internal static string AddEntryLabel {
             get {
@@ -498,6 +498,15 @@ namespace Weigh.Localization {
         internal static string NormalWeightLabel {
             get {
                 return ResourceManager.GetString("NormalWeightLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes:.
+        /// </summary>
+        internal static string NotesLabel {
+            get {
+                return ResourceManager.GetString("NotesLabel", resourceCulture);
             }
         }
         

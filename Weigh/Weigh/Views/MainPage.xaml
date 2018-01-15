@@ -120,9 +120,8 @@
             </Label>
         </Grid>
 
-        <!-- Add New Section -->
-        <Button Grid.Column="1" Grid.Row="2" 
-                FontSize="10"                
+        <!-- Add New Button -->
+        <Button Grid.Column="1" Grid.Row="2"              
                 Text="{localization:Translate AddEntryLabel}"/>
 
         <!-- Time Left Section -->

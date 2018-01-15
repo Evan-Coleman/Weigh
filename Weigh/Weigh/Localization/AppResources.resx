@@ -122,7 +122,7 @@
     <comment>(InitialSetupPage / SettingsPage) Title of activity picker</comment>
   </data>
   <data name="AddEntryLabel" xml:space="preserve">
-    <value>Add</value>
+    <value>Add New Weight</value>
     <comment>(MainPage) Button that adds new entry</comment>
   </data>
   <data name="BMILabel" xml:space="preserve">
@@ -452,6 +452,10 @@
   <data name="KiloGramsLabel" xml:space="preserve">
     <value>kg</value>
     <comment>(MainPage) units label for kilograms</comment>
+  </data>
+  <data name="NotesLabel" xml:space="preserve">
+    <value>Notes:</value>
+    <comment>(InitialSetupPage)</comment>
   </data>
   <data name="PoundsLabel" xml:space="preserve">
     <value>lb</value>

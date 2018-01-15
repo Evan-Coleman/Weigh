@@ -77,6 +77,13 @@ namespace Weigh.ViewModels
             get { return _settingValsValidated; }
             set { SetProperty(ref _settingValsValidated, value); }
         }
+
+        private string _noteEntry;
+        public string NoteEntry
+        {
+            get { return _noteEntry; }
+            set { SetProperty(ref _noteEntry, value); }
+        }
         IEventAggregator _ea;
         #endregion
 
@@ -152,6 +159,7 @@ namespace Weigh.ViewModels
                 _newWeight.Weight = Convert.ToDouble(SettingValsValidated.Weight);
                 _newWeight.WaistSize = Convert.ToDouble(SettingValsValidated.WaistSize);
                 _newWeight.WeightDelta = 0;
+                _newWeight.Note = NoteEntry;
                 await App.Database.SaveWeightAsync(_newWeight);
                 SettingValsValidated.InitialWeight = Convert.ToDouble(SettingValsValidated.Weight);
                 SettingValsValidated.InitialWeighDate = DateTime.UtcNow;

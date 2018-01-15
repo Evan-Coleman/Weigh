@@ -39,6 +39,7 @@
             <RowDefinition Height="0.08421*" />
             <RowDefinition Height="0.03157*" />
             <RowDefinition Height="0.08421*" />
+            <RowDefinition Height="0.2*" />
             <RowDefinition Height="0.08421*" />
         </Grid.RowDefinitions>
 
@@ -233,9 +234,18 @@
             Date="{Binding SettingValsValidated.GoalDate}"
                     MinimumDate="{Binding SettingValsValidated.MinDate}"></DatePicker>
 
+        <!-- Notes Section -->
+        <Label Grid.Column="0" Grid.Row="14"
+               Text="{localization:Translate NotesLabel}" />
+        <Editor Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="4"
+                Text="{Binding NoteEntry}">
+            <Editor.Behaviors>
+                <b:EditorLengthValidatorBehavior MaxLength="250" />
+            </Editor.Behaviors>
+        </Editor>
 
         <!-- Save Button -->
-        <Button Grid.Column="0" Grid.Row="14" Grid.ColumnSpan="5"
+        <Button Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="5"
             Text="{localization:Translate SaveLabel}"
                 Command="{Binding SaveInfoCommand}"/>
     </Grid>
