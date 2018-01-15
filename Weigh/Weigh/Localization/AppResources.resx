@@ -130,11 +130,11 @@
     <comment>(MainPage) Shows BMI</comment>
   </data>
   <data name="BMRLabel" xml:space="preserve">
-    <value>BMR (Calories/Day)</value>
+    <value>Daily Caloric Budget</value>
     <comment>(MainPage) Shows BMR</comment>
   </data>
   <data name="CaloriesToLoseWeightLabel" xml:space="preserve">
-    <value>Cal/Day to lose weight</value>
+    <value>Cal</value>
     <comment>(MainPage) Cals to lose weight</comment>
   </data>
   <data name="CaloriesToMaintainWeightLabel" xml:space="preserve">
@@ -444,5 +444,29 @@
   <data name="WeightEntryLabel" xml:space="preserve">
     <value>Weight:</value>
     <comment>(InitialSetupPage) Label to indicate entry is for weight</comment>
+  </data>
+  <data name="DaysLabel" xml:space="preserve">
+    <value>Days</value>
+    <comment>(MainPage) unit label for days</comment>
+  </data>
+  <data name="KiloGramsLabel" xml:space="preserve">
+    <value>kg</value>
+    <comment>(MainPage) units label for kilograms</comment>
+  </data>
+  <data name="PoundsLabel" xml:space="preserve">
+    <value>lb</value>
+    <comment>(MainPage) units label for pounds</comment>
+  </data>
+  <data name="TimeLeftLabel" xml:space="preserve">
+    <value>Until: {0:MM/dd/yy}</value>
+    <comment>(MainPage) label showing time until goal</comment>
+  </data>
+  <data name="WeightLeftImperialLabel" xml:space="preserve">
+    <value>To Goal Of: {0:0} lb</value>
+    <comment>(MainPage) label showing goal weight imperial</comment>
+  </data>
+  <data name="WeightLeftMetricLabel" xml:space="preserve">
+    <value>To Goal Of: {0:0} kg</value>
+    <comment>(MainPage) label showing goal weight metric</comment>
   </data>
 </root>

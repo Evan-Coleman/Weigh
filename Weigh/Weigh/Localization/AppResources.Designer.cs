@@ -124,7 +124,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BMR (Calories/Day).
+        ///   Looks up a localized string similar to Daily Caloric Budget.
         /// </summary>
         internal static string BMRLabel {
             get {
@@ -133,7 +133,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cal/Day to lose weight.
+        ///   Looks up a localized string similar to Cal.
         /// </summary>
         internal static string CaloriesToLoseWeightLabel {
             get {
@@ -174,6 +174,15 @@ namespace Weigh.Localization {
         internal static string DateLabelListviewItem {
             get {
                 return ResourceManager.GetString("DateLabelListviewItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Days.
+        /// </summary>
+        internal static string DaysLabel {
+            get {
+                return ResourceManager.GetString("DaysLabel", resourceCulture);
             }
         }
         
@@ -394,6 +403,15 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to kg.
+        /// </summary>
+        internal static string KiloGramsLabel {
+            get {
+                return ResourceManager.GetString("KiloGramsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Activity Level:.
         /// </summary>
         internal static string LevelOfActivityLabel {
@@ -529,6 +547,15 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to lb.
+        /// </summary>
+        internal static string PoundsLabel {
+            get {
+                return ResourceManager.GetString("PoundsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Weight left to lose.
         /// </summary>
         internal static string RemainingWeightToLoseLabel {
@@ -588,6 +615,15 @@ namespace Weigh.Localization {
         internal static string ShowYearGraphButton {
             get {
                 return ResourceManager.GetString("ShowYearGraphButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Until: {0:MM/dd/yy}.
+        /// </summary>
+        internal static string TimeLeftLabel {
+            get {
+                return ResourceManager.GetString("TimeLeftLabel", resourceCulture);
             }
         }
         
@@ -768,6 +804,24 @@ namespace Weigh.Localization {
         internal static string WeightLabelListviewItem {
             get {
                 return ResourceManager.GetString("WeightLabelListviewItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To Goal Of: {0:0} lb.
+        /// </summary>
+        internal static string WeightLeftImperialLabel {
+            get {
+                return ResourceManager.GetString("WeightLeftImperialLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To Goal Of: {0:0} kg.
+        /// </summary>
+        internal static string WeightLeftMetricLabel {
+            get {
+                return ResourceManager.GetString("WeightLeftMetricLabel", resourceCulture);
             }
         }
         

@@ -29,6 +29,38 @@ namespace Weigh.ViewModels
 	{
         #region Fields      
         public DelegateCommand SaveInfoCommand { get; set; }
+        public DelegateCommand SelectImperialCommand { get; set; }
+        public DelegateCommand SelectMetricCommand { get; set; }
+        public DelegateCommand SelectMaleCommand { get; set; }
+        public DelegateCommand SelectFemaleCommand { get; set; }
+
+        private Color _metricSelectedBorderColor;
+        public Color MetricSelectedBorderColor
+        {
+            get { return _metricSelectedBorderColor; }
+            set { SetProperty(ref _metricSelectedBorderColor, value); }
+        }
+
+        private Color _imperialSelectedBorderColor;
+        public Color ImperialSelectedBorderColor
+        {
+            get { return _imperialSelectedBorderColor; }
+            set { SetProperty(ref _imperialSelectedBorderColor, value); }
+        }
+
+        private Color _maleSelectedBorderColor;
+        public Color MaleSelectedBorderColor
+        {
+            get { return _maleSelectedBorderColor; }
+            set { SetProperty(ref _maleSelectedBorderColor, value); }
+        }
+
+        private Color _femaleSelectedBorderColor;
+        public Color FemaleSelectedBorderColor
+        {
+            get { return _femaleSelectedBorderColor; }
+            set { SetProperty(ref _femaleSelectedBorderColor, value); }
+        }
 
         private List<string> _pickerSource;
         public List<string> PickerSource
@@ -55,7 +87,12 @@ namespace Weigh.ViewModels
             _ea = ea;
             Title = AppResources.InitialSetupPageTitle;
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
-
+            SelectImperialCommand = new DelegateCommand(SelectImperial);
+            SelectMetricCommand = new DelegateCommand(SelectMetric);
+            SelectMaleCommand = new DelegateCommand(SelectMale);
+            SelectFemaleCommand = new DelegateCommand(SelectFemale);
+            ImperialSelectedBorderColor = Color.LightBlue;
+            MaleSelectedBorderColor = Color.LightBlue;
             // Initialize app SettingVals
             SettingValsValidated = new SettingValsValidated();
             SettingValsValidated.MinDate = DateTime.UtcNow.AddDays(10);
@@ -72,6 +109,34 @@ namespace Weigh.ViewModels
         private bool CanExecute()
         {
             return SettingValsValidated.ValidateProperties();
+        }
+
+        private void SelectImperial()
+        {
+            MetricSelectedBorderColor = Color.Default;
+            ImperialSelectedBorderColor = Color.LightBlue;
+            SettingValsValidated.Units = true;
+        }
+
+        private void SelectMetric()
+        {
+            MetricSelectedBorderColor = Color.LightBlue;
+            ImperialSelectedBorderColor = Color.Default;
+            SettingValsValidated.Units = false;
+        }
+
+        private void SelectMale()
+        {
+            MaleSelectedBorderColor = Color.LightBlue;
+            FemaleSelectedBorderColor = Color.Default;
+            SettingValsValidated.Sex = false;
+        }
+
+        private void SelectFemale()
+        {
+            MaleSelectedBorderColor = Color.Default;
+            FemaleSelectedBorderColor = Color.LightBlue;
+            SettingValsValidated.Sex = true;
         }
 
         private async void SaveInfoAsync()

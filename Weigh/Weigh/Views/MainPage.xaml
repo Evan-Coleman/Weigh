@@ -6,10 +6,10 @@
              x:Class="Weigh.Views.MainPage"
              Title="{Binding Title}">
 
-    <Grid RowSpacing="0" Padding="20">
+    <Grid RowSpacing="10" Padding="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width="1.2*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -17,30 +17,54 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="1.5*" />
+            <RowDefinition Height="1.8*" />
         </Grid.RowDefinitions>
 
 
+        <!-- Remove Adds Placeholder -->
         <BoxView Grid.Column="0" Grid.Row="1"
                  VerticalOptions="Start"
                  HorizontalOptions="Start"
                  Color="DarkOliveGreen"/>
 
-        <Grid Grid.Column="1" Grid.Row="1" Margin="0" Padding="0" ColumnSpacing="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="15" />
-                </Grid.ColumnDefinitions>
-                <Label Grid.Column="0"
-                       HorizontalOptions="Center"
-                       FontSize="50"
-                       Text="{Binding SettingValsValidated.Weight}"/>
-                <Label Grid.Column="1"
-                       HorizontalOptions="Start"
-                       FontSize="Small"
-                       Text="lb" />
-            </Grid>
+        <!-- Weight Section -->
 
+        <Grid  Grid.Column="1" Grid.Row="1" Margin="0" Padding="0" ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="15" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+                   Margin="0,0,0,-20"
+                   HorizontalOptions="Center"
+                   Text="{localization:Translate CurrentWeightLabel}" />
+            <Label Grid.Column="0" Grid.Row="1"
+                       HorizontalOptions="Center"
+                       FontSize="{StaticResource HeaderOneFontSize}"
+                       Text="{Binding SettingValsValidated.Weight}"/>
+            <Label Grid.Column="1" Grid.Row="1"
+                       HorizontalOptions="Start"
+                       FontSize="{StaticResource UnitFontSize}">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                                     Binding="{Binding SettingValsValidated.Units}"
+                                     Value="false">
+                        <Setter Property="Text" Value="{Binding SettingValsValidated.GoalWeight, StringFormat={localization:Translate KiloGramsLabel}}" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label"
+                                     Binding="{Binding SettingValsValidated.Units}"
+                                     Value="true">
+                        <Setter Property="Text" Value="{Binding SettingValsValidated.GoalWeight, StringFormat={localization:Translate PoundsLabel}}" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </Grid>
+
+        <!-- Info Placeholder -->
         <BoxView Grid.Column="2" Grid.Row="1"
                  VerticalOptions="Start"
                  HorizontalOptions="End"
@@ -48,78 +72,177 @@
 
 
 
-
+        <!-- Distance Section -->
         <Grid Grid.Column="0" Grid.Row="2" Margin="0" Padding="0" ColumnSpacing="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="15" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0"
                        HorizontalOptions="Center"
-                       FontSize="50"
+                       FontSize="{StaticResource HeaderTwoFontSize}"
                        Text="{Binding SettingValsValidated.DistanceToGoalWeight}"/>
-            <Label Grid.Column="1"
+            <Label Grid.Column="1" Grid.Row="0"
                    HorizontalOptions="Start"
-                       FontSize="Small"
-                       Text="lb" />
+                       FontSize="{StaticResource UnitFontSize}">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                                     Binding="{Binding SettingValsValidated.Units}"
+                                     Value="false">
+                        <Setter Property="Text" Value="{Binding SettingValsValidated.GoalWeight, StringFormat={localization:Translate KiloGramsLabel}}" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label"
+                                     Binding="{Binding SettingValsValidated.Units}"
+                                     Value="true">
+                        <Setter Property="Text" Value="{Binding SettingValsValidated.GoalWeight, StringFormat={localization:Translate PoundsLabel}}" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+                   HorizontalOptions="Center"
+                   FontSize="{StaticResource SubtitleFontSize}">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                                     Binding="{Binding SettingValsValidated.Units}"
+                                     Value="false">
+                        <Setter Property="Text" Value="{Binding SettingValsValidated.GoalWeight, StringFormat={localization:Translate WeightLeftMetricLabel}}" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label"
+                                     Binding="{Binding SettingValsValidated.Units}"
+                                     Value="true">
+                        <Setter Property="Text" Value="{Binding SettingValsValidated.GoalWeight, StringFormat={localization:Translate WeightLeftImperialLabel}}" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
         </Grid>
 
+        <!-- Add New Section -->
         <Button Grid.Column="1" Grid.Row="2" 
                 FontSize="10"                
                 Text="{localization:Translate AddEntryLabel}"/>
 
-        <Grid Grid.Column="2" Grid.Row="2" Margin="0" Padding="0" ColumnSpacing="0">
+        <!-- Time Left Section -->
+        <Grid Grid.Column="2" Grid.Row="2" Margin="0" Padding="3" ColumnSpacing="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="15" />
+                <ColumnDefinition Width="25" />
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
             <Label Grid.Column="0"
                        HorizontalOptions="Center"
-                       FontSize="50"
+                       FontSize="{StaticResource HeaderTwoFontSize}"
                        Text="{Binding SettingValsValidated.TimeLeftToGoal}"/>
             <Label Grid.Column="1"
                    HorizontalOptions="Start"
-                       FontSize="Small"
-                       Text="lb" />
+                       FontSize="{StaticResource UnitFontSize}"
+                       Text="{localization:Translate DaysLabel}" />
+            <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+                   HorizontalOptions="Center"
+                   FontSize="{StaticResource SubtitleFontSize}"
+                   Text="{Binding SettingValsValidated.GoalDate, StringFormat={localization:Translate TimeLeftLabel}}" />
         </Grid>
 
-
-
-        <Grid Grid.Column="1" Grid.Row="3" Margin="0" Padding="0" ColumnSpacing="0">
+        <!-- RDCI Section -->
+        <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Margin="0" Padding="0" ColumnSpacing="0" RowSpacing="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="15" />
+                <ColumnDefinition Width="25" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+                   FontSize="{StaticResource HeaderThreeFontSize}"
+                   HorizontalOptions="Center"
+                       Text="{localization:Translate BMRLabel}"/>
+            <Label Grid.Column="0" Grid.Row="1"
                        HorizontalOptions="Center"
-                       FontSize="50"
-                       Text="{Binding SettingValsValidated.RecommendedDailyCaloricIntake, StringFormat='{0:0}'}}"/>
-            <Label Grid.Column="1"
-                   HorizontalOptions="Start"
-                       FontSize="Small"
-                       Text="lb" />
+                       FontSize="{StaticResource HeaderThreeFontSize}"
+                       Text="{Binding SettingValsValidated.RecommendedDailyCaloricIntake, StringFormat='{0:0} Cal/day'}}"/>
+
         </Grid>
 
-
-        <Grid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3">
+        <!-- BMI Section -->
+        <Grid  Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" RowSpacing="0">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition  Height="*"/>
-                <RowDefinition  Height="*"/>
-                <RowDefinition  Height="*"/>
+                <RowDefinition  Height="0.194*"/>
+                <RowDefinition  Height="0.25*"/>
+                <RowDefinition  Height="0.472*"/>
+                <RowDefinition  Height="0.0833*"/>
             </Grid.RowDefinitions>
-            
-            
-        <Label Grid.Column="1" Grid.Row="0"
-               HorizontalOptions="Center"
-               FontSize="50"
+
+            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4"
+                   HorizontalOptions="Center"
+                   FontSize="{StaticResource HeaderTwoFontSize}"
+                   Text="{localization:Translate BMILabel}" />
+
+            <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+                   HorizontalOptions="Center"
+               FontSize="{StaticResource HeaderThreeFontSize}"
                Text="{Binding SettingValsValidated.BMI, StringFormat='{0:0.0}'}"/>
+
+            <Label Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"
+                   HorizontalOptions="Center"
+               FontSize="{StaticResource HeaderThreeFontSize}"
+               Text="{Binding SettingValsValidated.BMICategory}"/>
+
+            <linear:SfLinearGauge Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Margin="0,0,0,0">
+                <linear:SfLinearGauge.Scales>
+                    <linear:LinearScale x:Name="scale" MinimumValue="10" MaximumValue="40"
+                                    Interval="5" ScaleBarLength="100"
+                                    ScaleBarColor="#FAECEC" MinorTicksPerInterval="1"
+                                    ScaleBarSize="13" ScalePosition="BackWard" 
+                                            LabelColor="{StaticResource primary_text}">
+                        <linear:LinearScale.Ranges>
+                            <linear:LinearRange StartValue="10" Color="#e91e63" Offset ="0.07" EndValue="18.5" StartWidth="10" EndWidth="10"/>
+                            <linear:LinearRange StartValue="18.5" Color="#1b5e20" EndValue="24.9" Offset ="0.07" StartWidth="10" EndWidth="10" />
+                            <linear:LinearRange StartValue="25" Color="#ff6d00" EndValue="29.9" Offset ="0.07" StartWidth="10" EndWidth="10" />
+                            <linear:LinearRange StartValue="30" Color="#d50000" EndValue="40" Offset ="0.07" StartWidth="10" EndWidth="10" />
+                        </linear:LinearScale.Ranges>
+                        <linear:LinearScale.Pointers>
+                            <linear:SymbolPointer x:Name="symbolPointer" Value="{Binding SettingValsValidated.BMI}"  Offset="0" Thickness="10" Color="{StaticResource primary_dark}" EnableAnimation="True"/>
+                            <linear:BarPointer x:Name="rangePointer" Value="{Binding SettingValsValidated.BMI}"  Thickness="10" EnableAnimation="True" Color="{StaticResource primary_dark}"/>
+                        </linear:LinearScale.Pointers>
+                    </linear:LinearScale>
+                </linear:SfLinearGauge.Scales>
+            </linear:SfLinearGauge>
+
+            <Label Grid.Row="3" Grid.Column="0" 
+                   Margin="10,-5,0,0" LineBreakMode="NoWrap"
+                    FontSize="{StaticResource GraphLabelFontSize}"
+                   TextColor="#e91e63"
+                           Text="{localization:Translate UnderWeightLabel}"/>
+            <Label Grid.Row="3" Grid.Column="1"
+                   FontSize="{StaticResource GraphLabelFontSize}"
+                   TextColor="#1b5e20"
+                   Margin="15,-5,0,0"
+                           Text="{localization:Translate NormalWeightLabel}" />
+            <Label Grid.Row="3" Grid.Column="2"
+                   FontSize="{StaticResource GraphLabelFontSize}"
+                   TextColor="#ff6d00"
+                   Margin="-5,-5,0,0"
+                           Text="{localization:Translate OverweightLabel}"/>
+            <Label Grid.Row="3" Grid.Column="3"
+                   FontSize="{StaticResource GraphLabelFontSize}"
+                   TextColor="#d50000"
+                   Margin="0,-5,0,0"
+                           Text="{localization:Translate ObeseLabel}" />
         </Grid>
-        
-        
+
     </Grid>
+    
 </ContentPage>
