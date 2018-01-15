@@ -78,6 +78,13 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _settingValsValidated, value); }
         }
 
+        private SettingVals _settingVals;
+        public SettingVals SettingVals
+        {
+            get { return _settingVals; }
+            set { SetProperty(ref _settingVals, value); }
+        }
+
         private string _noteEntry;
         public string NoteEntry
         {
@@ -101,13 +108,14 @@ namespace Weigh.ViewModels
             ImperialSelectedBorderColor = Color.LightBlue;
             MaleSelectedBorderColor = Color.LightBlue;
             // Initialize app SettingVals
+            SettingVals = new SettingVals();
             SettingValsValidated = new SettingValsValidated();
-            SettingValsValidated.MinDate = DateTime.UtcNow.AddDays(10);
-            SettingValsValidated.GoalDate = DateTime.UtcNow.AddDays(180);
+            SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
+            SettingVals.GoalDate = DateTime.UtcNow.AddDays(180);
             // Setting units to default imperial
-            SettingValsValidated.Units = true;
-            SettingValsValidated.WaistSizeEnabled = true;
-            SettingValsValidated.PickerSelectedItem = AppResources.LightActivityPickItem;
+            SettingVals.Units = true;
+            SettingVals.WaistSizeEnabled = true;
+            SettingVals.PickerSelectedItem = AppResources.LightActivityPickItem;
             PickerSource = new List<string> { AppResources.LowActivityPickItem, AppResources.LightActivityPickItem, AppResources.MediumActivityPickItem, AppResources.HeavyActivityPickItem };
         }
         #endregion
@@ -122,28 +130,28 @@ namespace Weigh.ViewModels
         {
             MetricSelectedBorderColor = Color.Default;
             ImperialSelectedBorderColor = Color.LightBlue;
-            SettingValsValidated.Units = true;
+            SettingVals.Units = true;
         }
 
         private void SelectMetric()
         {
             MetricSelectedBorderColor = Color.LightBlue;
             ImperialSelectedBorderColor = Color.Default;
-            SettingValsValidated.Units = false;
+            SettingVals.Units = false;
         }
 
         private void SelectMale()
         {
             MaleSelectedBorderColor = Color.LightBlue;
             FemaleSelectedBorderColor = Color.Default;
-            SettingValsValidated.Sex = false;
+            SettingVals.Sex = false;
         }
 
         private void SelectFemale()
         {
             MaleSelectedBorderColor = Color.Default;
             FemaleSelectedBorderColor = Color.LightBlue;
-            SettingValsValidated.Sex = true;
+            SettingVals.Sex = true;
         }
 
         private async void SaveInfoAsync()
@@ -161,12 +169,12 @@ namespace Weigh.ViewModels
                 _newWeight.WeightDelta = 0;
                 _newWeight.Note = NoteEntry;
                 await App.Database.SaveWeightAsync(_newWeight);
-                SettingValsValidated.InitialWeight = Convert.ToDouble(SettingValsValidated.Weight);
-                SettingValsValidated.InitialWeighDate = DateTime.UtcNow;
-                SettingValsValidated.LastWeight = SettingValsValidated.InitialWeight;
-                SettingValsValidated.LastWeighDate = DateTime.UtcNow;
-                SettingValsValidated.ValidateGoal();
-                SettingValsValidated.SaveSettingValsToDevice();
+                SettingVals.InitialWeight = Convert.ToDouble(SettingValsValidated.Weight);
+                SettingVals.InitialWeighDate = DateTime.UtcNow;
+                SettingVals.LastWeight = SettingValsValidated.InitialWeight;
+                SettingVals.LastWeighDate = DateTime.UtcNow;
+                SettingVals.ValidateGoal();
+                SettingVals.SaveSettingValsToDevice();
                 Settings.FirstUse = "no";
                 //await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage");
                 await NavigationService.NavigateAsync(

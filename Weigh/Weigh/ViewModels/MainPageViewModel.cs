@@ -51,11 +51,11 @@ namespace Weigh.ViewModels
             get { return _newWaistSizeEntry; }
             set { SetProperty(ref _newWaistSizeEntry, value); }
         }
-        private SettingValsValidated _settingValsValidated;
-        public SettingValsValidated SettingValsValidated
+        private SettingVals _settingVals;
+        public SettingVals SettingVals
         {
-            get { return _settingValsValidated; }
-            set { SetProperty(ref _settingValsValidated, value); }
+            get { return _settingVals; }
+            set { SetProperty(ref _settingVals, value); }
         }
         private WeightEntry _newWeight;
         private IEventAggregator _ea;
@@ -71,7 +71,7 @@ namespace Weigh.ViewModels
             //_ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
             _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo);
             Title = AppResources.MainPageTitle;
-            SettingValsValidated = new SettingValsValidated();
+            SettingVals = new SettingVals();
             ButtonEnabled = true;            
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
             NewWaistSizeEntry = Settings.WaistSize;
@@ -88,16 +88,16 @@ namespace Weigh.ViewModels
 
         private void HandleUpdateSetupInfo(SettingValsValidated _setupInfo)
         {
-            SettingValsValidated = _setupInfo;
+            SettingVals.InitializeFromValidated(_setupInfo);
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)
         {
-            SettingValsValidated.InitializeSettingVals();
+            SettingVals.InitializeSettingVals();
             
-            if (SettingValsValidated.ValidateGoal() == false)
+            if (SettingVals.ValidateGoal() == false)
             {
-                SettingValsValidated.SaveSettingValsToDevice();
+                SettingVals.SaveSettingValsToDevice();
             }
             _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SettingValsValidated);
             _ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Publish(SettingValsValidated.WaistSizeEnabled);

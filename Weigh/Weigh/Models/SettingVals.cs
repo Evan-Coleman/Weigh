@@ -22,6 +22,13 @@ namespace Weigh.Models
             set { SetProperty(ref _age, value); }
         }
 
+        private string _goalWeight;
+        public string GoalWeight
+        {
+            get { return _goalWeight; }
+            set { SetProperty(ref _goalWeight, value); }
+        }
+
         private string _heightMajor;
         public string HeightMajor
         {
@@ -36,32 +43,11 @@ namespace Weigh.Models
             set { SetProperty(ref _heightMinor, value); }
         }
 
-        private string _weight;
-        public string Weight
-        {
-            get { return _weight; }
-            set { SetProperty(ref _weight, value); }
-        }
-
         private string _waistSize;
         public string WaistSize
         {
             get { return _waistSize; }
             set { SetProperty(ref _waistSize, value); }
-        }
-        
-        private string _goalWeight;
-        public string GoalWeight
-        {
-            get { return _goalWeight; }
-            set { SetProperty(ref _goalWeight, value); }
-        }
-
-        private DateTime _goalDate;
-        public DateTime GoalDate
-        {
-            get { return _goalDate; }
-            set { SetProperty(ref _goalDate, value); }
         }
 
         private bool _units;
@@ -71,18 +57,11 @@ namespace Weigh.Models
             set { SetProperty(ref _units, value); }
         }
 
-        private string _pickerSelectedItem;
-        public string PickerSelectedItem
+        private string _weight;
+        public string Weight
         {
-            get { return _pickerSelectedItem; }
-            set { SetProperty(ref _pickerSelectedItem, value); }
-        }
-
-        private double _BMI;
-        public double BMI
-        {
-            get { return _BMI; }
-            set { SetProperty(ref _BMI, value); }
+            get { return _weight; }
+            set { SetProperty(ref _weight, value); }
         }
 
         private bool _sex;
@@ -92,12 +71,9 @@ namespace Weigh.Models
             set { SetProperty(ref _sex, value); }
         }
 
-        private double _BMR;
-        public double BMR
-        {
-            get { return _BMR; }
-            set { SetProperty(ref _BMR, value); }
-        }
+        ////
+
+
 
         private double _recommendedDailyCaloricIntake;
         public double RecommendedDailyCaloricIntake
@@ -106,11 +82,99 @@ namespace Weigh.Models
             set { SetProperty(ref _recommendedDailyCaloricIntake, value); }
         }
 
+        private double _BMI;
+        public double BMI
+        {
+            get { return _BMI; }
+            set { SetProperty(ref _BMI, value); }
+        }
+
         private string _BMICategory;
         public string BMICategory
         {
             get { return _BMICategory; }
             set { SetProperty(ref _BMICategory, value); }
+        }
+
+        private double _BMR;
+        public double BMR
+        {
+            get { return _BMR; }
+            set { SetProperty(ref _BMR, value); }
+        }
+
+        private double _weightPerWeekToMeetGoal;
+        public double WeightPerWeekToMeetGoal
+        {
+            get { return _weightPerWeekToMeetGoal; }
+            set { SetProperty(ref _weightPerWeekToMeetGoal, value); }
+        }
+
+        private double _distanceToGoalWeight;
+        public double DistanceToGoalWeight
+        {
+            get { return _distanceToGoalWeight; }
+            set { SetProperty(ref _distanceToGoalWeight, value); }
+        }
+
+        private double _weightLostToDate;
+        public double WeightLostToDate
+        {
+            get { return _weightLostToDate; }
+            set { SetProperty(ref _weightLostToDate, value); }
+        }
+
+        private int _timeLeftToGoal;
+        public int TimeLeftToGoal
+        {
+            get { return _timeLeftToGoal; }
+            set { SetProperty(ref _timeLeftToGoal, value); }
+        }
+        ////
+
+
+        private DateTime _minDate;
+        public DateTime MinDate
+        {
+            get { return _minDate; }
+            set { SetProperty(ref _minDate, value); }
+        }
+
+        private string _pickerSelectedItem;
+        public string PickerSelectedItem
+        {
+            get { return _pickerSelectedItem; }
+            set { SetProperty(ref _pickerSelectedItem, value); }
+        }
+
+        private bool _waistSizeEnabled;
+        public bool WaistSizeEnabled
+        {
+            get { return _waistSizeEnabled; }
+            set { SetProperty(ref _waistSizeEnabled, value); }
+        }
+
+        ////
+
+        private DateTime _goalDate;
+        public DateTime GoalDate
+        {
+            get { return _goalDate; }
+            set { SetProperty(ref _goalDate, value); }
+        }
+
+        private DateTime _initialWeighDate;
+        public DateTime InitialWeighDate
+        {
+            get { return _initialWeighDate; }
+            set { SetProperty(ref _initialWeighDate, value); }
+        }
+
+        private double _initialWeight;
+        public double InitialWeight
+        {
+            get { return _initialWeight; }
+            set { SetProperty(ref _initialWeight, value); }
         }
 
         private DateTime _lastWeighDate;
@@ -127,29 +191,22 @@ namespace Weigh.Models
             set { SetProperty(ref _lastWeight, value); }
         }
 
-        private double _initialWeight;
-        public double InitialWeight
-        {
-            get { return _initialWeight; }
-            set { SetProperty(ref _initialWeight, value); }
-        }
 
-        private DateTime _initialWeighDate;
-        public DateTime InitialWeighDate
-        {
-            get { return _initialWeighDate; }
-            set { SetProperty(ref _initialWeighDate, value); }
-        }
 
-        private bool _waistSizeEnabled;
-        public bool WaistSizeEnabled
-        {
-            get { return _waistSizeEnabled; }
-            set { SetProperty(ref _waistSizeEnabled, value); }
-        }
+
         #endregion
 
         #region Methods
+        public void InitializeFromValidated(SettingValsValidated _validatedSettings)
+        {
+            Age = _validatedSettings.Age;
+            GoalWeight = _validatedSettings.GoalWeight;
+            HeightMajor = _validatedSettings.HeightMajor;
+            HeightMinor = _validatedSettings.HeightMinor;
+            WaistSize = _validatedSettings.WaistSize;
+            Weight = _validatedSettings.Weight;
+        }
+
         public void InitializeSettingVals()
         {
             Age = Settings.Age.ToString();
@@ -166,9 +223,14 @@ namespace Weigh.Models
             BMR = Settings.BMR;
             RecommendedDailyCaloricIntake = Settings.RecommendedDailyCaloricIntake;
             BMICategory = Settings.BMICategory;
+            WeightPerWeekToMeetGoal = Settings.WeightPerWeekToMeetGoal;
             LastWeighDate = Settings.LastWeighDate;
             LastWeight = Settings.LastWeight;
+            DistanceToGoalWeight = Settings.DistanceToGoalWeight;
+            WeightLostToDate = Settings.WeightLostToDate;
             InitialWeight = Settings.InitialWeight;
+            TimeLeftToGoal = Settings.TimeLeftToGoal;
+            MinDate = Settings.MinDate;
             InitialWeighDate = Settings.InitialWeightDate;
             WaistSizeEnabled = Settings.WaistSizeEnabled;
         }
@@ -188,20 +250,16 @@ namespace Weigh.Models
             Settings.BMR = BMR;
             Settings.RecommendedDailyCaloricIntake = RecommendedDailyCaloricIntake;
             Settings.BMICategory = BMICategory;
+            Settings.WeightPerWeekToMeetGoal = WeightPerWeekToMeetGoal;
             Settings.LastWeighDate = LastWeighDate;
             Settings.LastWeight = LastWeight;
+            Settings.DistanceToGoalWeight = DistanceToGoalWeight;
+            Settings.WeightLostToDate = WeightLostToDate;
             Settings.InitialWeight = InitialWeight;
+            Settings.TimeLeftToGoal = TimeLeftToGoal;
+            Settings.MinDate = MinDate;
             Settings.InitialWeightDate = InitialWeighDate;
             Settings.WaistSizeEnabled = WaistSizeEnabled;
-        }
-
-        public void PullValidatedSettings(SettingValsValidated _settings)
-        {
-            Age = _settings.Age;
-            HeightMajor = _settings.HeightMajor;
-            HeightMinor = _settings.HeightMinor;
-            Weight = _settings.Weight;
-            WaistSize = _settings.WaistSize;
         }
 
         public void CalculateBMI()
@@ -279,7 +337,7 @@ namespace Weigh.Models
                 BMR *= 1.725;
             }
         }
-        /*
+
         public bool ValidateGoal()
         {
             CalculateBMI();
@@ -314,12 +372,13 @@ namespace Weigh.Models
             if (Sex == true && RecommendedDailyCaloricIntake < 1200)
             {
                 // Min calories/day for women is 1200
-               RequiredCaloricDefecit = BMR - 1300;
-               WeightPerWeekToMeetGoal = RequiredCaloricDefecit / 500;
-               int DaysToAddToMeetMinimum = (int)((_weight - _goalWeight) / (WeightPerWeekToMeetGoal / 7));
-               GoalDate = DateTime.Now.ToLocalTime().AddDays(DaysToAddToMeetMinimum + 10);
+                RequiredCaloricDefecit = BMR - 1300;
+                WeightPerWeekToMeetGoal = RequiredCaloricDefecit / 500;
+                int DaysToAddToMeetMinimum = (int)((_weight - _goalWeight) / (WeightPerWeekToMeetGoal / 7));
+                GoalDate = DateTime.Now.ToLocalTime().AddDays(DaysToAddToMeetMinimum + 10);
                 UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, _goalDate));
                 return false;
+                //Create(async token => await this.Dialogs.AlertAsync("Test alert", "Alert Title", null, token));
             }
             if (Sex == false && RecommendedDailyCaloricIntake < 1800)
             {
@@ -330,11 +389,15 @@ namespace Weigh.Models
                 GoalDate = DateTime.Now.ToLocalTime().AddDays(DaysToAddToMeetMinimum + 10);
                 UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, GoalDate));
                 return false;
+                // Keeping for future use maybe
+                /*
+                UserDialogs.Instance.Toast(new ToastConfig(string.Format("Goal date has been set to: {0:MM/dd/yy}", AppState.GoalDate))
+                    .SetDuration(TimeSpan.FromSeconds(3))
+                    .SetPosition(ToastPosition.Bottom));
+                    */
             }
             return true;
         }
-        */
         #endregion
     }
-
 }
