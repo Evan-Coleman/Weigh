@@ -171,7 +171,7 @@ namespace Weigh.ViewModels
                 await App.Database.SaveWeightAsync(_newWeight);
                 SettingVals.InitialWeight = Convert.ToDouble(SettingValsValidated.Weight);
                 SettingVals.InitialWeighDate = DateTime.UtcNow;
-                SettingVals.LastWeight = SettingValsValidated.InitialWeight;
+                SettingVals.LastWeight = SettingVals.InitialWeight;
                 SettingVals.LastWeighDate = DateTime.UtcNow;
                 SettingVals.ValidateGoal();
                 SettingVals.SaveSettingValsToDevice();

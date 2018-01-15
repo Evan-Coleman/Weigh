@@ -99,8 +99,8 @@ namespace Weigh.ViewModels
             {
                 SettingVals.SaveSettingValsToDevice();
             }
-            _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SettingValsValidated);
-            _ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Publish(SettingValsValidated.WaistSizeEnabled);
+            _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SettingVals);
+            _ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Publish(SettingVals.WaistSizeEnabled);
         }
         #endregion
     }

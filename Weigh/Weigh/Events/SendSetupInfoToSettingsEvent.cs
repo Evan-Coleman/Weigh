@@ -6,7 +6,7 @@ using Weigh.Models;
 
 namespace Weigh.Events
 {
-    class SendSetupInfoToSettingsEvent : PubSubEvent<SettingValsValidated>
+    class SendSetupInfoToSettingsEvent : PubSubEvent<SettingVals>
     {
     }
 }
