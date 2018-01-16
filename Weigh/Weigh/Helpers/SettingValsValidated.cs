@@ -72,5 +72,19 @@ namespace Weigh.Models
             set { SetProperty(ref _weight, value); }
         }
         #endregion
+
+        #region Methods
+
+        public void InitializeFromSettings(SettingVals validatedSettings)
+        {
+            Age = validatedSettings.Age.ToString();
+            GoalWeight = validatedSettings.GoalWeight.ToString();
+            HeightMajor = validatedSettings.HeightMajor.ToString();
+            HeightMinor = validatedSettings.HeightMinor.ToString();
+            WaistSize = validatedSettings.WaistSize.ToString();
+            Weight = validatedSettings.Weight.ToString();
+        }
+
+        #endregion
     }
 }

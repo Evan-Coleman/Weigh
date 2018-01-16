@@ -42,14 +42,6 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _addWeightToListCommand, value);
         }
 
-        private double _newWeightEntry;
-
-        public double NewWeightEntry
-        {
-            get => _newWeightEntry;
-            set => SetProperty(ref _newWeightEntry, value);
-        }
-
         private bool _buttonEnabled;
 
         public bool ButtonEnabled

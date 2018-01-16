@@ -23,6 +23,7 @@ namespace Weigh.ViewModels
             : base(navigationService)
         {
             SettingValsValidated = new SettingValsValidated();
+            SettingVals = new SettingVals();
             _ea = ea;
             _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo);
             Title = AppResources.SettingsPageTitle;
