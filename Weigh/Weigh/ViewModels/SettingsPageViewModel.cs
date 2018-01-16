@@ -88,8 +88,8 @@ namespace Weigh.ViewModels
         private void HandleNewSetupInfo(SettingVals setupInfo)
         {
             SettingVals = setupInfo;
+            SettingValsValidated.InitializeFromSettings(SettingVals);
             SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
-            SettingVals.PickerSelectedItem = Settings.PickerSelectedItem;
         }
 
         #endregion

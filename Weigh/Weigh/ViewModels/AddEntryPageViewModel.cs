@@ -127,7 +127,6 @@ namespace Weigh.ViewModels
                 SettingVals.ValidateGoal();
                 SettingVals.SaveSettingValsToDevice();
                 _ea.GetEvent<AddWeightEvent>().Publish(NewWeightEntry);
-                _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SettingVals);
                 await App.Database.SaveWeightAsync(NewWeightEntry);
                 await NavigationService.NavigateAsync(
                     $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
