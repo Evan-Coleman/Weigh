@@ -15,18 +15,13 @@ namespace Weigh.Models
     public class SettingVals : BindableBase
     {
         #region Fields
+
+        // Settings Section
         private int _age;
         public int Age
         {
             get { return _age; }
             set { SetProperty(ref _age, value); }
-        }
-
-        private double _goalWeight;
-        public double GoalWeight
-        {
-            get { return _goalWeight; }
-            set { SetProperty(ref _goalWeight, value); }
         }
 
         private double _heightMajor;
@@ -48,6 +43,13 @@ namespace Weigh.Models
         {
             get { return _waistSize; }
             set { SetProperty(ref _waistSize, value); }
+        }
+
+        private double _goalWeight;
+        public double GoalWeight
+        {
+            get { return _goalWeight; }
+            set { SetProperty(ref _goalWeight, value); }
         }
 
         private bool _units;
@@ -212,54 +214,60 @@ namespace Weigh.Models
             Age = Settings.Age;
             HeightMajor = Settings.HeightMajor;
             HeightMinor = Settings.HeightMinor;
-            Weight = Settings.Weight;
             WaistSize = Settings.WaistSize;
             GoalWeight = Settings.GoalWeight;
-            GoalDate = Settings.GoalDate;
             Units = Settings.Units;
-            PickerSelectedItem = Settings.PickerSelectedItem;
+            Weight = Settings.Weight;
             Sex = Settings.Sex;
-            BMI = Settings.BMI;
-            BMR = Settings.BMR;
+
             RecommendedDailyCaloricIntake = Settings.RecommendedDailyCaloricIntake;
+            BMI = Settings.BMI;
             BMICategory = Settings.BMICategory;
+            BMR = Settings.BMR;            
             WeightPerWeekToMeetGoal = Settings.WeightPerWeekToMeetGoal;
-            LastWeighDate = Settings.LastWeighDate;
-            LastWeight = Settings.LastWeight;
             DistanceToGoalWeight = Settings.DistanceToGoalWeight;
             WeightLostToDate = Settings.WeightLostToDate;
-            InitialWeight = Settings.InitialWeight;
             TimeLeftToGoal = Settings.TimeLeftToGoal;
+
             MinDate = Settings.MinDate;
-            InitialWeighDate = Settings.InitialWeightDate;
+            PickerSelectedItem = Settings.PickerSelectedItem;            
             WaistSizeEnabled = Settings.WaistSizeEnabled;
+
+            GoalDate = Settings.GoalDate;
+            InitialWeighDate = Settings.InitialWeightDate;
+            InitialWeight = Settings.InitialWeight;
+            LastWeighDate = Settings.LastWeighDate;
+            LastWeight = Settings.LastWeight;
         }
         public void SaveSettingValsToDevice()
         {
-            Settings.Age = Age;
-            Settings.HeightMajor = HeightMajor;
-            Settings.HeightMinor = HeightMinor;
-            Settings.Weight = Weight;
-            Settings.WaistSize = WaistSize;
-            Settings.GoalWeight = GoalWeight;
-            Settings.GoalDate = GoalDate;
-            Settings.Units = Units;
-            Settings.PickerSelectedItem = PickerSelectedItem;
-            Settings.Sex = Sex;
-            Settings.BMI = BMI;
-            Settings.BMR = BMR;
-            Settings.RecommendedDailyCaloricIntake = RecommendedDailyCaloricIntake;
-            Settings.BMICategory = BMICategory;
-            Settings.WeightPerWeekToMeetGoal = WeightPerWeekToMeetGoal;
-            Settings.LastWeighDate = LastWeighDate;
-            Settings.LastWeight = LastWeight;
-            Settings.DistanceToGoalWeight = DistanceToGoalWeight;
-            Settings.WeightLostToDate = WeightLostToDate;
-            Settings.InitialWeight = InitialWeight;
-            Settings.TimeLeftToGoal = TimeLeftToGoal;
-            Settings.MinDate = MinDate;
-            Settings.InitialWeightDate = InitialWeighDate;
-            Settings.WaistSizeEnabled = WaistSizeEnabled;
+            Age = Settings.Age;
+            HeightMajor = Settings.HeightMajor;
+            HeightMinor = Settings.HeightMinor;
+            WaistSize = Settings.WaistSize;
+            GoalWeight = Settings.GoalWeight;
+            Units = Settings.Units;
+            Weight = Settings.Weight;
+            Sex = Settings.Sex;
+
+            RecommendedDailyCaloricIntake = Settings.RecommendedDailyCaloricIntake;
+            BMI = Settings.BMI;
+            BMICategory = Settings.BMICategory;
+            BMR = Settings.BMR;
+            WeightPerWeekToMeetGoal = Settings.WeightPerWeekToMeetGoal;
+            DistanceToGoalWeight = Settings.DistanceToGoalWeight;
+            WeightLostToDate = Settings.WeightLostToDate;
+            TimeLeftToGoal = Settings.TimeLeftToGoal;
+
+            MinDate = Settings.MinDate;
+            PickerSelectedItem = Settings.PickerSelectedItem;
+            WaistSizeEnabled = Settings.WaistSizeEnabled;
+
+            GoalDate = Settings.GoalDate;
+            InitialWeighDate = Settings.InitialWeightDate;
+            InitialWeight = Settings.InitialWeight;
+            LastWeighDate = Settings.LastWeighDate;
+            LastWeight = Settings.LastWeight;
         }
 
         public void CalculateBMI()
