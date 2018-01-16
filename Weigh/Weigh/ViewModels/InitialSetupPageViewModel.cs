@@ -30,6 +30,10 @@ namespace Weigh.ViewModels
             SelectMetricCommand = new DelegateCommand(SelectMetric);
             SelectMaleCommand = new DelegateCommand(SelectMale);
             SelectFemaleCommand = new DelegateCommand(SelectFemale);
+
+            DatePickedCommand = new DelegateCommand(DatePicked);
+            AgeChangedCommand = new DelegateCommand(AgeChanged);
+
             ImperialSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             MaleSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             // Initialize app SettingVals
@@ -37,6 +41,7 @@ namespace Weigh.ViewModels
             SettingValsValidated = new SettingValsValidated();
             SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
             SettingVals.GoalDate = DateTime.UtcNow.AddDays(180);
+            BirthDate = DateTime.UtcNow.AddDays(-3650);
             // Setting units to default imperial
             SettingVals.Units = true;
             SettingVals.WaistSizeEnabled = true;
@@ -59,6 +64,8 @@ namespace Weigh.ViewModels
         public DelegateCommand SelectMetricCommand { get; set; }
         public DelegateCommand SelectMaleCommand { get; set; }
         public DelegateCommand SelectFemaleCommand { get; set; }
+        public DelegateCommand DatePickedCommand { get; set; }
+        public DelegateCommand AgeChangedCommand { get; set; }
 
         private Color _metricSelectedBorderColor;
 
@@ -126,6 +133,13 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _noteEntry, value);
         }
 
+        private DateTime _birthDate;
+        public DateTime BirthDate
+        {
+            get { return _birthDate; }
+            set { SetProperty(ref _birthDate, value); }
+        }
+
         private IEventAggregator _ea;
 
         #endregion
@@ -163,6 +177,16 @@ namespace Weigh.ViewModels
             MaleSelectedBorderColor = Color.Default;
             FemaleSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             SettingVals.Sex = true;
+        }
+
+        private void DatePicked()
+        {
+            SettingValsValidated.Age = ((DateTime.UtcNow - BirthDate).Days / 365).ToString();
+        }
+
+        private void AgeChanged()
+        {
+            
         }
 
         private async void SaveInfoAsync()

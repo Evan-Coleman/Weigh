@@ -198,11 +198,11 @@
     <comment>(InitialSetupPage / SettingsPage) Picker item for heavy activity</comment>
   </data>
   <data name="HeightMajorImperialEntryPlaceholder" xml:space="preserve">
-    <value>Enter Height (ft) Here</value>
+    <value>Height (ft)</value>
     <comment>(InitialSetupPage / SettingsPage) If user set units to imperial, lets them know to enter their height in feet</comment>
   </data>
   <data name="HeightMajorMetricEntryPlaceholder" xml:space="preserve">
-    <value>Enter Height (cm) Here</value>
+    <value>Height (cm)</value>
     <comment>(InitialSetupPage / SettingsPage) If user set units to metric, lets them know to enter their height in centimeters</comment>
   </data>
   <data name="HeightMinorImperialEntryPlaceholder" xml:space="preserve">
@@ -234,7 +234,7 @@
     <comment>(InitialSetupPage / SettingsPage) Picker item for medium activity</comment>
   </data>
   <data name="NameEntryPlaceholder" xml:space="preserve">
-    <value>Enter Age Here</value>
+    <value>Age</value>
     <comment>(InitialSetupPage / SettingsPage) Lets user know to enter their name there</comment>
   </data>
   <data name="NewEntryLabel" xml:space="preserve">

@@ -349,7 +349,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter Height (ft) Here.
+        ///   Looks up a localized string similar to Height (ft).
         /// </summary>
         internal static string HeightMajorImperialEntryPlaceholder {
             get {
@@ -376,7 +376,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter Height (cm) Here.
+        ///   Looks up a localized string similar to Height (cm).
         /// </summary>
         internal static string HeightMajorMetricEntryPlaceholder {
             get {
@@ -475,7 +475,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter Age Here.
+        ///   Looks up a localized string similar to Age.
         /// </summary>
         internal static string NameEntryPlaceholder {
             get {
