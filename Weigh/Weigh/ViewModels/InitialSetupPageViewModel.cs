@@ -30,10 +30,6 @@ namespace Weigh.ViewModels
             SelectMetricCommand = new DelegateCommand(SelectMetric);
             SelectMaleCommand = new DelegateCommand(SelectMale);
             SelectFemaleCommand = new DelegateCommand(SelectFemale);
-
-            DatePickedCommand = new DelegateCommand(DatePicked);
-            AgeChangedCommand = new DelegateCommand(AgeChanged);
-
             ImperialSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             MaleSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             // Initialize app SettingVals
@@ -41,7 +37,10 @@ namespace Weigh.ViewModels
             SettingValsValidated = new SettingValsValidated();
             SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
             SettingVals.GoalDate = DateTime.UtcNow.AddDays(180);
-            BirthDate = DateTime.UtcNow.AddDays(-3650);
+            SettingVals.BirthDate = DateTime.Parse("2/25/1988");
+            //SettingVals.BirthDate = DateTime.UtcNow.AddYears(-21);
+            BirthDateMinDate = DateTime.UtcNow.AddYears(-150);
+            BirthDateMaxDate = DateTime.UtcNow.AddYears(-1);
             // Setting units to default imperial
             SettingVals.Units = true;
             SettingVals.WaistSizeEnabled = true;
@@ -64,8 +63,6 @@ namespace Weigh.ViewModels
         public DelegateCommand SelectMetricCommand { get; set; }
         public DelegateCommand SelectMaleCommand { get; set; }
         public DelegateCommand SelectFemaleCommand { get; set; }
-        public DelegateCommand DatePickedCommand { get; set; }
-        public DelegateCommand AgeChangedCommand { get; set; }
 
         private Color _metricSelectedBorderColor;
 
@@ -133,11 +130,18 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _noteEntry, value);
         }
 
-        private DateTime _birthDate;
-        public DateTime BirthDate
+        private DateTime _birthDateMinDate;
+        public DateTime BirthDateMinDate
         {
-            get { return _birthDate; }
-            set { SetProperty(ref _birthDate, value); }
+            get { return _birthDateMinDate; }
+            set { SetProperty(ref _birthDateMinDate, value); }
+        }
+
+        private DateTime _birthDateMaxDate;
+        public DateTime BirthDateMaxDate
+        {
+            get { return _birthDateMaxDate; }
+            set { SetProperty(ref _birthDateMaxDate, value); }
         }
 
         private IEventAggregator _ea;
@@ -179,18 +183,9 @@ namespace Weigh.ViewModels
             SettingVals.Sex = true;
         }
 
-        private void DatePicked()
-        {
-            SettingValsValidated.Age = ((DateTime.UtcNow - BirthDate).Days / 365).ToString();
-        }
-
-        private void AgeChanged()
-        {
-            
-        }
-
         private async void SaveInfoAsync()
         {
+            SettingValsValidated.Age = ((DateTime.UtcNow - SettingVals.BirthDate).Days / 365).ToString();
             if (CanExecute() == false)
             {
                 UserDialogs.Instance.Alert(AppResources.FormValidationPopupLabel);

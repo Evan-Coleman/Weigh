@@ -8,6 +8,7 @@
              xmlns:App="clr-namespace:Weigh;assembly=Weigh"
              xmlns:b="clr-namespace:Weigh.Behaviors"
              xmlns:pb="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
              Title="{Binding Title}">
 
     <ContentPage.Resources>
@@ -64,6 +65,10 @@
         <!-- Age -->
         <Label Grid.Column="0" Grid.Row="1"
        Text="{localization:Translate AgeLabel}" />
+        <DatePicker Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Date="{Binding SettingVals.BirthDate}"
+                    MinimumDate="{Binding BirthDateMinDate}"
+                    MaximumDate="{Binding BirthDateMaxDate}"/>
+        <!--
         <Entry Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1"
             Text="{Binding SettingValsValidated.Age}}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[Age]}"
                Placeholder="{localization:Translate NameEntryPlaceholder}"
@@ -71,6 +76,9 @@
                x:Name="Age"
                Keyboard="Numeric">
             <Entry.Behaviors>
+                <pb:EventToCommandBehavior
+                    EventName="TextChanged"
+                    Command="{Binding AgeChangedCommand}"/>
                 <b:EntryLengthValidatorBehavior MaxLength="3" />
             </Entry.Behaviors>
         </Entry>
@@ -78,13 +86,8 @@
             Text="{Binding SettingValsValidated.Errors[Age], Converter={StaticResource FirstErrorConverter}"
                Style="{StaticResource ErrorLabelStyle}"
                IsVisible="{Binding SettingValsValidated.IsDirty[Age]}"/>
-        <DatePicker Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Date="{Binding BirthDate}" >
-            <DatePicker.Behaviors>
-                <pb:EventToCommandBehavior
-                    EventName="DateSelected"
-                    Command="{Binding DatePickedCommand}"/>
-            </DatePicker.Behaviors>
-        </DatePicker>
+        -->
+
 
         <!-- Height -->
         <Label Grid.Column="0" Grid.Row="3"

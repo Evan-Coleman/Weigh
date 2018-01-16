@@ -73,6 +73,13 @@ namespace Weigh.Models
             set { SetProperty(ref _sex, value); }
         }
 
+        private DateTime _birthDate;
+        public DateTime BirthDate
+        {
+            get { return _birthDate; }
+            set { SetProperty(ref _birthDate, value); }
+        }
+
         ////
 
 
@@ -219,6 +226,7 @@ namespace Weigh.Models
             Units = Settings.Units;
             Weight = Settings.Weight;
             Sex = Settings.Sex;
+            BirthDate = Settings.BirthDate;
 
             RecommendedDailyCaloricIntake = Settings.RecommendedDailyCaloricIntake;
             BMI = Settings.BMI;
@@ -249,6 +257,7 @@ namespace Weigh.Models
             Settings.Units = Units;
             Settings.Weight = Weight;
             Settings.Sex = Sex;
+            Settings.BirthDate = BirthDate;
 
             Settings.RecommendedDailyCaloricIntake = RecommendedDailyCaloricIntake;
             Settings.BMI = BMI;
@@ -352,6 +361,7 @@ namespace Weigh.Models
             CalculateBMR();
             SetBMICategory();
 
+            Age = (DateTime.UtcNow - BirthDate).Days / 365;
             TimeLeftToGoal = (GoalDate - DateTime.UtcNow).Days;
             DistanceToGoalWeight = Weight - GoalWeight;
             WeightLostToDate = InitialWeight - Weight;

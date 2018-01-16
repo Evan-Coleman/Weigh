@@ -98,7 +98,22 @@ namespace Weigh.Helpers
         private const string WaistSizeEnabledKey = "Waist_Size_Enabled_Key";
         private static readonly bool WaistSizeEnabledDefault = true;
 
+        private const string BirthDateKey = "Birth_Date_Key";
+        private static readonly DateTime BirthDateDefault = DateTime.UtcNow;
+
         #endregion
+    public static DateTime BirthDate
+    {
+        get
+        {
+            return AppSettings.GetValueOrDefault(BirthDateKey, BirthDateDefault);
+        }
+        set
+        {
+            AppSettings.AddOrUpdateValue(BirthDateKey, value);
+        }
+    }
+
         public static bool WaistSizeEnabled
         {
             get
