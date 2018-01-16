@@ -241,48 +241,48 @@ namespace Weigh.Models
         }
         public void SaveSettingValsToDevice()
         {
-            Age = Settings.Age;
-            HeightMajor = Settings.HeightMajor;
-            HeightMinor = Settings.HeightMinor;
-            WaistSize = Settings.WaistSize;
-            GoalWeight = Settings.GoalWeight;
-            Units = Settings.Units;
-            Weight = Settings.Weight;
-            Sex = Settings.Sex;
+            Settings.Age = Age;
+            Settings.HeightMajor = HeightMajor;
+            Settings.HeightMinor = HeightMinor;
+            Settings.WaistSize = WaistSize;
+            Settings.GoalWeight = GoalWeight;
+            Settings.Units = Units;
+            Settings.Weight = Weight;
+            Settings.Sex = Sex;
 
-            RecommendedDailyCaloricIntake = Settings.RecommendedDailyCaloricIntake;
-            BMI = Settings.BMI;
-            BMICategory = Settings.BMICategory;
-            BMR = Settings.BMR;
-            WeightPerWeekToMeetGoal = Settings.WeightPerWeekToMeetGoal;
-            DistanceToGoalWeight = Settings.DistanceToGoalWeight;
-            WeightLostToDate = Settings.WeightLostToDate;
-            TimeLeftToGoal = Settings.TimeLeftToGoal;
+            Settings.RecommendedDailyCaloricIntake = RecommendedDailyCaloricIntake;
+            Settings.BMI = BMI;
+            Settings.BMICategory = BMICategory;
+            Settings.BMR = BMR;
+            Settings.WeightPerWeekToMeetGoal = WeightPerWeekToMeetGoal;
+            Settings.DistanceToGoalWeight = DistanceToGoalWeight;
+            Settings.WeightLostToDate = WeightLostToDate;
+            Settings.TimeLeftToGoal = TimeLeftToGoal;
 
-            MinDate = Settings.MinDate;
-            PickerSelectedItem = Settings.PickerSelectedItem;
-            WaistSizeEnabled = Settings.WaistSizeEnabled;
+            Settings.MinDate = MinDate;
+            Settings.PickerSelectedItem = PickerSelectedItem;
+            Settings.WaistSizeEnabled = WaistSizeEnabled;
 
-            GoalDate = Settings.GoalDate;
-            InitialWeighDate = Settings.InitialWeightDate;
-            InitialWeight = Settings.InitialWeight;
-            LastWeighDate = Settings.LastWeighDate;
-            LastWeight = Settings.LastWeight;
+            Settings.GoalDate = GoalDate;
+            Settings.InitialWeightDate = InitialWeighDate;
+            Settings.InitialWeight = InitialWeight;
+            Settings.LastWeighDate = LastWeighDate;
+            Settings.LastWeight = LastWeight;
         }
 
         public void CalculateBMI()
         {
-            double Feet = HeightMajor;
-            int Inches = HeightMinor;
-            double _weight = Weight;
+            double feet = HeightMajor;
+            int inches = HeightMinor;
+            double weight = Weight;
             // Units are metric if false, so do conversion here
             if (Units == false)
             {
-                (Feet, Inches) = HeightMajor.CentimetersToFeetInches();
-                _weight = Weight.KilogramsToPounds();
+                (feet, inches) = HeightMajor.CentimetersToFeetInches();
+                weight = Weight.KilogramsToPounds();
             }
 
-            BMI = (_weight / Math.Pow(((Feet * 12) + Inches), 2)) * 703;
+            BMI = (weight / Math.Pow(((feet * 12) + inches), 2)) * 703;
         }
         public void SetBMICategory()
         {
@@ -309,24 +309,24 @@ namespace Weigh.Models
         }
         public void CalculateBMR()
         {
-            double Feet = HeightMajor;
-            int Inches = HeightMinor;
-            double _weight = Weight;
-            int _age = Age;
+            double feet = HeightMajor;
+            int inches = HeightMinor;
+            double weight = Weight;
+            int age = Age;
             // Units are metric if false, so do conversion here
             if (Units == false)
             {
-                (Feet, Inches) = HeightMajor.CentimetersToFeetInches();
-                _weight = Weight.KilogramsToPounds();
+                (feet, inches) = HeightMajor.CentimetersToFeetInches();
+                weight = Weight.KilogramsToPounds();
             }
 
             if (Sex == false)
             {
-                BMR = 66 + (6.2 * _weight) + (12.7 * ((Feet * 12) + Inches)) - (6.76 * _age);
+                BMR = 66 + (6.2 * weight) + (12.7 * ((feet * 12) + inches)) - (6.76 * age);
             }
             else
             {
-                BMR = 655.1 + (4.35 * _weight) + (4.7 * ((Feet * 12) + Inches)) - (4.7 * _age);
+                BMR = 655.1 + (4.35 * weight) + (4.7 * ((feet * 12) + inches)) - (4.7 * age);
             }
             if (PickerSelectedItem == AppResources.LowActivityPickItem)
             {
@@ -356,45 +356,45 @@ namespace Weigh.Models
             DistanceToGoalWeight = Weight - GoalWeight;
             WeightLostToDate = InitialWeight - Weight;
 
-            double Feet = HeightMajor;
-            int Inches = HeightMinor;
-            double _weight = Weight;
-            double _goalWeight = GoalWeight;
+            double feet = HeightMajor;
+            int inches = HeightMinor;
+            double weight = Weight;
+            double goalWeight = GoalWeight;
             // Units are metric if false, so do conversion here
             if (Units == false)
             {
-                (Feet, Inches) = HeightMajor.CentimetersToFeetInches();
-                _weight = Weight.KilogramsToPounds();
-                _goalWeight = GoalWeight.KilogramsToPounds();
+                (feet, inches) = HeightMajor.CentimetersToFeetInches();
+                weight = Weight.KilogramsToPounds();
+                goalWeight = GoalWeight.KilogramsToPounds();
             }
 
 
 
 
 
-            double WeightPerDayToMeetGoal = (_weight - _goalWeight) / (GoalDate - DateTime.UtcNow).TotalDays;
-            WeightPerWeekToMeetGoal = WeightPerDayToMeetGoal * 7;
-            double RequiredCaloricDefecit = 500 * WeightPerWeekToMeetGoal;
-            RecommendedDailyCaloricIntake = (int)BMR - RequiredCaloricDefecit;
+            double weightPerDayToMeetGoal = (weight - goalWeight) / (GoalDate - DateTime.UtcNow).TotalDays;
+            WeightPerWeekToMeetGoal = weightPerDayToMeetGoal * 7;
+            double requiredCaloricDefecit = 500 * WeightPerWeekToMeetGoal;
+            RecommendedDailyCaloricIntake = (int)BMR - requiredCaloricDefecit;
 
             if (Sex == true && RecommendedDailyCaloricIntake < 1200)
             {
                 // Min calories/day for women is 1200
-                RequiredCaloricDefecit = BMR - 1300;
-                WeightPerWeekToMeetGoal = RequiredCaloricDefecit / 500;
-                int DaysToAddToMeetMinimum = (int)((_weight - _goalWeight) / (WeightPerWeekToMeetGoal / 7));
-                GoalDate = DateTime.Now.ToLocalTime().AddDays(DaysToAddToMeetMinimum + 10);
-                UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, _goalDate));
+                requiredCaloricDefecit = BMR - 1300;
+                WeightPerWeekToMeetGoal = requiredCaloricDefecit / 500;
+                int daysToAddToMeetMinimum = (int)((weight - goalWeight) / (WeightPerWeekToMeetGoal / 7));
+                GoalDate = DateTime.Now.ToLocalTime().AddDays(daysToAddToMeetMinimum + 10);
+                UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, GoalDate));
                 return false;
                 //Create(async token => await this.Dialogs.AlertAsync("Test alert", "Alert Title", null, token));
             }
             if (Sex == false && RecommendedDailyCaloricIntake < 1800)
             {
                 // Min calories/day for men is 1800
-                RequiredCaloricDefecit = BMR - 1900;
-                WeightPerWeekToMeetGoal = RequiredCaloricDefecit / 500;
-                int DaysToAddToMeetMinimum = (int)((_weight - _goalWeight) / (WeightPerWeekToMeetGoal / 7));
-                GoalDate = DateTime.Now.ToLocalTime().AddDays(DaysToAddToMeetMinimum + 10);
+                requiredCaloricDefecit = BMR - 1900;
+                WeightPerWeekToMeetGoal = requiredCaloricDefecit / 500;
+                int daysToAddToMeetMinimum = (int)((weight - goalWeight) / (WeightPerWeekToMeetGoal / 7));
+                GoalDate = DateTime.Now.ToLocalTime().AddDays(daysToAddToMeetMinimum + 10);
                 UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, GoalDate));
                 return false;
                 // Keeping for future use maybe

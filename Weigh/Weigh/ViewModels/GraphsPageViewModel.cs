@@ -1,111 +1,29 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using Prism.Navigation;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Xamarin.Forms;
 using System.Collections.ObjectModel;
-using Weigh.Models;
-using Weigh.Extensions;
+using System.Linq;
+using Prism.Commands;
 using Prism.Events;
+using Prism.Navigation;
 using Weigh.Events;
-using Syncfusion.RangeNavigator.XForms;
-using Syncfusion.SfChart.XForms;
+using Weigh.Extensions;
 using Weigh.Helpers;
 using Weigh.Localization;
+using Weigh.Models;
+using Xamarin.Forms;
 
 namespace Weigh.ViewModels
 {
     /// <summary>
-    /// Page will display a historical graph of entered data as well as a list of entries with the ability to click on them to view in more detail
-    /// 
-    /// Inputs:     (MainPage)->New weight entries
-    /// Outputs:    None
+    ///     Page will display a historical graph of entered data as well as a list of entries with the ability to click on them
+    ///     to view in more detail
+    ///     Inputs:     (MainPage)->New weight entries
+    ///     Outputs:    None
     /// </summary>
-	public class GraphsPageViewModel : ViewModelBase
-	{
-        #region Fields
-        private ObservableCollection<WeightEntry> _weightList;
-        public ObservableCollection<WeightEntry> WeightList
-        {
-            get { return _weightList; }
-            set { SetProperty(ref _weightList, value); }
-        }
-
-        private ObservableCollection<WeightEntry> _chartData;
-        public ObservableCollection<WeightEntry> ChartData
-        {
-            get { return _chartData; }
-            set { SetProperty(ref _chartData, value); }
-        }
-
-        private List<WeightEntry> _weightListReversed;
-        public List<WeightEntry> WeightListReversed
-        {
-            get { return _weightListReversed; }
-            set { SetProperty(ref _weightListReversed, value); }
-        }
-
-        public List<WeightEntry> DataFromDatabase { get; set; }
-
-        public DelegateCommand ShowWeekCommand { get; set; }
-        public DelegateCommand ShowMonthCommand { get; set; }
-        public DelegateCommand ShowYearCommand { get; set; }
-        public DelegateCommand ToggleWeightWaistSizeCommand { get; set; }
-
-        private bool _showDataMarker;
-        public bool ShowDataMarker
-        {
-            get { return _showDataMarker; }
-            set { SetProperty(ref _showDataMarker, value); }
-        }
-
-        private Color _weekSelectedBorderColor;
-        public Color WeekSelectedBorderColor
-        {
-            get { return _weekSelectedBorderColor; }
-            set { SetProperty(ref _weekSelectedBorderColor, value); }
-        }
-
-        private Color _monthSelectedBorderColor;
-        public Color MonthSelectedBorderColor
-        {
-            get { return _monthSelectedBorderColor; }
-            set { SetProperty(ref _monthSelectedBorderColor, value); }
-        }
-
-        private Color _yearSelectedBorderColor;
-        public Color YearSelectedBorderColor
-        {
-            get { return _yearSelectedBorderColor; }
-            set { SetProperty(ref _yearSelectedBorderColor, value); }
-        }
-
-        public string CurrentlySelectedGraphTimeline { get; set; }
-        private string _toggleWeightOrWaistSize;
-        public string ToggleWeightOrWaistSize
-        {
-            get { return _toggleWeightOrWaistSize; }
-            set { SetProperty(ref _toggleWeightOrWaistSize, value); }
-        }
-
-        private string _toggleWeightOrWaistSizeLabel;
-        public string ToggleWeightOrWaistSizeLabel
-        {
-            get { return _toggleWeightOrWaistSizeLabel; }
-            set { SetProperty(ref _toggleWeightOrWaistSizeLabel, value); }
-        }
-
-        private bool _waistSizeEnabled;
-        public bool WaistSizeEnabled
-        {
-            get { return _waistSizeEnabled; }
-            set { SetProperty(ref _waistSizeEnabled, value); }
-        }
-        #endregion
-
+    public class GraphsPageViewModel : ViewModelBase
+    {
         #region Constructor
+
         public GraphsPageViewModel(INavigationService navigationService, IEventAggregator ea)
             : base(navigationService)
         {
@@ -124,6 +42,7 @@ namespace Weigh.ViewModels
             ToggleWeightOrWaistSize = "Weight";
             ToggleWeightOrWaistSizeLabel = AppResources.WeightLabel;
             WaistSizeEnabled = Settings.WaistSizeEnabled;
+
             //SfDateTimeRangeNavigator rangeNavigator = new SfDateTimeRangeNavigator();
             /*
             ViewStartDateRange = Settings.LastWeighDate.AddDays(-10).ToString("MM/dd/yyyy");
@@ -145,28 +64,119 @@ namespace Weigh.ViewModels
             NewGraphInstance();
             PopulateWeightList();
         }
+
+        #endregion
+
+        #region Fields
+
+        private ObservableCollection<WeightEntry> _weightList;
+
+        public ObservableCollection<WeightEntry> WeightList
+        {
+            get => _weightList;
+            set => SetProperty(ref _weightList, value);
+        }
+
+        private ObservableCollection<WeightEntry> _chartData;
+
+        public ObservableCollection<WeightEntry> ChartData
+        {
+            get => _chartData;
+            set => SetProperty(ref _chartData, value);
+        }
+
+        private List<WeightEntry> _weightListReversed;
+
+        public List<WeightEntry> WeightListReversed
+        {
+            get => _weightListReversed;
+            set => SetProperty(ref _weightListReversed, value);
+        }
+
+        public List<WeightEntry> DataFromDatabase { get; set; }
+
+        public DelegateCommand ShowWeekCommand { get; set; }
+        public DelegateCommand ShowMonthCommand { get; set; }
+        public DelegateCommand ShowYearCommand { get; set; }
+        public DelegateCommand ToggleWeightWaistSizeCommand { get; set; }
+
+        private bool _showDataMarker;
+
+        public bool ShowDataMarker
+        {
+            get => _showDataMarker;
+            set => SetProperty(ref _showDataMarker, value);
+        }
+
+        private Color _weekSelectedBorderColor;
+
+        public Color WeekSelectedBorderColor
+        {
+            get => _weekSelectedBorderColor;
+            set => SetProperty(ref _weekSelectedBorderColor, value);
+        }
+
+        private Color _monthSelectedBorderColor;
+
+        public Color MonthSelectedBorderColor
+        {
+            get => _monthSelectedBorderColor;
+            set => SetProperty(ref _monthSelectedBorderColor, value);
+        }
+
+        private Color _yearSelectedBorderColor;
+
+        public Color YearSelectedBorderColor
+        {
+            get => _yearSelectedBorderColor;
+            set => SetProperty(ref _yearSelectedBorderColor, value);
+        }
+
+        public string CurrentlySelectedGraphTimeline { get; set; }
+        private string _toggleWeightOrWaistSize;
+
+        public string ToggleWeightOrWaistSize
+        {
+            get => _toggleWeightOrWaistSize;
+            set => SetProperty(ref _toggleWeightOrWaistSize, value);
+        }
+
+        private string _toggleWeightOrWaistSizeLabel;
+
+        public string ToggleWeightOrWaistSizeLabel
+        {
+            get => _toggleWeightOrWaistSizeLabel;
+            set => SetProperty(ref _toggleWeightOrWaistSizeLabel, value);
+        }
+
+        private bool _waistSizeEnabled;
+
+        public bool WaistSizeEnabled
+        {
+            get => _waistSizeEnabled;
+            set => SetProperty(ref _waistSizeEnabled, value);
+        }
+
         #endregion
 
         #region Methods
+
         private void HandleNewWeightEntry(WeightEntry weight)
         {
             WeightList.Add(weight);
-            WeightListReversed = WeightList.ToList<WeightEntry>();
+            WeightListReversed = WeightList.ToList();
             WeightListReversed.Reverse();
             WeightListReversed.ToObservableCollection();
-            if (CurrentlySelectedGraphTimeline == "week" && ChartData.Count >= 7 || CurrentlySelectedGraphTimeline == "month" && ChartData.Count >= 31 || CurrentlySelectedGraphTimeline == "year" && ChartData.Count >= 365)
-            {
+            if (CurrentlySelectedGraphTimeline == "week" && ChartData.Count >= 7 ||
+                CurrentlySelectedGraphTimeline == "month" && ChartData.Count >= 31 ||
+                CurrentlySelectedGraphTimeline == "year" && ChartData.Count >= 365)
                 ChartData.RemoveAt(0);
-            }            
             ChartData.Add(weight);
             NewGraphInstance();
         }
-        
+
         private void NewGraphInstance()
         {
-            
-
-
         }
 
         // Doesn't work to hide/show
@@ -223,7 +233,7 @@ namespace Weigh.ViewModels
         {
             DataFromDatabase = await App.Database.GetWeightsAsync();
             WeightList = DataFromDatabase.ToObservableCollection();
-            WeightListReversed = WeightList.ToList<WeightEntry>();
+            WeightListReversed = WeightList.ToList();
             WeightListReversed.Reverse();
             WeightListReversed.ToObservableCollection();
             ChartData = DataFromDatabase.Skip(Math.Max(0, WeightList.Count() - 7)).Take(7).ToObservableCollection();
@@ -376,6 +386,7 @@ namespace Weigh.ViewModels
             WeightList.Add(new WeightEntry(300, new DateTime(2017, 1, 1)));
             */
         }
+
         #endregion
     }
 }

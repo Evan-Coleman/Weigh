@@ -1,48 +1,24 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using Prism.Navigation;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using Prism.Commands;
 using Prism.Events;
+using Prism.Navigation;
 using Weigh.Events;
-using Weigh.Extensions;
 using Weigh.Helpers;
-using Weigh.Models;
-using Weigh.Behaviors;
-using Weigh.Validation;
 using Weigh.Localization;
+using Weigh.Models;
 
 namespace Weigh.ViewModels
 {
     /// <summary>
-    /// Page Displays Settings info and allows for editing
-    /// 
-    /// Inputs:     (AppState.cs)->AppStateInfo, (MainVM)->Weight+Goals
-    /// Outputs:    Goals->(MainVM,GraphsVM)
+    ///     Page Displays Settings info and allows for editing
+    ///     Inputs:     (AppState.cs)->AppStateInfo, (MainVM)->Weight+Goals
+    ///     Outputs:    Goals->(MainVM,GraphsVM)
     /// </summary>
     public class SettingsPageViewModel : ViewModelBase
-	{
-        #region Fields
-        private List<string> _pickerSource;
-        public List<string> PickerSource
-        {
-            get { return _pickerSource; }
-            set { SetProperty(ref _pickerSource, value); }
-        }
-
-        private SettingValsValidated _settingValsValidated;
-        public SettingValsValidated SettingValsValidated
-        {
-            get { return _settingValsValidated; }
-            set { SetProperty(ref _settingValsValidated, value); }
-        }
-
-        public DelegateCommand SaveInfoCommand { get; set; }
-        private IEventAggregator _ea;
-        #endregion
-
+    {
         #region Constructor
+
         public SettingsPageViewModel(INavigationService navigationService, IEventAggregator ea)
             : base(navigationService)
         {
@@ -51,25 +27,70 @@ namespace Weigh.ViewModels
             _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo);
             Title = AppResources.SettingsPageTitle;
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
-            SettingValsValidated.MinDate = DateTime.UtcNow.AddDays(10);
-            PickerSource = new List<string> { AppResources.LowActivityPickItem, AppResources.LightActivityPickItem, AppResources.MediumActivityPickItem, AppResources.HeavyActivityPickItem };
+            SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
+            PickerSource = new List<string>
+            {
+                AppResources.LowActivityPickItem,
+                AppResources.LightActivityPickItem,
+                AppResources.MediumActivityPickItem,
+                AppResources.HeavyActivityPickItem
+            };
         }
+
+        #endregion
+
+        #region Fields
+
+        private List<string> _pickerSource;
+
+        public List<string> PickerSource
+        {
+            get => _pickerSource;
+            set => SetProperty(ref _pickerSource, value);
+        }
+
+        private SettingValsValidated _settingValsValidated;
+
+        public SettingValsValidated SettingValsValidated
+        {
+            get => _settingValsValidated;
+            set => SetProperty(ref _settingValsValidated, value);
+        }
+
+        private SettingVals _settingVals;
+
+        public SettingVals SettingVals
+        {
+            get => _settingVals;
+            set => SetProperty(ref _settingVals, value);
+        }
+
+        public DelegateCommand SaveInfoCommand { get; set; }
+        private readonly IEventAggregator _ea;
+
         #endregion
 
         #region Methods
+
         private async void SaveInfoAsync()
         {
-            SettingValsValidated.ValidateGoal();
-            SettingValsValidated.SaveSettingValsToDevice();
-            await NavigationService.NavigateAsync(
-                $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
+            // TODO: check this out and see what needs changing
+            if (SettingValsValidated.ValidateProperties() == true)
+            {
+                SettingVals.InitializeFromValidated(SettingValsValidated);
+                SettingVals.SaveSettingValsToDevice();
+                await NavigationService.NavigateAsync(
+                    $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
+            }
         }
-        private void HandleNewSetupInfo(SettingValsValidated _setupInfo)
+
+        private void HandleNewSetupInfo(SettingVals setupInfo)
         {
-            SettingValsValidated = _setupInfo;
-            SettingValsValidated.MinDate = DateTime.UtcNow.AddDays(10);
-            SettingValsValidated.PickerSelectedItem = Settings.PickerSelectedItem;
+            SettingVals = setupInfo;
+            SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
+            SettingVals.PickerSelectedItem = Settings.PickerSelectedItem;
         }
+
         #endregion
     }
 }

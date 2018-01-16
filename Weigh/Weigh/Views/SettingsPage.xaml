@@ -39,7 +39,7 @@
                      HorizontalOptions="CenterAndExpand"
                      Padding="0">
             <Label Text="{localization:Translate UnitSwitchMetricLabel}"/>
-            <Switch IsToggled="{Binding SettingValsValidated.Units}"
+            <Switch IsToggled="{Binding SettingVals.Units}"
                     x:Name="UnitSwitch"
                     IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}"/>
             <Label Text="{localization:Translate UnitSwitchImperialLabel}"/>
@@ -96,7 +96,7 @@
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="HeightMinor"
                Keyboard="Numeric"
-               IsVisible="{Binding SettingValsValidated.Units}"
+               IsVisible="{Binding SettingVals.Units}"
                        IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}">
                     <Entry.Behaviors>
                         <b:EntryLengthValidatorBehavior MaxLength="2" />
@@ -133,7 +133,7 @@
                IsVisible="{Binding SettingValsValidated.IsDirty[Weight]}"/>
 
         <StackLayout Orientation="Horizontal">
-            <Switch IsToggled="{Binding SettingValsValidated.WaistSizeEnabled}" x:Name="EnableWaistSizeSwitch"
+            <Switch IsToggled="{Binding SettingVals.WaistSizeEnabled}" x:Name="EnableWaistSizeSwitch"
                     IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}"/>
             <Entry Text="{Binding SettingValsValidated.WaistSize, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[WaistSize]}"
                Placeholder="{localization:Translate WaistSizeImperialEntryPlaceholder}"
@@ -149,11 +149,11 @@
                         <Setter Property="Placeholder" Value="{localization:Translate WaistSizeMetricEntryPlaceholder}" />
                     </DataTrigger>
                     <DataTrigger TargetType="Entry"
-                     Binding="{Binding SettingValsValidated.WaistSizeEnabled}" Value="false">
+                     Binding="{Binding SettingVals.WaistSizeEnabled}" Value="false">
                         <Setter Property="IsEnabled" Value="false" />
                     </DataTrigger>
                     <DataTrigger TargetType="Entry"
-                     Binding="{Binding SettingValsValidated.WaistSizeEnabled}" Value="true">
+                     Binding="{Binding SettingVals.WaistSizeEnabled}" Value="true">
                         <Setter Property="IsEnabled" Value="true" />
                     </DataTrigger>
                 </Entry.Triggers>
@@ -168,7 +168,7 @@
                Margin="65,0,0,0"/>
 
         <Picker ItemsSource="{Binding PickerSource}"
-                SelectedItem="{Binding SettingValsValidated.PickerSelectedItem}"
+                SelectedItem="{Binding SettingVals.PickerSelectedItem}"
                 Title="{localization:Translate ActivityLevelLabel}"
                  HorizontalOptions="FillAndExpand"
                 WidthRequest="150"
@@ -178,7 +178,7 @@
                      HorizontalOptions="CenterAndExpand"
                      Padding="0">
             <Label Text="{localization:Translate MaleGenderSwitchLabel}"/>
-            <Switch IsToggled="{Binding SettingValsValidated.Sex}"
+            <Switch IsToggled="{Binding SettingVals.Sex}"
                     IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}"/>
             <Label Text="{localization:Translate FemaleGenderSwitchLabel}"/>
         </StackLayout>
@@ -205,8 +205,8 @@
                Style="{StaticResource ErrorLabelStyle}"
                IsVisible="{Binding SettingValsValidated.IsDirty[GoalWeight]}"/>
 
-        <DatePicker Date="{Binding SettingValsValidated.GoalDate}"
-                    MinimumDate="{Binding SettingValsValidated.MinDate}"
+        <DatePicker Date="{Binding SettingVals.GoalDate}"
+                    MinimumDate="{Binding SettingVals.MinDate}"
                     IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}"></DatePicker>
 
 

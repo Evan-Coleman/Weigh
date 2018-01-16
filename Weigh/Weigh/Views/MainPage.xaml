@@ -45,20 +45,20 @@
             <Label Grid.Column="0" Grid.Row="1"
                        HorizontalOptions="Center"
                        FontSize="{StaticResource HeaderOneFontSize}"
-                       Text="{Binding SettingValsValidated.Weight}"/>
+                       Text="{Binding SettingVals.Weight}"/>
             <Label Grid.Column="1" Grid.Row="1"
                        HorizontalOptions="Start"
                        FontSize="{StaticResource UnitFontSize}">
                 <Label.Triggers>
                     <DataTrigger TargetType="Label"
-                                     Binding="{Binding SettingValsValidated.Units}"
+                                     Binding="{Binding SettingVals.Units}"
                                      Value="false">
-                        <Setter Property="Text" Value="{Binding SettingValsValidated.GoalWeight, StringFormat={localization:Translate KiloGramsLabel}}" />
+                        <Setter Property="Text" Value="{Binding SettingVals.GoalWeight, StringFormat={localization:Translate KiloGramsLabel}}" />
                     </DataTrigger>
                     <DataTrigger TargetType="Label"
-                                     Binding="{Binding SettingValsValidated.Units}"
+                                     Binding="{Binding SettingVals.Units}"
                                      Value="true">
-                        <Setter Property="Text" Value="{Binding SettingValsValidated.GoalWeight, StringFormat={localization:Translate PoundsLabel}}" />
+                        <Setter Property="Text" Value="{Binding SettingVals.GoalWeight, StringFormat={localization:Translate PoundsLabel}}" />
                     </DataTrigger>
                 </Label.Triggers>
             </Label>
@@ -85,20 +85,20 @@
             <Label Grid.Column="0" Grid.Row="0"
                        HorizontalOptions="Center"
                        FontSize="{StaticResource HeaderTwoFontSize}"
-                       Text="{Binding SettingValsValidated.DistanceToGoalWeight}"/>
+                       Text="{Binding SettingVals.DistanceToGoalWeight}"/>
             <Label Grid.Column="1" Grid.Row="0"
                    HorizontalOptions="Start"
                        FontSize="{StaticResource UnitFontSize}">
                 <Label.Triggers>
                     <DataTrigger TargetType="Label"
-                                     Binding="{Binding SettingValsValidated.Units}"
+                                     Binding="{Binding SettingVals.Units}"
                                      Value="false">
-                        <Setter Property="Text" Value="{Binding SettingValsValidated.GoalWeight, StringFormat={localization:Translate KiloGramsLabel}}" />
+                        <Setter Property="Text" Value="{Binding SettingVals.GoalWeight, StringFormat={localization:Translate KiloGramsLabel}}" />
                     </DataTrigger>
                     <DataTrigger TargetType="Label"
-                                     Binding="{Binding SettingValsValidated.Units}"
+                                     Binding="{Binding SettingVals.Units}"
                                      Value="true">
-                        <Setter Property="Text" Value="{Binding SettingValsValidated.GoalWeight, StringFormat={localization:Translate PoundsLabel}}" />
+                        <Setter Property="Text" Value="{Binding SettingVals.GoalWeight, StringFormat={localization:Translate PoundsLabel}}" />
                     </DataTrigger>
                 </Label.Triggers>
             </Label>
@@ -107,14 +107,14 @@
                    FontSize="{StaticResource SubtitleFontSize}">
                 <Label.Triggers>
                     <DataTrigger TargetType="Label"
-                                     Binding="{Binding SettingValsValidated.Units}"
+                                     Binding="{Binding SettingVals.Units}"
                                      Value="false">
-                        <Setter Property="Text" Value="{Binding SettingValsValidated.GoalWeight, StringFormat={localization:Translate WeightLeftMetricLabel}}" />
+                        <Setter Property="Text" Value="{Binding SettingVals.GoalWeight, StringFormat={localization:Translate WeightLeftMetricLabel}}" />
                     </DataTrigger>
                     <DataTrigger TargetType="Label"
-                                     Binding="{Binding SettingValsValidated.Units}"
+                                     Binding="{Binding SettingVals.Units}"
                                      Value="true">
-                        <Setter Property="Text" Value="{Binding SettingValsValidated.GoalWeight, StringFormat={localization:Translate WeightLeftImperialLabel}}" />
+                        <Setter Property="Text" Value="{Binding SettingVals.GoalWeight, StringFormat={localization:Translate WeightLeftImperialLabel}}" />
                     </DataTrigger>
                 </Label.Triggers>
             </Label>
@@ -138,7 +138,7 @@
             <Label Grid.Column="0"
                        HorizontalOptions="Center"
                        FontSize="{StaticResource HeaderTwoFontSize}"
-                       Text="{Binding SettingValsValidated.TimeLeftToGoal}"/>
+                       Text="{Binding SettingVals.TimeLeftToGoal}"/>
             <Label Grid.Column="1"
                    HorizontalOptions="Start"
                        FontSize="{StaticResource UnitFontSize}"
@@ -146,7 +146,7 @@
             <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
                    HorizontalOptions="Center"
                    FontSize="{StaticResource SubtitleFontSize}"
-                   Text="{Binding SettingValsValidated.GoalDate, StringFormat={localization:Translate TimeLeftLabel}}" />
+                   Text="{Binding SettingVals.GoalDate, StringFormat={localization:Translate TimeLeftLabel}}" />
         </Grid>
 
         <!-- RDCI Section -->
@@ -166,7 +166,7 @@
             <Label Grid.Column="0" Grid.Row="1"
                        HorizontalOptions="Center"
                        FontSize="{StaticResource HeaderThreeFontSize}"
-                       Text="{Binding SettingValsValidated.RecommendedDailyCaloricIntake, StringFormat='{0:0} Cal/day'}}"/>
+                       Text="{Binding SettingVals.RecommendedDailyCaloricIntake, StringFormat='{0:0} Cal/day'}}"/>
 
         </Grid>
 
@@ -193,12 +193,12 @@
             <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
                    HorizontalOptions="Center"
                FontSize="{StaticResource HeaderThreeFontSize}"
-               Text="{Binding SettingValsValidated.BMI, StringFormat='{0:0.0}'}"/>
+               Text="{Binding SettingVals.BMI, StringFormat='{0:0.0}'}"/>
 
             <Label Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"
                    HorizontalOptions="Center"
                FontSize="{StaticResource HeaderThreeFontSize}"
-               Text="{Binding SettingValsValidated.BMICategory}"/>
+               Text="{Binding SettingVals.BMICategory}"/>
 
             <linear:SfLinearGauge Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Margin="0,0,0,0">
                 <linear:SfLinearGauge.Scales>
@@ -214,8 +214,8 @@
                             <linear:LinearRange StartValue="30" Color="#d50000" EndValue="40" Offset ="0.07" StartWidth="10" EndWidth="10" />
                         </linear:LinearScale.Ranges>
                         <linear:LinearScale.Pointers>
-                            <linear:SymbolPointer x:Name="symbolPointer" Value="{Binding SettingValsValidated.BMI}"  Offset="0" Thickness="10" Color="{StaticResource primary_dark}" EnableAnimation="True"/>
-                            <linear:BarPointer x:Name="rangePointer" Value="{Binding SettingValsValidated.BMI}"  Thickness="10" EnableAnimation="True" Color="{StaticResource primary_dark}"/>
+                            <linear:SymbolPointer x:Name="symbolPointer" Value="{Binding SettingVals.BMI}"  Offset="0" Thickness="10" Color="{StaticResource primary_dark}" EnableAnimation="True"/>
+                            <linear:BarPointer x:Name="rangePointer" Value="{Binding SettingVals.BMI}"  Thickness="10" EnableAnimation="True" Color="{StaticResource primary_dark}"/>
                         </linear:LinearScale.Pointers>
                     </linear:LinearScale>
                 </linear:SfLinearGauge.Scales>
