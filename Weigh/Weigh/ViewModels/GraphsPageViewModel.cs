@@ -28,20 +28,20 @@ namespace Weigh.ViewModels
             : base(navigationService)
         {
             ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry);
-            ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Subscribe(UpdateWaistSizeEnabled);
+            //ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Subscribe(UpdateWaistSizeEnabled);
             Title = AppResources.GraphPageTitle;
             WeightList = new ObservableCollection<WeightEntry>();
             ChartData = new ObservableCollection<WeightEntry>();
             ShowWeekCommand = new DelegateCommand(ShowWeek);
             ShowMonthCommand = new DelegateCommand(ShowMonth);
             ShowYearCommand = new DelegateCommand(ShowYear);
-            ToggleWeightWaistSizeCommand = new DelegateCommand(ToggleWeightWaistSize);
+            //ToggleWeightWaistSizeCommand = new DelegateCommand(ToggleWeightWaistSize);
             ShowDataMarker = true;
-            WeekSelectedBorderColor = Color.LightBlue;
+            WeekSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             CurrentlySelectedGraphTimeline = "week";
             ToggleWeightOrWaistSize = "Weight";
             ToggleWeightOrWaistSizeLabel = AppResources.WeightLabel;
-            WaistSizeEnabled = Settings.WaistSizeEnabled;
+            //WaistSizeEnabled = Settings.WaistSizeEnabled;
 
             //SfDateTimeRangeNavigator rangeNavigator = new SfDateTimeRangeNavigator();
             /*
@@ -149,6 +149,8 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _toggleWeightOrWaistSizeLabel, value);
         }
 
+        // Functionality removed, keeping code for possible future re-integration
+        /*
         private bool _waistSizeEnabled;
 
         public bool WaistSizeEnabled
@@ -156,6 +158,7 @@ namespace Weigh.ViewModels
             get => _waistSizeEnabled;
             set => SetProperty(ref _waistSizeEnabled, value);
         }
+        */
 
         #endregion
 
@@ -179,31 +182,36 @@ namespace Weigh.ViewModels
         {
         }
 
-        // Doesn't work to hide/show
-        private void UpdateWaistSizeEnabled(bool enabled)
-        {
-            WaistSizeEnabled = enabled;
-        }
+        // Functionality removed, keeping code for possible future re-integration
+        /*
+// Doesn't work to hide/show
+private void UpdateWaistSizeEnabled(bool enabled)
+{
+    WaistSizeEnabled = enabled;
+}
 
-        private void ToggleWeightWaistSize()
-        {
-            if (ToggleWeightOrWaistSize == "Weight")
-            {
-                ToggleWeightOrWaistSize = "WaistSize";
-                ToggleWeightOrWaistSizeLabel = AppResources.WaistSizeLabel;
-            }
-            else
-            {
-                ToggleWeightOrWaistSize = "Weight";
-                ToggleWeightOrWaistSizeLabel = AppResources.WeightLabel;
-            }
-        }
+
+
+private void ToggleWeightWaistSize()
+{
+    if (ToggleWeightOrWaistSize == "Weight")
+    {
+        ToggleWeightOrWaistSize = "WaistSize";
+        ToggleWeightOrWaistSizeLabel = AppResources.WaistSizeLabel;
+    }
+    else
+    {
+        ToggleWeightOrWaistSize = "Weight";
+        ToggleWeightOrWaistSizeLabel = AppResources.WeightLabel;
+    }
+}
+*/
 
         private void ShowWeek()
         {
             ChartData = WeightList.Skip(Math.Max(0, WeightList.Count() - 7)).Take(7).ToObservableCollection();
             ShowDataMarker = true;
-            WeekSelectedBorderColor = Color.LightBlue;
+            WeekSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             MonthSelectedBorderColor = Color.Default;
             YearSelectedBorderColor = Color.Default;
             CurrentlySelectedGraphTimeline = "week";
@@ -214,7 +222,7 @@ namespace Weigh.ViewModels
             ChartData = WeightList.Skip(Math.Max(0, WeightList.Count() - 31)).Take(31).ToObservableCollection();
             ShowDataMarker = false;
             WeekSelectedBorderColor = Color.Default;
-            MonthSelectedBorderColor = Color.LightBlue;
+            MonthSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             YearSelectedBorderColor = Color.Default;
             CurrentlySelectedGraphTimeline = "month";
         }
@@ -225,7 +233,7 @@ namespace Weigh.ViewModels
             ShowDataMarker = false;
             WeekSelectedBorderColor = Color.Default;
             MonthSelectedBorderColor = Color.Default;
-            YearSelectedBorderColor = Color.LightBlue;
+            YearSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             CurrentlySelectedGraphTimeline = "year";
         }
 

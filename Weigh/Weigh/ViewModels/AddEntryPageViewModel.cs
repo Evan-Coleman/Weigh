@@ -113,7 +113,6 @@ namespace Weigh.ViewModels
             else
             {
                 SettingVals.InitializeFromValidated(SettingValsValidated);
-                SettingVals.LastWeight = SettingVals.Weight;
                 NewWeightEntry = new WeightEntry
                 {
                     Weight = SettingVals.Weight,
@@ -121,6 +120,7 @@ namespace Weigh.ViewModels
                     WeightDelta = (SettingVals.Weight - SettingVals.LastWeight),
                     Note = NoteEntry
                 };
+                SettingVals.LastWeight = SettingVals.Weight;
                 SettingVals.LastWeighDate = DateTime.UtcNow;
                 SettingVals.DistanceToGoalWeight = SettingVals.Weight - SettingVals.GoalWeight;
 

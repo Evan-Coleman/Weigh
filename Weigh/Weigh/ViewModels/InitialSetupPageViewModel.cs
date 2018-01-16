@@ -30,8 +30,8 @@ namespace Weigh.ViewModels
             SelectMetricCommand = new DelegateCommand(SelectMetric);
             SelectMaleCommand = new DelegateCommand(SelectMale);
             SelectFemaleCommand = new DelegateCommand(SelectFemale);
-            ImperialSelectedBorderColor = Color.LightBlue;
-            MaleSelectedBorderColor = Color.LightBlue;
+            ImperialSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
+            MaleSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             // Initialize app SettingVals
             SettingVals = new SettingVals();
             SettingValsValidated = new SettingValsValidated();
@@ -140,20 +140,20 @@ namespace Weigh.ViewModels
         private void SelectImperial()
         {
             MetricSelectedBorderColor = Color.Default;
-            ImperialSelectedBorderColor = Color.LightBlue;
+            ImperialSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             SettingVals.Units = true;
         }
 
         private void SelectMetric()
         {
-            MetricSelectedBorderColor = Color.LightBlue;
+            MetricSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             ImperialSelectedBorderColor = Color.Default;
             SettingVals.Units = false;
         }
 
         private void SelectMale()
         {
-            MaleSelectedBorderColor = Color.LightBlue;
+            MaleSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             FemaleSelectedBorderColor = Color.Default;
             SettingVals.Sex = false;
         }
@@ -161,7 +161,7 @@ namespace Weigh.ViewModels
         private void SelectFemale()
         {
             MaleSelectedBorderColor = Color.Default;
-            FemaleSelectedBorderColor = Color.LightBlue;
+            FemaleSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             SettingVals.Sex = true;
         }
 
