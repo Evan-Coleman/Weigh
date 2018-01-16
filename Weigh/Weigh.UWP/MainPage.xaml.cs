@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using DryIoc;
 using Prism.DryIoc;
+using Prism;
+using Prism.Ioc;
 
 namespace Weigh.UWP
 {
@@ -30,7 +32,7 @@ namespace Weigh.UWP
 
     public class UwpInitializer : IPlatformInitializer
     {
-        public void RegisterTypes(IContainer container)
+        public void RegisterTypes(IContainerRegistry container)
         {
 
         }

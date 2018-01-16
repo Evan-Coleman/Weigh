@@ -3,6 +3,8 @@ using UIKit;
 using DryIoc;
 using Prism.DryIoc;
 using Syncfusion.SfGauge.XForms.iOS;
+using Prism;
+using Prism.Ioc;
 
 namespace Weigh.iOS
 {
@@ -35,7 +37,7 @@ namespace Weigh.iOS
 
     public class iOSInitializer : IPlatformInitializer
     {
-        public void RegisterTypes(IContainer container)
+        public void RegisterTypes(IContainerRegistry container)
         {
             
         }

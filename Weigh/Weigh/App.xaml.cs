@@ -11,6 +11,8 @@ using Weigh.Data;
 using Weigh.Models;
 using System.Collections.Generic;
 using Weigh.Localization;
+using Prism;
+using Prism.Ioc;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Weigh
@@ -39,20 +41,20 @@ namespace Weigh
             else
             {
                 // Navigate to main page with main tab activated
-                await NavigationService.NavigateAsync(
-                    $"NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
+                //await NavigationService.NavigateAsync($"NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
+                await NavigationService.NavigateAsync("NavigatingAwareTabbedPage");
             }
         }
 
-        protected override void RegisterTypes()
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Container.RegisterTypeForNavigation<NavigationPage>();
-            Container.RegisterTypeForNavigation<MainPage>();
-            Container.RegisterTypeForNavigation<InitialSetupPage>();
-            Container.RegisterTypeForNavigation<NavigatingAwareTabbedPage>();
-            Container.RegisterTypeForNavigation<SettingsPage>();
-            Container.RegisterTypeForNavigation<GraphsPage>();
-            Container.RegisterTypeForNavigation<AddEntryPage>();
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<MainPage>();
+            containerRegistry.RegisterForNavigation<InitialSetupPage>();
+            containerRegistry.RegisterForNavigation<NavigatingAwareTabbedPage>();
+            containerRegistry.RegisterForNavigation<SettingsPage>();
+            containerRegistry.RegisterForNavigation<GraphsPage>();
+            containerRegistry.RegisterForNavigation<AddEntryPage>();
         }
 
         public static WeightDatabase Database

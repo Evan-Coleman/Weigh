@@ -63,7 +63,6 @@ namespace Weigh.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::Weigh.Droid.Resource.Styleable.ProgressWheel_ahText;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::Weigh.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::Weigh.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
-			global::Splat.Resource.String.library_name = global::Weigh.Droid.Resource.String.library_name;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.Fadein = global::Weigh.Droid.Resource.Animation.Fadein;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.Fadeout = global::Weigh.Droid.Resource.Animation.Fadeout;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.Scale_in = global::Weigh.Droid.Resource.Animation.Scale_in;

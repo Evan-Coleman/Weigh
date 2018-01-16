@@ -3,7 +3,9 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using DryIoc;
+using Prism;
 using Prism.DryIoc;
+using Prism.Ioc;
 using Xamarin.Forms;
 
 namespace Weigh.Droid
@@ -28,7 +30,7 @@ namespace Weigh.Droid
 
     public class AndroidInitializer : IPlatformInitializer
     {
-        public void RegisterTypes(IContainer container)
+        public void RegisterTypes(IContainerRegistry container)
         {
             // Register any platform specific implementations
         }

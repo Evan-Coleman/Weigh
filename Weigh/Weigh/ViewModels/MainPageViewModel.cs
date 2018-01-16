@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Events;
 using Prism.Navigation;
+using System;
 using Weigh.Events;
 using Weigh.Helpers;
 using Weigh.Localization;
@@ -75,7 +76,7 @@ namespace Weigh.ViewModels
         public async void AddWeightToList()
         {
             ButtonEnabled = false;
-            await NavigationService.NavigateAsync("AddEntryPage");
+            await NavigationService.NavigateAsync(new Uri("MainPage/NavigationPage/AddEntryPage", UriKind.Relative));
             ButtonEnabled = true;
         }
 

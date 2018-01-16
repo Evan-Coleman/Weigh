@@ -14,14 +14,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Acr.UserDialogs" Version="6.5.1" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.0.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.4.118" />
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="15.4.0.20" />
     <PackageReference Include="Syncfusion.Xamarin.SfGauge" Version="15.4.0.20" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
-    <PackageReference Include="Xamarin.Forms" Version="2.5.0.121934" />
-    <PackageReference Include="Prism.DryIoc.Forms" Version="7.0.0.168-pre" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
+    <PackageReference Include="Prism.DryIoc.Forms" Version="7.0.0.362" />
   </ItemGroup>
 
   <ItemGroup>
