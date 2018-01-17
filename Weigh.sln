@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weigh", "Weigh\Weigh\Weigh.csproj", "{D3D0BA88-36A0-470A-ADEF-E46F74C53C9F}"
 EndProject
@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weigh.UWP", "Weigh\Weigh.UW
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CD68B613-7791-48EF-8274-3321828D07DF}"
 	ProjectSection(SolutionItems) = preProject
+		PrivateKeys.cs = PrivateKeys.cs
+		PrivateKeys.Sample.cs = PrivateKeys.Sample.cs
 		README.md = README.md
 	EndProjectSection
 EndProject

@@ -2,6 +2,9 @@
 
 Description: Simple weight loss app
 
+Important: To get Admob ads working for yourself, take PrivateKeys.Sample,
+		   and remove the .Sample from the file name and then add your personal keys.
+
 
 TODO:
 
