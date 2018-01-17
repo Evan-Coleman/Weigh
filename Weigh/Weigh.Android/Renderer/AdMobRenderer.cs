@@ -8,7 +8,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(AdMobView), typeof(AdMobRenderer))]
-
 namespace Weigh.Droid.Renderers
 {
     public class AdMobRenderer : ViewRenderer
@@ -41,10 +40,10 @@ namespace Weigh.Droid.Renderers
 
                 var requestbuilder = new AdRequest.Builder();
 
-#if !DEBUG
+
                 ad.LoadAd(requestbuilder.Build());
                 e.NewElement.HeightRequest = GetSmartBannerDpHeight();
-#endif
+
 
                 SetNativeControl(ad);
             }

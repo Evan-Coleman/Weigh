@@ -8,6 +8,7 @@
              xmlns:b="clr-namespace:Weigh.Behaviors"
              xmlns:rangenavigator="clr-namespace:Syncfusion.RangeNavigator.XForms;assembly=Syncfusion.SfChart.XForms"
              xmlns:converters="clr-namespace:Weigh.Converters;assembly=Weigh"
+             xmlns:controls="clr-namespace:Weigh.Controls;assembly=Weigh"
              x:Class="Weigh.Views.AddEntryPage"
              Title="{Binding Title}">
 
@@ -26,13 +27,13 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>            
-            <RowDefinition Height="40" />
-            <RowDefinition Height="15" />
-            <RowDefinition Height="40" />
-            <RowDefinition Height="15" />
-            <RowDefinition Height="40" />
-            <RowDefinition Height="120" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="0.125*" />
+            <RowDefinition Height="0.046875*" />
+            <RowDefinition Height="0.125*" />
+            <RowDefinition Height="0.046875*" />
+            <RowDefinition Height="0.125*" />
+            <RowDefinition Height="0.375*" />
+            <RowDefinition Height="0.15625*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -123,6 +124,9 @@
             Text="{localization:Translate SaveLabel}"
                 Command="{Binding AddWeightToListCommand}"/>
 
+        
+        <!-- ADMOB Banner -->
+        <controls:AdMobView Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="4" VerticalOptions="End" />
     </Grid>
   
 </ContentPage>

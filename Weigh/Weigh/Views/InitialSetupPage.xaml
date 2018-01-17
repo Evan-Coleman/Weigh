@@ -8,6 +8,7 @@
              xmlns:App="clr-namespace:Weigh;assembly=Weigh"
              xmlns:b="clr-namespace:Weigh.Behaviors"
              xmlns:pb="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:controls="clr-namespace:Weigh.Controls;assembly=Weigh"
              xmlns:system="clr-namespace:System;assembly=netstandard"
              Title="{Binding Title}">
 

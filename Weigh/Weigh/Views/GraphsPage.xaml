@@ -5,11 +5,12 @@
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
              xmlns:localization="clr-namespace:Weigh.Localization;assembly=Weigh"
              xmlns:b="clr-namespace:Weigh.Behaviors"
+             xmlns:controls="clr-namespace:Weigh.Controls;assembly=Weigh"
              xmlns:rangenavigator="clr-namespace:Syncfusion.RangeNavigator.XForms;assembly=Syncfusion.SfChart.XForms" 
              x:Class="Weigh.Views.GraphsPage"
              Title="{Binding Title}">
 
-    <Grid Padding="10">
+    <Grid Padding="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -143,6 +144,9 @@
         </ListView.ItemTemplate>
     </ListView>
 
+
+        <!-- ADMOB Banner -->
+        <controls:AdMobView Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" />
     </Grid>
 
 </ContentPage>
