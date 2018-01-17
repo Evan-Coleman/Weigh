@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:controls="clr-namespace:Weigh.Controls;assembly=Weigh"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Weigh.Views.PrismContentPage1"
+             Padding="0">
+
+    <StackLayout Padding="0" Margin="0">
+        <controls:AdMobView />
+    </StackLayout>
+    
+</ContentPage>

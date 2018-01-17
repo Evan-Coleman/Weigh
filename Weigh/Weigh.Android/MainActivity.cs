@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using Android.App;
 using Android.Content.PM;
+using Android.Gms.Ads;
 using Android.OS;
 using DryIoc;
 using Prism;
@@ -20,6 +21,7 @@ namespace Weigh.Droid
             
             base.OnCreate(bundle);
 
+            MobileAds.Initialize(ApplicationContext, "APPIDHERE");
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             UserDialogs.Init(this);

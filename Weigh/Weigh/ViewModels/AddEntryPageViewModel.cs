@@ -20,6 +20,8 @@ namespace Weigh.ViewModels
             SettingVals = new SettingVals();
             SettingValsValidated = new SettingValsValidated();
             Title = AppResources.AddEntryPageTitle;
+            //EntryDate = DateTime.UtcNow;
+            //MaxEntryDate = DateTime.UtcNow;
             _ea = ea;
             PickerSource = new List<string>
             {
@@ -87,6 +89,22 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _noteEntry, value); }
         }
 
+        /*
+        private DateTime _entryDate;
+        public DateTime EntryDate
+        {
+            get { return _entryDate; }
+            set { SetProperty(ref _entryDate, value); }
+        }
+
+        private DateTime _maxEntryDate;
+        public DateTime MaxEntryDate
+        {
+            get { return _maxEntryDate; }
+            set { SetProperty(ref _maxEntryDate, value); }
+        }
+        */
+
         #endregion
 
         #region Methods
@@ -107,6 +125,7 @@ namespace Weigh.ViewModels
 
             if (SettingValsValidated.ValidateProperties() == false)
             {
+                
                 UserDialogs.Instance.Alert(AppResources.FormValidationPopupLabel);
                 ButtonEnabled = true;
             }
@@ -118,7 +137,7 @@ namespace Weigh.ViewModels
                     Weight = SettingVals.Weight,
                     WaistSize = SettingVals.WaistSize,
                     WeightDelta = (SettingVals.Weight - SettingVals.LastWeight),
-                    Note = NoteEntry
+                    Note = NoteEntry,
                 };
                 SettingVals.LastWeight = SettingVals.Weight;
                 SettingVals.LastWeighDate = DateTime.UtcNow;

@@ -76,7 +76,7 @@ namespace Weigh.ViewModels
         public async void AddWeightToList()
         {
             ButtonEnabled = false;
-            await NavigationService.NavigateAsync(new Uri("MainPage/NavigationPage/AddEntryPage", UriKind.Relative));
+            await NavigationService.NavigateAsync("AddEntryPage");
             ButtonEnabled = true;
         }
 

@@ -42,7 +42,8 @@ namespace Weigh
             {
                 // Navigate to main page with main tab activated
                 //await NavigationService.NavigateAsync($"NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
-                await NavigationService.NavigateAsync("NavigatingAwareTabbedPage");
+                //await NavigationService.NavigateAsync("NavigatingAwareTabbedPage?SelectedTab=MainPage");
+                await NavigationService.NavigateAsync("PrismContentPage1");
             }
         }
 
@@ -55,6 +56,7 @@ namespace Weigh
             containerRegistry.RegisterForNavigation<SettingsPage>();
             containerRegistry.RegisterForNavigation<GraphsPage>();
             containerRegistry.RegisterForNavigation<AddEntryPage>();
+            containerRegistry.RegisterForNavigation<PrismContentPage1>();
         }
 
         public static WeightDatabase Database

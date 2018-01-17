@@ -17,14 +17,14 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
             <RowDefinition Height="0.35*" />
             <RowDefinition Height="0.10*" />
             <RowDefinition Height="0.55*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <!-- Chart -->
-        <chart:SfChart Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4">
+        <chart:SfChart Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4">
 
         <chart:SfChart.PrimaryAxis>
 
@@ -77,27 +77,27 @@
     </chart:SfChart>
 
         <!-- Chart Buttons -->
-        <Button Grid.Column="0" Grid.Row="2"
+        <Button Grid.Column="0" Grid.Row="1"
             Text="{localization:Translate NumberOfEntriesLabel}" IsEnabled="False"
                     FontSize="Small"/>
-        <Button Grid.Column="1" Grid.Row="2"
+        <Button Grid.Column="1" Grid.Row="1"
             Text="{localization:Translate ShowWeekGraphButton}"
                     Command="{Binding ShowWeekCommand}"
                     FontSize="Small"
                     TextColor="{Binding WeekSelectedBorderColor}"/>
-        <Button Grid.Column="2" Grid.Row="2"
+        <Button Grid.Column="2" Grid.Row="1"
             Text="{localization:Translate ShowMonthGraphButton}"
                     Command="{Binding ShowMonthCommand}"
                     FontSize="Small"
                     TextColor="{Binding MonthSelectedBorderColor}"/>
-        <Button Grid.Column="3" Grid.Row="2"
+        <Button Grid.Column="3" Grid.Row="1"
             Text="{localization:Translate ShowYearGraphButton}"
                     Command="{Binding ShowYearCommand}"
                     FontSize="Small"
                     TextColor="{Binding YearSelectedBorderColor}"/>
 
         <!-- ListView -->
-        <ListView Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4"
+        <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4"
             ItemsSource="{Binding WeightListReversed}"
                   VerticalOptions="FillAndExpand"
                   HasUnevenRows="True"

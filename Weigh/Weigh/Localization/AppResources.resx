@@ -477,4 +477,8 @@
     <value>Add New Weight Entry</value>
     <comment>(AddEntry)</comment>
   </data>
+  <data name="EntryDateLabel" xml:space="preserve">
+    <value>Date of Entry:</value>
+    <comment>(AddEntryPage)</comment>
+  </data>
 </root>

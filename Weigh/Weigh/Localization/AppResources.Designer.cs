@@ -214,6 +214,15 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date of Entry:.
+        /// </summary>
+        internal static string EntryDateLabel {
+            get {
+                return ResourceManager.GetString("EntryDateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Female.
         /// </summary>
         internal static string FemaleGenderSwitchLabel {

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:linear="clr-namespace:Syncfusion.SfGauge.XForms;assembly=Syncfusion.SfGauge.XForms"
              xmlns:localization="clr-namespace:Weigh.Localization;assembly=Weigh"
+             xmlns:controls="clr-namespace:Weigh.Controls;assembly=Weigh"
              x:Class="Weigh.Views.MainPage"
              Title="{Binding Title}">
 
@@ -13,23 +14,23 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="1.8*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
 
         <!-- Remove Adds Placeholder -->
-        <BoxView Grid.Column="0" Grid.Row="1"
+        <BoxView Grid.Column="0" Grid.Row="0"
                  VerticalOptions="Start"
                  HorizontalOptions="Start"
                  Color="DarkOliveGreen"/>
 
         <!-- Weight Section -->
 
-        <Grid  Grid.Column="1" Grid.Row="1" Margin="0" Padding="0" ColumnSpacing="0">
+        <Grid  Grid.Column="1" Grid.Row="0" Margin="0" Padding="0" ColumnSpacing="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="15" />
@@ -65,7 +66,7 @@
         </Grid>
 
         <!-- Info Placeholder -->
-        <BoxView Grid.Column="2" Grid.Row="1"
+        <BoxView Grid.Column="2" Grid.Row="0"
                  VerticalOptions="Start"
                  HorizontalOptions="End"
                  Color="DarkOliveGreen"/>
@@ -73,7 +74,7 @@
 
 
         <!-- Distance Section -->
-        <Grid Grid.Column="0" Grid.Row="2" Margin="0" Padding="0" ColumnSpacing="0">
+        <Grid Grid.Column="0" Grid.Row="1" Margin="0" Padding="0" ColumnSpacing="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="15" />
@@ -121,12 +122,12 @@
         </Grid>
 
         <!-- Add New Button -->
-        <Button Grid.Column="1" Grid.Row="2"              
+        <Button Grid.Column="1" Grid.Row="1"              
                 Text="{localization:Translate AddEntryLabel}"
                 Command="{Binding AddWeightToListCommand}"/>
 
         <!-- Time Left Section -->
-        <Grid Grid.Column="2" Grid.Row="2" Margin="0" Padding="3" ColumnSpacing="0">
+        <Grid Grid.Column="2" Grid.Row="1" Margin="0" Padding="3" ColumnSpacing="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="25" />
@@ -150,7 +151,7 @@
         </Grid>
 
         <!-- RDCI Section -->
-        <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Margin="0" Padding="0" ColumnSpacing="0" RowSpacing="0">
+        <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Margin="0" Padding="0" ColumnSpacing="0" RowSpacing="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="25" />
@@ -171,7 +172,7 @@
         </Grid>
 
         <!-- BMI Section -->
-        <Grid  Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" RowSpacing="0">
+        <Grid  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" RowSpacing="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -243,6 +244,9 @@
                            Text="{localization:Translate ObeseLabel}" />
         </Grid>
 
+
+        <!-- ADMOB Banner -->
+        <controls:AdMobView Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" />
     </Grid>
-    
+
 </ContentPage>
