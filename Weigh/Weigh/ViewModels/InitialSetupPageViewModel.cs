@@ -40,6 +40,8 @@ namespace Weigh.ViewModels
             SettingVals.GoalDate = DateTime.UtcNow.AddDays(180);
             SettingVals.BirthDate = DateTime.Parse("2/25/1988");
             //SettingVals.BirthDate = DateTime.UtcNow.AddYears(-21);
+            BirthDateMinDate = DateTime.UtcNow.AddYears(-150);
+            BirthDateMaxDate = DateTime.UtcNow.AddYears(-1);
 
             // Setting units to default imperial
             SettingVals.Units = true;

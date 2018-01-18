@@ -26,8 +26,8 @@
             <!-- Grid Heights -->
             <GridLength x:Key="GridButtonHeight">50</GridLength>
             <GridLength x:Key="GridEntryHeight">40</GridLength>
-            <GridLength x:Key="GridErrorLabelHeight">15</GridLength>
-            <GridLength x:Key="GridMultiLineEntryHeight">80</GridLength>
+            <GridLength x:Key="GridErrorLabelHeight">10</GridLength>
+            <GridLength x:Key="GridMultiLineEntryHeight">60</GridLength>
             
             <Color x:Key="ButtonSelected">#FFADD8E6</Color>
 

@@ -20,7 +20,7 @@
     </ContentPage.Resources>
 
 
-    <Grid RowSpacing="0" VerticalOptions="Center" Padding="20">
+    <Grid RowSpacing="0" Padding="0,10,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
             <ColumnDefinition Width="*" />

@@ -10,7 +10,7 @@
              x:Class="Weigh.Views.GraphsPage"
              Title="{Binding Title}">
 
-    <Grid Padding="0">
+    <Grid  Padding="0,10,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
