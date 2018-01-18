@@ -19,7 +19,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid Padding="0,10,0,0">
+    <Grid Padding="0,3,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
             <ColumnDefinition Width="30" />

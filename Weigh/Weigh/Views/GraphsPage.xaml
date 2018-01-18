@@ -10,7 +10,7 @@
              x:Class="Weigh.Views.GraphsPage"
              Title="{Binding Title}">
 
-    <Grid  Padding="0,10,0,0">
+    <Grid  Padding="0,3,0,0" RowSpacing="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -19,9 +19,9 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.35*" />
-            <RowDefinition Height="0.10*" />
+            <RowDefinition Height="0.13*" />
             <RowDefinition Height="0.55*" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
         <!-- Chart -->
@@ -146,7 +146,7 @@
 
 
         <!-- ADMOB Banner -->
-        <controls:AdMobView Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" />
+        <controls:AdMobView Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" VerticalOptions="End" />
     </Grid>
 
 </ContentPage>

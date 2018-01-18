@@ -33,6 +33,7 @@ namespace Weigh
         protected override async void OnInitialized()
         {
             InitializeComponent();
+            await NavigationService.NavigateAsync("SplashPage");
             // Will load all variables from storage in order to minimize disk time.
             if (Settings.FirstUse == "yes")
             {
@@ -42,6 +43,7 @@ namespace Weigh
             {
                 // Navigate to main page with main tab activated
                 //await NavigationService.NavigateAsync($"NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
+                
                 await NavigationService.NavigateAsync("NavigatingAwareTabbedPage?SelectedTab=MainPage");
             }
         }
@@ -55,6 +57,7 @@ namespace Weigh
             containerRegistry.RegisterForNavigation<SettingsPage>();
             containerRegistry.RegisterForNavigation<GraphsPage>();
             containerRegistry.RegisterForNavigation<AddEntryPage>();
+            containerRegistry.RegisterForNavigation<SplashPage>();
         }
 
         public static WeightDatabase Database

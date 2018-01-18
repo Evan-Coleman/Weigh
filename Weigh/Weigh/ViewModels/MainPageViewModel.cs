@@ -6,6 +6,8 @@ using Weigh.Events;
 using Weigh.Helpers;
 using Weigh.Localization;
 using Weigh.Models;
+using Microcharts;
+using SkiaSharp;
 
 namespace Weigh.ViewModels
 {
@@ -69,6 +71,22 @@ namespace Weigh.ViewModels
 
         private readonly IEventAggregator _ea;
 
+        private Chart _daysLeftChart;
+
+        public Chart DaysLeftChart
+        {
+            get => _daysLeftChart;
+            set => SetProperty(ref _daysLeftChart, value);
+        }
+
+        private Chart _weightLeftChart;
+
+        public Chart WeightLeftChart
+        {
+            get => _weightLeftChart;
+            set => SetProperty(ref _weightLeftChart, value);
+        }
+
         #endregion
 
         #region Methods
@@ -83,6 +101,7 @@ namespace Weigh.ViewModels
         private void HandleUpdateSetupInfo(SettingValsValidated setupInfoValidated)
         {
             SettingVals.InitializeFromValidated(setupInfoValidated);
+            InitializeCharts();
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)
@@ -94,6 +113,55 @@ namespace Weigh.ViewModels
             _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SettingVals);
             // TODO: Possibly remove
             _ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Publish(SettingVals.WaistSizeEnabled);
+
+            InitializeCharts();
+        }
+
+        private void InitializeCharts()
+        {
+            // Weight left chart
+            double WeightProgress;
+            double TotalWeightToLose = SettingVals.InitialWeight - SettingVals.GoalWeight;
+            double WeightProgressToGoal = TotalWeightToLose - SettingVals.DistanceToGoalWeight;
+            WeightProgress = WeightProgressToGoal / TotalWeightToLose;
+            WeightLeftChart = new RadialGaugeChart()
+            {
+                Entries = new[]
+            {
+                new Entry(Math.Min(1,(float)WeightProgress))
+                {
+                    Color = SKColor.FromHsv(100, 100, 100),
+                },
+            },
+                BackgroundColor = SKColors.Transparent,
+                MinValue = 0,
+                MaxValue = 1,
+                Margin = 0,
+                AnimationDuration = TimeSpan.FromSeconds(3.5),
+                LineSize = 40,
+            };
+
+            // Time left chart
+            double TimeProgress;
+            double TotalDaysToGo = (SettingVals.GoalDate - SettingVals.InitialWeighDate).TotalDays;
+            double TimeProgressToGoal = TotalDaysToGo - SettingVals.TimeLeftToGoal;
+            TimeProgress = TimeProgressToGoal / TotalWeightToLose;
+            DaysLeftChart = new RadialGaugeChart()
+            {
+                Entries = new[]
+            {
+                new Entry(Math.Min(1,(float)TimeProgress))
+                {
+                    Color = SKColor.FromHsv(100, 100, 100),
+                },
+            },
+                BackgroundColor = SKColors.Transparent,
+                MinValue = 0,
+                MaxValue = 1,
+                Margin = 0,
+                AnimationDuration = TimeSpan.FromSeconds(3.5),
+                LineSize = 40,
+            };
         }
 
         #endregion

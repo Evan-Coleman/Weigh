@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.0.0" />
+    <PackageReference Include="Microcharts.Forms" Version="0.8.3-pre" />
     <PackageReference Include="sqlite-net-pcl" Version="1.4.118" />
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="15.4.0.20" />
     <PackageReference Include="Syncfusion.Xamarin.SfGauge" Version="15.4.0.20" />
@@ -56,6 +57,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SplashPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

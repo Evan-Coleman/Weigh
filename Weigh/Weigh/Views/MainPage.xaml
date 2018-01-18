@@ -3,30 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:linear="clr-namespace:Syncfusion.SfGauge.XForms;assembly=Syncfusion.SfGauge.XForms"
              xmlns:localization="clr-namespace:Weigh.Localization;assembly=Weigh"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms" 
              xmlns:controls="clr-namespace:Weigh.Controls;assembly=Weigh"
              x:Class="Weigh.Views.MainPage"
              Title="{Binding Title}">
 
-    <Grid RowSpacing="10" Padding="0,10,0,0">
+    <Grid RowSpacing="10" Padding="0,3,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="1.2*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="1.8*" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height=".4*" />
+            <RowDefinition Height=".1*" />
+            <RowDefinition Height=".2*" />
+            <RowDefinition Height=".3*" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
 
         <!-- Remove Adds Placeholder -->
-        <BoxView Grid.Column="0" Grid.Row="0"
-                 VerticalOptions="Start"
-                 HorizontalOptions="Start"
-                 Color="DarkOliveGreen"/>
+        <!-- Weight Left Chart Region -->
+        <Frame Grid.Column="0" Grid.Row="0" Margin="0" Padding="0" BackgroundColor="Transparent" OutlineColor="Transparent">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".14*" />
+                    <RowDefinition Height=".74*" />
+                    <RowDefinition Height=".14*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0"
+                       Text="Weight loss progress" />
+
+                <Label Grid.Row="1"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Text="235" />
+                <microcharts:ChartView Grid.Row="1"
+                               BackgroundColor="Transparent"
+                               Chart="{Binding WeightLeftChart}"/>
+
+                <Label Grid.Row="2"
+                       Text="50% to goal of 190lb" />
+            </Grid>
+        </Frame>
 
         <!-- Weight Section -->
 
@@ -70,7 +90,9 @@
                  VerticalOptions="Start"
                  HorizontalOptions="End"
                  Color="DarkOliveGreen"/>
-
+        <microcharts:ChartView Grid.Column="2" Grid.Row="0"
+                               BackgroundColor="Transparent"
+                               Chart="{Binding DaysLeftChart}"/>
 
 
         <!-- Distance Section -->
@@ -246,7 +268,7 @@
 
 
         <!-- ADMOB Banner -->
-        <controls:AdMobView Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" />
+        <controls:AdMobView Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" VerticalOptions="End" />
     </Grid>
 
 </ContentPage>
