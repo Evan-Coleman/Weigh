@@ -35,7 +35,7 @@ namespace Weigh.Droid.Renderers
                 var ad = new AdView(Context)
                 {
                     AdSize = AdSize.SmartBanner,
-                    AdUnitId = "ca-app-pub-3940256099942544/6300978111"
+                    AdUnitId = Weigh.PrivateKeys.AdmobBannerTestId
                 };
 
                 var requestbuilder = new AdRequest.Builder();

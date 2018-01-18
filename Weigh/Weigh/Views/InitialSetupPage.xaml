@@ -28,22 +28,22 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.08421*" />
-            <RowDefinition Height="0.08421*" />
-            <RowDefinition Height="0.03157*" />
-            <RowDefinition Height="0.08421*" />
-            <RowDefinition Height="0.03157*" />
-            <RowDefinition Height="0.08421*" />
-            <RowDefinition Height="0.03157*" />
-            <RowDefinition Height="0.08421*" />
-            <RowDefinition Height="0.03157*" />
-            <RowDefinition Height="0.08421*" />
-            <RowDefinition Height="0.08421*" />
-            <RowDefinition Height="0.08421*" />
-            <RowDefinition Height="0.03157*" />
-            <RowDefinition Height="0.08421*" />
-            <RowDefinition Height="0.2*" />
-            <RowDefinition Height="0.08421*" />
+            <RowDefinition Height="{StaticResource GridButtonHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
+            <RowDefinition Height="{StaticResource GridButtonHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridMultiLineEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridButtonHeight}" />
         </Grid.RowDefinitions>
 
 
