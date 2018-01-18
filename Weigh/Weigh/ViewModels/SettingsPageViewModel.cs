@@ -7,6 +7,7 @@ using Weigh.Events;
 using Weigh.Helpers;
 using Weigh.Localization;
 using Weigh.Models;
+using Xamarin.Forms;
 
 namespace Weigh.ViewModels
 {
@@ -22,12 +23,23 @@ namespace Weigh.ViewModels
         public SettingsPageViewModel(INavigationService navigationService, IEventAggregator ea)
             : base(navigationService)
         {
-            SettingValsValidated = new SettingValsValidated();
-            SettingVals = new SettingVals();
-            _ea = ea;
-            _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo);
             Title = AppResources.SettingsPageTitle;
+            _ea = ea;
+
+            SettingVals = new SettingVals();
+            SettingValsValidated = new SettingValsValidated();
+
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
+            SelectImperialCommand = new DelegateCommand(SelectImperial);
+            SelectMetricCommand = new DelegateCommand(SelectMetric);
+            SelectMaleCommand = new DelegateCommand(SelectMale);
+            SelectFemaleCommand = new DelegateCommand(SelectFemale);
+
+            _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo);
+            BirthDateMinDate = DateTime.UtcNow.AddYears(-150);
+            BirthDateMaxDate = DateTime.UtcNow.AddYears(-1);
+            ImperialSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
+            MaleSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
             PickerSource = new List<string>
             {
@@ -42,12 +54,14 @@ namespace Weigh.ViewModels
 
         #region Fields
 
-        private List<string> _pickerSource;
+        private readonly IEventAggregator _ea;
 
-        public List<string> PickerSource
+        private SettingVals _settingVals;
+
+        public SettingVals SettingVals
         {
-            get => _pickerSource;
-            set => SetProperty(ref _pickerSource, value);
+            get => _settingVals;
+            set => SetProperty(ref _settingVals, value);
         }
 
         private SettingValsValidated _settingValsValidated;
@@ -58,20 +72,99 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _settingValsValidated, value);
         }
 
-        private SettingVals _settingVals;
+        public DelegateCommand SaveInfoCommand { get; set; }
+        public DelegateCommand SelectImperialCommand { get; set; }
+        public DelegateCommand SelectMetricCommand { get; set; }
+        public DelegateCommand SelectMaleCommand { get; set; }
+        public DelegateCommand SelectFemaleCommand { get; set; }
 
-        public SettingVals SettingVals
+
+        private List<string> _pickerSource;
+
+        public List<string> PickerSource
         {
-            get => _settingVals;
-            set => SetProperty(ref _settingVals, value);
+            get => _pickerSource;
+            set => SetProperty(ref _pickerSource, value);
         }
 
-        public DelegateCommand SaveInfoCommand { get; set; }
-        private readonly IEventAggregator _ea;
+        private Color _metricSelectedBorderColor;
+
+        public Color MetricSelectedBorderColor
+        {
+            get => _metricSelectedBorderColor;
+            set => SetProperty(ref _metricSelectedBorderColor, value);
+        }
+
+        private Color _imperialSelectedBorderColor;
+
+        public Color ImperialSelectedBorderColor
+        {
+            get => _imperialSelectedBorderColor;
+            set => SetProperty(ref _imperialSelectedBorderColor, value);
+        }
+
+        private Color _maleSelectedBorderColor;
+
+        public Color MaleSelectedBorderColor
+        {
+            get => _maleSelectedBorderColor;
+            set => SetProperty(ref _maleSelectedBorderColor, value);
+        }
+
+        private Color _femaleSelectedBorderColor;
+
+        public Color FemaleSelectedBorderColor
+        {
+            get => _femaleSelectedBorderColor;
+            set => SetProperty(ref _femaleSelectedBorderColor, value);
+        }
+
+        private DateTime _birthDateMinDate;
+        public DateTime BirthDateMinDate
+        {
+            get { return _birthDateMinDate; }
+            set { SetProperty(ref _birthDateMinDate, value); }
+        }
+
+        private DateTime _birthDateMaxDate;
+        public DateTime BirthDateMaxDate
+        {
+            get { return _birthDateMaxDate; }
+            set { SetProperty(ref _birthDateMaxDate, value); }
+        }
 
         #endregion
 
         #region Methods
+
+        private void SelectImperial()
+        {
+            MetricSelectedBorderColor = Color.Default;
+            ImperialSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
+            SettingVals.Units = true;
+        }
+
+        private void SelectMetric()
+        {
+            MetricSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
+            ImperialSelectedBorderColor = Color.Default;
+            SettingVals.Units = false;
+        }
+
+        private void SelectMale()
+        {
+            MaleSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
+            FemaleSelectedBorderColor = Color.Default;
+            SettingVals.Sex = false;
+        }
+
+        private void SelectFemale()
+        {
+            MaleSelectedBorderColor = Color.Default;
+            FemaleSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
+            SettingVals.Sex = true;
+        }
+
 
         private async void SaveInfoAsync()
         {

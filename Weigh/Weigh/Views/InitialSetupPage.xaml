@@ -30,15 +30,15 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource GridButtonHeight}" />
             <RowDefinition Height="{StaticResource GridEntryHeight}" />
-            <RowDefinition Height="{StaticResource GridEntryHeight}" />
-            <RowDefinition Height="{StaticResource GridEntryHeight}" />
             <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
             <RowDefinition Height="{StaticResource GridEntryHeight}" />
             <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
             <RowDefinition Height="{StaticResource GridEntryHeight}" />
             <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
             <RowDefinition Height="{StaticResource GridButtonHeight}" />
-            <RowDefinition Height="{StaticResource GridEntryHeight}" />
             <RowDefinition Height="{StaticResource GridEntryHeight}" />
             <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
             <RowDefinition Height="{StaticResource GridEntryHeight}" />

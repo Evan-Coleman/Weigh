@@ -5,7 +5,11 @@
              xmlns:validation="clr-namespace:Weigh.Validation;assembly=Weigh"
              xmlns:converters="clr-namespace:Weigh.Converters;assembly=Weigh"
              xmlns:localization="clr-namespace:Weigh.Localization;assembly=Weigh"
+             xmlns:App="clr-namespace:Weigh;assembly=Weigh"
              xmlns:b="clr-namespace:Weigh.Behaviors"
+             xmlns:pb="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:controls="clr-namespace:Weigh.Controls;assembly=Weigh"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
              Title="{Binding Title}">
 
     <ContentPage.Resources>
@@ -15,111 +19,132 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand"
-                 WidthRequest="250">
+
+    <Grid RowSpacing="0" Padding="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource GridButtonHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridButtonHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridButtonHeight}" />
+            <RowDefinition  Height="*" />
+        </Grid.RowDefinitions>
+
+
+        <!-- Units -->
+        <Label Grid.Column="0" Grid.Row="0"
+       Text="{localization:Translate UnitsLabel}" />
+        <StackLayout Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"
+            Orientation="Horizontal">
+            <Button Text="{localization:Translate UnitSwitchImperialLabel}"
+                TextColor="{Binding ImperialSelectedBorderColor}"
+                Command="{Binding SelectImperialCommand}"/>
+            <Button Text="{localization:Translate UnitSwitchMetricLabel}"
+                TextColor="{Binding MetricSelectedBorderColor}"
+                Command="{Binding SelectMetricCommand}"/>
+        </StackLayout>
+
+
+
+
+        <!-- Age -->
+        <Label Grid.Column="0" Grid.Row="1"
+       Text="{localization:Translate AgeLabel}" />
+        <DatePicker Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Date="{Binding SettingVals.BirthDate}"
+                    MinimumDate="{Binding BirthDateMinDate}"
+                    MaximumDate="{Binding BirthDateMaxDate}"/>
         <!--
-        <Entry Text="{Binding SettingValsValidated.Name, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[Name]}"
-               Placeholder="Enter Name Here"
-               Style="{ StaticResource SetupEntryStyle }"
-               x:Name="Name">
-            <Entry.Behaviors>
-                <b:EntryLengthValidatorBehavior MaxLength="25" />
-            </Entry.Behaviors>
-        </Entry>
-        <Label Text="{Binding SettingValsValidated.Errors[Name], Converter={StaticResource FirstErrorConverter}"
-               FontSize="Small" TextColor="Red" />
-    -->
-
-        <StackLayout Orientation="Horizontal" Padding="0,0,0,10">
-            <Label Text="{localization:Translate EnableEditSwitchLabel}"/>
-            <Switch x:Name="EditSwitch"/>
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="CenterAndExpand"
-                     Padding="0">
-            <Label Text="{localization:Translate UnitSwitchMetricLabel}"/>
-            <Switch IsToggled="{Binding SettingVals.Units}"
-                    x:Name="UnitSwitch"
-                    IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}"/>
-            <Label Text="{localization:Translate UnitSwitchImperialLabel}"/>
-        </StackLayout>
-
-
-
-
-        <Entry Text="{Binding SettingValsValidated.Age, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[Age]}"
+        <Entry Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1"
+            Text="{Binding SettingValsValidated.Age}}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[Age]}"
                Placeholder="{localization:Translate NameEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="Age"
-               Keyboard="Numeric"
-               IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}">
+               Keyboard="Numeric">
             <Entry.Behaviors>
+                <pb:EventToCommandBehavior
+                    EventName="TextChanged"
+                    Command="{Binding AgeChangedCommand}"/>
                 <b:EntryLengthValidatorBehavior MaxLength="3" />
             </Entry.Behaviors>
         </Entry>
-        <Label Text="{Binding SettingValsValidated.Errors[Age], Converter={StaticResource FirstErrorConverter}"
+        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3"
+            Text="{Binding SettingValsValidated.Errors[Age], Converter={StaticResource FirstErrorConverter}"
                Style="{StaticResource ErrorLabelStyle}"
                IsVisible="{Binding SettingValsValidated.IsDirty[Age]}"/>
+        -->
 
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="CenterAndExpand">
-            <StackLayout>
-                <Entry 
+
+        <!-- Height -->
+        <Label Grid.Column="0" Grid.Row="3"
+       Text="{localization:Translate HeightLabel}" />
+        <Entry Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2"
             Text="{Binding SettingValsValidated.HeightMajor, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[HeightMajor]}"
                Placeholder="{localization:Translate HeightMajorImperialEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="HeightMajor"
-               Keyboard="Numeric"
-                    IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}">
-                    <Entry.Behaviors>
-                        <b:EntryLengthValidatorBehavior MaxLength="6" />
-                    </Entry.Behaviors>
-                    <Entry.Triggers>
-                        <DataTrigger TargetType="Entry"
-                     Binding="{Binding Source={x:Reference UnitSwitch},
-                                       Path=IsToggled}"
+               Keyboard="Numeric">
+            <Entry.Behaviors>
+                <b:EntryLengthValidatorBehavior MaxLength="6" />
+            </Entry.Behaviors>
+            <Entry.Triggers>
+                <DataTrigger TargetType="Entry"
+                     Binding="{Binding SettingVals.Units}"
                      Value="false">
-                            <Setter Property="Placeholder" Value="{localization:Translate HeightMajorMetricEntryPlaceholder}" />
-                        </DataTrigger>
-                    </Entry.Triggers>
-                </Entry>
-                <Label Text="{Binding SettingValsValidated.Errors[HeightMajor], Converter={StaticResource FirstErrorConverter}"
+                    <Setter Property="Placeholder" Value="{localization:Translate HeightMajorMetricEntryPlaceholder}" />
+                </DataTrigger>
+            </Entry.Triggers>
+        </Entry>
+        <Label Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3"
+                    Text="{Binding SettingValsValidated.Errors[HeightMajor], Converter={StaticResource FirstErrorConverter}"
                Style="{StaticResource ErrorLabelStyle}"
                IsVisible="{Binding SettingValsValidated.IsDirty[HeightMajor]}"/>
-            </StackLayout>
 
-            <StackLayout>
-                <Entry WidthRequest="50"
+
+        <Entry Grid.Column="3" Grid.Row="3"
             Text="{Binding SettingValsValidated.HeightMinor, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[HeightMinor]}"
                Placeholder="(in)"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="HeightMinor"
                Keyboard="Numeric"
-               IsVisible="{Binding SettingVals.Units}"
-                       IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}">
-                    <Entry.Behaviors>
-                        <b:EntryLengthValidatorBehavior MaxLength="2" />
-                    </Entry.Behaviors>
-                </Entry>
-                <Label Text="{Binding SettingValsValidated.Errors[HeightMinor], Converter={StaticResource FirstErrorConverter}"
+               IsVisible="{Binding SettingVals.Units}">
+            <Entry.Behaviors>
+                <b:EntryLengthValidatorBehavior MaxLength="2" />
+            </Entry.Behaviors>
+        </Entry>
+        <Label Grid.Column="3" Grid.Row="4"
+                    Text="{Binding SettingValsValidated.Errors[HeightMinor], Converter={StaticResource FirstErrorConverter}"
                        Margin="10,-10,0,-10"
                Style="{StaticResource ErrorLabelStyle}"
                IsVisible="{Binding SettingValsValidated.IsDirty[HeightMinor]}"/>
-            </StackLayout>
-        </StackLayout>
 
-
-        <Entry Text="{Binding SettingValsValidated.Weight, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[Weight]}"
+        <!-- Weight -->
+        <Label Grid.Column="0" Grid.Row="5"
+               Text="{localization:Translate WeightEntryLabel}" />
+        <Entry Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3"
+            Text="{Binding SettingValsValidated.Weight, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[Weight]}"
                Placeholder="{localization:Translate WeightImperialEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="Weight"
-               Keyboard="Numeric"
-               IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}">
+               Keyboard="Numeric">
             <Entry.Triggers>
                 <DataTrigger TargetType="Entry"
-                     Binding="{Binding Source={x:Reference UnitSwitch},
-                                       Path=IsToggled}"
+                     Binding="{Binding SettingVals.Units}"
                      Value="false">
                     <Setter Property="Placeholder" Value="{localization:Translate WeightMetricEntryPlaceholder}" />
                 </DataTrigger>
@@ -128,71 +153,78 @@
                 <b:EntryLengthValidatorBehavior MaxLength="7" />
             </Entry.Behaviors>
         </Entry>
-        <Label Text="{Binding SettingValsValidated.Errors[Weight], Converter={StaticResource FirstErrorConverter}"
+        <Label Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3"
+            Text="{Binding SettingValsValidated.Errors[Weight], Converter={StaticResource FirstErrorConverter}"
                Style="{StaticResource ErrorLabelStyle}"
                IsVisible="{Binding SettingValsValidated.IsDirty[Weight]}"/>
 
-        <StackLayout Orientation="Horizontal">
-            <Switch IsToggled="{Binding SettingVals.WaistSizeEnabled}" x:Name="EnableWaistSizeSwitch"
-                    IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}"/>
-            <Entry Text="{Binding SettingValsValidated.WaistSize, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[WaistSize]}"
+
+        <!-- Waist Size -->
+        <Label Grid.Column="0" Grid.Row="7"
+       Text="{localization:Translate WaistSizeEntryLabel}" />
+        <Switch Grid.Column="1" Grid.Row="7"
+            IsToggled="{Binding SettingVals.WaistSizeEnabled}" x:Name="EnableWaistSizeSwitch" />
+        <Entry Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2"
+            Text="{Binding SettingValsValidated.WaistSize, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[WaistSize]}"
                Placeholder="{localization:Translate WaistSizeImperialEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="WaistSize"
                Keyboard="Numeric"
-               IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}">
+               IsEnabled="{Binding Source={x:Reference EnableWaistSizeSwitch}, Path=IsToggled}">
             <Entry.Triggers>
-                    <DataTrigger TargetType="Entry"
-                     Binding="{Binding Source={x:Reference UnitSwitch},
-                                       Path=IsToggled}"
+                <DataTrigger TargetType="Entry"
+                     Binding="{Binding SettingVals.Units}"
                      Value="false">
-                        <Setter Property="Placeholder" Value="{localization:Translate WaistSizeMetricEntryPlaceholder}" />
-                    </DataTrigger>
-                    <DataTrigger TargetType="Entry"
-                     Binding="{Binding SettingVals.WaistSizeEnabled}" Value="false">
-                        <Setter Property="IsEnabled" Value="false" />
-                    </DataTrigger>
-                    <DataTrigger TargetType="Entry"
-                     Binding="{Binding SettingVals.WaistSizeEnabled}" Value="true">
-                        <Setter Property="IsEnabled" Value="true" />
-                    </DataTrigger>
-                </Entry.Triggers>
+                    <Setter Property="Placeholder" Value="{localization:Translate WaistSizeMetricEntryPlaceholder}" />
+                </DataTrigger>
+            </Entry.Triggers>
             <Entry.Behaviors>
                 <b:EntryLengthValidatorBehavior MaxLength="5" />
             </Entry.Behaviors>
         </Entry>
-        </StackLayout>
-        <Label Text="{Binding SettingValsValidated.Errors[WaistSize], Converter={StaticResource FirstErrorConverter}"
+        <Label Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2"
+            Text="{Binding SettingValsValidated.Errors[WaistSize], Converter={StaticResource FirstErrorConverter}"
                Style="{StaticResource ErrorLabelStyle}"
                IsVisible="{Binding SettingValsValidated.IsDirty[WaistSize]}"
                Margin="65,0,0,0"/>
 
-        <Picker ItemsSource="{Binding PickerSource}"
+
+        <!-- Level of Activity -->
+        <Label Grid.Column="0" Grid.Row="9"
+       Text="{localization:Translate LevelOfActivityLabel}" />
+        <Picker Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="3"
+            ItemsSource="{Binding PickerSource}"
                 SelectedItem="{Binding SettingVals.PickerSelectedItem}"
                 Title="{localization:Translate ActivityLevelLabel}"
                  HorizontalOptions="FillAndExpand"
-                WidthRequest="150"
-                IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}"/>
+                WidthRequest="150"/>
 
-        <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="CenterAndExpand"
-                     Padding="0">
-            <Label Text="{localization:Translate MaleGenderSwitchLabel}"/>
-            <Switch IsToggled="{Binding SettingVals.Sex}"
-                    IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}"/>
-            <Label Text="{localization:Translate FemaleGenderSwitchLabel}"/>
+        <!-- Sex -->
+        <Label Grid.Column="0" Grid.Row="10"
+       Text="{localization:Translate SexLabel}" />
+        <StackLayout Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="3"
+            Orientation="Horizontal">
+            <Button Text="{localization:Translate MaleGenderSwitchLabel}"
+                TextColor="{Binding MaleSelectedBorderColor}"
+                Command="{Binding SelectMaleCommand}"/>
+            <Button Text="{localization:Translate FemaleGenderSwitchLabel}"
+                TextColor="{Binding FemaleSelectedBorderColor}"
+                Command="{Binding SelectFemaleCommand}"/>
         </StackLayout>
 
-        <Entry Text="{Binding SettingValsValidated.GoalWeight, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[GoalWeight]}"
+
+        <!-- Goal Weight -->
+        <Label Grid.Column="0" Grid.Row="11"
+       Text="{localization:Translate GoalWeightEntryLabel}" />
+        <Entry Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="3"
+            Text="{Binding SettingValsValidated.GoalWeight, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[GoalWeight]}"
                Placeholder="{localization:Translate GoalWeightImperialEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
                x:Name="GoalWeight"
-               Keyboard="Numeric"
-               IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}">
+               Keyboard="Numeric">
             <Entry.Triggers>
                 <DataTrigger TargetType="Entry"
-                     Binding="{Binding Source={x:Reference UnitSwitch},
-                                       Path=IsToggled}"
+                     Binding="{Binding SettingVals.Units}"
                      Value="false">
                     <Setter Property="Placeholder" Value="{localization:Translate GoalWeightMetricEntryPlaceholder}" />
                 </DataTrigger>
@@ -201,20 +233,26 @@
                 <b:EntryLengthValidatorBehavior MaxLength="7" />
             </Entry.Behaviors>
         </Entry>
-        <Label Text="{Binding SettingValsValidated.Errors[GoalWeight], Converter={StaticResource FirstErrorConverter}"
+        <Label Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="3"
+            Text="{Binding SettingValsValidated.Errors[GoalWeight], Converter={StaticResource FirstErrorConverter}"
                Style="{StaticResource ErrorLabelStyle}"
                IsVisible="{Binding SettingValsValidated.IsDirty[GoalWeight]}"/>
 
-        <DatePicker Date="{Binding SettingVals.GoalDate}"
-                    MinimumDate="{Binding SettingVals.MinDate}"
-                    IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}"></DatePicker>
 
+        <!-- Goal Date -->
+        <Label Grid.Column="0" Grid.Row="13"
+       Text="{localization:Translate GoalDateEntryLabel}" />
+        <DatePicker Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="3"
+            Date="{Binding SettingVals.GoalDate}"
+                    MinimumDate="{Binding SettingVals.MinDate}"></DatePicker>
 
+        <!-- Save Button -->
+        <Button Grid.Column="0" Grid.Row="14" Grid.ColumnSpan="4"
+            Text="{localization:Translate SaveLabel}"
+                Command="{Binding SaveInfoCommand}"/>
 
-        <Button Text="{localization:Translate SaveLabel}"
-                Command="{Binding SaveInfoCommand}"
-                WidthRequest="150"
-                IsEnabled="{Binding Source={x:Reference EditSwitch}, Path=IsToggled}}"/>
-    </StackLayout>
+        <!-- ADMOB Banner -->
+        <controls:AdMobView Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="4" VerticalOptions="End" />
+    </Grid>
 
 </ContentPage>

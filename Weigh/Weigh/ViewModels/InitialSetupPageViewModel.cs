@@ -23,28 +23,30 @@ namespace Weigh.ViewModels
         public InitialSetupPageViewModel(INavigationService navigationService, IEventAggregator ea)
             : base(navigationService)
         {
-            _ea = ea;
             Title = AppResources.InitialSetupPageTitle;
+            _ea = ea;
+
+            SettingVals = new SettingVals();
+            SettingValsValidated = new SettingValsValidated();
+
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
             SelectImperialCommand = new DelegateCommand(SelectImperial);
             SelectMetricCommand = new DelegateCommand(SelectMetric);
             SelectMaleCommand = new DelegateCommand(SelectMale);
             SelectFemaleCommand = new DelegateCommand(SelectFemale);
-            ImperialSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
-            MaleSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
+
             // Initialize app SettingVals
-            SettingVals = new SettingVals();
-            SettingValsValidated = new SettingValsValidated();
             SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
             SettingVals.GoalDate = DateTime.UtcNow.AddDays(180);
             SettingVals.BirthDate = DateTime.Parse("2/25/1988");
             //SettingVals.BirthDate = DateTime.UtcNow.AddYears(-21);
-            BirthDateMinDate = DateTime.UtcNow.AddYears(-150);
-            BirthDateMaxDate = DateTime.UtcNow.AddYears(-1);
+
             // Setting units to default imperial
             SettingVals.Units = true;
             SettingVals.WaistSizeEnabled = true;
             SettingVals.PickerSelectedItem = AppResources.LightActivityPickItem;
+            ImperialSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
+            MaleSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             PickerSource = new List<string>
             {
                 AppResources.LowActivityPickItem,
@@ -58,11 +60,39 @@ namespace Weigh.ViewModels
 
         #region Fields      
 
+        private IEventAggregator _ea;
+
+        private SettingVals _settingVals;
+
+        public SettingVals SettingVals
+        {
+            get => _settingVals;
+            set => SetProperty(ref _settingVals, value);
+        }
+
+        private SettingValsValidated _settingValsValidated;
+
+        public SettingValsValidated SettingValsValidated
+        {
+            get => _settingValsValidated;
+            set => SetProperty(ref _settingValsValidated, value);
+        }
+
         public DelegateCommand SaveInfoCommand { get; set; }
         public DelegateCommand SelectImperialCommand { get; set; }
         public DelegateCommand SelectMetricCommand { get; set; }
         public DelegateCommand SelectMaleCommand { get; set; }
         public DelegateCommand SelectFemaleCommand { get; set; }
+
+
+        private List<string> _pickerSource;
+        private WeightEntry _newWeight;
+
+        public List<string> PickerSource
+        {
+            get => _pickerSource;
+            set => SetProperty(ref _pickerSource, value);
+        }
 
         private Color _metricSelectedBorderColor;
 
@@ -96,32 +126,6 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _femaleSelectedBorderColor, value);
         }
 
-        private List<string> _pickerSource;
-
-        public List<string> PickerSource
-        {
-            get => _pickerSource;
-            set => SetProperty(ref _pickerSource, value);
-        }
-
-        private WeightEntry _newWeight;
-
-        private SettingValsValidated _settingValsValidated;
-
-        public SettingValsValidated SettingValsValidated
-        {
-            get => _settingValsValidated;
-            set => SetProperty(ref _settingValsValidated, value);
-        }
-
-        private SettingVals _settingVals;
-
-        public SettingVals SettingVals
-        {
-            get => _settingVals;
-            set => SetProperty(ref _settingVals, value);
-        }
-
         private string _noteEntry;
 
         public string NoteEntry
@@ -144,7 +148,7 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _birthDateMaxDate, value); }
         }
 
-        private IEventAggregator _ea;
+
 
         #endregion
 
