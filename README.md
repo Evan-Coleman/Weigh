@@ -8,6 +8,7 @@ Important: To get Admob ads working for yourself, take PrivateKeys.Sample, and r
 TODO:
 
 	Active
+		(SettingsPage) Save button messes things up, investigate
 		(MainPage) Change UI with chart trackers for weight/time left
 		(MainPage) Implement button for information & acompanying modal popup
 		(MainPage) Implement In-App-Purchases for removal of ads & Button for it

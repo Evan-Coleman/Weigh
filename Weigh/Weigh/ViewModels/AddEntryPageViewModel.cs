@@ -23,6 +23,7 @@ namespace Weigh.ViewModels
             //EntryDate = DateTime.UtcNow;
             //MaxEntryDate = DateTime.UtcNow;
             _ea = ea;
+
             PickerSource = new List<string>
             {
                 AppResources.LowActivityPickItem,
