@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weigh.UWP", "Weigh\Weigh.UW
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CD68B613-7791-48EF-8274-3321828D07DF}"
 	ProjectSection(SolutionItems) = preProject
-		PrivateKeys.cs = PrivateKeys.cs
-		PrivateKeys.Sample.cs = PrivateKeys.Sample.cs
 		README.md = README.md
 	EndProjectSection
 EndProject

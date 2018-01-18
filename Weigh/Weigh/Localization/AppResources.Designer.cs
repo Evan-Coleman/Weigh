@@ -79,7 +79,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add New Weight Entry.
+        ///   Looks up a localized string similar to Add / Edit New Weight Entry.
         /// </summary>
         internal static string AddEntryPageTitle {
             get {

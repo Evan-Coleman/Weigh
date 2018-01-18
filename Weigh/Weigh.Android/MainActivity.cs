@@ -20,8 +20,7 @@ namespace Weigh.Droid
             ToolbarResource = Resource.Layout.Toolbar;
             
             base.OnCreate(bundle);
-
-            MobileAds.Initialize(ApplicationContext, "APPIDHERE");
+            MobileAds.Initialize(ApplicationContext, Weigh.PrivateKeys.AdmobAppId);
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             UserDialogs.Init(this);
