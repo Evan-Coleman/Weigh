@@ -8,9 +8,12 @@ Important: To get Admob ads working for yourself, take PrivateKeys.Sample, and r
 TODO:
 
 	Active
+		(MainPage) Change UI with chart trackers for weight/time left
+		(MainPage) Implement button for information & acompanying modal popup
+		(MainPage) Implement In-App-Purchases for removal of ads & Button for it
 		(General) Add google docs backend or way to backup
 		(General) Add a way to know how on or off track you are to meet goal
-		(MainPage) Handle case of goal met (new goal, or show maintain caloric intake)
+		(General) Handle case of goal met (new goal, or show maintain caloric intake)
 		(GraphPage) Add ability to click listview items
 		(GraphPage) Add view for item details
 		(GraphPage) Add area colors for bmi
