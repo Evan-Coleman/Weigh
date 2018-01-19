@@ -481,4 +481,40 @@
     <value>Date of Entry:</value>
     <comment>(AddEntryPage)</comment>
   </data>
+  <data name="DayLabel" xml:space="preserve">
+    <value>Day</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="GoalDateSectionHeaderLabel" xml:space="preserve">
+    <value>Goal Date</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="GoalStatusLabel" xml:space="preserve">
+    <value>Goal Status</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="GoalWeightSectionHeaderLabel" xml:space="preserve">
+    <value>Goal Weight</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="OffScheduleLabel" xml:space="preserve">
+    <value>Off Schedule</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="OnScheduleLabel" xml:space="preserve">
+    <value>On Schedule</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="PercentLabel" xml:space="preserve">
+    <value>{0:0}%</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="ProgressLabel" xml:space="preserve">
+    <value>Progress</value>
+    <comment>(MainPage) header for progress section</comment>
+  </data>
+  <data name="ToGoLabel" xml:space="preserve">
+    <value>{0:0} to go</value>
+    <comment>(MainPage)</comment>
+  </data>
 </root>
