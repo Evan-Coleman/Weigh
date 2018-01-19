@@ -131,83 +131,10 @@
             </Grid>
         </ContentView>
 
-
-        <!-- Distance Section -->
-        <Grid Grid.Column="0" Grid.Row="1" Margin="0" Padding="0" ColumnSpacing="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="15" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="20" />
-            </Grid.RowDefinitions>
-            <Label Grid.Column="0" Grid.Row="0"
-                       HorizontalOptions="Center"
-                       FontSize="{StaticResource HeaderTwoFontSize}"
-                       Text="{Binding SettingVals.DistanceToGoalWeight}"/>
-            <Label Grid.Column="1" Grid.Row="0"
-                   HorizontalOptions="Start"
-                       FontSize="{StaticResource UnitFontSize}">
-                <Label.Triggers>
-                    <DataTrigger TargetType="Label"
-                                     Binding="{Binding SettingVals.Units}"
-                                     Value="false">
-                        <Setter Property="Text" Value="{Binding SettingVals.GoalWeight, StringFormat={localization:Translate KiloGramsLabel}}" />
-                    </DataTrigger>
-                    <DataTrigger TargetType="Label"
-                                     Binding="{Binding SettingVals.Units}"
-                                     Value="true">
-                        <Setter Property="Text" Value="{Binding SettingVals.GoalWeight, StringFormat={localization:Translate PoundsLabel}}" />
-                    </DataTrigger>
-                </Label.Triggers>
-            </Label>
-            <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
-                   HorizontalOptions="Center"
-                   FontSize="{StaticResource SubtitleFontSize}">
-                <Label.Triggers>
-                    <DataTrigger TargetType="Label"
-                                     Binding="{Binding SettingVals.Units}"
-                                     Value="false">
-                        <Setter Property="Text" Value="{Binding SettingVals.GoalWeight, StringFormat={localization:Translate WeightLeftMetricLabel}}" />
-                    </DataTrigger>
-                    <DataTrigger TargetType="Label"
-                                     Binding="{Binding SettingVals.Units}"
-                                     Value="true">
-                        <Setter Property="Text" Value="{Binding SettingVals.GoalWeight, StringFormat={localization:Translate WeightLeftImperialLabel}}" />
-                    </DataTrigger>
-                </Label.Triggers>
-            </Label>
-        </Grid>
-
         <!-- Add New Button -->
-        <Button Grid.Column="1" Grid.Row="1"              
+        <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" HorizontalOptions="Center"
                 Text="{localization:Translate AddEntryLabel}"
                 Command="{Binding AddWeightToListCommand}"/>
-
-        <!-- Time Left Section -->
-        <Grid Grid.Column="2" Grid.Row="1" Margin="0" Padding="3" ColumnSpacing="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="25" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="20" />
-            </Grid.RowDefinitions>
-            <Label Grid.Column="0"
-                       HorizontalOptions="Center"
-                       FontSize="{StaticResource HeaderTwoFontSize}"
-                       Text="{Binding SettingVals.TimeLeftToGoal}"/>
-            <Label Grid.Column="1"
-                   HorizontalOptions="Start"
-                       FontSize="{StaticResource UnitFontSize}"
-                       Text="{localization:Translate DaysLabel}" />
-            <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
-                   HorizontalOptions="Center"
-                   FontSize="{StaticResource SubtitleFontSize}"
-                   Text="{Binding SettingVals.GoalDate, StringFormat={localization:Translate TimeLeftLabel}}" />
-        </Grid>
 
         <!-- RDCI Section -->
         <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Margin="0" Padding="0" ColumnSpacing="0" RowSpacing="0">
