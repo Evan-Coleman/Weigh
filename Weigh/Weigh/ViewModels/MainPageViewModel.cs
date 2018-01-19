@@ -31,6 +31,22 @@ namespace Weigh.ViewModels
             ButtonEnabled = true;
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
             NewWaistSizeEntry = Settings.WaistSize;
+            WeightLeftChart = new RadialGaugeChart()
+            {
+                BackgroundColor = SKColors.Transparent,
+                MinValue = 0,
+                MaxValue = 100,
+                Margin = 0,
+                IsAnimated = false,
+            };
+            DaysLeftChart = new RadialGaugeChart()
+            {
+                BackgroundColor = SKColors.Transparent,
+                MinValue = 0,
+                MaxValue = 100,
+                Margin = 0,
+                IsAnimated = false,
+            };
         }
 
         #endregion
@@ -159,20 +175,13 @@ namespace Weigh.ViewModels
             WeightProgress = (WeightProgressToGoal / TotalWeightToLose) * 100;
             WeightProgress = Math.Min(100, WeightProgress);
             WeightProgress = Math.Max(0, WeightProgress);
-            WeightLeftChart = new RadialGaugeChart()
+
+            WeightLeftChart.Entries = new[]
             {
-                Entries = new[]
-            {
-                new Entry(Math.Min(1,(float)WeightProgress))
+                new Entry(Math.Min(100, (float) WeightProgress))
                 {
                     Color = SKColor.FromHsv(100, 100, 100),
                 },
-            },
-                BackgroundColor = SKColors.Transparent,
-                MinValue = 0,
-                MaxValue = 100,
-                Margin = 0,
-                AnimationDuration = TimeSpan.FromSeconds(3.5),
             };
 
             // Time left chart
@@ -180,23 +189,15 @@ namespace Weigh.ViewModels
             double TotalDaysToGo = (SettingVals.GoalDate - SettingVals.InitialWeighDate).TotalDays;
             double TimeProgressToGoal = TotalDaysToGo - SettingVals.TimeLeftToGoal;
             CurrentDay = Convert.ToInt32(TimeProgressToGoal);
-            TimeProgress = (TimeProgressToGoal / TotalDaysToGo) * 100;
+            TimeProgress = Math.Floor((TimeProgressToGoal / TotalDaysToGo) * 100);
             TimeProgress = Math.Min(100, TimeProgress);
             TimeProgress = Math.Max(0, TimeProgress);
-            DaysLeftChart = new RadialGaugeChart()
+            DaysLeftChart.Entries = new[]
             {
-                Entries = new[]
-            {
-                new Entry(Math.Min(1,(float)TimeProgress))
+                new Entry(Math.Min(100, (float) TimeProgress))
                 {
                     Color = SKColor.FromHsv(100, 100, 100),
                 },
-            },
-                BackgroundColor = SKColors.Transparent,
-                MinValue = 0,
-                MaxValue = 100,
-                Margin = 0,
-                AnimationDuration = TimeSpan.FromSeconds(3.5),
             };
 
             if (TimeProgress <= (WeightProgress + 5))
