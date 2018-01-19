@@ -157,6 +157,8 @@ namespace Weigh.ViewModels
             double TotalWeightToLose = SettingVals.InitialWeight - SettingVals.GoalWeight;
             double WeightProgressToGoal = TotalWeightToLose - SettingVals.DistanceToGoalWeight;
             WeightProgress = (WeightProgressToGoal / TotalWeightToLose) * 100;
+            WeightProgress = Math.Min(100, WeightProgress);
+            WeightProgress = Math.Max(0, WeightProgress);
             WeightLeftChart = new RadialGaugeChart()
             {
                 Entries = new[]
@@ -171,15 +173,16 @@ namespace Weigh.ViewModels
                 MaxValue = 100,
                 Margin = 0,
                 AnimationDuration = TimeSpan.FromSeconds(3.5),
-                LineSize = 40,
             };
 
             // Time left chart
 
             double TotalDaysToGo = (SettingVals.GoalDate - SettingVals.InitialWeighDate).TotalDays;
             double TimeProgressToGoal = TotalDaysToGo - SettingVals.TimeLeftToGoal;
-            CurrentDay = (int)TimeProgressToGoal;
+            CurrentDay = Convert.ToInt32(TimeProgressToGoal);
             TimeProgress = (TimeProgressToGoal / TotalDaysToGo) * 100;
+            TimeProgress = Math.Min(100, TimeProgress);
+            TimeProgress = Math.Max(0, TimeProgress);
             DaysLeftChart = new RadialGaugeChart()
             {
                 Entries = new[]
@@ -194,10 +197,9 @@ namespace Weigh.ViewModels
                 MaxValue = 100,
                 Margin = 0,
                 AnimationDuration = TimeSpan.FromSeconds(3.5),
-                LineSize = 60,
             };
 
-            if (TimeProgress <= WeightProgress)
+            if (TimeProgress <= (WeightProgress + 5))
             {
                 ScheduleStatus = AppResources.OnScheduleLabel;
             }

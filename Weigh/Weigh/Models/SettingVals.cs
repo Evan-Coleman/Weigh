@@ -362,8 +362,8 @@ namespace Weigh.Models
             SetBMICategory();
 
             Age = (DateTime.UtcNow - BirthDate).Days / 365;
-            TimeLeftToGoal = (GoalDate - DateTime.UtcNow).Days;
-            DistanceToGoalWeight = Weight - GoalWeight;
+            TimeLeftToGoal = Math.Max(0,(GoalDate - DateTime.UtcNow).Days);
+            DistanceToGoalWeight = Math.Max(0,Weight - GoalWeight);
             WeightLostToDate = InitialWeight - Weight;
 
             double feet = HeightMajor;

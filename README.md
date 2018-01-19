@@ -8,36 +8,42 @@ Important: To get Admob ads working for yourself, take PrivateKeys.Sample, and r
 TODO:
 
 	Active
+		(MainPage) Continue UI revamp, possibly change to BMI circular gague
 		(SettingsPage) Save button messes things up, investigate
-		(MainPage) Change UI with chart trackers for weight/time left
-		(MainPage) Implement button for information & acompanying modal popup
-		(MainPage) Implement In-App-Purchases for removal of ads & Button for it
-		(General) Add google docs backend or way to backup
-		(General) Add a way to know how on or off track you are to meet goal
+		(AddEntryPage) Spice up layout a little
+		(AddEntryPage) Remove Activity Level
+		(AddEntryPage) Add a stepper for weight and waist size	
 		(General) Handle case of goal met (new goal, or show maintain caloric intake)
+		(MainPage) Implement button for information & acompanying modal popup
+		(GraphPage) Spice up Listview
 		(GraphPage) Add ability to click listview items
 		(GraphPage) Add view for item details
+		(MainPage) Implement In-App-Purchases for removal of ads & Button for it
+		(General) Optimise for more screen DPIs
+	    (General) Add google docs backend or way to backup	
 		(GraphPage) Add area colors for bmi
 
 	Done
-		~~Add Measurements for Waist, maybe more
-		~~Add extensions for imperial/metric changes
-		~~Find out maths to meet goal in timeline
-		~~Add notes to entries
-		~~Add Labels to make it clear what you're editing
-		~~Disable Editing
-			~~Create Switch which enables/disables all editing
-			~~Disable Editing Weight from Settings
-		~~Add messaging from SettingsPage to MainPage
-			~~Goal Weight/Date -> Main Page		
-		~~Change entry placeholders based on imperial/metric
+	(General) Add a way to know how on or off track you are to meet goal
+		(MainPage) Change UI with chart trackers for weight/time left
+		Add Measurements for Waist, maybe more
+		Add extensions for imperial/metric changes
+		Find out maths to meet goal in timeline
+		Add notes to entries
+		Add Labels to make it clear what you're editing
+		Disable Editing
+			Create Switch which enables/disables all editing
+			Disable Editing Weight from Settings
+		Add messaging from SettingsPage to MainPage
+			Goal Weight/Date -> Main Page		
+		Change entry placeholders based on imperial/metric
 		~Add entry for goal weight, and timeline
-		~~Add change from last entry
-		~~Add day to listview
-		~~Add Card styling
-		~~Add goal weight & distance to it
-		~~Add current weight
-		~~Add time left to goal timeline
+		Add change from last entry
+		Add day to listview
+		Add Card styling
+		Add goal weight & distance to it
+		Add current weight
+		Add time left to goal timeline
 
 
 Sources:
