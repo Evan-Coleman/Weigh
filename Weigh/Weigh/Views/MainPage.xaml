@@ -22,31 +22,31 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-
-        <!-- Remove Adds Placeholder -->
         <!-- Weight Left Chart Region -->
-        <Frame Grid.Column="0" Grid.Row="0" Margin="0" Padding="0" BackgroundColor="Transparent" OutlineColor="Transparent">
-            <Grid>
+            <Grid Grid.Column="0" Grid.Row="0" Margin="0" Padding="0" BackgroundColor="Transparent">
                 <Grid.RowDefinitions>
                     <RowDefinition Height=".14*" />
                     <RowDefinition Height=".74*" />
                     <RowDefinition Height=".14*" />
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0"
-                       Text="Weight loss progress" />
+                       VerticalOptions="End"
+                       HorizontalOptions="Center"
+                       Text="{localization:Translate GoalWeightSectionHeaderLabel}" />
 
                 <Label Grid.Row="1"
                        VerticalOptions="Center"
                        HorizontalOptions="Center"
-                       Text="235" />
+                       Text="{Binding WeightProgress, StringFormat={localization:Translate PercentLabel}}" />
                 <microcharts:ChartView Grid.Row="1"
                                BackgroundColor="Transparent"
                                Chart="{Binding WeightLeftChart}"/>
 
                 <Label Grid.Row="2"
-                       Text="50% to goal of 190lb" />
+                       HorizontalOptions="Center"
+                       Text="{Binding SettingVals.DistanceToGoalWeight, StringFormat={localization:Translate ToGoLabel}}" />
             </Grid>
-        </Frame>
+
 
         <!-- Weight Section -->
 
@@ -56,20 +56,23 @@
                 <ColumnDefinition Width="15" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="20" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
-                   Margin="0,0,0,-20"
+            <Label Grid.Column="0" Grid.Row="0"
                    HorizontalOptions="Center"
-                   Text="{localization:Translate CurrentWeightLabel}" />
+                   Text="{localization:Translate WeightLabel}"/>
             <Label Grid.Column="0" Grid.Row="1"
                        HorizontalOptions="Center"
-                       FontSize="{StaticResource HeaderOneFontSize}"
                        Text="{Binding SettingVals.Weight}"/>
             <Label Grid.Column="1" Grid.Row="1"
-                       HorizontalOptions="Start"
-                       FontSize="{StaticResource UnitFontSize}">
+                   HorizontalOptions="Start"
+                   Margin="-40,0,0,0" 
+                   FontSize="{StaticResource UnitFontSize}">
                 <Label.Triggers>
                     <DataTrigger TargetType="Label"
                                      Binding="{Binding SettingVals.Units}"
@@ -83,16 +86,50 @@
                     </DataTrigger>
                 </Label.Triggers>
             </Label>
+            <Label Grid.Column="0" Grid.Row="2"
+                   HorizontalOptions="Center"
+                   Text="{localization:Translate DayLabel}"/>
+            <Label Grid.Column="0" Grid.Row="3"
+                   HorizontalOptions="Center"
+                   Text="{Binding CurrentDay}" />
+            <Label Grid.Column="0" Grid.Row="4"
+                   HorizontalOptions="Center"
+                       Text="{localization:Translate GoalStatusLabel}"/>
+            <Label Grid.Column="0" Grid.Row="5"
+                   HorizontalOptions="Center"
+                   FontSize="Small"
+                   Text="{Binding ScheduleStatus}"/>
         </Grid>
 
-        <!-- Info Placeholder -->
-        <BoxView Grid.Column="2" Grid.Row="0"
-                 VerticalOptions="Start"
-                 HorizontalOptions="End"
-                 Color="DarkOliveGreen"/>
-        <microcharts:ChartView Grid.Column="2" Grid.Row="0"
+        <!-- Days Left Chart Region -->
+        <ContentView Grid.Column="2" Grid.Row="0" Margin="0" Padding="0" BackgroundColor="Transparent">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".14*" />
+                    <RowDefinition Height=".74*" />
+                    <RowDefinition Height=".14*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Grid.Row="0"
+                       VerticalOptions="End"
+                       HorizontalOptions="Center"
+                       Text="{localization:Translate GoalDateSectionHeaderLabel}" />
+
+                <Label Grid.Column="0" Grid.Row="1"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Text="{Binding TimeProgress, StringFormat={localization:Translate PercentLabel}}" />
+                <microcharts:ChartView Grid.Row="1"
                                BackgroundColor="Transparent"
                                Chart="{Binding DaysLeftChart}"/>
+
+                <Label Grid.Column="0" Grid.Row="2"
+                       HorizontalOptions="Center"
+                       Text="{Binding SettingVals.TimeLeftToGoal, StringFormat={localization:Translate ToGoLabel}}" />
+            </Grid>
+        </ContentView>
 
 
         <!-- Distance Section -->
