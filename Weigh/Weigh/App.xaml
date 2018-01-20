@@ -17,6 +17,7 @@
             <x:Double x:Key="HeaderOneFontSize">50</x:Double>
             <x:Double x:Key="HeaderTwoFontSize">35</x:Double>
             <x:Double x:Key="HeaderThreeFontSize">30</x:Double>
+            <x:Double x:Key="HeaderFourFontSize">20</x:Double>
 
             <x:Double x:Key="UnitFontSize">10.5</x:Double>
 
@@ -88,13 +89,8 @@
 
 
             <Style TargetType="Button">
-                <Setter Property="FontSize" Value="{ DynamicResource BaseFontSize }"/>
-                <Setter Property="BorderRadius" Value="{ DynamicResource BaseButtonBorderRadius }"/>
-                <Setter Property="BorderWidth" Value="0"/>
-                <Setter Property="BorderColor" Value="{DynamicResource secondary}"/>
-                <Setter Property="HeightRequest" Value="{StaticResource BaseButtonHeight}"/>
-                <Setter Property="BackgroundColor" Value="{StaticResource primary_dark}"/>
-
+                <Setter Property="BackgroundColor" Value="{StaticResource secondary}"/>
+                <Setter Property="TextColor" Value="{StaticResource secondary_text}"/>
             </Style>
 
 

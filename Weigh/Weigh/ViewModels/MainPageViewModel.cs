@@ -8,6 +8,8 @@ using Weigh.Events;
 using Weigh.Helpers;
 using Weigh.Localization;
 using Weigh.Models;
+using Xamarin.Forms;
+using Entry = Microcharts.Entry;
 
 namespace Weigh.ViewModels
 {
@@ -160,7 +162,7 @@ namespace Weigh.ViewModels
             {
                 new Entry(Math.Min(100, (float) WeightProgress))
                 {
-                    Color = SKColor.FromHsv(100, 100, 100)
+                    Color = SKColor.Parse("1c313a")
                 }
             };
 
@@ -176,8 +178,8 @@ namespace Weigh.ViewModels
             {
                 new Entry(Math.Min(100, (float) TimeProgress))
                 {
-                    Color = SKColor.FromHsv(100, 100, 100)
-                }
+                    Color = SKColor.Parse("1c313a")
+        }
             };
 
             if (TimeProgress <= WeightProgress + 5)
@@ -210,16 +212,6 @@ namespace Weigh.ViewModels
             _ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Publish(SettingVals.WaistSizeEnabled);
 
             InitializeCharts();
-        }
-
-        public override void OnNavigatedFrom(NavigationParameters parameters)
-        {
-            //_ea.GetEvent<UpdateSetupInfoEvent>().Unsubscribe(_updateSetupInfoEventToken);
-        }
-
-        public override void Destroy()
-        {
-            
         }
 
         #endregion

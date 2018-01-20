@@ -16,6 +16,7 @@ using DryIoc;
 using Prism.DryIoc;
 using Prism;
 using Prism.Ioc;
+using Syncfusion.ListView.XForms.UWP;
 
 namespace Weigh.UWP
 {
@@ -26,6 +27,7 @@ namespace Weigh.UWP
             this.InitializeComponent();
             new Syncfusion.SfChart.XForms.UWP.SfChartRenderer();
             Syncfusion.RangeNavigator.XForms.UWP.SfRangeNavigatorRenderer.Init();
+            SfListViewRenderer.Init();
             LoadApplication(new Weigh.App(new UwpInitializer()));
         }
     }
