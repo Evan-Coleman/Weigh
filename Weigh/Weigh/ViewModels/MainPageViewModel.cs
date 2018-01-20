@@ -50,7 +50,7 @@ namespace Weigh.ViewModels
             };
 
             //_ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
-            _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo);
+            _updateSetupInfoEventToken = _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo);
         }
 
         #endregion
@@ -58,6 +58,7 @@ namespace Weigh.ViewModels
         #region Fields
 
         private readonly IEventAggregator _ea;
+        private readonly SubscriptionToken _updateSetupInfoEventToken;
 
         private SettingVals _settingVals;
 
@@ -209,6 +210,16 @@ namespace Weigh.ViewModels
             _ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Publish(SettingVals.WaistSizeEnabled);
 
             InitializeCharts();
+        }
+
+        public override void OnNavigatedFrom(NavigationParameters parameters)
+        {
+            //_ea.GetEvent<UpdateSetupInfoEvent>().Unsubscribe(_updateSetupInfoEventToken);
+        }
+
+        public override void Destroy()
+        {
+            
         }
 
         #endregion
