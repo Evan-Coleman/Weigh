@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Weigh.Data
+﻿namespace Weigh.Data
 {
     public interface IFileHelper
     {

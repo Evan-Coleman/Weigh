@@ -10,17 +10,16 @@ namespace Weigh.Localization
     [ContentProperty("Text")]
     public class TranslateExtension : IMarkupExtension
     {
-        const string ResourceId = "Weigh.Localization.AppResources";
+        private const string ResourceId = "Weigh.Localization.AppResources";
         public string Text { get; set; }
 
         public object ProvideValue(IServiceProvider serviceProvider)
         {
             if (Text == null)
                 return null;
-            ResourceManager resourceManager = new ResourceManager(ResourceId, typeof(TranslateExtension).GetTypeInfo().Assembly);
+            var resourceManager = new ResourceManager(ResourceId, typeof(TranslateExtension).GetTypeInfo().Assembly);
 
             return resourceManager.GetString(Text, CultureInfo.CurrentCulture);
         }
     }
 }
-

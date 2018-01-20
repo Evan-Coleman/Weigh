@@ -1,6 +1,4 @@
-﻿
-
-using Android.Content;
+﻿using Android.Content;
 using Android.Gms.Ads;
 using Weigh.Controls;
 using Weigh.Droid.Renderers;
@@ -8,13 +6,13 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(AdMobView), typeof(AdMobRenderer))]
+
 namespace Weigh.Droid.Renderers
 {
     public class AdMobRenderer : ViewRenderer
     {
         public AdMobRenderer(Context context) : base(context)
         {
-
         }
 
         private int GetSmartBannerDpHeight()
@@ -35,7 +33,7 @@ namespace Weigh.Droid.Renderers
                 var ad = new AdView(Context)
                 {
                     AdSize = AdSize.SmartBanner,
-                    AdUnitId = Weigh.PrivateKeys.AdmobBannerTestId
+                    AdUnitId = PrivateKeys.AdmobBannerTestId
                 };
 
                 var requestbuilder = new AdRequest.Builder();

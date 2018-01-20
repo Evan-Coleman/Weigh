@@ -1,12 +1,9 @@
 ﻿using Prism.Events;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Weigh.Models;
 
 namespace Weigh.Events
 {
-    class UpdateSetupInfoEvent : PubSubEvent<SettingValsValidated>
+    internal class UpdateSetupInfoEvent : PubSubEvent<SettingValsValidated>
     {
     }
 }

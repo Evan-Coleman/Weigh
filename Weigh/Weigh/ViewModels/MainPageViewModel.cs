@@ -1,13 +1,13 @@
-﻿using Prism.Commands;
+﻿using System;
+using Microcharts;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Navigation;
-using System;
+using SkiaSharp;
 using Weigh.Events;
 using Weigh.Helpers;
 using Weigh.Localization;
 using Weigh.Models;
-using Microcharts;
-using SkiaSharp;
 
 namespace Weigh.ViewModels
 {
@@ -31,21 +31,21 @@ namespace Weigh.ViewModels
             ButtonEnabled = true;
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
             NewWaistSizeEntry = Settings.WaistSize;
-            WeightLeftChart = new RadialGaugeChart()
+            WeightLeftChart = new RadialGaugeChart
             {
                 BackgroundColor = SKColors.Transparent,
                 MinValue = 0,
                 MaxValue = 100,
                 Margin = 0,
-                IsAnimated = false,
+                IsAnimated = false
             };
-            DaysLeftChart = new RadialGaugeChart()
+            DaysLeftChart = new RadialGaugeChart
             {
                 BackgroundColor = SKColors.Transparent,
                 MinValue = 0,
                 MaxValue = 100,
                 Margin = 0,
-                IsAnimated = false,
+                IsAnimated = false
             };
         }
 
@@ -170,9 +170,9 @@ namespace Weigh.ViewModels
         {
             // Weight left chart
 
-            double TotalWeightToLose = SettingVals.InitialWeight - SettingVals.GoalWeight;
-            double WeightProgressToGoal = TotalWeightToLose - SettingVals.DistanceToGoalWeight;
-            WeightProgress = (WeightProgressToGoal / TotalWeightToLose) * 100;
+            var TotalWeightToLose = SettingVals.InitialWeight - SettingVals.GoalWeight;
+            var WeightProgressToGoal = TotalWeightToLose - SettingVals.DistanceToGoalWeight;
+            WeightProgress = WeightProgressToGoal / TotalWeightToLose * 100;
             WeightProgress = Math.Min(100, WeightProgress);
             WeightProgress = Math.Max(0, WeightProgress);
 
@@ -180,34 +180,30 @@ namespace Weigh.ViewModels
             {
                 new Entry(Math.Min(100, (float) WeightProgress))
                 {
-                    Color = SKColor.FromHsv(100, 100, 100),
-                },
+                    Color = SKColor.FromHsv(100, 100, 100)
+                }
             };
 
             // Time left chart
 
-            double TotalDaysToGo = (SettingVals.GoalDate - SettingVals.InitialWeighDate).TotalDays;
-            double TimeProgressToGoal = TotalDaysToGo - SettingVals.TimeLeftToGoal;
+            var TotalDaysToGo = (SettingVals.GoalDate - SettingVals.InitialWeighDate).TotalDays;
+            var TimeProgressToGoal = TotalDaysToGo - SettingVals.TimeLeftToGoal;
             CurrentDay = Convert.ToInt32(TimeProgressToGoal);
-            TimeProgress = Math.Floor((TimeProgressToGoal / TotalDaysToGo) * 100);
+            TimeProgress = Math.Floor(TimeProgressToGoal / TotalDaysToGo * 100);
             TimeProgress = Math.Min(100, TimeProgress);
             TimeProgress = Math.Max(0, TimeProgress);
             DaysLeftChart.Entries = new[]
             {
                 new Entry(Math.Min(100, (float) TimeProgress))
                 {
-                    Color = SKColor.FromHsv(100, 100, 100),
-                },
+                    Color = SKColor.FromHsv(100, 100, 100)
+                }
             };
 
-            if (TimeProgress <= (WeightProgress + 5))
-            {
+            if (TimeProgress <= WeightProgress + 5)
                 ScheduleStatus = AppResources.OnScheduleLabel;
-            }
             else
-            {
                 ScheduleStatus = AppResources.OffScheduleLabel;
-            }
         }
 
         #endregion

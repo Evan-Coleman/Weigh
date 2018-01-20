@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 
 namespace Weigh.Extensions
 {
@@ -19,16 +16,16 @@ namespace Weigh.Extensions
 
         public static (int, int) CentimetersToFeetInches(this double centimeters)
         {
-            double Feet = (centimeters / 2.54) / 12;
-            int iFeet = (int)Feet;
-            double Inches = (Feet - (double)iFeet) * 12;
+            var feet = centimeters / 2.54 / 12;
+            var iFeet = (int) feet;
+            var inches = (feet - iFeet) * 12;
 
-            return ((int)Feet,Convert.ToInt32(Inches));
+            return ((int) feet, Convert.ToInt32(inches));
         }
 
         public static double FeetInchesToCentimeters(int feet, int inches)
         {
-            return (double)feet * .3048 + (((double)inches * 2.54) / 100);
+            return feet * .3048 + inches * 2.54 / 100;
         }
     }
 }

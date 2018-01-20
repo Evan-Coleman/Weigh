@@ -46,48 +46,54 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _addWeightToListCommand, value);
         }
 
-        private IEventAggregator _ea;
+        private readonly IEventAggregator _ea;
 
         private List<string> _pickerSource;
+
         public List<string> PickerSource
         {
-            get { return _pickerSource; }
-            set { SetProperty(ref _pickerSource, value); }
+            get => _pickerSource;
+            set => SetProperty(ref _pickerSource, value);
         }
 
         private bool _buttonEnabled;
+
         public bool ButtonEnabled
         {
-            get { return _buttonEnabled; }
-            set { SetProperty(ref _buttonEnabled, value); }
+            get => _buttonEnabled;
+            set => SetProperty(ref _buttonEnabled, value);
         }
 
         private SettingValsValidated _settingValsValidated;
+
         public SettingValsValidated SettingValsValidated
         {
-            get { return _settingValsValidated; }
-            set { SetProperty(ref _settingValsValidated, value); }
+            get => _settingValsValidated;
+            set => SetProperty(ref _settingValsValidated, value);
         }
 
         private SettingVals _settingVals;
+
         public SettingVals SettingVals
         {
-            get { return _settingVals; }
-            set { SetProperty(ref _settingVals, value); }
+            get => _settingVals;
+            set => SetProperty(ref _settingVals, value);
         }
 
         private WeightEntry _newWeightEntry;
+
         public WeightEntry NewWeightEntry
         {
-            get { return _newWeightEntry; }
-            set { SetProperty(ref _newWeightEntry, value); }
+            get => _newWeightEntry;
+            set => SetProperty(ref _newWeightEntry, value);
         }
 
         private string _noteEntry;
+
         public string NoteEntry
         {
-            get { return _noteEntry; }
-            set { SetProperty(ref _noteEntry, value); }
+            get => _noteEntry;
+            set => SetProperty(ref _noteEntry, value);
         }
 
         /*
@@ -111,7 +117,7 @@ namespace Weigh.ViewModels
         #region Methods
 
         /// <summary>
-        /// When we come to this page we will always want to initialize SettingVals & Validated
+        ///     When we come to this page we will always want to initialize SettingVals & Validated
         /// </summary>
         /// <param name="parameters"></param>
         public override void OnNavigatingTo(NavigationParameters parameters)
@@ -126,7 +132,6 @@ namespace Weigh.ViewModels
 
             if (SettingValsValidated.ValidateProperties() == false)
             {
-                
                 UserDialogs.Instance.Alert(AppResources.FormValidationPopupLabel);
                 ButtonEnabled = true;
             }
@@ -137,8 +142,8 @@ namespace Weigh.ViewModels
                 {
                     Weight = SettingVals.Weight,
                     WaistSize = SettingVals.WaistSize,
-                    WeightDelta = (SettingVals.Weight - SettingVals.LastWeight),
-                    Note = NoteEntry,
+                    WeightDelta = SettingVals.Weight - SettingVals.LastWeight,
+                    Note = NoteEntry
                 };
                 SettingVals.LastWeight = SettingVals.Weight;
                 SettingVals.LastWeighDate = DateTime.UtcNow;
@@ -151,6 +156,7 @@ namespace Weigh.ViewModels
                 await NavigationService.GoBackAsync();
             }
         }
+
         #endregion
     }
 }

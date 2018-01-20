@@ -2,7 +2,7 @@
 
 namespace Weigh
 {
-    class BorderEffect : RoutingEffect
+    internal class BorderEffect : RoutingEffect
     {
         public BorderEffect() : base("Xamarin.BorderEffect")
         {

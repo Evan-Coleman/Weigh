@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace Weigh.Behaviors
 {
     public class EditorLengthValidatorBehavior : Behavior<Editor>
     {
-
         public int MaxLength { get; set; }
 
         protected override void OnAttachedTo(Editor bindable)
@@ -24,11 +20,11 @@ namespace Weigh.Behaviors
 
         private void OnEntryTextChanged(object sender, TextChangedEventArgs e)
         {
-            var entry = (Editor)sender;
+            var entry = (Editor) sender;
 
-            if (entry.Text != null && entry.Text.Length > this.MaxLength)
+            if (entry.Text != null && entry.Text.Length > MaxLength)
             {
-                string entryText = entry.Text;
+                var entryText = entry.Text;
                 entry.TextChanged -= OnEntryTextChanged;
                 entry.Text = e.OldTextValue;
                 entry.TextChanged += OnEntryTextChanged;

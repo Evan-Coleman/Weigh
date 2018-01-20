@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Weigh.Helpers;
+﻿using Weigh.Helpers;
 using Xamarin.Forms;
 
 namespace Weigh.Behaviors
@@ -20,16 +17,12 @@ namespace Weigh.Behaviors
 
         private void OnEntryTextChanged(object sender, TextChangedEventArgs e)
         {
-            var label = (Label)sender;
+            var label = (Label) sender;
 
             if (Settings.WaistSizeEnabled == false)
-            {
                 label.IsVisible = false;
-            }
             else
-            {
                 label.IsVisible = true;
-            }
         }
     }
 }
