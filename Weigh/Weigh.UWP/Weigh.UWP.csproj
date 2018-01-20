@@ -141,6 +141,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfGauge">
       <Version>15.4.0.20</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfListView">
+      <Version>15.4.0.17</Version>
+    </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
     </PackageReference>

@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Syncfusion.ListView.XForms.UWP;
 
 namespace Weigh.UWP
 {
@@ -56,7 +57,7 @@ namespace Weigh.UWP
                 List<Assembly> assembliesToInclude = new List<Assembly>();
                 assembliesToInclude.Add(typeof(Syncfusion.RangeNavigator.XForms.UWP.SfRangeNavigatorRenderer).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(Syncfusion.SfChart.XForms.UWP.SfChartRenderer).GetTypeInfo().Assembly);
-
+                assembliesToInclude.Add(typeof(SfListViewRenderer).GetTypeInfo().Assembly);
                 Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
 

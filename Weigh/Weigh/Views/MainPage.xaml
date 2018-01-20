@@ -8,17 +8,17 @@
              x:Class="Weigh.Views.MainPage"
              Title="{Binding Title}">
 
-    <Grid RowSpacing="10" Padding="0,3,0,0">
+    <Grid RowSpacing="0" Padding="0,3,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="1.2*" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height=".4*" />
             <RowDefinition Height=".1*" />
             <RowDefinition Height=".2*" />
-            <RowDefinition Height=".3*" />
+            <RowDefinition Height=".4*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
@@ -83,7 +83,7 @@
                        Text="{Binding SettingVals.Weight}"/>
             <Label Grid.Column="1" Grid.Row="1"
                    HorizontalOptions="Start"
-                   Margin="-40,0,0,0" 
+                   Margin="-20,0,0,0" 
                    FontSize="{StaticResource UnitFontSize}">
                 <Label.Triggers>
                     <DataTrigger TargetType="Label"
@@ -144,7 +144,7 @@
         </ContentView>
 
         <!-- Add New Button -->
-        <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" HorizontalOptions="Center"
+        <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand"
                 Text="{localization:Translate AddEntryLabel}"
                 Command="{Binding AddWeightToListCommand}"/>
 
@@ -159,7 +159,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
-                   FontSize="{StaticResource HeaderThreeFontSize}"
+                   FontSize="{StaticResource HeaderFourFontSize}"
                    HorizontalOptions="Center"
                        Text="{localization:Translate BMRLabel}"/>
             <Label Grid.Column="0" Grid.Row="1"
@@ -170,7 +170,7 @@
         </Grid>
 
         <!-- BMI Section -->
-        <Grid  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" RowSpacing="0">
+        <Grid  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" RowSpacing="0" Padding="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -178,15 +178,15 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition  Height="0.194*"/>
-                <RowDefinition  Height="0.25*"/>
-                <RowDefinition  Height="0.472*"/>
-                <RowDefinition  Height="0.0833*"/>
+                <RowDefinition  Height=".15*"/>
+                <RowDefinition  Height=".25*"/>
+                <RowDefinition  Height=".4*"/>
+                <RowDefinition  Height=".2*"/>
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4"
                    HorizontalOptions="Center"
-                   FontSize="{StaticResource HeaderTwoFontSize}"
+                   FontSize="{StaticResource HeaderFourFontSize}"
                    Text="{localization:Translate BMILabel}" />
 
             <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
@@ -207,10 +207,10 @@
                                     ScaleBarSize="13" ScalePosition="BackWard" 
                                             LabelColor="{StaticResource primary_text}">
                         <linear:LinearScale.Ranges>
-                            <linear:LinearRange StartValue="10" Color="#e91e63" Offset ="0.07" EndValue="18.5" StartWidth="10" EndWidth="10"/>
-                            <linear:LinearRange StartValue="18.5" Color="#1b5e20" EndValue="24.9" Offset ="0.07" StartWidth="10" EndWidth="10" />
-                            <linear:LinearRange StartValue="25" Color="#ff6d00" EndValue="29.9" Offset ="0.07" StartWidth="10" EndWidth="10" />
-                            <linear:LinearRange StartValue="30" Color="#d50000" EndValue="40" Offset ="0.07" StartWidth="10" EndWidth="10" />
+                            <linear:LinearRange StartValue="10" Color="#ea4c89" Offset ="0.07" EndValue="18.5" StartWidth="10" EndWidth="10"/>
+                            <linear:LinearRange StartValue="18.5" Color="#00c300" EndValue="24.9" Offset ="0.07" StartWidth="10" EndWidth="10" />
+                            <linear:LinearRange StartValue="25" Color="#ff5700" EndValue="29.9" Offset ="0.07" StartWidth="10" EndWidth="10" />
+                            <linear:LinearRange StartValue="30" Color="#b92b27" EndValue="40" Offset ="0.07" StartWidth="10" EndWidth="10" />
                         </linear:LinearScale.Ranges>
                         <linear:LinearScale.Pointers>
                             <linear:SymbolPointer x:Name="symbolPointer" Value="{Binding SettingVals.BMI}"  Offset="0" Thickness="10" Color="{StaticResource primary_dark}" EnableAnimation="True"/>
@@ -220,25 +220,25 @@
                 </linear:SfLinearGauge.Scales>
             </linear:SfLinearGauge>
 
-            <Label Grid.Row="3" Grid.Column="0" 
-                   Margin="10,-5,0,0" LineBreakMode="NoWrap"
+            <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                   Margin="10,0,0,0" LineBreakMode="NoWrap"
                     FontSize="{StaticResource GraphLabelFontSize}"
-                   TextColor="#e91e63"
+                   TextColor="#ea4c89"
                            Text="{localization:Translate UnderWeightLabel}"/>
             <Label Grid.Row="3" Grid.Column="1"
                    FontSize="{StaticResource GraphLabelFontSize}"
-                   TextColor="#1b5e20"
-                   Margin="15,-5,0,0"
+                   TextColor="#00c300"
+                   Margin="15,0,0,0"
                            Text="{localization:Translate NormalWeightLabel}" />
             <Label Grid.Row="3" Grid.Column="2"
                    FontSize="{StaticResource GraphLabelFontSize}"
-                   TextColor="#ff6d00"
-                   Margin="-5,-5,0,0"
+                   TextColor="#ff5700"
+                   Margin="-5,0,0,0"
                            Text="{localization:Translate OverweightLabel}"/>
             <Label Grid.Row="3" Grid.Column="3"
                    FontSize="{StaticResource GraphLabelFontSize}"
-                   TextColor="#d50000"
-                   Margin="0,-5,0,0"
+                   TextColor="#b92b27"
+                   Margin="0,0,0,0"
                            Text="{localization:Translate ObeseLabel}" />
         </Grid>
 

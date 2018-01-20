@@ -183,7 +183,7 @@ namespace Weigh.ViewModels
             {
                 SettingVals.InitializeFromValidated(SettingValsValidated);
                 SettingVals.SaveSettingValsToDevice();
-                await NavigationService.NavigateAsync($"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
+                await NavigationService.NavigateAsync($"/NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
             }
         }
 

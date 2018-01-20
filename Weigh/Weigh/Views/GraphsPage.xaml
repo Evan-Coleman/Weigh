@@ -5,6 +5,7 @@
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
              xmlns:localization="clr-namespace:Weigh.Localization;assembly=Weigh"
              xmlns:b="clr-namespace:Weigh.Behaviors"
+             xmlns:syncfusionList="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:controls="clr-namespace:Weigh.Controls;assembly=Weigh"
              xmlns:rangenavigator="clr-namespace:Syncfusion.RangeNavigator.XForms;assembly=Syncfusion.SfChart.XForms" 
              x:Class="Weigh.Views.GraphsPage"
@@ -27,55 +28,55 @@
         <!-- Chart -->
         <chart:SfChart Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4">
 
-        <chart:SfChart.PrimaryAxis>
+            <chart:SfChart.PrimaryAxis>
 
-            <chart:DateTimeAxis RangePadding="Additional">
-                <chart:DateTimeAxis.LabelStyle>
-                    <chart:ChartAxisLabelStyle LabelFormat="MM/dd"/>
-                </chart:DateTimeAxis.LabelStyle>
-            </chart:DateTimeAxis>
+                <chart:DateTimeAxis RangePadding="Additional">
+                    <chart:DateTimeAxis.LabelStyle>
+                        <chart:ChartAxisLabelStyle LabelFormat="MM/dd"/>
+                    </chart:DateTimeAxis.LabelStyle>
+                </chart:DateTimeAxis>
 
-        </chart:SfChart.PrimaryAxis>
+            </chart:SfChart.PrimaryAxis>
 
-        <chart:SfChart.SecondaryAxis>
+            <chart:SfChart.SecondaryAxis>
 
-            <chart:NumericalAxis>
+                <chart:NumericalAxis>
 
-                <chart:NumericalAxis.Title>
+                    <chart:NumericalAxis.Title>
 
-                    <chart:ChartAxisTitle Text="{Binding ToggleWeightOrWaistSizeLabel}"></chart:ChartAxisTitle>
+                        <chart:ChartAxisTitle Text="{Binding ToggleWeightOrWaistSizeLabel}"></chart:ChartAxisTitle>
 
-                </chart:NumericalAxis.Title>
+                    </chart:NumericalAxis.Title>
 
-            </chart:NumericalAxis>
+                </chart:NumericalAxis>
 
-        </chart:SfChart.SecondaryAxis>
+            </chart:SfChart.SecondaryAxis>
 
-        <chart:SfChart.Series>
+            <chart:SfChart.Series>
 
-            <chart:LineSeries ItemsSource="{Binding ChartData}" XBindingPath="WeighDate" YBindingPath="{Binding ToggleWeightOrWaistSize}"
+                <chart:LineSeries ItemsSource="{Binding ChartData}" XBindingPath="WeighDate" YBindingPath="{Binding ToggleWeightOrWaistSize}"
                                   EnableDataPointSelection="False"
                                   Color="{StaticResource primary_dark}">
-                <chart:LineSeries.DataMarker>
+                    <chart:LineSeries.DataMarker>
 
-                    <chart:ChartDataMarker ShowLabel="{Binding ShowDataMarker}">
+                        <chart:ChartDataMarker ShowLabel="{Binding ShowDataMarker}">
 
-                        <chart:ChartDataMarker.LabelStyle>
+                            <chart:ChartDataMarker.LabelStyle>
 
-                            <chart:DataMarkerLabelStyle BackgroundColor="{StaticResource secondary}"
+                                <chart:DataMarkerLabelStyle BackgroundColor="{StaticResource secondary}"
                                                             TextColor="{StaticResource secondary_text}" LabelPosition="Auto"
                                                             BorderColor="{StaticResource primary_light}"/>
 
-                        </chart:ChartDataMarker.LabelStyle>
+                            </chart:ChartDataMarker.LabelStyle>
 
-                    </chart:ChartDataMarker>
+                        </chart:ChartDataMarker>
 
-                </chart:LineSeries.DataMarker>
-            </chart:LineSeries>
+                    </chart:LineSeries.DataMarker>
+                </chart:LineSeries>
 
-        </chart:SfChart.Series>
+            </chart:SfChart.Series>
 
-    </chart:SfChart>
+        </chart:SfChart>
 
         <!-- Chart Buttons -->
         <Button Grid.Column="0" Grid.Row="1"
@@ -98,17 +99,12 @@
                     TextColor="{Binding YearSelectedBorderColor}"/>
 
         <!-- ListView -->
-        <ListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4"
-            ItemsSource="{Binding WeightListReversed}"
-                  VerticalOptions="FillAndExpand"
-                  HasUnevenRows="True"
-                  x:Name="bob">
-
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-
-
+        <syncfusionList:SfListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4"
+                                   x:Name="listView"
+                                   ItemsSource="{Binding WeightListReversed}"
+                                   AutoFitMode="Height">
+            <syncfusionList:SfListView.ItemTemplate>
+                <DataTemplate>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30" />
@@ -119,30 +115,29 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Row="0" Grid.Column="0"
-                                Text="{Binding Path=Weight, StringFormat={localization:Translate WeightLabelListviewItem}}"
-                                           HorizontalOptions="StartAndExpand"/>
+                               FontSize="Small"
+                               Text="{Binding Path=Weight, StringFormat={localization:Translate WeightLabelListviewItem}}"
+                               HorizontalOptions="StartAndExpand"/>
                         <Label Grid.Row="0" Grid.Column="1"
-                                Text="{Binding Path=WeighDate, StringFormat={localization:Translate DateLabelListviewItem}}"
-                                           HorizontalOptions="EndAndExpand"/>
+                               FontSize="Small"
+                               Text="{Binding Path=WeighDate, StringFormat={localization:Translate DateLabelListviewItem}}"
+                               HorizontalOptions="EndAndExpand"/>
                         <Label Grid.Row="1" Grid.Column="0"
-                                Text="{Binding Path=WeightDelta, StringFormat={localization:Translate WeightDeltaLabelListviewItem}}"
-                                           HorizontalOptions="StartAndExpand"/>
+                               FontSize="Small"
+                               Text="{Binding Path=WeightDelta, StringFormat={localization:Translate WeightDeltaLabelListviewItem}}"
+                               HorizontalOptions="StartAndExpand"/>
                         <Label Grid.Row="1" Grid.Column="1"
-                                           Text="{Binding Path=WaistSize, StringFormat={localization:Translate WaistSizeLabelListviewItem}}"
-                                           HorizontalOptions="EndAndExpand"
-                                   IsVisible="{Binding WaistSizeEnabled}">
+                               FontSize="Small"
+                               Text="{Binding Path=WaistSize, StringFormat={localization:Translate WaistSizeLabelListviewItem}}"
+                               HorizontalOptions="EndAndExpand"
+                               IsVisible="{Binding WaistSizeEnabled}">
                         </Label>
                     </Grid>
+                </DataTemplate>
+            </syncfusionList:SfListView.ItemTemplate>
+        </syncfusionList:SfListView>
 
 
-
-
-
-
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
 
 
         <!-- ADMOB Banner -->
