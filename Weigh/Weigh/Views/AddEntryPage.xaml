@@ -33,6 +33,7 @@
             <RowDefinition Height="{StaticResource GridEntryHeight}" />
             <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
             <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
             <RowDefinition Height="{StaticResource GridMultiLineEntryHeight}" />
             <RowDefinition Height="{StaticResource GridButtonHeight}" />
             <RowDefinition Height="*" />
@@ -109,18 +110,16 @@
                  HorizontalOptions="FillAndExpand"
                 WidthRequest="150"/>
         
-        
-        <!-- Entry Date (removing for now) 
-        <Label Grid.Column="0" Grid.Row="5"
+        <!-- Entry Date Section -->
+        <Label Grid.Column="0" Grid.Row="6"
                Text="{localization:Translate EntryDateLabel}" />
-        <DatePicker Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3"
+        <DatePicker Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3"
             Date="{Binding EntryDate}" MaximumDate="{Binding MaxEntryDate}" />
-        -->
 
         <!-- Notes Section -->
-        <Label Grid.Column="0" Grid.Row="6"
+        <Label Grid.Column="0" Grid.Row="7"
                Text="{localization:Translate NotesLabel}" />
-        <Editor Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3"
+        <Editor Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="3"
                 Text="{Binding NoteEntry}">
             <Editor.Behaviors>
                 <b:EditorLengthValidatorBehavior MaxLength="250" />
@@ -128,13 +127,13 @@
         </Editor>
 
         <!-- Save Button -->
-        <Button Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="4"
+        <Button Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="4"
             Text="{localization:Translate SaveLabel}"
                 Command="{Binding AddWeightToListCommand}"/>
 
         
         <!-- ADMOB Banner -->
-        <controls:AdMobView Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="4" VerticalOptions="End" />
+        <controls:AdMobView Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="4" VerticalOptions="End" />
     </Grid>
   
 </ContentPage>

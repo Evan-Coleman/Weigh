@@ -35,7 +35,11 @@ namespace Weigh.ViewModels
             SelectMaleCommand = new DelegateCommand(SelectMale);
             SelectFemaleCommand = new DelegateCommand(SelectFemale);
 
-            _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo);
+            if (NewSetupInfoSubscriptionToken == null)
+            {
+                NewSetupInfoSubscriptionToken = _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo);
+            }
+            
             BirthDateMinDate = DateTime.UtcNow.AddYears(-150);
             BirthDateMaxDate = DateTime.UtcNow.AddYears(-1);
             ImperialSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
@@ -56,6 +60,7 @@ namespace Weigh.ViewModels
         #region Fields
 
         private readonly IEventAggregator _ea;
+        public static SubscriptionToken NewSetupInfoSubscriptionToken { get; set; }
 
         private SettingVals _settingVals;
 
@@ -143,6 +148,7 @@ namespace Weigh.ViewModels
             get => _maxGoalDate;
             set => SetProperty(ref _maxGoalDate, value);
         }
+
 
         #endregion
 

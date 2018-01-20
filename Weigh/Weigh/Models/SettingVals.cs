@@ -241,8 +241,6 @@ namespace Weigh.Models
 
         public async void InitializeSettingVals()
         {
-            //LatestWeight = await App.Database.GetLatestWeightasync();
-
             Age = Settings.Age;
             HeightMajor = Settings.HeightMajor;
             HeightMinor = Settings.HeightMinor;

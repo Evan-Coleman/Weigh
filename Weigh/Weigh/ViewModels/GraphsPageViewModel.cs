@@ -61,7 +61,12 @@ namespace Weigh.ViewModels
             ViewEndDateRange = new DateTime(2017, 12, 18);
             */
 
-            ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry);
+            if (NewWeightSubscriptionToken == null)
+            {
+                NewWeightSubscriptionToken = ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry);
+            }
+            
+
             //ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Subscribe(UpdateWaistSizeEnabled);
 
             NewGraphInstance();
@@ -71,6 +76,8 @@ namespace Weigh.ViewModels
         #endregion
 
         #region Fields
+
+        public static SubscriptionToken NewWeightSubscriptionToken { get; set; }
 
         private ObservableCollection<WeightEntry> _weightList;
 
@@ -226,10 +233,13 @@ private void ToggleWeightWaistSize()
             ChartData = DataFromDatabase.Skip(Math.Max(0, WeightList.Count() - 7)).Take(7).ToObservableCollection();
         }
 
-        private void HandleNewWeightEntry(WeightEntry weight)
+        private async void HandleNewWeightEntry(WeightEntry weight)
         {
-            WeightList.Add(weight);
-            WeightList = WeightList.OrderByDescending(x => x.WeighDate).ToObservableCollection();
+            DataFromDatabase = await App.Database.GetWeightsAsync();
+            DataFromDatabase = DataFromDatabase.OrderByDescending(x => x.WeighDate).ToList();
+            WeightList = DataFromDatabase.ToObservableCollection();
+            // TODO: Chart is messed up on add new entry
+            ChartData = DataFromDatabase.Skip(Math.Max(0, WeightList.Count() - 7)).Take(7).ToObservableCollection();
             if (CurrentlySelectedGraphTimeline == "week" && ChartData.Count >= 7 ||
                 CurrentlySelectedGraphTimeline == "month" && ChartData.Count >= 31 ||
                 CurrentlySelectedGraphTimeline == "year" && ChartData.Count >= 365)
