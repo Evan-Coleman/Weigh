@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using Weigh.Helpers;
 using Weigh.Localization;
 
@@ -9,131 +7,85 @@ namespace Weigh.Validation
 {
     public class SetupInfoValidation
     {
-
         public static ValidationResult HeightMajorValidation(string heightMajor)
         {
-            bool isValid = true;
-            double HeightMajor;
+            var isValid = true;
 
             // Perform validation logic here and set isValid to true or false.
-            HeightMajor = Convert.ToDouble(heightMajor);
+            var HeightMajor = Convert.ToDouble(heightMajor);
 
             // Units == true means imperial
-            if (Settings.Units == true)
+            if (Settings.Units)
             {
-                if (HeightMajor < 1 || HeightMajor > 15)
-                {
-                    isValid = false;
-                }
+                if (HeightMajor < 1 || HeightMajor > 15) isValid = false;
 
                 if (isValid)
-                {
                     return ValidationResult.Success;
-                }
-                else
-                {
-                    return new ValidationResult(
-                        AppResources.HeightMajorImperialValidationErrorMessage);
-                }
-            }
-            else
-            {
-                if (HeightMajor < 50 || HeightMajor > 300)
-                {
-                    isValid = false;
-                }
-
-                if (isValid)
-                {
-                    return ValidationResult.Success;
-                }
-                else
-                {
-                    return new ValidationResult(
-                        AppResources.HeightMajorMetricValidationErrorMessage);
-                }
+                return new ValidationResult(
+                    AppResources.HeightMajorImperialValidationErrorMessage);
             }
 
+            if (HeightMajor < 50 || HeightMajor > 300) isValid = false;
+
+            if (isValid)
+                return ValidationResult.Success;
+            return new ValidationResult(
+                AppResources.HeightMajorMetricValidationErrorMessage);
         }
 
         public static ValidationResult HeightMinorValidation(string heightMinor)
         {
-            bool isValid = true;
+            var isValid = true;
             double HeightMinor;
 
             // Perform validation logic here and set isValid to true or false.
             HeightMinor = Convert.ToDouble(heightMinor);
 
-            if (Settings.Units == true)
+            if (Settings.Units)
             {
-                if (HeightMinor < 0 || HeightMinor > 12)
-                {
-                    isValid = false;
-                }
+                if (HeightMinor < 0 || HeightMinor > 12) isValid = false;
 
                 if (isValid)
-                {
                     return ValidationResult.Success;
-                }
-                else
-                {
-                    return new ValidationResult(
-                        "(0-12)");
-                }
-            }
-            else
-            {
-                return ValidationResult.Success;
+                return new ValidationResult(
+                    "(0-12)");
             }
 
+            return ValidationResult.Success;
         }
 
         public static ValidationResult HeightMinorLengthValidation(string heightMinor)
         {
-            bool isValid = true;
+            var isValid = true;
 
             // Perform validation logic here and set isValid to true or false.
 
-            if (Settings.Units == true)
+            if (Settings.Units)
             {
-                if (heightMinor.Length < 0 || heightMinor.Length > 2)
-                {
-                    isValid = false;
-                }
+                if (heightMinor.Length < 0 || heightMinor.Length > 2) isValid = false;
 
                 if (isValid)
-                {
                     return ValidationResult.Success;
-                }
-                else
-                {
-                    // TODO: Add to localization if used
-                    return new ValidationResult(
-                        "0-2chars");
-                }
+                return new ValidationResult(
+                    "0-2chars");
             }
-            else
-            {
-                return ValidationResult.Success;
-            }
+
+            return ValidationResult.Success;
         }
 
         public static ValidationResult WaistSizeValidation(string waistSize)
         {
-            double WaistSize = Convert.ToDouble(waistSize);
+            var WaistSize = Convert.ToDouble(waistSize);
 
             // Perform validation logic here and set isValid to true or false.
-            if (Settings.WaistSizeEnabled == true)
+            if (Settings.WaistSizeEnabled)
             {
                 if (waistSize.Length < 2 || waistSize.Length > 5)
-                {
                     return new ValidationResult(AppResources.WaistLengthValidationErrorMessage);
-                }
                 if (WaistSize > 200 || WaistSize < 15)
-                {
                     return new ValidationResult(AppResources.WaistValueValidationErrorMessage);
-                }
             }
+
             return ValidationResult.Success;
         }
     }

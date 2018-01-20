@@ -7,7 +7,6 @@ using Prism.Events;
 using Prism.Navigation;
 using Weigh.Events;
 using Weigh.Extensions;
-using Weigh.Helpers;
 using Weigh.Localization;
 using Weigh.Models;
 using Xamarin.Forms;
@@ -37,7 +36,7 @@ namespace Weigh.ViewModels
             ShowYearCommand = new DelegateCommand(ShowYear);
             //ToggleWeightWaistSizeCommand = new DelegateCommand(ToggleWeightWaistSize);
             ShowDataMarker = true;
-            WeekSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
+            WeekSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             CurrentlySelectedGraphTimeline = "week";
             ToggleWeightOrWaistSize = "Weight";
             ToggleWeightOrWaistSizeLabel = AppResources.WeightLabel;
@@ -211,7 +210,7 @@ private void ToggleWeightWaistSize()
         {
             ChartData = WeightList.Skip(Math.Max(0, WeightList.Count() - 7)).Take(7).ToObservableCollection();
             ShowDataMarker = true;
-            WeekSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
+            WeekSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             MonthSelectedBorderColor = Color.Default;
             YearSelectedBorderColor = Color.Default;
             CurrentlySelectedGraphTimeline = "week";
@@ -222,7 +221,7 @@ private void ToggleWeightWaistSize()
             ChartData = WeightList.Skip(Math.Max(0, WeightList.Count() - 31)).Take(31).ToObservableCollection();
             ShowDataMarker = false;
             WeekSelectedBorderColor = Color.Default;
-            MonthSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
+            MonthSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             YearSelectedBorderColor = Color.Default;
             CurrentlySelectedGraphTimeline = "month";
         }
@@ -233,7 +232,7 @@ private void ToggleWeightWaistSize()
             ShowDataMarker = false;
             WeekSelectedBorderColor = Color.Default;
             MonthSelectedBorderColor = Color.Default;
-            YearSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
+            YearSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             CurrentlySelectedGraphTimeline = "year";
         }
 

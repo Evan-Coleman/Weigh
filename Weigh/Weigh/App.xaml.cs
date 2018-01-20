@@ -1,20 +1,14 @@
-﻿using System;
-using Weigh.ViewModels;
-using Weigh.Views;
-using DryIoc;
+﻿using Prism;
 using Prism.DryIoc;
-using Prism.Navigation;
+using Prism.Ioc;
+using Weigh.Data;
+using Weigh.Helpers;
+using Weigh.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Weigh.Helpers;
-using Weigh.Data;
-using Weigh.Models;
-using System.Collections.Generic;
-using Weigh.Localization;
-using Prism;
-using Prism.Ioc;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+
 namespace Weigh
 {
     public partial class App : PrismApplication
@@ -26,24 +20,31 @@ namespace Weigh
          */
         private static WeightDatabase _database;
 
-        public App() : this(null) { }
+        public App() : this(null)
+        {
+        }
 
-        public App(IPlatformInitializer initializer) : base(initializer) { }
+        public App(IPlatformInitializer initializer) : base(initializer)
+        {
+        }
+
+        public static WeightDatabase Database
+        {
+            get
+            {
+                if (_database == null)
+                    _database = new WeightDatabase(DependencyService.Get<IFileHelper>().GetPath("TodoSQLite.db3"));
+                return _database;
+            }
+        }
 
         protected override async void OnInitialized()
         {
             InitializeComponent();
             if (Settings.FirstUse == "yes")
-            {
                 await NavigationService.NavigateAsync("InitialSetupPage");
-            }
             else
-            {
-                // Navigate to main page with main tab activated
-                //await NavigationService.NavigateAsync($"NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
-                
                 await NavigationService.NavigateAsync("NavigatingAwareTabbedPage?SelectedTab=MainPage");
-            }
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -55,18 +56,6 @@ namespace Weigh
             containerRegistry.RegisterForNavigation<SettingsPage>();
             containerRegistry.RegisterForNavigation<GraphsPage>();
             containerRegistry.RegisterForNavigation<AddEntryPage>();
-        }
-
-        public static WeightDatabase Database
-        {
-            get
-            {
-                if (_database == null)
-                {
-                    _database = new WeightDatabase(DependencyService.Get<IFileHelper>().GetPath("TodoSQLite.db3"));
-                }
-                return _database;
-            }
         }
     }
 }

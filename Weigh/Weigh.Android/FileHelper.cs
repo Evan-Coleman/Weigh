@@ -1,15 +1,18 @@
-﻿using Weigh.Droid;
-using Weigh.Data;
+﻿using System;
 using System.IO;
+using Weigh.Data;
+using Weigh.Droid;
+using Xamarin.Forms;
 
-[assembly: Xamarin.Forms.Dependency(typeof(FileHelper))]
+[assembly: Dependency(typeof(FileHelper))]
+
 namespace Weigh.Droid
 {
-    class FileHelper : IFileHelper
+    internal class FileHelper : IFileHelper
     {
         public string GetPath(string fileName)
         {
-            string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             return Path.Combine(path, fileName);
         }
     }

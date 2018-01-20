@@ -48,8 +48,8 @@ namespace Weigh.ViewModels
             SettingVals.Units = true;
             SettingVals.WaistSizeEnabled = true;
             SettingVals.PickerSelectedItem = AppResources.LightActivityPickItem;
-            ImperialSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
-            MaleSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
+            ImperialSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
+            MaleSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             PickerSource = new List<string>
             {
                 AppResources.LowActivityPickItem,
@@ -138,24 +138,27 @@ namespace Weigh.ViewModels
         }
 
         private DateTime _birthDateMinDate;
+
         public DateTime BirthDateMinDate
         {
-            get { return _birthDateMinDate; }
-            set { SetProperty(ref _birthDateMinDate, value); }
+            get => _birthDateMinDate;
+            set => SetProperty(ref _birthDateMinDate, value);
         }
 
         private DateTime _birthDateMaxDate;
+
         public DateTime BirthDateMaxDate
         {
-            get { return _birthDateMaxDate; }
-            set { SetProperty(ref _birthDateMaxDate, value); }
+            get => _birthDateMaxDate;
+            set => SetProperty(ref _birthDateMaxDate, value);
         }
 
         private DateTime _maxGoalDate;
+
         public DateTime MaxGoalDate
         {
-            get { return _maxGoalDate; }
-            set { SetProperty(ref _maxGoalDate, value); }
+            get => _maxGoalDate;
+            set => SetProperty(ref _maxGoalDate, value);
         }
 
         #endregion
@@ -170,20 +173,20 @@ namespace Weigh.ViewModels
         private void SelectImperial()
         {
             MetricSelectedBorderColor = Color.Default;
-            ImperialSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
+            ImperialSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             SettingVals.Units = true;
         }
 
         private void SelectMetric()
         {
-            MetricSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
+            MetricSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             ImperialSelectedBorderColor = Color.Default;
             SettingVals.Units = false;
         }
 
         private void SelectMale()
         {
-            MaleSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
+            MaleSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             FemaleSelectedBorderColor = Color.Default;
             SettingVals.Sex = false;
         }
@@ -191,7 +194,7 @@ namespace Weigh.ViewModels
         private void SelectFemale()
         {
             MaleSelectedBorderColor = Color.Default;
-            FemaleSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
+            FemaleSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             SettingVals.Sex = true;
         }
 
