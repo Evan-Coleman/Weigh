@@ -219,6 +219,12 @@ namespace Weigh.Models
             set => SetProperty(ref _lastWeight, value);
         }
 
+        private WeightEntry _latestWeight;
+        public WeightEntry LatestWeight
+        {
+            get { return _latestWeight; }
+            set { SetProperty(ref _latestWeight, value); }
+        }
         #endregion
 
         #region Methods
@@ -233,8 +239,10 @@ namespace Weigh.Models
             Weight = Convert.ToDouble(_validatedSettings.Weight);
         }
 
-        public void InitializeSettingVals()
+        public async void InitializeSettingVals()
         {
+            //LatestWeight = await App.Database.GetLatestWeightasync();
+
             Age = Settings.Age;
             HeightMajor = Settings.HeightMajor;
             HeightMinor = Settings.HeightMinor;

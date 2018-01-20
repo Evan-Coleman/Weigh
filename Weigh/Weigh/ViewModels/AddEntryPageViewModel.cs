@@ -143,6 +143,15 @@ namespace Weigh.ViewModels
                 SettingVals.ValidateGoal();
                 SettingVals.SaveSettingValsToDevice();
                 _ea.GetEvent<AddWeightEvent>().Publish(NewWeightEntry);
+                /* Debug method to add tons of entries
+                for (int i = 700; i > 190; i--)
+                {
+                    var WeightEntry = new WeightEntry();
+                    WeightEntry.Weight = i;
+                    WeightEntry.WeighDate = DateTime.UtcNow.AddDays(190 - i);
+                    await App.Database.SaveWeightAsync(WeightEntry);
+                }
+                */
                 await App.Database.SaveWeightAsync(NewWeightEntry);
                 await NavigationService.GoBackAsync();
             }

@@ -80,14 +80,6 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _weightList, value);
         }
 
-        private List<WeightEntry> _weightListReversed;
-
-        public List<WeightEntry> WeightListReversed
-        {
-            get => _weightListReversed;
-            set => SetProperty(ref _weightListReversed, value);
-        }
-
         private ObservableCollection<WeightEntry> _chartData;
 
         public ObservableCollection<WeightEntry> ChartData
@@ -229,19 +221,15 @@ private void ToggleWeightWaistSize()
         private async void PopulateWeightList()
         {
             DataFromDatabase = await App.Database.GetWeightsAsync();
+            DataFromDatabase = DataFromDatabase.OrderByDescending(x => x.WeighDate).ToList();
             WeightList = DataFromDatabase.ToObservableCollection();
-            WeightListReversed = WeightList.ToList();
-            WeightListReversed.Reverse();
-            WeightListReversed.ToObservableCollection();
             ChartData = DataFromDatabase.Skip(Math.Max(0, WeightList.Count() - 7)).Take(7).ToObservableCollection();
         }
 
         private void HandleNewWeightEntry(WeightEntry weight)
         {
             WeightList.Add(weight);
-            WeightListReversed = WeightList.ToList();
-            WeightListReversed.Reverse();
-            WeightListReversed.ToObservableCollection();
+            WeightList = WeightList.OrderByDescending(x => x.WeighDate).ToObservableCollection();
             if (CurrentlySelectedGraphTimeline == "week" && ChartData.Count >= 7 ||
                 CurrentlySelectedGraphTimeline == "month" && ChartData.Count >= 31 ||
                 CurrentlySelectedGraphTimeline == "year" && ChartData.Count >= 365)
