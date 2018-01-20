@@ -23,13 +23,14 @@ namespace Weigh.ViewModels
         public MainPageViewModel(INavigationService navigationService, IEventAggregator ea)
             : base(navigationService)
         {
-            _ea = ea;
-            //_ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
-            _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo);
             Title = AppResources.MainPageTitle;
+            _ea = ea;
+
             SettingVals = new SettingVals();
-            ButtonEnabled = true;
+
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
+
+            ButtonEnabled = true;
             NewWaistSizeEntry = Settings.WaistSize;
             WeightLeftChart = new RadialGaugeChart
             {
@@ -47,11 +48,24 @@ namespace Weigh.ViewModels
                 Margin = 0,
                 IsAnimated = false
             };
+
+            //_ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
+            _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo);
         }
 
         #endregion
 
         #region Fields
+
+        private readonly IEventAggregator _ea;
+
+        private SettingVals _settingVals;
+
+        public SettingVals SettingVals
+        {
+            get => _settingVals;
+            set => SetProperty(ref _settingVals, value);
+        }
 
         private DelegateCommand _addWeightToListCommand;
 
@@ -77,15 +91,13 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _newWaistSizeEntry, value);
         }
 
-        private SettingVals _settingVals;
+        private Chart _weightLeftChart;
 
-        public SettingVals SettingVals
+        public Chart WeightLeftChart
         {
-            get => _settingVals;
-            set => SetProperty(ref _settingVals, value);
+            get => _weightLeftChart;
+            set => SetProperty(ref _weightLeftChart, value);
         }
-
-        private readonly IEventAggregator _ea;
 
         private Chart _daysLeftChart;
 
@@ -95,13 +107,6 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _daysLeftChart, value);
         }
 
-        private Chart _weightLeftChart;
-
-        public Chart WeightLeftChart
-        {
-            get => _weightLeftChart;
-            set => SetProperty(ref _weightLeftChart, value);
-        }
 
         private double _weightProgress;
 
@@ -139,32 +144,6 @@ namespace Weigh.ViewModels
         #endregion
 
         #region Methods
-
-        public async void AddWeightToList()
-        {
-            ButtonEnabled = false;
-            await NavigationService.NavigateAsync("AddEntryPage");
-            ButtonEnabled = true;
-        }
-
-        private void HandleUpdateSetupInfo(SettingValsValidated setupInfoValidated)
-        {
-            SettingVals.InitializeFromValidated(setupInfoValidated);
-            InitializeCharts();
-        }
-
-        public override void OnNavigatingTo(NavigationParameters parameters)
-        {
-            SettingVals.InitializeSettingVals();
-
-            if (SettingVals.ValidateGoal() == false)
-                SettingVals.SaveSettingValsToDevice();
-            _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SettingVals);
-            // TODO: Possibly remove
-            _ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Publish(SettingVals.WaistSizeEnabled);
-
-            InitializeCharts();
-        }
 
         private void InitializeCharts()
         {
@@ -204,6 +183,32 @@ namespace Weigh.ViewModels
                 ScheduleStatus = AppResources.OnScheduleLabel;
             else
                 ScheduleStatus = AppResources.OffScheduleLabel;
+        }
+
+        public async void AddWeightToList()
+        {
+            ButtonEnabled = false;
+            await NavigationService.NavigateAsync("AddEntryPage");
+            ButtonEnabled = true;
+        }
+
+        private void HandleUpdateSetupInfo(SettingValsValidated setupInfoValidated)
+        {
+            SettingVals.InitializeFromValidated(setupInfoValidated);
+            InitializeCharts();
+        }
+
+        public override void OnNavigatingTo(NavigationParameters parameters)
+        {
+            SettingVals.InitializeSettingVals();
+
+            if (SettingVals.ValidateGoal() == false)
+                SettingVals.SaveSettingValsToDevice();
+            _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SettingVals);
+            // TODO: Possibly remove
+            _ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Publish(SettingVals.WaistSizeEnabled);
+
+            InitializeCharts();
         }
 
         #endregion
