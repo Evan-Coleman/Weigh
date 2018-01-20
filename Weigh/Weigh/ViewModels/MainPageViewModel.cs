@@ -52,7 +52,11 @@ namespace Weigh.ViewModels
             };
 
             //_ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
-            _updateSetupInfoEventToken = _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo);
+
+            if (NewSetupInfoSubscriptionToken == null)
+            {
+                NewSetupInfoSubscriptionToken = _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo);
+            }
         }
 
         #endregion
@@ -60,7 +64,7 @@ namespace Weigh.ViewModels
         #region Fields
 
         private readonly IEventAggregator _ea;
-        private readonly SubscriptionToken _updateSetupInfoEventToken;
+        public static SubscriptionToken NewSetupInfoSubscriptionToken { get; private set; }
 
         private SettingVals _settingVals;
 
@@ -190,9 +194,7 @@ namespace Weigh.ViewModels
 
         public async void AddWeightToList()
         {
-            ButtonEnabled = false;
             await NavigationService.NavigateAsync("AddEntryPage");
-            ButtonEnabled = true;
         }
 
         private void HandleUpdateSetupInfo(SettingValsValidated setupInfoValidated)
