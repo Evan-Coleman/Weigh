@@ -8,6 +8,7 @@ Important: To get Admob ads working for yourself, take PrivateKeys.Sample, and r
 TODO:
 
 	Active
+		(General) Pull latest weight from a linq query which is sorted by date
 		(MainPage) Continue UI revamp, possibly change to BMI circular gague
 		(SettingsPage) Save button messes things up, investigate
 		(AddEntryPage) Spice up layout a little

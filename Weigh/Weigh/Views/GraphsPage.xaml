@@ -101,8 +101,9 @@
         <!-- ListView -->
         <syncfusionList:SfListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4"
                                    x:Name="listView"
-                                   ItemsSource="{Binding WeightListReversed}"
-                                   AutoFitMode="Height">
+                                   ItemsSource="{Binding WeightList}"
+                                   AutoFitMode="Height"
+                                   SelectionBackgroundColor="{StaticResource secondary_light}">
             <syncfusionList:SfListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
