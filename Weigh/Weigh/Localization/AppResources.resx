@@ -410,8 +410,8 @@
     <comment>(MainPage) Button to add a new entry</comment>
   </data>
   <data name="AgeLabel" xml:space="preserve">
-    <value>Age:</value>
-    <comment>(InitialSetupPage) Label to indicate entry is for age</comment>
+    <value>Birth Date:</value>
+    <comment>(InitialSetupPage/SettingsPage) Label to indicate entry is for age</comment>
   </data>
   <data name="GoalDateEntryLabel" xml:space="preserve">
     <value>Goal Date:</value>
@@ -513,8 +513,16 @@
     <value>Progress</value>
     <comment>(MainPage) header for progress section</comment>
   </data>
-  <data name="ToGoLabel" xml:space="preserve">
-    <value>{0:0} to go</value>
+  <data name="DaysToGoLabel" xml:space="preserve">
+    <value>{0:0} Days to go</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="ImperialWeightToGoLabel" xml:space="preserve">
+    <value>{0:0} lb to go</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="MetricWeightToGoLabel" xml:space="preserve">
+    <value>{0:0} kg to go</value>
     <comment>(MainPage)</comment>
   </data>
 </root>

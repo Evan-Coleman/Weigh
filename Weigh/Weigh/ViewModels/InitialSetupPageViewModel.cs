@@ -42,6 +42,7 @@ namespace Weigh.ViewModels
             //SettingVals.BirthDate = DateTime.UtcNow.AddYears(-21);
             BirthDateMinDate = DateTime.UtcNow.AddYears(-150);
             BirthDateMaxDate = DateTime.UtcNow.AddYears(-1);
+            MaxGoalDate = DateTime.UtcNow.AddYears(1);
 
             // Setting units to default imperial
             SettingVals.Units = true;
@@ -150,7 +151,12 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _birthDateMaxDate, value); }
         }
 
-
+        private DateTime _maxGoalDate;
+        public DateTime MaxGoalDate
+        {
+            get { return _maxGoalDate; }
+            set { SetProperty(ref _maxGoalDate, value); }
+        }
 
         #endregion
 

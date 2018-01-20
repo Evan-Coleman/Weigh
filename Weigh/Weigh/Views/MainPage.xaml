@@ -42,10 +42,22 @@
                                BackgroundColor="Transparent"
                                Chart="{Binding WeightLeftChart}"/>
 
-                <Label Grid.Row="2"
-                       HorizontalOptions="Center"
-                       Text="{Binding SettingVals.DistanceToGoalWeight, StringFormat={localization:Translate ToGoLabel}}" />
-            </Grid>
+            <Label Grid.Row="2"
+                       HorizontalOptions="Center">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label"
+                                     Binding="{Binding SettingVals.Units}"
+                                     Value="false">
+                        <Setter Property="Text" Value="{Binding SettingVals.DistanceToGoalWeight, StringFormat={localization:Translate MetricWeightToGoLabel}}" />
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label"
+                                     Binding="{Binding SettingVals.Units}"
+                                     Value="true">
+                        <Setter Property="Text" Value="{Binding SettingVals.DistanceToGoalWeight, StringFormat={localization:Translate ImperialWeightToGoLabel}}" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </Grid>
 
 
         <!-- Weight Section -->
@@ -127,7 +139,7 @@
 
                 <Label Grid.Column="0" Grid.Row="2"
                        HorizontalOptions="Center"
-                       Text="{Binding SettingVals.TimeLeftToGoal, StringFormat={localization:Translate ToGoLabel}}" />
+                       Text="{Binding SettingVals.TimeLeftToGoal, StringFormat={localization:Translate DaysToGoLabel}}" />
             </Grid>
         </ContentView>
 

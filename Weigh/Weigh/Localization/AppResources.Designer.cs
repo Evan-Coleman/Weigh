@@ -97,7 +97,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Age:.
+        ///   Looks up a localized string similar to Birth Date:.
         /// </summary>
         internal static string AgeLabel {
             get {
@@ -201,6 +201,15 @@ namespace Weigh.Localization {
         internal static string DaysLabel {
             get {
                 return ResourceManager.GetString("DaysLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0:0} Days to go.
+        /// </summary>
+        internal static string DaysToGoLabel {
+            get {
+                return ResourceManager.GetString("DaysToGoLabel", resourceCulture);
             }
         }
         
@@ -448,6 +457,15 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0:0} lb to go.
+        /// </summary>
+        internal static string ImperialWeightToGoLabel {
+            get {
+                return ResourceManager.GetString("ImperialWeightToGoLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Setup.
         /// </summary>
         internal static string InitialSetupPageTitle {
@@ -516,6 +534,15 @@ namespace Weigh.Localization {
         internal static string MediumActivityPickItem {
             get {
                 return ResourceManager.GetString("MediumActivityPickItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0:0} kg to go.
+        /// </summary>
+        internal static string MetricWeightToGoLabel {
+            get {
+                return ResourceManager.GetString("MetricWeightToGoLabel", resourceCulture);
             }
         }
         
@@ -723,15 +750,6 @@ namespace Weigh.Localization {
         internal static string TimeLeftLabel {
             get {
                 return ResourceManager.GetString("TimeLeftLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0:0} to go.
-        /// </summary>
-        internal static string ToGoLabel {
-            get {
-                return ResourceManager.GetString("ToGoLabel", resourceCulture);
             }
         }
         

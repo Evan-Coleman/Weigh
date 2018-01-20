@@ -41,6 +41,7 @@ namespace Weigh.ViewModels
             ImperialSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             MaleSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
+            MaxGoalDate = DateTime.UtcNow.AddYears(1);
             PickerSource = new List<string>
             {
                 AppResources.LowActivityPickItem,
@@ -131,6 +132,13 @@ namespace Weigh.ViewModels
         {
             get { return _birthDateMaxDate; }
             set { SetProperty(ref _birthDateMaxDate, value); }
+        }
+
+        private DateTime _maxGoalDate;
+        public DateTime MaxGoalDate
+        {
+            get { return _maxGoalDate; }
+            set { SetProperty(ref _maxGoalDate, value); }
         }
 
         #endregion
