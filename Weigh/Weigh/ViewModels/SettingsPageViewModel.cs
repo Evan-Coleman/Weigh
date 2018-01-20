@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Acr.UserDialogs;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Navigation;
@@ -183,7 +184,11 @@ namespace Weigh.ViewModels
             {
                 SettingVals.InitializeFromValidated(SettingValsValidated);
                 SettingVals.SaveSettingValsToDevice();
-                await NavigationService.NavigateAsync($"/NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
+                //await NavigationService.NavigateAsync($"/NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
+                var toastConfig = new ToastConfig(AppResources.SavedToast);
+                toastConfig.SetPosition(ToastPosition.Top);
+                toastConfig.SetDuration(3000);
+                UserDialogs.Instance.Toast(toastConfig);
             }
         }
 

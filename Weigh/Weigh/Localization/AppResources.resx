@@ -525,4 +525,8 @@
     <value>{0:0} kg to go</value>
     <comment>(MainPage)</comment>
   </data>
+  <data name="SavedToast" xml:space="preserve">
+    <value>Saved</value>
+    <comment>(SettingsPage)</comment>
+  </data>
 </root>
