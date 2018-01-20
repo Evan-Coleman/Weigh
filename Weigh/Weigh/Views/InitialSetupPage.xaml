@@ -243,7 +243,8 @@
        Text="{localization:Translate GoalDateEntryLabel}" />
         <DatePicker Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="3"
             Date="{Binding SettingVals.GoalDate}"
-                    MinimumDate="{Binding SettingVals.MinDate}"></DatePicker>
+                    MinimumDate="{Binding SettingVals.MinDate}"
+                    MaximumDate="{Binding MaxGoalDate}"></DatePicker>
 
         <!-- Notes Section -->
         <Label Grid.Column="0" Grid.Row="13"
