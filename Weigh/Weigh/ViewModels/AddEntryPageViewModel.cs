@@ -17,13 +17,16 @@ namespace Weigh.ViewModels
         public AddEntryPageViewModel(INavigationService navigationService, IEventAggregator ea)
             : base(navigationService)
         {
-            SettingVals = new SettingVals();
-            SettingValsValidated = new SettingValsValidated();
             Title = AppResources.AddEntryPageTitle;
-            //EntryDate = DateTime.UtcNow;
-            //MaxEntryDate = DateTime.UtcNow;
             _ea = ea;
 
+            SettingVals = new SettingVals();
+            SettingValsValidated = new SettingValsValidated();
+
+            AddWeightToListCommand = new DelegateCommand(AddWeightToList);
+
+            //EntryDate = DateTime.UtcNow;
+            //MaxEntryDate = DateTime.UtcNow;
             PickerSource = new List<string>
             {
                 AppResources.LowActivityPickItem,
@@ -31,12 +34,29 @@ namespace Weigh.ViewModels
                 AppResources.MediumActivityPickItem,
                 AppResources.HeavyActivityPickItem
             };
-            AddWeightToListCommand = new DelegateCommand(AddWeightToList);
         }
 
         #endregion
 
         #region Fields
+
+        private readonly IEventAggregator _ea;
+
+        private SettingVals _settingVals;
+
+        public SettingVals SettingVals
+        {
+            get => _settingVals;
+            set => SetProperty(ref _settingVals, value);
+        }
+
+        private SettingValsValidated _settingValsValidated;
+
+        public SettingValsValidated SettingValsValidated
+        {
+            get => _settingValsValidated;
+            set => SetProperty(ref _settingValsValidated, value);
+        }
 
         private DelegateCommand _addWeightToListCommand;
 
@@ -45,8 +65,6 @@ namespace Weigh.ViewModels
             get => _addWeightToListCommand;
             set => SetProperty(ref _addWeightToListCommand, value);
         }
-
-        private readonly IEventAggregator _ea;
 
         private List<string> _pickerSource;
 
@@ -62,22 +80,6 @@ namespace Weigh.ViewModels
         {
             get => _buttonEnabled;
             set => SetProperty(ref _buttonEnabled, value);
-        }
-
-        private SettingValsValidated _settingValsValidated;
-
-        public SettingValsValidated SettingValsValidated
-        {
-            get => _settingValsValidated;
-            set => SetProperty(ref _settingValsValidated, value);
-        }
-
-        private SettingVals _settingVals;
-
-        public SettingVals SettingVals
-        {
-            get => _settingVals;
-            set => SetProperty(ref _settingVals, value);
         }
 
         private WeightEntry _newWeightEntry;
@@ -111,20 +113,9 @@ namespace Weigh.ViewModels
             set { SetProperty(ref _maxEntryDate, value); }
         }
         */
-
         #endregion
 
         #region Methods
-
-        /// <summary>
-        ///     When we come to this page we will always want to initialize SettingVals & Validated
-        /// </summary>
-        /// <param name="parameters"></param>
-        public override void OnNavigatingTo(NavigationParameters parameters)
-        {
-            SettingVals.InitializeSettingVals();
-            SettingValsValidated.InitializeFromSettings(SettingVals);
-        }
 
         public async void AddWeightToList()
         {
@@ -155,6 +146,16 @@ namespace Weigh.ViewModels
                 await App.Database.SaveWeightAsync(NewWeightEntry);
                 await NavigationService.GoBackAsync();
             }
+        }
+
+        /// <summary>
+        ///     When we come to this page we will always want to initialize SettingVals & Validated
+        /// </summary>
+        /// <param name="parameters"></param>
+        public override void OnNavigatingTo(NavigationParameters parameters)
+        {
+            SettingVals.InitializeSettingVals();
+            SettingValsValidated.InitializeFromSettings(SettingVals);
         }
 
         #endregion
