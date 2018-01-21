@@ -52,11 +52,7 @@ namespace Weigh.ViewModels
             };
 
             //_ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
-
-            if (NewSetupInfoSubscriptionToken == null)
-            {
-                NewSetupInfoSubscriptionToken = _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo);
-            }
+            _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo, ThreadOption.BackgroundThread, keepSubscriberReferenceAlive: false);
         }
 
         #endregion
@@ -64,7 +60,6 @@ namespace Weigh.ViewModels
         #region Fields
 
         private readonly IEventAggregator _ea;
-        public static SubscriptionToken NewSetupInfoSubscriptionToken { get; private set; }
 
         private SettingVals _settingVals;
 
@@ -148,6 +143,13 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _scheduleStatus, value);
         }
 
+        private Color _scheduleStatusBackgroundColor;
+        public Color ScheduleStatusBackgroundColor
+        {
+            get => _scheduleStatusBackgroundColor;
+            set => SetProperty(ref _scheduleStatusBackgroundColor, value);
+        }
+
         #endregion
 
         #region Methods
@@ -187,9 +189,16 @@ namespace Weigh.ViewModels
             };
 
             if (TimeProgress <= WeightProgress + 5)
+            {
+                ScheduleStatusBackgroundColor = (Color)Application.Current.Resources["secondary_dark"];
                 ScheduleStatus = AppResources.OnScheduleLabel;
+            }
             else
+            {
+                ScheduleStatusBackgroundColor = Color.FromHex("#b92b27");
                 ScheduleStatus = AppResources.OffScheduleLabel;
+            }
+
         }
 
         public async void AddWeightToList()
@@ -200,6 +209,7 @@ namespace Weigh.ViewModels
         private void HandleUpdateSetupInfo(SettingValsValidated setupInfoValidated)
         {
             SettingVals.InitializeFromValidated(setupInfoValidated);
+            SettingVals.ValidateGoal();
             InitializeCharts();
         }
 

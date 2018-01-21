@@ -35,10 +35,7 @@ namespace Weigh.ViewModels
             SelectMaleCommand = new DelegateCommand(SelectMale);
             SelectFemaleCommand = new DelegateCommand(SelectFemale);
 
-            if (NewSetupInfoSubscriptionToken == null)
-            {
-                NewSetupInfoSubscriptionToken = _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo);
-            }
+            _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo, ThreadOption.BackgroundThread, keepSubscriberReferenceAlive: false);
             
             BirthDateMinDate = DateTime.UtcNow.AddYears(-150);
             BirthDateMaxDate = DateTime.UtcNow.AddYears(-1);
@@ -60,7 +57,7 @@ namespace Weigh.ViewModels
         #region Fields
 
         private readonly IEventAggregator _ea;
-        public static SubscriptionToken NewSetupInfoSubscriptionToken { get; set; }
+
 
         private SettingVals _settingVals;
 
@@ -183,7 +180,7 @@ namespace Weigh.ViewModels
         }
 
 
-        private async void SaveInfoAsync()
+        private void SaveInfoAsync()
         {
             // TODO: check this out and see what needs changing
             if (SettingValsValidated.ValidateProperties())
@@ -194,6 +191,7 @@ namespace Weigh.ViewModels
                 var toastConfig = new ToastConfig(AppResources.SavedToast);
                 toastConfig.SetPosition(ToastPosition.Top);
                 toastConfig.SetDuration(3000);
+                _ea.GetEvent<UpdateSetupInfoEvent>().Publish(SettingValsValidated);
                 UserDialogs.Instance.Toast(toastConfig);
             }
         }

@@ -376,6 +376,7 @@ namespace Weigh.Models
                 goalWeight = GoalWeight.KilogramsToPounds();
             }
 
+            // TODO: Bug with setting goal date back far
 
             var weightPerDayToMeetGoal = (weight - goalWeight) / (GoalDate - DateTime.UtcNow).TotalDays;
             WeightPerWeekToMeetGoal = weightPerDayToMeetGoal * 7;
