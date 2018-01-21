@@ -110,6 +110,7 @@
             <Label Grid.Column="0" Grid.Row="5"
                    HorizontalOptions="Center"
                    FontSize="Small"
+                   BackgroundColor="{Binding ScheduleStatusBackgroundColor}"
                    Text="{Binding ScheduleStatus}"/>
         </Grid>
 

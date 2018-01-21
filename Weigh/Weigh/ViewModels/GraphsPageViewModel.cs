@@ -61,12 +61,7 @@ namespace Weigh.ViewModels
             ViewEndDateRange = new DateTime(2017, 12, 18);
             */
 
-            if (NewWeightSubscriptionToken == null)
-            {
-                NewWeightSubscriptionToken = ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry);
-            }
-            
-
+            ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry, ThreadOption.BackgroundThread, keepSubscriberReferenceAlive: false);
             //ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Subscribe(UpdateWaistSizeEnabled);
 
             NewGraphInstance();
@@ -76,8 +71,6 @@ namespace Weigh.ViewModels
         #endregion
 
         #region Fields
-
-        public static SubscriptionToken NewWeightSubscriptionToken { get; set; }
 
         private ObservableCollection<WeightEntry> _weightList;
 
@@ -193,7 +186,7 @@ private void ToggleWeightWaistSize()
 
         private void ShowWeek()
         {
-            ChartData = WeightList.Skip(Math.Max(0, WeightList.Count() - 7)).Take(7).ToObservableCollection();
+            ChartData = WeightList.Take(7).ToObservableCollection();
             ShowDataMarker = true;
             WeekSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             MonthSelectedBorderColor = Color.Default;
@@ -203,7 +196,7 @@ private void ToggleWeightWaistSize()
 
         private void ShowMonth()
         {
-            ChartData = WeightList.Skip(Math.Max(0, WeightList.Count() - 31)).Take(31).ToObservableCollection();
+            ChartData = WeightList.Take(31).ToObservableCollection();
             ShowDataMarker = false;
             WeekSelectedBorderColor = Color.Default;
             MonthSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
@@ -213,7 +206,7 @@ private void ToggleWeightWaistSize()
 
         private void ShowYear()
         {
-            ChartData = WeightList.Skip(Math.Max(0, WeightList.Count() - 365)).Take(365).ToObservableCollection();
+            ChartData = WeightList.Take(365).ToObservableCollection();
             ShowDataMarker = false;
             WeekSelectedBorderColor = Color.Default;
             MonthSelectedBorderColor = Color.Default;
@@ -230,7 +223,7 @@ private void ToggleWeightWaistSize()
             DataFromDatabase = await App.Database.GetWeightsAsync();
             DataFromDatabase = DataFromDatabase.OrderByDescending(x => x.WeighDate).ToList();
             WeightList = DataFromDatabase.ToObservableCollection();
-            ChartData = DataFromDatabase.Skip(Math.Max(0, WeightList.Count() - 7)).Take(7).ToObservableCollection();
+            ChartData = DataFromDatabase.Take(7).ToObservableCollection();
         }
 
         private async void HandleNewWeightEntry(WeightEntry weight)
@@ -238,13 +231,13 @@ private void ToggleWeightWaistSize()
             DataFromDatabase = await App.Database.GetWeightsAsync();
             DataFromDatabase = DataFromDatabase.OrderByDescending(x => x.WeighDate).ToList();
             WeightList = DataFromDatabase.ToObservableCollection();
-            // TODO: Chart is messed up on add new entry
-            ChartData = DataFromDatabase.Skip(Math.Max(0, WeightList.Count() - 7)).Take(7).ToObservableCollection();
-            if (CurrentlySelectedGraphTimeline == "week" && ChartData.Count >= 7 ||
-                CurrentlySelectedGraphTimeline == "month" && ChartData.Count >= 31 ||
-                CurrentlySelectedGraphTimeline == "year" && ChartData.Count >= 365)
-                ChartData.RemoveAt(0);
-            ChartData.Add(weight);
+
+            ChartData = DataFromDatabase.Take(7).ToObservableCollection();
+            ShowDataMarker = true;
+            WeekSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
+            MonthSelectedBorderColor = Color.Default;
+            YearSelectedBorderColor = Color.Default;
+            CurrentlySelectedGraphTimeline = "week";
             NewGraphInstance();
         }
 
