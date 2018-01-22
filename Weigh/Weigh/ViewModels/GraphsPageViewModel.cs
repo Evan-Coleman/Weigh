@@ -35,7 +35,7 @@ namespace Weigh.ViewModels
             ShowWeekCommand = new DelegateCommand(ShowWeek);
             ShowMonthCommand = new DelegateCommand(ShowMonth);
             ShowYearCommand = new DelegateCommand(ShowYear);
-            ItemTappedCommand = new DelegateCommand(HandleItemTapped);
+            ItemTappedCommand = new DelegateCommand<SfListView>(HandleItemTapped);
             //ToggleWeightWaistSizeCommand = new DelegateCommand(ToggleWeightWaistSize);
 
             ShowDataMarker = true;
@@ -94,7 +94,7 @@ namespace Weigh.ViewModels
         public DelegateCommand ShowMonthCommand { get; set; }
         public DelegateCommand ShowYearCommand { get; set; }
         public DelegateCommand ToggleWeightWaistSizeCommand { get; set; }
-        public DelegateCommand ItemTappedCommand { get; set; }
+        public DelegateCommand<SfListView> ItemTappedCommand { get; set; }
 
         private bool _showDataMarker;
 
@@ -217,13 +217,14 @@ private void ToggleWeightWaistSize()
             CurrentlySelectedGraphTimeline = "year";
         }
 
-        private void HandleItemTapped(SfListView listView)
+        private async void HandleItemTapped(SfListView listView)
         {
             NavigationParameters p = new NavigationParameters
             {
                 { "ItemTapped", listView.SelectedItem }
             };
-            NavigationService.NavigateAsync("AddEntryPage", p);
+            // TODO: Broken
+            await NavigationService.NavigateAsync("AddEntryPage", p);
         }
 
         private void NewGraphInstance()
