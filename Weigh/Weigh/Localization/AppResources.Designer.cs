@@ -79,7 +79,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add New Weight Entry.
+        ///   Looks up a localized string similar to Add New Weight.
         /// </summary>
         internal static string AddEntryPageTitle {
             get {
@@ -219,6 +219,15 @@ namespace Weigh.Localization {
         internal static string DaysUntilGoalLabel {
             get {
                 return ResourceManager.GetString("DaysUntilGoalLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Entry.
+        /// </summary>
+        internal static string DeleteEntryButton {
+            get {
+                return ResourceManager.GetString("DeleteEntryButton", resourceCulture);
             }
         }
         
@@ -381,6 +390,15 @@ namespace Weigh.Localization {
         internal static string GoalWeightValueValidationErrorMessage {
             get {
                 return ResourceManager.GetString("GoalWeightValueValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go Back.
+        /// </summary>
+        internal static string GoBackButton {
+            get {
+                return ResourceManager.GetString("GoBackButton", resourceCulture);
             }
         }
         
