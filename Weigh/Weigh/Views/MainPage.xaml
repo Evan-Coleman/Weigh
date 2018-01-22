@@ -145,7 +145,7 @@
         </ContentView>
 
         <!-- Add New Button -->
-        <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" HorizontalOptions="CenterAndExpand"
+        <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand"
                 Text="{localization:Translate AddEntryLabel}"
                 Command="{Binding AddWeightToListCommand}"/>
 

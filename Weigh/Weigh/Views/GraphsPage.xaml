@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             xmlns:pb="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
              xmlns:localization="clr-namespace:Weigh.Localization;assembly=Weigh"
              xmlns:b="clr-namespace:Weigh.Behaviors"
@@ -104,6 +105,10 @@
                                    ItemsSource="{Binding WeightList}"
                                    AutoFitMode="Height"
                                    SelectionBackgroundColor="{StaticResource secondary_light}">
+            <chart:SfChart.Behaviors>
+                <pb:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ItemTappedCommand}"
+                                           CommandParameter="{Binding Source={x:Reference listView}" />
+            </chart:SfChart.Behaviors>
             <syncfusionList:SfListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>

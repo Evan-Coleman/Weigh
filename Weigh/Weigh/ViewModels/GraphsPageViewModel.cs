@@ -5,6 +5,7 @@ using System.Linq;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Navigation;
+using Syncfusion.ListView.XForms;
 using Weigh.Events;
 using Weigh.Extensions;
 using Weigh.Localization;
@@ -34,6 +35,7 @@ namespace Weigh.ViewModels
             ShowWeekCommand = new DelegateCommand(ShowWeek);
             ShowMonthCommand = new DelegateCommand(ShowMonth);
             ShowYearCommand = new DelegateCommand(ShowYear);
+            ItemTappedCommand = new DelegateCommand(HandleItemTapped);
             //ToggleWeightWaistSizeCommand = new DelegateCommand(ToggleWeightWaistSize);
 
             ShowDataMarker = true;
@@ -61,7 +63,7 @@ namespace Weigh.ViewModels
             ViewEndDateRange = new DateTime(2017, 12, 18);
             */
 
-            ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry, ThreadOption.BackgroundThread, keepSubscriberReferenceAlive: false);
+            ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry, keepSubscriberReferenceAlive: false);
             //ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Subscribe(UpdateWaistSizeEnabled);
 
             NewGraphInstance();
@@ -92,6 +94,7 @@ namespace Weigh.ViewModels
         public DelegateCommand ShowMonthCommand { get; set; }
         public DelegateCommand ShowYearCommand { get; set; }
         public DelegateCommand ToggleWeightWaistSizeCommand { get; set; }
+        public DelegateCommand ItemTappedCommand { get; set; }
 
         private bool _showDataMarker;
 
@@ -212,6 +215,15 @@ private void ToggleWeightWaistSize()
             MonthSelectedBorderColor = Color.Default;
             YearSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             CurrentlySelectedGraphTimeline = "year";
+        }
+
+        private void HandleItemTapped(SfListView listView)
+        {
+            NavigationParameters p = new NavigationParameters
+            {
+                { "ItemTapped", listView.SelectedItem }
+            };
+            NavigationService.NavigateAsync("AddEntryPage", p);
         }
 
         private void NewGraphInstance()
