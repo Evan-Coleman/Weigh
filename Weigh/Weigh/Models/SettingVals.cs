@@ -239,7 +239,7 @@ namespace Weigh.Models
             Weight = Convert.ToDouble(_validatedSettings.Weight);
         }
 
-        public async void InitializeSettingVals()
+        public void InitializeSettingVals()
         {
             Age = Settings.Age;
             HeightMajor = Settings.HeightMajor;
@@ -376,7 +376,6 @@ namespace Weigh.Models
                 goalWeight = GoalWeight.KilogramsToPounds();
             }
 
-            // TODO: Bug with setting goal date back far
 
             var weightPerDayToMeetGoal = (weight - goalWeight) / (GoalDate - DateTime.UtcNow).TotalDays;
             WeightPerWeekToMeetGoal = weightPerDayToMeetGoal * 7;

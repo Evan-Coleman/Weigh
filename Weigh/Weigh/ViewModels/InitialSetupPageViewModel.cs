@@ -200,6 +200,10 @@ namespace Weigh.ViewModels
 
         private async void SaveInfoAsync()
         {
+            if (SettingValsValidated.WaistSize == "" && SettingVals.WaistSizeEnabled == false)
+            {
+                SettingValsValidated.WaistSize = "0";
+            }
             SettingValsValidated.Age = ((DateTime.UtcNow - SettingVals.BirthDate).Days / 365).ToString();
             if (CanExecute() == false)
             {
@@ -207,6 +211,7 @@ namespace Weigh.ViewModels
             }
             else
             {
+
                 // Nav using absolute path so user can't hit the back button and come back here
                 _newWeight = new WeightEntry
                 {

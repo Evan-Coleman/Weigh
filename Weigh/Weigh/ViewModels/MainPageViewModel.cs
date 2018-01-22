@@ -51,6 +51,7 @@ namespace Weigh.ViewModels
 
             //_ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
             _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo, keepSubscriberReferenceAlive: false);
+            ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry, keepSubscriberReferenceAlive: false);
         }
 
         #endregion
@@ -208,6 +209,16 @@ namespace Weigh.ViewModels
         {
             SettingVals.InitializeFromValidated(setupInfoValidated);
             SettingVals.ValidateGoal();
+            InitializeCharts();
+        }
+
+        private void HandleNewWeightEntry(WeightEntry weight)
+        {
+            SettingVals.InitializeSettingVals();
+            if (SettingVals.ValidateGoal() == false)
+            {
+                SettingVals.SaveSettingValsToDevice();
+            }
             InitializeCharts();
         }
 

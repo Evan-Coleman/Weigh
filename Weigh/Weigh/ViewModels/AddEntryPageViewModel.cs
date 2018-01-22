@@ -6,6 +6,7 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Navigation;
 using Weigh.Events;
+using Weigh.Helpers;
 using Weigh.Localization;
 using Weigh.Models;
 
@@ -132,8 +133,13 @@ namespace Weigh.ViewModels
 
         public async void AddWeightToList()
         {
+            // TODO: Handle case of editing the newest entry to a later date
             ButtonEnabled = false;
-
+            Settings.WaistSizeEnabled = SettingVals.WaistSizeEnabled;
+            if (SettingValsValidated.WaistSize == "")
+            {
+                SettingValsValidated.WaistSize = "0";
+            }
             if (SettingValsValidated.ValidateProperties() == false)
             {
                 UserDialogs.Instance.Alert(AppResources.FormValidationPopupLabel);
@@ -141,6 +147,10 @@ namespace Weigh.ViewModels
             }
             else
             {
+                if (SelectedWeightEntry != null)
+                {
+                    await App.Database.DeleteWeightInfoAsync(SelectedWeightEntry);
+                }
                 SettingVals.InitializeFromValidated(SettingValsValidated);
                 if (SettingVals.LastWeighDate.Date <= EntryDate.Date)
                 {
@@ -179,18 +189,6 @@ namespace Weigh.ViewModels
                     // TODO: Potentially change Settings values for initial weigh
                     if (previousWeightEntry == null)
                     {
-                        // If we have a selected entry, we are editing instead of creating, so to preserve SQLITE ID we need to check
-                        if (SelectedWeightEntry != null)
-                        {
-                            NewWeightEntry = SelectedWeightEntry;
-                            NewWeightEntry.Weight = SettingVals.Weight;
-                            NewWeightEntry.WaistSize = SettingVals.WaistSize;
-                            NewWeightEntry.WeightDelta = 0;
-                            NewWeightEntry.WeighDate = EntryDate;
-                            NewWeightEntry.Note = NoteEntry;
-                        }
-                        else
-                        {
                             NewWeightEntry = new WeightEntry
                             {
                                 Weight = SettingVals.Weight,
@@ -199,22 +197,12 @@ namespace Weigh.ViewModels
                                 WeighDate = EntryDate,
                                 Note = NoteEntry
                             };
-                        }
-                        
+
+                        SettingVals.InitialWeighDate = EntryDate;
+                        SettingVals.InitialWeight = SettingVals.Weight;
                     }
                     else
                     {
-                        if (SelectedWeightEntry != null)
-                        {
-                            NewWeightEntry = SelectedWeightEntry;
-                            NewWeightEntry.Weight = SettingVals.Weight;
-                            NewWeightEntry.WaistSize = SettingVals.WaistSize;
-                            NewWeightEntry.WeightDelta = SettingVals.Weight - previousWeightEntry.Weight;
-                            NewWeightEntry.WeighDate = EntryDate;
-                            NewWeightEntry.Note = NoteEntry;
-                        }
-                        else
-                        {
                             NewWeightEntry = new WeightEntry
                             {
                                 Weight = SettingVals.Weight,
@@ -223,15 +211,14 @@ namespace Weigh.ViewModels
                                 WeighDate = EntryDate,
                                 Note = NoteEntry
                             };
-                        }
+                        
                     }
                 }
 
+                
 
 
 
-
-                _ea.GetEvent<AddWeightEvent>().Publish(NewWeightEntry);
                 /* Debug method to add tons of entries
                 for (int i = 700; i > 190; i--)
                 {
@@ -242,6 +229,13 @@ namespace Weigh.ViewModels
                 }
                 */
                 await App.Database.SaveWeightAsync(NewWeightEntry);
+
+                WeightEntry latestWeight = await App.Database.GetLatestWeightasync();
+                SettingVals.Weight = latestWeight.Weight;
+                SettingVals.LastWeighDate = latestWeight.WeighDate;
+
+                SettingVals.SaveSettingValsToDevice();
+                _ea.GetEvent<AddWeightEvent>().Publish(NewWeightEntry);
                 await NavigationService.GoBackAsync();
             }
         }

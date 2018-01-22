@@ -97,7 +97,7 @@
         <Label Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2"
             Text="{Binding SettingValsValidated.Errors[WaistSize], Converter={StaticResource FirstErrorConverter}"
                Style="{StaticResource ErrorLabelStyle}"
-               IsVisible="{Binding SettingValsValidated.IsDirty[WaistSize]}"
+               IsVisible="{Binding Source={x:Reference EnableWaistSizeSwitch}, Path=IsToggled}"
                Margin="65,0,0,0"/>
 
         <!-- Level of Activity -->

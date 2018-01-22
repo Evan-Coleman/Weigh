@@ -106,7 +106,7 @@
                                    AutoFitMode="Height"
                                    SelectionBackgroundColor="{StaticResource secondary_light}">
             <chart:SfChart.Behaviors>
-                <pb:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ItemTappedCommand}"
+                <pb:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding ItemTappedCommand}"
                                            CommandParameter="{Binding Source={x:Reference listView}" />
             </chart:SfChart.Behaviors>
             <syncfusionList:SfListView.ItemTemplate>
