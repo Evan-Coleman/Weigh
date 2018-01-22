@@ -43,7 +43,7 @@
         <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4">
             <Label HorizontalOptions="Center"
                    FontSize="30"
-                   Text="{localization:Translate AddEntryPageTitle}"/>
+                   Text="{Binding Title}"/>
         </Frame>
 
         <!-- Weight -->

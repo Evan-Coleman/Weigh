@@ -18,7 +18,6 @@ namespace Weigh.ViewModels
         public AddEntryPageViewModel(INavigationService navigationService, IEventAggregator ea)
             : base(navigationService)
         {
-            Title = AppResources.AddEntryPageTitle;
             _ea = ea;
 
             SettingVals = new SettingVals();
@@ -180,26 +179,51 @@ namespace Weigh.ViewModels
                     // TODO: Potentially change Settings values for initial weigh
                     if (previousWeightEntry == null)
                     {
-                        // TODO: Implement SelectedWeightEntry instead of making a new one
-                        NewWeightEntry = new WeightEntry
+                        // If we have a selected entry, we are editing instead of creating, so to preserve SQLITE ID we need to check
+                        if (SelectedWeightEntry != null)
                         {
-                            Weight = SettingVals.Weight,
-                            WaistSize = SettingVals.WaistSize,
-                            WeightDelta = 0,
-                            WeighDate = EntryDate,
-                            Note = NoteEntry
-                        };
+                            NewWeightEntry = SelectedWeightEntry;
+                            NewWeightEntry.Weight = SettingVals.Weight;
+                            NewWeightEntry.WaistSize = SettingVals.WaistSize;
+                            NewWeightEntry.WeightDelta = 0;
+                            NewWeightEntry.WeighDate = EntryDate;
+                            NewWeightEntry.Note = NoteEntry;
+                        }
+                        else
+                        {
+                            NewWeightEntry = new WeightEntry
+                            {
+                                Weight = SettingVals.Weight,
+                                WaistSize = SettingVals.WaistSize,
+                                WeightDelta = 0,
+                                WeighDate = EntryDate,
+                                Note = NoteEntry
+                            };
+                        }
+                        
                     }
                     else
                     {
-                        NewWeightEntry = new WeightEntry
+                        if (SelectedWeightEntry != null)
                         {
-                            Weight = SettingVals.Weight,
-                            WaistSize = SettingVals.WaistSize,
-                            WeightDelta = SettingVals.Weight - previousWeightEntry.Weight,
-                            WeighDate = EntryDate,
-                            Note = NoteEntry
-                        };
+                            NewWeightEntry = SelectedWeightEntry;
+                            NewWeightEntry.Weight = SettingVals.Weight;
+                            NewWeightEntry.WaistSize = SettingVals.WaistSize;
+                            NewWeightEntry.WeightDelta = SettingVals.Weight - previousWeightEntry.Weight;
+                            NewWeightEntry.WeighDate = EntryDate;
+                            NewWeightEntry.Note = NoteEntry;
+                        }
+                        else
+                        {
+                            NewWeightEntry = new WeightEntry
+                            {
+                                Weight = SettingVals.Weight,
+                                WaistSize = SettingVals.WaistSize,
+                                WeightDelta = SettingVals.Weight - previousWeightEntry.Weight,
+                                WeighDate = EntryDate,
+                                Note = NoteEntry
+                            };
+                        }
                     }
                 }
 
@@ -240,6 +264,11 @@ namespace Weigh.ViewModels
                 WeightDelta = SelectedWeightEntry.WeightDelta;
                 NoteEntry = SelectedWeightEntry.Note;
                 EntryDate = SelectedWeightEntry.WeighDate;
+                Title = AppResources.EditEntryPageTitle;
+            }
+            else
+            {
+                Title = AppResources.AddEntryPageTitle;
             }
         }
 

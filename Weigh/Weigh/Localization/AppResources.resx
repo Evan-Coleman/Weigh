@@ -474,7 +474,7 @@
     <comment>(MainPage) label showing goal weight metric</comment>
   </data>
   <data name="AddEntryPageTitle" xml:space="preserve">
-    <value>Add / Edit New Weight Entry</value>
+    <value>Add New Weight Entry</value>
     <comment>(AddEntry)</comment>
   </data>
   <data name="EntryDateLabel" xml:space="preserve">
@@ -528,5 +528,9 @@
   <data name="SavedToast" xml:space="preserve">
     <value>Saved</value>
     <comment>(SettingsPage)</comment>
+  </data>
+  <data name="EditEntryPageTitle" xml:space="preserve">
+    <value>Edit Weight Entry</value>
+    <comment>(AddEntry)</comment>
   </data>
 </root>
