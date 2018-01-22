@@ -25,7 +25,11 @@ namespace Weigh.ViewModels
             SettingValsValidated = new SettingValsValidated();
 
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
+            GoBackCommand = new DelegateCommand(HandleGoBack);
+            DeleteEntryCommand = new DelegateCommand(HandleDeleteEntry);
 
+            DeleteAction = false;
+            DeleteActionEnabled = false;
             EntryDate = DateTime.UtcNow;
             MaxEntryDate = DateTime.UtcNow;
             PickerSource = new List<string>
@@ -65,6 +69,22 @@ namespace Weigh.ViewModels
         {
             get => _addWeightToListCommand;
             set => SetProperty(ref _addWeightToListCommand, value);
+        }
+
+        private DelegateCommand _goBackCommand;
+
+        public DelegateCommand GoBackCommand
+        {
+            get => _goBackCommand;
+            set => SetProperty(ref _goBackCommand, value);
+        }
+
+        private DelegateCommand _deleteEntryCommand;
+
+        public DelegateCommand DeleteEntryCommand
+        {
+            get => _deleteEntryCommand;
+            set => SetProperty(ref _deleteEntryCommand, value);
         }
 
         private List<string> _pickerSource;
@@ -127,9 +147,34 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _weightDelta, value);
         }
 
+        private bool _deleteAction;
+        public bool DeleteAction
+        {
+            get => _deleteAction;
+            set => SetProperty(ref _deleteAction, value);
+        }
+
+        private bool _deleteActionEnabled;
+        public bool DeleteActionEnabled
+        {
+            get => _deleteActionEnabled;
+            set => SetProperty(ref _deleteActionEnabled, value);
+        }
+
         #endregion
 
         #region Methods
+
+        private async void HandleGoBack()
+        {
+            await NavigationService.GoBackAsync();
+        }
+
+        private void HandleDeleteEntry()
+        {
+            DeleteActionEnabled = true;
+            AddWeightToList();
+        }
 
         public async void AddWeightToList()
         {
@@ -228,7 +273,11 @@ namespace Weigh.ViewModels
                     await App.Database.SaveWeightAsync(WeightEntry);
                 }
                 */
-                await App.Database.SaveWeightAsync(NewWeightEntry);
+                // TODO: If delete first entry, stuff breaks
+                if (DeleteAction == false)
+                {
+                    await App.Database.SaveWeightAsync(NewWeightEntry);
+                }
 
                 WeightEntry latestWeight = await App.Database.GetLatestWeightasync();
                 SettingVals.Weight = latestWeight.Weight;
@@ -259,6 +308,7 @@ namespace Weigh.ViewModels
                 NoteEntry = SelectedWeightEntry.Note;
                 EntryDate = SelectedWeightEntry.WeighDate;
                 Title = AppResources.EditEntryPageTitle;
+                DeleteAction = true;
             }
             else
             {

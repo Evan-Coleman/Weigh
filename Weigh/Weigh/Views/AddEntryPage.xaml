@@ -40,16 +40,23 @@
         </Grid.RowDefinitions>
         
         
-        <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4">
-            <Label HorizontalOptions="Center"
-                   FontSize="30"
-                   Text="{Binding Title}"/>
+        <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BackgroundColor="{StaticResource primary}">
+            <StackLayout Orientation="Horizontal">
+                <Button Text="{localization:Translate GoBackButton}"
+                        Command="{Binding GoBackCommand}"/>
+                <Label HorizontalOptions="Center"
+                       FontSize="20"
+                       Text="{Binding Title}"/>
+                <Button Text="{localization:Translate DeleteEntryButton}"
+                        Command="{Binding DeleteEntryCommand}"
+                        IsVisible="{Binding DeleteAction}"/>
+            </StackLayout>
         </Frame>
 
         <!-- Weight -->
         <Label Grid.Column="0" Grid.Row="1"
                Text="{localization:Translate WeightEntryLabel}" />
-        <Entry Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"
+        <Entry Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"
             Text="{Binding SettingValsValidated.Weight, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[Weight]}"
                Placeholder="{localization:Translate WeightImperialEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"
@@ -66,7 +73,7 @@
                 <b:EntryLengthValidatorBehavior MaxLength="7" />
             </Entry.Behaviors>
         </Entry>
-        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3"
+        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"
             Text="{Binding SettingValsValidated.Errors[Weight], Converter={StaticResource FirstErrorConverter}"
                Style="{StaticResource ErrorLabelStyle}"
                IsVisible="{Binding SettingValsValidated.IsDirty[Weight]}"/>
