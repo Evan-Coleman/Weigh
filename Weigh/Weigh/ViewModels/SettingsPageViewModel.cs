@@ -35,7 +35,7 @@ namespace Weigh.ViewModels
             SelectMaleCommand = new DelegateCommand(SelectMale);
             SelectFemaleCommand = new DelegateCommand(SelectFemale);
 
-            _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo, ThreadOption.BackgroundThread, keepSubscriberReferenceAlive: false);
+            _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo, keepSubscriberReferenceAlive: false);
             
             BirthDateMinDate = DateTime.UtcNow.AddYears(-150);
             BirthDateMaxDate = DateTime.UtcNow.AddYears(-1);

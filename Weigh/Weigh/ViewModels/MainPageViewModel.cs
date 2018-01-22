@@ -40,7 +40,6 @@ namespace Weigh.ViewModels
                 MinValue = 0,
                 MaxValue = 100,
                 Margin = 0,
-                IsAnimated = false
             };
             DaysLeftChart = new RadialGaugeChart
             {
@@ -48,11 +47,10 @@ namespace Weigh.ViewModels
                 MinValue = 0,
                 MaxValue = 100,
                 Margin = 0,
-                IsAnimated = false
             };
 
             //_ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
-            _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo, ThreadOption.BackgroundThread, keepSubscriberReferenceAlive: false);
+            _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo, keepSubscriberReferenceAlive: false);
         }
 
         #endregion

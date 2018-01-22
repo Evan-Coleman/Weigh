@@ -387,9 +387,11 @@ namespace Weigh.Models
             {
                 // Min calories/day for women is 1200
                 requiredCaloricDefecit = BMR - 1300;
+                RecommendedDailyCaloricIntake = (int)BMR - requiredCaloricDefecit;
                 WeightPerWeekToMeetGoal = requiredCaloricDefecit / 500;
                 var daysToAddToMeetMinimum = (int) ((weight - goalWeight) / (WeightPerWeekToMeetGoal / 7));
                 GoalDate = DateTime.Now.ToLocalTime().AddDays(daysToAddToMeetMinimum + 10);
+                TimeLeftToGoal = Math.Max(0, (GoalDate - DateTime.UtcNow).Days);
                 UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, GoalDate));
                 return false;
                 //Create(async token => await this.Dialogs.AlertAsync("Test alert", "Alert Title", null, token));
@@ -399,9 +401,11 @@ namespace Weigh.Models
             {
                 // Min calories/day for men is 1800
                 requiredCaloricDefecit = BMR - 1900;
+                RecommendedDailyCaloricIntake = (int)BMR - requiredCaloricDefecit;
                 WeightPerWeekToMeetGoal = requiredCaloricDefecit / 500;
                 var daysToAddToMeetMinimum = (int) ((weight - goalWeight) / (WeightPerWeekToMeetGoal / 7));
                 GoalDate = DateTime.Now.ToLocalTime().AddDays(daysToAddToMeetMinimum + 10);
+                TimeLeftToGoal = Math.Max(0, (GoalDate - DateTime.UtcNow).Days);
                 UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, GoalDate));
                 return false;
                 // Keeping for future use maybe

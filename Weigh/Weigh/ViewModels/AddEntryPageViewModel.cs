@@ -113,6 +113,20 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _maxEntryDate, value);
         }
 
+        private WeightEntry _selectedWeightEntry;
+        public WeightEntry SelectedWeightEntry
+        {
+            get => _selectedWeightEntry;
+            set => SetProperty(ref _selectedWeightEntry, value);
+        }
+
+        private double _weightDelta;
+        public double WeightDelta
+        {
+            get => _weightDelta;
+            set => SetProperty(ref _weightDelta, value);
+        }
+
         #endregion
 
         #region Methods
@@ -166,6 +180,7 @@ namespace Weigh.ViewModels
                     // TODO: Potentially change Settings values for initial weigh
                     if (previousWeightEntry == null)
                     {
+                        // TODO: Implement SelectedWeightEntry instead of making a new one
                         NewWeightEntry = new WeightEntry
                         {
                             Weight = SettingVals.Weight,
@@ -213,8 +228,19 @@ namespace Weigh.ViewModels
         /// <param name="parameters"></param>
         public override void OnNavigatingTo(NavigationParameters parameters)
         {
+
             SettingVals.InitializeSettingVals();
             SettingValsValidated.InitializeFromSettings(SettingVals);
+            if (parameters.ContainsKey("ItemTapped"))
+            {
+                SelectedWeightEntry = (WeightEntry)parameters["ItemTapped"];
+
+                SettingValsValidated.Weight = SelectedWeightEntry.Weight.ToString();
+                SettingValsValidated.WaistSize = SelectedWeightEntry.WaistSize.ToString();
+                WeightDelta = SelectedWeightEntry.WeightDelta;
+                NoteEntry = SelectedWeightEntry.Note;
+                EntryDate = SelectedWeightEntry.WeighDate;
+            }
         }
 
         #endregion
