@@ -79,7 +79,8 @@
                    HorizontalOptions="Center"
                    Text="{localization:Translate WeightLabel}"/>
             <Label Grid.Column="0" Grid.Row="1"
-                       HorizontalOptions="Center"
+                   HorizontalOptions="Center"
+                   FontSize="24"
                        Text="{Binding SettingVals.Weight}"/>
             <Label Grid.Column="1" Grid.Row="1"
                    HorizontalOptions="Start"
@@ -103,13 +104,15 @@
                    Text="{localization:Translate DayLabel}"/>
             <Label Grid.Column="0" Grid.Row="3"
                    HorizontalOptions="Center"
+                   FontSize="24"
                    Text="{Binding CurrentDay}" />
             <Label Grid.Column="0" Grid.Row="4"
                    HorizontalOptions="Center"
                        Text="{localization:Translate GoalStatusLabel}"/>
             <Label Grid.Column="0" Grid.Row="5"
                    HorizontalOptions="Center"
-                   FontSize="Small"
+                   FontSize="18"
+                   Opacity=".8"
                    BackgroundColor="{Binding ScheduleStatusBackgroundColor}"
                    Text="{Binding ScheduleStatus}"/>
         </Grid>

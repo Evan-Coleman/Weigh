@@ -36,6 +36,7 @@ namespace Weigh.ViewModels
             SelectFemaleCommand = new DelegateCommand(SelectFemale);
 
             // Initialize app SettingVals
+            Settings.GoalMetNotified = false;
             SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
             SettingVals.GoalDate = DateTime.UtcNow.AddDays(180);
             SettingVals.BirthDate = DateTime.Parse("2/25/1988");

@@ -364,6 +364,13 @@ namespace Weigh.Models
             DistanceToGoalWeight = Math.Max(0, Weight - GoalWeight);
             WeightLostToDate = InitialWeight - Weight;
 
+            if (DistanceToGoalWeight <= 0)
+            {
+                // TODO: Implement goal popup & handling
+                Settings.GoalMetNotified = true;
+                //UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, GoalDate));
+            }
+
             var feet = HeightMajor;
             var inches = HeightMinor;
             var weight = Weight;

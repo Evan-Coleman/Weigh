@@ -8,24 +8,25 @@ Important: To get Admob ads working for yourself, take PrivateKeys.Sample, and r
 TODO:
 
 	Active
-		(General) Pull latest weight from a linq query which is sorted by date
-		(MainPage) Continue UI revamp, possibly change to BMI circular gague
+		(GraphPage) Spice up Listview		
+		(MainPage) Implement button for information & acompanying modal popup
+		(General) Handle case of goal met (new goal, or show maintain caloric intake)
+		(MainPage) Implement In-App-Purchases for removal of ads & Button for it
+		(SettingsPage) Implement rate/share buttons
+		(General) Add google docs backend or way to backup	
+		(General) Optimise for more screen DPIs
+		(GraphPage) Add area colors for bmi
+		(MainPage) Continue UI revamp, possibly change to BMI circular gague		
+		(AddEntryPage) Add a stepper for weight and waist size	
+
+	Done
+		(GraphPage) Add ability to click listview items
+		(GraphPage) Add view for item details
 		(SettingsPage) Save button messes things up, investigate
 		(AddEntryPage) Spice up layout a little
 		(AddEntryPage) Remove Activity Level
-		(AddEntryPage) Add a stepper for weight and waist size	
-		(General) Handle case of goal met (new goal, or show maintain caloric intake)
-		(MainPage) Implement button for information & acompanying modal popup
-		(GraphPage) Spice up Listview
-		(GraphPage) Add ability to click listview items
-		(GraphPage) Add view for item details
-		(MainPage) Implement In-App-Purchases for removal of ads & Button for it
-		(General) Optimise for more screen DPIs
-	    (General) Add google docs backend or way to backup	
-		(GraphPage) Add area colors for bmi
-
-	Done
-	(General) Add a way to know how on or off track you are to meet goal
+		(General) Pull latest weight from a linq query which is sorted by date
+		(General) Add a way to know how on or off track you are to meet goal
 		(MainPage) Change UI with chart trackers for weight/time left
 		Add Measurements for Waist, maybe more
 		Add extensions for imperial/metric changes
