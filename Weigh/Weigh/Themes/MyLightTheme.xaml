@@ -4,13 +4,13 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="Weigh.Themes.MyLightTheme">
 
-    <Color x:Key="primary">#00838f</Color>
-    <Color x:Key="primary_light">#4fb3bf</Color>
-    <Color x:Key="primary_dark">#005662</Color>
+    <Color x:Key="primary">#009688</Color>
+    <Color x:Key="primary_light">#B2DFDB</Color>
+    <Color x:Key="primary_dark">#00796B</Color>
 
-    <Color x:Key="secondary">#4caf50</Color>
-    <Color x:Key="secondary_light">#80e27e</Color>
-    <Color x:Key="secondary_dark">#087f23</Color>
+    <Color x:Key="secondary">#009688</Color>
+    <Color x:Key="secondary_light">#B2DFDB</Color>
+    <Color x:Key="secondary_dark">#00796B</Color>
 
 
     <Color x:Key="primary_text">#000000</Color>

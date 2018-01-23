@@ -172,7 +172,16 @@ namespace Weigh.Helpers
             set => AppSettings.AddOrUpdateValue(UnitsKey, value);
         }
 
+        public static bool GoalMetNotified
+        {
+            get => AppSettings.GetValueOrDefault(GoalMetNotifiedKey, GoalMetNotifiedDefault);
+            set => AppSettings.AddOrUpdateValue(GoalMetNotifiedKey, value);
+        }
+
         #region Setting Constants
+
+        private const string GoalMetNotifiedKey = "goal_met_notified_key";
+        private static readonly bool GoalMetNotifiedDefault = false;
 
         private const string FirstUseKey = "first_use_key";
         private static readonly string FirstUseDefault = "yes";
