@@ -197,18 +197,18 @@ namespace Weigh.ViewModels
                     await App.Database.DeleteWeightInfoAsync(SelectedWeightEntry);
                 }
                 SettingVals.InitializeFromValidated(SettingValsValidated);
-                if (SettingVals.LastWeighDate.Date <= EntryDate.Date)
+                if (SettingVals.LastWeighDate.Date < EntryDate.Date)
                 {
                     NewWeightEntry = new WeightEntry
                     {
                         Weight = SettingVals.Weight,
                         WaistSize = SettingVals.WaistSize,
                         WeightDelta = SettingVals.Weight - SettingVals.LastWeight,
-                        WeighDate = DateTime.UtcNow,
+                        WeighDate = EntryDate.Date,
                         Note = NoteEntry
                     };
 
-                    SettingVals.LastWeighDate = DateTime.UtcNow;
+                    SettingVals.LastWeighDate = EntryDate.Date;
                     SettingVals.LastWeight = SettingVals.Weight;
                     SettingVals.DistanceToGoalWeight = SettingVals.Weight - SettingVals.GoalWeight;
 
@@ -234,6 +234,8 @@ namespace Weigh.ViewModels
                     // TODO: Potentially change Settings values for initial weigh
                     if (previousWeightEntry == null)
                     {
+                        if (DeleteActionEnabled == false)
+                        {
                             NewWeightEntry = new WeightEntry
                             {
                                 Weight = SettingVals.Weight,
@@ -242,9 +244,22 @@ namespace Weigh.ViewModels
                                 WeighDate = EntryDate,
                                 Note = NoteEntry
                             };
-
-                        SettingVals.InitialWeighDate = EntryDate;
-                        SettingVals.InitialWeight = SettingVals.Weight;
+                            SettingVals.LastWeighDate = EntryDate;
+                            SettingVals.LastWeight = SettingVals.Weight;
+                            SettingVals.InitialWeighDate = EntryDate;
+                            SettingVals.InitialWeight = SettingVals.Weight;
+                        }
+                        else if (nextWeightEntry != null)
+                        {
+                            SettingVals.LastWeighDate = nextWeightEntry.WeighDate;
+                            SettingVals.LastWeight = nextWeightEntry.Weight;
+                            nextWeightEntry.WeightDelta = 0;
+                            SettingVals.InitialWeighDate = nextWeightEntry.WeighDate;
+                            SettingVals.InitialWeight = nextWeightEntry.Weight;
+                            // Delete old and save new
+                            //await App.Database.DeleteWeightInfoAsync(nextWeightEntry);
+                            await App.Database.SaveWeightAsync(nextWeightEntry);
+                        }
                     }
                     else
                     {
@@ -274,7 +289,7 @@ namespace Weigh.ViewModels
                 }
                 */
                 // TODO: If delete first entry, stuff breaks
-                if (DeleteAction == false)
+                if (DeleteActionEnabled == false)
                 {
                     await App.Database.SaveWeightAsync(NewWeightEntry);
                 }
@@ -313,6 +328,11 @@ namespace Weigh.ViewModels
             else
             {
                 Title = AppResources.AddEntryPageTitle;
+            }
+
+            if (parameters.ContainsKey("OnlyOneEntryLeft"))
+            {
+                DeleteAction = false;
             }
         }
 

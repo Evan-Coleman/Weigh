@@ -50,8 +50,8 @@ namespace Weigh.ViewModels
             };
 
             //_ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
-            _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo, keepSubscriberReferenceAlive: false);
-            ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry, keepSubscriberReferenceAlive: false);
+            _ea.GetEvent<UpdateSetupInfoEvent>().Subscribe(HandleUpdateSetupInfo);
+            ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry);
         }
 
         #endregion
@@ -233,6 +233,12 @@ namespace Weigh.ViewModels
             _ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Publish(SettingVals.WaistSizeEnabled);
 
             InitializeCharts();
+        }
+
+        public override void Destroy()
+        {
+            _ea.GetEvent<UpdateSetupInfoEvent>().Unsubscribe(HandleUpdateSetupInfo);
+            _ea.GetEvent<AddWeightEvent>().Unsubscribe(HandleNewWeightEntry);
         }
 
         #endregion

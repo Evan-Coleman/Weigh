@@ -35,7 +35,7 @@ namespace Weigh.ViewModels
             SelectMaleCommand = new DelegateCommand(SelectMale);
             SelectFemaleCommand = new DelegateCommand(SelectFemale);
 
-            _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo, keepSubscriberReferenceAlive: false);
+            _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo);
             
             BirthDateMinDate = DateTime.UtcNow.AddYears(-150);
             BirthDateMaxDate = DateTime.UtcNow.AddYears(-1);
@@ -180,19 +180,16 @@ namespace Weigh.ViewModels
         }
 
 
-        private void SaveInfoAsync()
+        private async void SaveInfoAsync()
         {
             // TODO: check this out and see what needs changing
             if (SettingValsValidated.ValidateProperties())
             {
                 SettingVals.InitializeFromValidated(SettingValsValidated);
                 SettingVals.SaveSettingValsToDevice();
-                //await NavigationService.NavigateAsync($"/NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
-                var toastConfig = new ToastConfig(AppResources.SavedToast);
-                toastConfig.SetPosition(ToastPosition.Top);
-                toastConfig.SetDuration(3000);
+
                 _ea.GetEvent<UpdateSetupInfoEvent>().Publish(SettingValsValidated);
-                UserDialogs.Instance.Toast(toastConfig);
+                await NavigationService.NavigateAsync($"/NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
             }
         }
 
@@ -201,6 +198,11 @@ namespace Weigh.ViewModels
             SettingVals = setupInfo;
             SettingValsValidated.InitializeFromSettings(SettingVals);
             SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
+        }
+
+        public override void Destroy()
+        {
+            _ea.GetEvent<SendSetupInfoToSettingsEvent>().Unsubscribe(HandleNewSetupInfo);
         }
 
         #endregion

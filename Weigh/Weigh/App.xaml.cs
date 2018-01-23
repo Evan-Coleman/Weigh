@@ -44,7 +44,7 @@ namespace Weigh
             if (Settings.FirstUse == "yes")
                 await NavigationService.NavigateAsync("InitialSetupPage");
             else
-                await NavigationService.NavigateAsync("NavigatingAwareTabbedPage?SelectedTab=MainPage");
+                await NavigationService.NavigateAsync("NavigatingAwareTabbedPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

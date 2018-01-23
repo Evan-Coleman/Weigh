@@ -28,6 +28,7 @@ namespace Weigh.ViewModels
             : base(navigationService)
         {
             Title = AppResources.GraphPageTitle;
+            _ea = ea;
 
             WeightList = new ObservableCollection<WeightEntry>();
             ChartData = new ObservableCollection<WeightEntry>();
@@ -63,7 +64,7 @@ namespace Weigh.ViewModels
             ViewEndDateRange = new DateTime(2017, 12, 18);
             */
 
-            ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry, keepSubscriberReferenceAlive: false);
+            _ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry);
             //ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Subscribe(UpdateWaistSizeEnabled);
 
             NewGraphInstance();
@@ -73,6 +74,8 @@ namespace Weigh.ViewModels
         #endregion
 
         #region Fields
+
+        private readonly IEventAggregator _ea;
 
         private ObservableCollection<WeightEntry> _weightList;
 
@@ -219,12 +222,18 @@ private void ToggleWeightWaistSize()
 
         private async void HandleItemTapped(SfListView listView)
         {
-            NavigationParameters p = new NavigationParameters
+            if (listView.SelectedItem != null)
             {
-                { "ItemTapped", listView.SelectedItem }
-            };
-            // TODO: Broken
-            await NavigationService.NavigateAsync("AddEntryPage", p);
+                NavigationParameters p = new NavigationParameters
+                {
+                    { "ItemTapped", listView.SelectedItem }
+                };
+                if (DataFromDatabase.Count == 1)
+                {
+                    p.Add("OnlyOneEntryLeft", true);
+                }
+                await NavigationService.NavigateAsync("AddEntryPage", p);
+            }
         }
 
         private void NewGraphInstance()
@@ -252,6 +261,11 @@ private void ToggleWeightWaistSize()
             YearSelectedBorderColor = Color.Default;
             CurrentlySelectedGraphTimeline = "week";
             NewGraphInstance();
+        }
+
+        public override void Destroy()
+        {
+            _ea.GetEvent<AddWeightEvent>().Unsubscribe(HandleNewWeightEntry);
         }
 
         #endregion
