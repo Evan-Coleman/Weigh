@@ -52,9 +52,11 @@
         <StackLayout Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"
             Orientation="Horizontal">
         <Button Text="{localization:Translate UnitSwitchImperialLabel}"
+                BackgroundColor="{StaticResource primary_dark}"
                 TextColor="{Binding ImperialSelectedBorderColor}"
                 Command="{Binding SelectImperialCommand}"/>
         <Button Text="{localization:Translate UnitSwitchMetricLabel}"
+                BackgroundColor="{StaticResource primary_dark}"
                 TextColor="{Binding MetricSelectedBorderColor}"
                 Command="{Binding SelectMetricCommand}"/>
         </StackLayout>
@@ -204,9 +206,11 @@
         <StackLayout Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="3"
             Orientation="Horizontal">
             <Button Text="{localization:Translate MaleGenderSwitchLabel}"
+                    BackgroundColor="{StaticResource primary_dark}"
                 TextColor="{Binding MaleSelectedBorderColor}"
                 Command="{Binding SelectMaleCommand}"/>
             <Button Text="{localization:Translate FemaleGenderSwitchLabel}"
+                    BackgroundColor="{StaticResource primary_dark}"
                 TextColor="{Binding FemaleSelectedBorderColor}"
                 Command="{Binding SelectFemaleCommand}"/>
         </StackLayout>

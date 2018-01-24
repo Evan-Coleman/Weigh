@@ -82,20 +82,24 @@
         <!-- Chart Buttons -->
         <Button Grid.Column="0" Grid.Row="1"
             Text="{localization:Translate NumberOfEntriesLabel}" IsEnabled="False"
+                    BackgroundColor="{StaticResource primary_dark}"
                     FontSize="Small"/>
         <Button Grid.Column="1" Grid.Row="1"
             Text="{localization:Translate ShowWeekGraphButton}"
                     Command="{Binding ShowWeekCommand}"
+                BackgroundColor="{StaticResource primary_dark}"
                     FontSize="Small"
                     TextColor="{Binding WeekSelectedBorderColor}"/>
         <Button Grid.Column="2" Grid.Row="1"
             Text="{localization:Translate ShowMonthGraphButton}"
                     Command="{Binding ShowMonthCommand}"
+                BackgroundColor="{StaticResource primary_dark}"
                     FontSize="Small"
                     TextColor="{Binding MonthSelectedBorderColor}"/>
         <Button Grid.Column="3" Grid.Row="1"
             Text="{localization:Translate ShowYearGraphButton}"
                     Command="{Binding ShowYearCommand}"
+                BackgroundColor="{StaticResource primary_dark}"
                     FontSize="Small"
                     TextColor="{Binding YearSelectedBorderColor}"/>
 

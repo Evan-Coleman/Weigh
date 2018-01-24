@@ -170,10 +170,58 @@ namespace Weigh.ViewModels
             await NavigationService.GoBackAsync();
         }
 
-        private void HandleDeleteEntry()
+        private async void HandleDeleteEntry()
         {
             DeleteActionEnabled = true;
-            AddWeightToList();
+            //AddWeightToList();
+
+            ButtonEnabled = false;
+            Settings.WaistSizeEnabled = SettingVals.WaistSizeEnabled;
+            if (SettingValsValidated.WaistSize == "")
+            {
+                SettingValsValidated.WaistSize = "0";
+            }
+            if (SettingValsValidated.ValidateProperties() == false)
+            {
+                UserDialogs.Instance.Alert(AppResources.FormValidationPopupLabel);
+                ButtonEnabled = true;
+                return;
+            }
+
+            List<WeightEntry> entries = await App.Database.GetWeightsAsync();
+            WeightEntry previousWeightEntry = entries
+                .OrderByDescending(x => x.WeighDate).FirstOrDefault(x => x.WeighDate < EntryDate);
+
+            // Since we're adding an older entry, we want to make sure and update the next entry's weightdelta
+            WeightEntry nextWeightEntry = entries
+                .OrderBy(x => x.WeighDate).FirstOrDefault(x => x.WeighDate > EntryDate);
+
+            // Delete case where we are deleting the first entry
+            if (previousWeightEntry == null)
+            {
+                Settings.InitialWeightDate = nextWeightEntry.WeighDate;
+                Settings.InitialWeight = nextWeightEntry.Weight;
+                nextWeightEntry.WeightDelta = 0;
+                await App.Database.SaveWeightAsync(nextWeightEntry);
+            }
+            // Delete case where we are deleting the latest entry
+            else if (nextWeightEntry == null)
+            {
+                Settings.Weight = previousWeightEntry.Weight;
+                Settings.LastWeighDate = previousWeightEntry.WeighDate;
+                Settings.LastWeight = previousWeightEntry.Weight;
+            }
+            // Normal delete case
+            else if (previousWeightEntry != null && nextWeightEntry != null)
+            {
+                nextWeightEntry.WeightDelta = nextWeightEntry.Weight - previousWeightEntry.Weight;
+                await App.Database.SaveWeightAsync(nextWeightEntry);
+            }
+
+            await App.Database.DeleteWeightInfoAsync(SelectedWeightEntry);
+            _ea.GetEvent<AddWeightEvent>().Publish(NewWeightEntry);
+            await NavigationService.GoBackAsync();
+            return;
         }
 
         public async void AddWeightToList()
