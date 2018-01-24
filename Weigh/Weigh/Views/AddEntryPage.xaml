@@ -22,12 +22,12 @@
     <Grid Padding="0,3,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
-            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="50" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>     
-            <RowDefinition Height="110" />
+            <RowDefinition Height="100" />
             <RowDefinition Height="{StaticResource GridEntryHeight}" />
             <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
             <RowDefinition Height="{StaticResource GridEntryHeight}" />
@@ -38,25 +38,42 @@
             <RowDefinition Height="{StaticResource GridButtonHeight}" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
-        
-        <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" BackgroundColor="{StaticResource primary}">
-            <StackLayout Orientation="Horizontal">
-                <Button Text="{localization:Translate GoBackButton}"
+
+
+        <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" 
+               Padding="0"
+               Margin="0"
+               BackgroundColor="{StaticResource primary}">
+            <Grid RowSpacing="0" Padding="0" Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="1.6*" />
+                </Grid.RowDefinitions>
+
+                <Button Grid.Column="0" Grid.Row="0"
+                    Text="{localization:Translate GoBackButton}"
+                        BackgroundColor="{StaticResource primary_light}"
                         Command="{Binding GoBackCommand}"/>
-                <Label HorizontalOptions="Center"
-                       FontSize="20"
-                       Text="{Binding Title}"/>
-                <Button Text="{localization:Translate DeleteEntryButton}"
+                <Button Grid.Column="1" Grid.Row="0"
+                        Text="{localization:Translate DeleteEntryButton}"
+                        BackgroundColor="{StaticResource primary_light}"
                         Command="{Binding DeleteEntryCommand}"
                         IsVisible="{Binding DeleteAction}"/>
-            </StackLayout>
+                <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+                    HorizontalOptions="Center"
+                       FontSize="20"
+                       Text="{Binding Title}"/>
+            </Grid>
         </Frame>
 
         <!-- Weight -->
         <Label Grid.Column="0" Grid.Row="1"
                Text="{localization:Translate WeightEntryLabel}" />
-        <Entry Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"
+        <Entry Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"
             Text="{Binding SettingValsValidated.Weight, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[Weight]}"
                Placeholder="{localization:Translate WeightImperialEntryPlaceholder}"
                Style="{ StaticResource SetupEntryStyle }"

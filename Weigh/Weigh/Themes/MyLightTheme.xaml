@@ -5,12 +5,12 @@
                     x:Class="Weigh.Themes.MyLightTheme">
 
     <Color x:Key="primary">#009688</Color>
-    <Color x:Key="primary_light">#B2DFDB</Color>
-    <Color x:Key="primary_dark">#00796B</Color>
+    <Color x:Key="primary_light">#52c7b8</Color>
+    <Color x:Key="primary_dark">#00675b</Color>
 
     <Color x:Key="secondary">#009688</Color>
-    <Color x:Key="secondary_light">#B2DFDB</Color>
-    <Color x:Key="secondary_dark">#00796B</Color>
+    <Color x:Key="secondary_light">#52c7b8</Color>
+    <Color x:Key="secondary_dark">#00675b</Color>
 
 
     <Color x:Key="primary_text">#000000</Color>

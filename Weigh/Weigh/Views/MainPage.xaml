@@ -16,9 +16,9 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height=".4*" />
-            <RowDefinition Height=".1*" />
             <RowDefinition Height=".2*" />
             <RowDefinition Height=".4*" />
+            <RowDefinition Height=".1*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
@@ -80,7 +80,7 @@
                    Text="{localization:Translate WeightLabel}"/>
             <Label Grid.Column="0" Grid.Row="1"
                    HorizontalOptions="Center"
-                   FontSize="24"
+                   FontSize="18"
                        Text="{Binding SettingVals.Weight}"/>
             <Label Grid.Column="1" Grid.Row="1"
                    HorizontalOptions="Start"
@@ -104,16 +104,16 @@
                    Text="{localization:Translate DayLabel}"/>
             <Label Grid.Column="0" Grid.Row="3"
                    HorizontalOptions="Center"
-                   FontSize="24"
+                   FontSize="18"
                    Text="{Binding CurrentDay}" />
             <Label Grid.Column="0" Grid.Row="4"
                    HorizontalOptions="Center"
                        Text="{localization:Translate GoalStatusLabel}"/>
             <Label Grid.Column="0" Grid.Row="5"
                    HorizontalOptions="Center"
-                   FontSize="18"
+                   FontSize="15"
                    Opacity=".8"
-                   BackgroundColor="{Binding ScheduleStatusBackgroundColor}"
+                   TextColor="{Binding ScheduleStatusBackgroundColor}"
                    Text="{Binding ScheduleStatus}"/>
         </Grid>
 
@@ -147,13 +147,10 @@
             </Grid>
         </ContentView>
 
-        <!-- Add New Button -->
-        <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand"
-                Text="{localization:Translate AddEntryLabel}"
-                Command="{Binding AddWeightToListCommand}"/>
+
 
         <!-- RDCI Section -->
-        <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Margin="0" Padding="0" ColumnSpacing="0" RowSpacing="0">
+        <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="0" Padding="0" ColumnSpacing="0" RowSpacing="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="25" />
@@ -174,7 +171,7 @@
         </Grid>
 
         <!-- BMI Section -->
-        <Grid  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" RowSpacing="0" Padding="0">
+        <Grid  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" RowSpacing="0" Padding="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -246,6 +243,10 @@
                            Text="{localization:Translate ObeseLabel}" />
         </Grid>
 
+        <!-- Add New Button -->
+        <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand"
+                Text="{localization:Translate AddEntryLabel}"
+                Command="{Binding AddWeightToListCommand}"/>
 
         <!-- ADMOB Banner -->
         <controls:AdMobView Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" VerticalOptions="End" />

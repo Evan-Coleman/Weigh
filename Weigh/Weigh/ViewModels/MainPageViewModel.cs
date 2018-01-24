@@ -189,12 +189,12 @@ namespace Weigh.ViewModels
 
             if (TimeProgress <= WeightProgress + 5)
             {
-                ScheduleStatusBackgroundColor = (Color)Application.Current.Resources["secondary_dark"];
+                ScheduleStatusBackgroundColor = Color.FromHex("#8BC34A");
                 ScheduleStatus = AppResources.OnScheduleLabel;
             }
             else
             {
-                ScheduleStatusBackgroundColor = Color.FromHex("#b92b27");
+                ScheduleStatusBackgroundColor = Color.FromHex("#F44336");
                 ScheduleStatus = AppResources.OffScheduleLabel;
             }
 
