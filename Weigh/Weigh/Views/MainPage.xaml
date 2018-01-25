@@ -214,7 +214,7 @@
                             <linear:LinearRange StartValue="30" Color="#b92b27" EndValue="40" Offset ="0.07" StartWidth="10" EndWidth="10" />
                         </linear:LinearScale.Ranges>
                         <linear:LinearScale.Pointers>
-                            <linear:SymbolPointer x:Name="symbolPointer" Value="{Binding SettingVals.BMI}"  Offset="0" Thickness="10" Color="{StaticResource primary_dark}" EnableAnimation="True"/>
+                            <linear:SymbolPointer x:Name="symbolPointer" Value="{Binding SettingVals.BMI}"  Offset="0" Thickness="10" SymbolPointerPosition="Far" Color="{StaticResource primary_dark}" EnableAnimation="True"/>
                             <linear:BarPointer x:Name="rangePointer" Value="{Binding SettingVals.BMI}"  Thickness="10" EnableAnimation="True" Color="{StaticResource primary_dark}"/>
                         </linear:LinearScale.Pointers>
                     </linear:LinearScale>

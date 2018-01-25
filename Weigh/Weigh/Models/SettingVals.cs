@@ -325,9 +325,9 @@ namespace Weigh.Models
 
             if (BMI >= 18.5 && BMI <= 24.9) BMICategory = AppResources.NormalWeightBMICategory;
 
-            if (BMI >= 25 && BMI <= 29.9) BMICategory = AppResources.OverweightBMICategory;
+            if (BMI >= 25 && BMI <= 29.9) BMICategory = AppResources.OverweightLabel;
 
-            if (BMI >= 30) BMICategory = AppResources.ObeseWeightBMICategory;
+            if (BMI >= 30) BMICategory = AppResources.ObeseLabel;
         }
 
         public void CalculateBMR()
