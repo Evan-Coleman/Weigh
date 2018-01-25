@@ -70,26 +70,6 @@
         <DatePicker Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Date="{Binding SettingVals.BirthDate}"
                     MinimumDate="{Binding BirthDateMinDate}"
                     MaximumDate="{Binding BirthDateMaxDate}"/>
-        <!--
-        <Entry Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1"
-            Text="{Binding SettingValsValidated.Age}}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[Age]}"
-               Placeholder="{localization:Translate NameEntryPlaceholder}"
-               Style="{ StaticResource SetupEntryStyle }"
-               x:Name="Age"
-               Keyboard="Numeric">
-            <Entry.Behaviors>
-                <pb:EventToCommandBehavior
-                    EventName="TextChanged"
-                    Command="{Binding AgeChangedCommand}"/>
-                <b:EntryLengthValidatorBehavior MaxLength="3" />
-            </Entry.Behaviors>
-        </Entry>
-        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3"
-            Text="{Binding SettingValsValidated.Errors[Age], Converter={StaticResource FirstErrorConverter}"
-               Style="{StaticResource ErrorLabelStyle}"
-               IsVisible="{Binding SettingValsValidated.IsDirty[Age]}"/>
-        -->
-
 
         <!-- Height -->
         <Label Grid.Column="0" Grid.Row="2"
