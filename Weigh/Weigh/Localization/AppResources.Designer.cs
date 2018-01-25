@@ -223,7 +223,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete Entry.
+        ///   Looks up a localized string similar to ✘.
         /// </summary>
         internal static string DeleteEntryButton {
             get {
@@ -394,7 +394,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Go Back.
+        ///   Looks up a localized string similar to ◀.
         /// </summary>
         internal static string GoBackButton {
             get {

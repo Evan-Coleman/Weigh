@@ -3,11 +3,11 @@
   <color name="primaryColor">#009688</color>
   <color name="primaryLightColor">#52c7b8</color>
   <color name="primaryDarkColor">#00675b</color>
-  <color name="secondaryColor">#009688</color>
-  <color name="secondaryLightColor">#52c7b8</color>
-  <color name="secondaryDarkColor">#00675b</color>
+  <color name="secondaryColor">#3f51b5</color>
+  <color name="secondaryLightColor">#757de8</color>
+  <color name="secondaryDarkColor">#002984</color>
   <color name="primaryTextColor">#000000</color>
-  <color name="secondaryTextColor">#000000</color>
+  <color name="secondaryTextColor">#ffffff</color>
 
   <color name="ListViewSelected">#4caf50</color>
 </resources>

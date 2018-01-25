@@ -214,16 +214,16 @@ namespace Weigh.Helpers
         private static readonly double InitialWeightDefault = 0.0;
 
         private const string InitialWeighDateKey = "initial_weigh_date_key";
-        private static readonly DateTime InitialWeighDateDefault = DateTime.UtcNow;
+        private static readonly DateTime InitialWeighDateDefault = DateTime.UtcNow.ToLocalTime();
 
         private const string LastWeighDateKey = "last_weigh_date_key";
-        private static readonly DateTime LastWeighDateDefault = DateTime.UtcNow;
+        private static readonly DateTime LastWeighDateDefault = DateTime.UtcNow.ToLocalTime();
 
         private const string GoalWeightKey = "goal_weight_key";
         private static readonly double GoalWeightDefault = 0.0;
 
         private const string GoalDateKey = "goal_date_key";
-        private static readonly DateTime GoalDateDefault = DateTime.UtcNow.AddDays(180);
+        private static readonly DateTime GoalDateDefault = DateTime.UtcNow.ToLocalTime().AddDays(180);
 
         private const string WaistSizeKey = "waist_size_key";
         private static readonly double WaistSizeDefault = 0.0;
@@ -253,13 +253,13 @@ namespace Weigh.Helpers
         private static readonly int TimeLeftToGoalDefault = 0;
 
         private const string MinDateKey = "Min_Date_Key";
-        private static readonly DateTime MinDateDefault = DateTime.UtcNow.AddDays(10);
+        private static readonly DateTime MinDateDefault = DateTime.UtcNow.ToLocalTime().AddDays(10);
 
         private const string WaistSizeEnabledKey = "Waist_Size_Enabled_Key";
         private static readonly bool WaistSizeEnabledDefault = true;
 
         private const string BirthDateKey = "Birth_Date_Key";
-        private static readonly DateTime BirthDateDefault = DateTime.UtcNow;
+        private static readonly DateTime BirthDateDefault = DateTime.UtcNow.ToLocalTime();
 
         #endregion
     }

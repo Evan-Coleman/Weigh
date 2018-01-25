@@ -108,7 +108,8 @@
                                    x:Name="listView"
                                    ItemsSource="{Binding WeightList}"
                                    AutoFitMode="Height"
-                                   SelectionBackgroundColor="{StaticResource secondary_light}">
+                                   SelectionBackgroundColor="{StaticResource secondary_light}"
+                                   Padding="4">
             <chart:SfChart.Behaviors>
                 <pb:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding ItemTappedCommand}"
                                            CommandParameter="{Binding Source={x:Reference listView}" />

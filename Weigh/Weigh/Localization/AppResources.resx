@@ -534,11 +534,11 @@
     <comment>(AddEntry)</comment>
   </data>
   <data name="DeleteEntryButton" xml:space="preserve">
-    <value>Delete Entry</value>
+    <value>✘</value>
     <comment>(AddEntry)</comment>
   </data>
   <data name="GoBackButton" xml:space="preserve">
-    <value>Go Back</value>
+    <value>◀</value>
     <comment>(AddEntry)</comment>
   </data>
 </root>
