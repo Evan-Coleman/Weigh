@@ -8,13 +8,13 @@
     <Color x:Key="primary_light">#52c7b8</Color>
     <Color x:Key="primary_dark">#00675b</Color>
 
-    <Color x:Key="secondary">#009688</Color>
-    <Color x:Key="secondary_light">#52c7b8</Color>
-    <Color x:Key="secondary_dark">#00675b</Color>
+    <Color x:Key="secondary">#3f51b5</Color>
+    <Color x:Key="secondary_light">#757de8</Color>
+    <Color x:Key="secondary_dark">#002984</Color>
 
 
     <Color x:Key="primary_text">#000000</Color>
-    <Color x:Key="secondary_text">#000000</Color>
+    <Color x:Key="secondary_text">#ffffff</Color>
 
     <Color x:Key="1accent">#607D8B</Color>
     <Color x:Key="1icons">#FFFFFF</Color>

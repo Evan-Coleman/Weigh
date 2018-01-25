@@ -30,8 +30,8 @@ namespace Weigh.ViewModels
 
             DeleteAction = false;
             DeleteActionEnabled = false;
-            EntryDate = DateTime.UtcNow;
-            MaxEntryDate = DateTime.UtcNow;
+            EntryDate = DateTime.UtcNow.ToLocalTime();
+            MaxEntryDate = DateTime.UtcNow.ToLocalTime();
             PickerSource = new List<string>
             {
                 AppResources.LowActivityPickItem,
@@ -174,7 +174,6 @@ namespace Weigh.ViewModels
         {
             DeleteActionEnabled = true;
             //AddWeightToList();
-
             ButtonEnabled = false;
             Settings.WaistSizeEnabled = SettingVals.WaistSizeEnabled;
             if (SettingValsValidated.WaistSize == "")
@@ -240,23 +239,25 @@ namespace Weigh.ViewModels
             }
             else
             {
+                DateTime newdate = EntryDate.Date +
+                                   new TimeSpan(DateTime.UtcNow.ToLocalTime().Hour, DateTime.UtcNow.ToLocalTime().Minute, DateTime.UtcNow.ToLocalTime().Second);
                 if (SelectedWeightEntry != null)
                 {
                     await App.Database.DeleteWeightInfoAsync(SelectedWeightEntry);
                 }
                 SettingVals.InitializeFromValidated(SettingValsValidated);
-                if (SettingVals.LastWeighDate.Date < EntryDate.Date)
+                if (SettingVals.LastWeighDate.Date < newdate.Date)
                 {
                     NewWeightEntry = new WeightEntry
                     {
                         Weight = SettingVals.Weight,
                         WaistSize = SettingVals.WaistSize,
                         WeightDelta = SettingVals.Weight - SettingVals.LastWeight,
-                        WeighDate = EntryDate.Date,
+                        WeighDate = newdate.Date,
                         Note = NoteEntry
                     };
 
-                    SettingVals.LastWeighDate = EntryDate.Date;
+                    SettingVals.LastWeighDate = newdate.Date;
                     SettingVals.LastWeight = SettingVals.Weight;
                     SettingVals.DistanceToGoalWeight = SettingVals.Weight - SettingVals.GoalWeight;
 
@@ -268,11 +269,11 @@ namespace Weigh.ViewModels
                 {
                     List<WeightEntry> entries = await App.Database.GetWeightsAsync();
                     WeightEntry previousWeightEntry = entries
-                        .OrderByDescending(x => x.WeighDate).FirstOrDefault(x => x.WeighDate < EntryDate);
+                        .OrderByDescending(x => x.WeighDate).FirstOrDefault(x => x.WeighDate < newdate);
 
                     // Since we're adding an older entry, we want to make sure and update the next entry's weightdelta
                     WeightEntry nextWeightEntry = entries
-                        .OrderBy(x => x.WeighDate).FirstOrDefault(x => x.WeighDate > EntryDate);
+                        .OrderBy(x => x.WeighDate).FirstOrDefault(x => x.WeighDate > newdate);
                     if (nextWeightEntry != null)
                     {
                         nextWeightEntry.WeightDelta = nextWeightEntry.Weight - SettingVals.Weight;
@@ -289,12 +290,12 @@ namespace Weigh.ViewModels
                                 Weight = SettingVals.Weight,
                                 WaistSize = SettingVals.WaistSize,
                                 WeightDelta = 0,
-                                WeighDate = EntryDate,
+                                WeighDate = newdate,
                                 Note = NoteEntry
                             };
-                            SettingVals.LastWeighDate = EntryDate;
+                            SettingVals.LastWeighDate = newdate;
                             SettingVals.LastWeight = SettingVals.Weight;
-                            SettingVals.InitialWeighDate = EntryDate;
+                            SettingVals.InitialWeighDate = newdate;
                             SettingVals.InitialWeight = SettingVals.Weight;
                         }
                         else if (nextWeightEntry != null)
@@ -316,7 +317,7 @@ namespace Weigh.ViewModels
                                 Weight = SettingVals.Weight,
                                 WaistSize = SettingVals.WaistSize,
                                 WeightDelta = SettingVals.Weight - previousWeightEntry.Weight,
-                                WeighDate = EntryDate,
+                                WeighDate = newdate,
                                 Note = NoteEntry
                             };
                         
@@ -332,7 +333,7 @@ namespace Weigh.ViewModels
                 {
                     var WeightEntry = new WeightEntry();
                     WeightEntry.Weight = i;
-                    WeightEntry.WeighDate = DateTime.UtcNow.AddDays(190 - i);
+                    WeightEntry.WeighDate = DateTime.UtcNow.ToLocalTime().AddDays(190 - i);
                     await App.Database.SaveWeightAsync(WeightEntry);
                 }
                 */
