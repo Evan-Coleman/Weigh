@@ -66,9 +66,6 @@ namespace Weigh.ViewModels
 
             _ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry);
             //ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Subscribe(UpdateWaistSizeEnabled);
-
-            NewGraphInstance();
-            PopulateWeightList();
         }
 
         #endregion
@@ -236,18 +233,6 @@ private void ToggleWeightWaistSize()
             }
         }
 
-        private void NewGraphInstance()
-        {
-        }
-
-        private async void PopulateWeightList()
-        {
-            DataFromDatabase = await App.Database.GetWeightsAsync();
-            DataFromDatabase = DataFromDatabase.OrderByDescending(x => x.WeighDate).ToList();
-            WeightList = DataFromDatabase.ToObservableCollection();
-            ChartData = DataFromDatabase.Take(7).ToObservableCollection();
-        }
-
         private async void HandleNewWeightEntry(WeightEntry weight)
         {
             DataFromDatabase = await App.Database.GetWeightsAsync();
@@ -260,7 +245,16 @@ private void ToggleWeightWaistSize()
             MonthSelectedBorderColor = Color.Default;
             YearSelectedBorderColor = Color.Default;
             CurrentlySelectedGraphTimeline = "week";
-            NewGraphInstance();
+        }
+
+        public override void OnNavigatingTo(NavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("AllWeightEntriesSorted"))
+            {
+                DataFromDatabase = (List<WeightEntry>) parameters["AllWeightEntriesSorted"];
+                WeightList = DataFromDatabase.ToObservableCollection();
+                ChartData = DataFromDatabase.Take(7).ToObservableCollection();
+            }
         }
 
         public override void Destroy()

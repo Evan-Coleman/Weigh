@@ -247,9 +247,17 @@ namespace Weigh.ViewModels
                 SettingVals.ValidateGoal();
                 SettingVals.SaveSettingValsToDevice();
                 Settings.FirstUse = "no";
-                //await NavigationService.NavigateAsync("Weigh:///NavigatingAwareTabbedPage");
-                await NavigationService.NavigateAsync(
-                    $"Weigh:///NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
+
+                var list = new List<WeightEntry>();
+                list.Add(_newWeight);
+
+                var p = new NavigationParameters
+                {
+                    { "SettingVals", SettingVals },
+                    { "AllWeightEntriesSorted", list }
+                };
+
+                await NavigationService.NavigateAsync("/NavigationPage/NavigatingAwareTabbedPage", p);
             }
         }
 

@@ -224,6 +224,7 @@ namespace Weigh.ViewModels
 
         public override void OnNavigatingTo(NavigationParameters parameters)
         {
+            /*
             SettingVals.InitializeSettingVals();
 
             if (SettingVals.ValidateGoal() == false)
@@ -231,7 +232,12 @@ namespace Weigh.ViewModels
             _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SettingVals);
             // TODO: Possibly remove
             _ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Publish(SettingVals.WaistSizeEnabled);
+            */
 
+            if (parameters.ContainsKey("SettingVals"))
+            {
+                SettingVals = (SettingVals) parameters["SettingVals"];
+            }
             InitializeCharts();
         }
 

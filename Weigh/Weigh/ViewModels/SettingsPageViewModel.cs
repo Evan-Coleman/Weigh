@@ -215,6 +215,16 @@ namespace Weigh.ViewModels
             SettingVals.MinDate = DateTime.UtcNow.ToLocalTime().AddDays(10);
         }
 
+        public override void OnNavigatingTo(NavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("SettingVals"))
+            {
+                SettingVals = (SettingVals)parameters["SettingVals"];
+                SettingValsValidated.InitializeFromSettings(SettingVals);
+                SettingVals.MinDate = DateTime.UtcNow.ToLocalTime().AddDays(10);
+            }
+        }
+
         public override void Destroy()
         {
             _ea.GetEvent<SendSetupInfoToSettingsEvent>().Unsubscribe(HandleNewSetupInfo);

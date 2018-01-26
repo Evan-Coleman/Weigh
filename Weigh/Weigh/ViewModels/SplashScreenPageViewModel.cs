@@ -1,7 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Prism.Navigation;
 using Prism.Services;
 using Weigh.Helpers;
+using Weigh.Models;
 
 namespace Weigh.ViewModels
 {
@@ -11,23 +14,67 @@ namespace Weigh.ViewModels
 	        : base(navigationService)
 	    {
 	        _navigationService = navigationService;
+
+            SettingVals = new SettingVals();
+            LatestWeightEntry = new WeightEntry();
+            AllWeightEntries = new List<WeightEntry>();
 	    }
 
 	    private INavigationService _navigationService;
 
-	    public override async void OnNavigatedTo(NavigationParameters parameters)
+	    private SettingVals _settingVals;
+
+	    public SettingVals SettingVals
 	    {
-            // TODO: Implement any initialization logic you need here. Example would be to handle automatic user login
+	        get => _settingVals;
+	        set => SetProperty(ref _settingVals, value);
+	    }
 
-            // Simulated long running task. You should remove this in your app.
-	        //await Task.Delay(4000);
+	    private WeightEntry _latestWeightEntry;
+	    public WeightEntry LatestWeightEntry
+        {
+	        get => _latestWeightEntry;
+	        set => SetProperty(ref _latestWeightEntry, value);
+	    }
 
-            // After performing the long running task we perform an absolute Navigation to remove the SplashScreen from
-            // the Navigation Stack.
-            if (Settings.FirstUse == "yes")
+	    private List<WeightEntry> _allWeightEntries;
+	    public List<WeightEntry> AllWeightEntries
+	    {
+	        get => _allWeightEntries;
+	        set => SetProperty(ref _allWeightEntries, value);
+	    }
+
+        public override async void OnNavigatedTo(NavigationParameters parameters)
+	    {
+	        if (Settings.FirstUse == "yes")
+	        {
 	            await NavigationService.NavigateAsync("/InitialSetupPage");
-	        else
-	            await NavigationService.NavigateAsync("/NavigationPage/NavigatingAwareTabbedPage");
+	            return;
+	        }
+
+	        LatestWeightEntry = await App.Database.GetLatestWeightasync();
+            SettingVals.InitializeSettingVals();
+
+	        // To ensure latest weight is displayed we will set it here
+	        SettingVals.Weight = LatestWeightEntry.Weight;
+	        SettingVals.LastWeighDate = LatestWeightEntry.WeighDate;
+	        Settings.Weight = LatestWeightEntry.Weight;
+	        Settings.LastWeighDate = LatestWeightEntry.WeighDate;
+
+            if (SettingVals.ValidateGoal() == false)
+	            SettingVals.SaveSettingValsToDevice();
+
+	        AllWeightEntries = await App.Database.GetWeightsAsync();
+            AllWeightEntries = AllWeightEntries.OrderByDescending(x => x.WeighDate).ToList();
+
+            var p = new NavigationParameters
+            {
+                { "SettingVals", SettingVals },
+                { "LatestWeightEntry", LatestWeightEntry },
+                { "AllWeightEntriesSorted", AllWeightEntries }
+            };
+
+            await NavigationService.NavigateAsync("/NavigationPage/NavigatingAwareTabbedPage", p);
         }
     }
 }
