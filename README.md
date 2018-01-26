@@ -8,7 +8,6 @@ Important: To get Admob ads working for yourself, take PrivateKeys.Sample, and r
 TODO:
 
 	Active
-		(GraphPage) Spice up Listview		
 		(MainPage) Implement button for information & acompanying modal popup
 		(General) Handle case of goal met (new goal, or show maintain caloric intake)
 		(MainPage) Implement In-App-Purchases for removal of ads & Button for it
@@ -20,6 +19,7 @@ TODO:
 		(AddEntryPage) Add a stepper for weight and waist size	
 
 	Done
+		(GraphPage) Spice up Listview		
 		(GraphPage) Add ability to click listview items
 		(GraphPage) Add view for item details
 		(SettingsPage) Save button messes things up, investigate

@@ -11,6 +11,15 @@
              xmlns:rangenavigator="clr-namespace:Syncfusion.RangeNavigator.XForms;assembly=Syncfusion.SfChart.XForms" 
              x:Class="Weigh.Views.GraphsPage"
              Title="{Binding Title}">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="syncfusionList:SfLabel">
+                <Setter Property="FontSize" Value="{ DynamicResource BaseFontSize }"/>
+                <Setter Property="TextColor" Value="{ DynamicResource primary_text }"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <Grid  Padding="0,3,0,0" RowSpacing="0">
         <Grid.ColumnDefinitions>
@@ -116,6 +125,7 @@
             </chart:SfChart.Behaviors>
             <syncfusionList:SfListView.ItemTemplate>
                 <DataTemplate>
+                    <!--
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30" />
@@ -143,6 +153,60 @@
                                HorizontalOptions="EndAndExpand"
                                IsVisible="{Binding WaistSizeEnabled}">
                         </Label>
+                    </Grid>
+                    -->
+                    <Grid ColumnSpacing="5" RowSpacing="0" Margin="0" Padding="5,0,5,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="15" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="15" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="1" />
+                        </Grid.RowDefinitions>
+                        <syncfusionList:SfLabel Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                                                FontSize="20"
+                                                Text="&#xf1ae;"
+                                                FontFamily="{StaticResource FontAwesome}"/>
+                        <syncfusionList:SfLabel Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"
+                                                FontSize="25"
+                                                Text="{Binding Path=Weight, StringFormat='{0:0}'}"
+                                                FontFamily="{StaticResource FontAwesome}"/>
+
+                        <syncfusionList:SfLabel Grid.Column="2" Grid.Row="0" Grid.RowSpan="3"
+                                                FontSize="20"
+                                                Text="&#x394;"/>
+                        <syncfusionList:SfLabel Grid.Column="3" Grid.Row="0" Grid.RowSpan="3"
+                                                FontSize="25"
+                                                Text="{Binding Path=WeightDelta, StringFormat='{0:0}'}"/>
+
+                        <syncfusionList:SfLabel Grid.Column="4" Grid.Row="0" Grid.RowSpan="3"
+                                                FontSize="20"
+                                                Text="&#x1f4cf;"/>
+                        <syncfusionList:SfLabel Grid.Column="5" Grid.Row="0" Grid.RowSpan="3"
+                                                FontSize="25"
+                                                Text="{Binding Path=WaistSize, StringFormat='{0:0}'}"/>
+
+
+                        <syncfusionList:SfLabel Grid.Column="6" Grid.Row="0"
+                                                FontSize="15"
+                                                Text="{Binding Path=WeighDate, StringFormat='{0:MMM dd}'}"/>
+                        <syncfusionList:SfLabel Grid.Column="6" Grid.Row="1"
+                                                FontSize="15"
+                                                Text="{Binding Path=WeighDate, StringFormat='{0:yyyy}'}"/>
+                        <syncfusionList:SfLabel Grid.Column="6" Grid.Row="2"
+                                                FontSize="15"
+                                                Text="{Binding Path=WeighDate, StringFormat='{0:hh:mm}'}"/>
+                        
+                        <Frame Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="7"
+                               HeightRequest="1" BackgroundColor="{StaticResource secondary_dark}"/>
                     </Grid>
                 </DataTemplate>
             </syncfusionList:SfListView.ItemTemplate>

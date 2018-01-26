@@ -15,10 +15,7 @@
             </OnPlatform>
 
             <x:Double x:Key="BaseFontSize">16</x:Double>
-            <x:Double x:Key="BaseButtonHeight">50</x:Double>
-            <x:Double x:Key="BaseEntryHeight">40</x:Double>
-            <x:Double x:Key="BaseButtonBorderRadius">22</x:Double>
-            
+
 
             <x:Double x:Key="HeaderOneFontSize">50</x:Double>
             <x:Double x:Key="HeaderTwoFontSize">35</x:Double>
@@ -28,90 +25,30 @@
             <x:Double x:Key="UnitFontSize">10.5</x:Double>
 
             <x:Double x:Key="GraphLabelFontSize">15</x:Double>
-            <x:Double x:Key="SubtitleFontSize">12</x:Double>
 
             <!-- Grid Heights -->
             <GridLength x:Key="GridButtonHeight">50</GridLength>
             <GridLength x:Key="GridEntryHeight">40</GridLength>
             <GridLength x:Key="GridErrorLabelHeight">12</GridLength>
             <GridLength x:Key="GridMultiLineEntryHeight">60</GridLength>
-            
+
             <Color x:Key="ButtonSelected">#FFADD8E6</Color>
-
-
-
-            <Style TargetType="Frame">
-                <Setter Property="OutlineColor" Value="{ DynamicResource Red }"/>
-            </Style>
-
-            <Style TargetType="Entry" ApplyToDerivedTypes="True">
-                <Setter Property="FontSize" Value="{ DynamicResource BaseFontSize }"/>
-            </Style>
-
-            <Style TargetType="ActivityIndicator">
-                <Setter Property="Color" Value="{ DynamicResource secondary }"/>
-            </Style>
-
-            <Style TargetType="ContentPage"
-                   ApplyToDerivedTypes="True">
-
-            </Style>
-
-            <Style TargetType="ContentView">
-                <Setter Property="BackgroundColor" Value="{ DynamicResource primary_light }"/>
-            </Style>
-
-            <Style TargetType="ScrollView">
-                <Setter Property="BackgroundColor" Value="Transparent"/>
-            </Style>
-
-            <Style TargetType="TabbedPage"
-                   ApplyToDerivedTypes="True">
-                <Setter Property="BarBackgroundColor" Value="{ DynamicResource primary }"/>
-                <Setter Property="BarTextColor" Value="{ DynamicResource icon }"/>
-            </Style>
-
+            
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="{ DynamicResource BaseFontSize }"/>
                 <Setter Property="TextColor" Value="{ DynamicResource primary_text }"/>
-                <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
-
-            <Style TargetType="ListView">
-                <Setter Property="BackgroundColor" Value="Transparent"/>
-                <Setter Property="SeparatorColor" Value="{ DynamicResource secondary_dark }"/>
-                <Setter Property="SeparatorVisibility" Value="Default"/>
-            </Style>
-
-
-            <Style TargetType="Image">
-                <Setter Property="IsOpaque">
-                    <Setter.Value>
-                        <OnPlatform x:TypeArguments="x:Boolean" Android="True" />
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-
 
             <Style TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{StaticResource secondary}"/>
                 <Setter Property="TextColor" Value="{StaticResource secondary_text}"/>
             </Style>
 
-
-
             <!-- Base Styles -->
             <Style x:Key="SetupEntryStyle"  TargetType="Entry">
                 <Setter Property="Margin" Value="0,0,0,0"/>
             </Style>
 
-            <Style x:Key="ErrorLabelStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="Micro"/>
-                <Setter Property="TextColor" Value="Red"/>
-                <Setter Property="Margin" Value="5,0,0,0"/>
-            </Style>
-            
         </ResourceDictionary>
 
     </Application.Resources>
