@@ -3,6 +3,7 @@
 using System;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
+using Weigh.Localization;
 
 namespace Weigh.Helpers
 {
@@ -205,7 +206,7 @@ namespace Weigh.Helpers
         private static readonly bool UnitsDefault = true;
 
         private const string PickerKey = "picker_key";
-        private static readonly string PickerDefault = "Light Exercise";
+        private static readonly string PickerDefault = AppResources.LightActivityPickItem;
 
         private const string LastWeightKey = "last_weight_key";
         private static readonly double LastWeightDefault = 0.0;

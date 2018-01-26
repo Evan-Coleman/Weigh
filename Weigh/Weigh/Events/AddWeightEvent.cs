@@ -3,7 +3,7 @@ using Weigh.Models;
 
 namespace Weigh.Events
 {
-    public class AddWeightEvent : PubSubEvent<WeightEntry>
+    public class AddWeightEvent : PubSubEvent
     {
     }
 }

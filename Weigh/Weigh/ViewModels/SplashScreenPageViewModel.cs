@@ -74,6 +74,7 @@ namespace Weigh.ViewModels
                 { "AllWeightEntriesSorted", AllWeightEntries }
             };
 
+	        //Task.Delay(5000);
             await NavigationService.NavigateAsync("/NavigationPage/NavigatingAwareTabbedPage", p);
         }
     }

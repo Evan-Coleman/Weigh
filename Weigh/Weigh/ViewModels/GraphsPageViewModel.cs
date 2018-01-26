@@ -233,7 +233,7 @@ private void ToggleWeightWaistSize()
             }
         }
 
-        private async void HandleNewWeightEntry(WeightEntry weight)
+        private async void HandleNewWeightEntry()
         {
             DataFromDatabase = await App.Database.GetWeightsAsync();
             DataFromDatabase = DataFromDatabase.OrderByDescending(x => x.WeighDate).ToList();
@@ -254,6 +254,11 @@ private void ToggleWeightWaistSize()
                 DataFromDatabase = (List<WeightEntry>) parameters["AllWeightEntriesSorted"];
                 WeightList = DataFromDatabase.ToObservableCollection();
                 ChartData = DataFromDatabase.Take(7).ToObservableCollection();
+            }
+            // Only time this gets called is if we save new settings from the settingspage
+            else
+            {
+                HandleNewWeightEntry();
             }
         }
 

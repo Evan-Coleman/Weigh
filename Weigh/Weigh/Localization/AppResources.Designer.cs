@@ -565,6 +565,15 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Saved.
+        /// </summary>
+        internal static string SavedToast {
+            get {
+                return ResourceManager.GetString("SavedToast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string SaveLabel {

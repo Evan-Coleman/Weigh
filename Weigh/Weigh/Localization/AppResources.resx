@@ -453,4 +453,8 @@
     <value>◀</value>
     <comment>(AddEntry)</comment>
   </data>
+  <data name="SavedToast" xml:space="preserve">
+    <value>Saved</value>
+    <comment>(SettingsPage)</comment>
+  </data>
 </root>
