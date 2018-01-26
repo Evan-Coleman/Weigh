@@ -90,12 +90,12 @@
                     <DataTrigger TargetType="Label"
                                      Binding="{Binding SettingVals.Units}"
                                      Value="false">
-                        <Setter Property="Text" Value="{Binding SettingVals.GoalWeight, StringFormat={localization:Translate KiloGramsLabel}}" />
+                        <Setter Property="Text" Value="{localization:Translate KiloGramsLabel}" />
                     </DataTrigger>
                     <DataTrigger TargetType="Label"
                                      Binding="{Binding SettingVals.Units}"
                                      Value="true">
-                        <Setter Property="Text" Value="{Binding SettingVals.GoalWeight, StringFormat={localization:Translate PoundsLabel}}" />
+                        <Setter Property="Text" Value="{localization:Translate PoundsLabel}" />
                     </DataTrigger>
                 </Label.Triggers>
             </Label>
