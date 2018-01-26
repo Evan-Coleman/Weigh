@@ -41,10 +41,7 @@ namespace Weigh
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            if (Settings.FirstUse == "yes")
-                await NavigationService.NavigateAsync("InitialSetupPage");
-            else
-                await NavigationService.NavigateAsync("NavigationPage/NavigatingAwareTabbedPage");
+            await NavigationService.NavigateAsync("SplashScreenPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -56,6 +53,7 @@ namespace Weigh
             containerRegistry.RegisterForNavigation<SettingsPage>();
             containerRegistry.RegisterForNavigation<GraphsPage>();
             containerRegistry.RegisterForNavigation<AddEntryPage>();
+            containerRegistry.RegisterForNavigation<SplashScreenPage>();
         }
     }
 }

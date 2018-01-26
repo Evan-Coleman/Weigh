@@ -126,7 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs">
-      <Version>7.0.0</Version>
+      <Version>7.0.1</Version>
     </PackageReference>
     <PackageReference Include="Microcharts.Forms">
       <Version>0.8.3-pre</Version>
@@ -142,13 +142,19 @@
       <Version>15.4.0.20</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfListView">
-      <Version>15.4.0.17</Version>
+      <Version>15.4.0.20</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Forms">
+      <Version>2.3.4</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations">
+      <Version>2.3.4</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
-    <PackageReference Include="Prism.DryIoc.Forms" Version="7.0.0.362" />
+    <PackageReference Include="Prism.DryIoc.Forms" Version="7.0.0.396" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Weigh\Weigh.csproj">
@@ -157,6 +163,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="Assets\fontawesome-webfont.ttf" />
     <None Include="Weigh.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

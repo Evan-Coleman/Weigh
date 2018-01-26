@@ -16,7 +16,7 @@
     <Color x:Key="primary_text">#000000</Color>
     <Color x:Key="secondary_text">#ffffff</Color>
 
-    <Color x:Key="1accent">#607D8B</Color>
+    <Color x:Key="accent">#607D8B</Color>
     <Color x:Key="1icons">#FFFFFF</Color>
     <Color x:Key="1divider">#BDBDBD</Color>
 

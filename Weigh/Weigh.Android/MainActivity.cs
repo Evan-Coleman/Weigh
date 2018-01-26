@@ -4,6 +4,7 @@ using Android.Content.PM;
 using Android.Gms.Ads;
 using Android.OS;
 using DryIoc;
+using FFImageLoading.Forms.Droid;
 using Prism;
 using Prism.DryIoc;
 using Prism.Ioc;
@@ -22,6 +23,8 @@ namespace Weigh.Droid
             base.OnCreate(bundle);
             MobileAds.Initialize(ApplicationContext, Weigh.PrivateKeys.AdmobAppId);
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            CachedImageRenderer.Init(enableFastRenderer: true);
+
 
             UserDialogs.Init(this);
 
