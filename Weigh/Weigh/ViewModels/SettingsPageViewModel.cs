@@ -50,6 +50,8 @@ namespace Weigh.ViewModels
                 AppResources.MediumActivityPickItem,
                 AppResources.HeavyActivityPickItem
             };
+            MaleText = "\uf183  " + AppResources.MaleGenderSwitchLabel;
+            FemaleText = "\uf182  " + AppResources.FemaleGenderSwitchLabel;
         }
 
         #endregion
@@ -146,6 +148,19 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _maxGoalDate, value);
         }
 
+        private string _maleText;
+        public string MaleText
+        {
+            get => _maleText;
+            set => SetProperty(ref _maleText, value);
+        }
+
+        private string _femaleText;
+        public string FemaleText
+        {
+            get => _femaleText;
+            set => SetProperty(ref _femaleText, value);
+        }
 
         #endregion
 
