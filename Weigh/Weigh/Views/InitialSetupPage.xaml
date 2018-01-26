@@ -185,11 +185,13 @@
        Text="{localization:Translate SexLabel}" />
         <StackLayout Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="3"
             Orientation="Horizontal">
-            <Button Text="{localization:Translate MaleGenderSwitchLabel}"
+            <Button Text="{Binding MaleText}"
+                    FontFamily="{StaticResource FontAwesome}"
                     BackgroundColor="{StaticResource primary_dark}"
                 TextColor="{Binding MaleSelectedBorderColor}"
                 Command="{Binding SelectMaleCommand}"/>
-            <Button Text="{localization:Translate FemaleGenderSwitchLabel}"
+            <Button Text="{Binding FemaleText}"
+                    FontFamily="{StaticResource FontAwesome}"
                     BackgroundColor="{StaticResource primary_dark}"
                 TextColor="{Binding FemaleSelectedBorderColor}"
                 Command="{Binding SelectFemaleCommand}"/>

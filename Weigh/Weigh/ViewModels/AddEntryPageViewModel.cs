@@ -25,7 +25,6 @@ namespace Weigh.ViewModels
             SettingValsValidated = new SettingValsValidated();
 
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
-            GoBackCommand = new DelegateCommand(HandleGoBack);
             DeleteEntryCommand = new DelegateCommand(HandleDeleteEntry);
 
             DeleteAction = false;
@@ -69,14 +68,6 @@ namespace Weigh.ViewModels
         {
             get => _addWeightToListCommand;
             set => SetProperty(ref _addWeightToListCommand, value);
-        }
-
-        private DelegateCommand _goBackCommand;
-
-        public DelegateCommand GoBackCommand
-        {
-            get => _goBackCommand;
-            set => SetProperty(ref _goBackCommand, value);
         }
 
         private DelegateCommand _deleteEntryCommand;
@@ -164,11 +155,6 @@ namespace Weigh.ViewModels
         #endregion
 
         #region Methods
-
-        private async void HandleGoBack()
-        {
-            await NavigationService.GoBackAsync();
-        }
 
         private async void HandleDeleteEntry()
         {

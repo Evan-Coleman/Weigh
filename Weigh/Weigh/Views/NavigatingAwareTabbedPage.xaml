@@ -4,7 +4,8 @@
             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
             xmlns:local="clr-namespace:Weigh.Views"
             prism:ViewModelLocator.AutowireViewModel="True"
-            x:Class="Weigh.Views.NavigatingAwareTabbedPage">
+            x:Class="Weigh.Views.NavigatingAwareTabbedPage"
+            NavigationPage.HasNavigationBar="False">
 
     <TabbedPage.Children>
         <local:MainPage />

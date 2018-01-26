@@ -8,6 +8,12 @@
         <!-- Application resource dictionary -->
 
         <ResourceDictionary MergedWith="t:MyLightTheme">
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesome">
+                <On Platform="Android" Value="fontawesome-webfont.ttf#FontAwesome"/>
+                <On Platform="UWP" Value="/Assets/OpenSans-Bold.ttf#Open Sans" />
+            </OnPlatform>
+
             <x:Double x:Key="BaseFontSize">16</x:Double>
             <x:Double x:Key="BaseButtonHeight">50</x:Double>
             <x:Double x:Key="BaseEntryHeight">40</x:Double>

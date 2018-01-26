@@ -247,6 +247,12 @@
         <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand"
                 Text="{localization:Translate AddEntryLabel}"
                 Command="{Binding AddWeightToListCommand}"/>
+        
+        <!--
+        <Label Grid.Column="2" Grid.Row="" HorizontalOptions="End" VerticalOptions="End"
+               FontSize="40" TextColor="{StaticResource secondary}"
+               Text="&#xf055;" FontFamily="{StaticResource FontAwesome}"/>
+        -->
 
         <!-- ADMOB Banner -->
         <controls:AdMobView Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" VerticalOptions="End" />
