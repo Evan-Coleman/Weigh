@@ -205,14 +205,13 @@ namespace Weigh.ViewModels
             await NavigationService.NavigateAsync("AddEntryPage");
         }
 
-        private void HandleUpdateSetupInfo(SettingValsValidated setupInfoValidated)
+        private void HandleUpdateSetupInfo(SettingVals settingVals)
         {
-            SettingVals.InitializeFromValidated(setupInfoValidated);
-            SettingVals.ValidateGoal();
+            SettingVals = settingVals;
             InitializeCharts();
         }
 
-        private void HandleNewWeightEntry(WeightEntry weight)
+        private void HandleNewWeightEntry()
         {
             SettingVals.InitializeSettingVals();
             if (SettingVals.ValidateGoal() == false)

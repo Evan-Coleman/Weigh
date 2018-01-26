@@ -204,7 +204,7 @@ namespace Weigh.ViewModels
             }
 
             await App.Database.DeleteWeightInfoAsync(SelectedWeightEntry);
-            _ea.GetEvent<AddWeightEvent>().Publish(NewWeightEntry);
+            _ea.GetEvent<AddWeightEvent>().Publish();
             await NavigationService.GoBackAsync();
             return;
         }
@@ -334,7 +334,7 @@ namespace Weigh.ViewModels
                 SettingVals.LastWeighDate = latestWeight.WeighDate;
 
                 SettingVals.SaveSettingValsToDevice();
-                _ea.GetEvent<AddWeightEvent>().Publish(NewWeightEntry);
+                _ea.GetEvent<AddWeightEvent>().Publish();
                 await NavigationService.GoBackAsync();
             }
         }

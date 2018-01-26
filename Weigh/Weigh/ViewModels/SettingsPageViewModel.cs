@@ -5,6 +5,7 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Navigation;
 using Weigh.Events;
+using Weigh.Helpers;
 using Weigh.Localization;
 using Weigh.Models;
 using Xamarin.Forms;
@@ -201,10 +202,13 @@ namespace Weigh.ViewModels
             if (SettingValsValidated.ValidateProperties())
             {
                 SettingVals.InitializeFromValidated(SettingValsValidated);
+                SettingVals.ValidateGoal();
                 SettingVals.SaveSettingValsToDevice();
 
-                _ea.GetEvent<UpdateSetupInfoEvent>().Publish(SettingValsValidated);
-                await NavigationService.NavigateAsync($"/NavigatingAwareTabbedPage?{KnownNavigationParameters.SelectedTab}=MainPage");
+                _ea.GetEvent<UpdateSetupInfoEvent>().Publish(SettingVals);
+
+                UserDialogs.Instance.Toast(new ToastConfig(AppResources.SavedToast)
+                                                          .SetPosition(ToastPosition.Top));
             }
         }
 
