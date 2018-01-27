@@ -110,10 +110,10 @@
        Text="{localization:Translate LevelOfActivityLabel}" />
         <Picker Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3"
             ItemsSource="{Binding PickerSource}"
-                SelectedItem="{Binding SettingVals.PickerSelectedItem}"
                 Title="{localization:Translate ActivityLevelLabel}"
                  HorizontalOptions="FillAndExpand"
-                WidthRequest="150"/>
+                WidthRequest="150"
+                SelectedIndex="{Binding PickerSelectedIndex, Mode=TwoWay}"/>
         
         <!-- Entry Date Section -->
         <Label Grid.Column="0" Grid.Row="5"
