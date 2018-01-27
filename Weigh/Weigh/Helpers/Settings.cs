@@ -125,7 +125,7 @@ namespace Weigh.Helpers
             set => AppSettings.AddOrUpdateValue(LastWeightKey, value);
         }
 
-        public static string PickerSelectedItem
+        public static int PickerSelectedItem
         {
             get => AppSettings.GetValueOrDefault(PickerKey, PickerDefault);
             set => AppSettings.AddOrUpdateValue(PickerKey, value);
@@ -206,7 +206,7 @@ namespace Weigh.Helpers
         private static readonly bool UnitsDefault = true;
 
         private const string PickerKey = "picker_key";
-        private static readonly string PickerDefault = AppResources.LightActivityPickItem;
+        private static readonly int PickerDefault = 1;
 
         private const string LastWeightKey = "last_weight_key";
         private static readonly double LastWeightDefault = 0.0;

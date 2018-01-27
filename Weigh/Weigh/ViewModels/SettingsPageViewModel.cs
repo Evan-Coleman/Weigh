@@ -172,6 +172,7 @@ namespace Weigh.ViewModels
             MetricSelectedBorderColor = Color.Default;
             ImperialSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             SettingVals.Units = true;
+            Settings.Units = true;
         }
 
         private void SelectMetric()
@@ -179,6 +180,7 @@ namespace Weigh.ViewModels
             MetricSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             ImperialSelectedBorderColor = Color.Default;
             SettingVals.Units = false;
+            Settings.Units = false;
         }
 
         private void SelectMale()
@@ -196,7 +198,7 @@ namespace Weigh.ViewModels
         }
 
 
-        private async void SaveInfoAsync()
+        private void SaveInfoAsync()
         {
             // TODO: check this out and see what needs changing
             if (SettingValsValidated.ValidateProperties())
@@ -227,6 +229,11 @@ namespace Weigh.ViewModels
                 SettingValsValidated.InitializeFromSettings(SettingVals);
                 SettingVals.MinDate = DateTime.UtcNow.ToLocalTime().AddDays(10);
             }
+        }
+
+        public override void OnNavigatedTo(NavigationParameters parameters)
+        {
+            SettingVals.PickerSelectedItem = Settings.PickerSelectedItem;
         }
 
         public override void Destroy()

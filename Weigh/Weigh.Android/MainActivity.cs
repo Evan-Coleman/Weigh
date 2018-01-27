@@ -12,7 +12,10 @@ using Xamarin.Forms;
 
 namespace Weigh.Droid
 {
-    [Activity(Label = "Weigh", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "@string/ApplicationName",
+        Icon = "@drawable/launchscreen_icon",
+        Theme = "@style/MainTheme",
+        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)

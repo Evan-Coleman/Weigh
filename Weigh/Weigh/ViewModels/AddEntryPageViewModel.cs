@@ -173,13 +173,31 @@ namespace Weigh.ViewModels
                 return;
             }
 
-            List<WeightEntry> entries = await App.Database.GetWeightsAsync();
-            WeightEntry previousWeightEntry = entries
-                .OrderByDescending(x => x.WeighDate).FirstOrDefault(x => x.WeighDate < EntryDate);
+            WeightEntry nextWeightEntry;
+            WeightEntry previousWeightEntry;
+            //DateTime newdate = EntryDate.Date + new TimeSpan(DateTime.UtcNow.ToLocalTime().Hour, DateTime.UtcNow.ToLocalTime().Minute, DateTime.UtcNow.ToLocalTime().Second);
 
-            // Since we're adding an older entry, we want to make sure and update the next entry's weightdelta
-            WeightEntry nextWeightEntry = entries
-                .OrderBy(x => x.WeighDate).FirstOrDefault(x => x.WeighDate > EntryDate);
+
+            List<WeightEntry> entries = await App.Database.GetWeightsAsync();
+            var dentries = entries.OrderByDescending(x => x.WeighDate).ToList();
+            var index = dentries.TakeWhile(x => x.ID != SelectedWeightEntry.ID).Count();
+            if (index == 0)
+            {
+                nextWeightEntry = null;
+            }
+            else
+            {
+                nextWeightEntry = dentries[index - 1];
+            }
+
+            if (index > dentries.Count - 2)
+            {
+                previousWeightEntry = null;
+            }
+            else
+            {
+                previousWeightEntry = dentries[index + 1];
+            }
 
             // Delete case where we are deleting the first entry
             if (previousWeightEntry == null)

@@ -125,7 +125,7 @@
        Text="{localization:Translate LevelOfActivityLabel}" />
         <Picker Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3"
             ItemsSource="{Binding PickerSource}"
-                SelectedItem="{Binding SettingVals.PickerSelectedItem}"
+                SelectedIndex="{Binding SettingVals.PickerSelectedItem}"
                 Title="{localization:Translate ActivityLevelLabel}"
                  HorizontalOptions="FillAndExpand"
                 WidthRequest="150"/>
