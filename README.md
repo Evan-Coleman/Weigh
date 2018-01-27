@@ -8,7 +8,7 @@ Important: To get Admob ads working for yourself, take PrivateKeys.Sample, and r
 TODO:
 
 	Active
-		(General) Navigation breaks pickerselected item on Settingspage (initial setup -> main page nav)
+
 		(MainPage) Implement button for information & acompanying modal popup
 		(General) Handle case of goal met (new goal, or show maintain caloric intake)
 		(MainPage) Implement In-App-Purchases for removal of ads & Button for it
@@ -20,6 +20,7 @@ TODO:
 		(AddEntryPage) Add a stepper for weight and waist size	
 
 	Done
+		(General) Navigation breaks pickerselected item on Settingspage (initial setup -> main page nav)
 		(GraphPage) Spice up Listview		
 		(GraphPage) Add ability to click listview items
 		(GraphPage) Add view for item details

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microcharts;
 using Prism.Commands;
 using Prism.Events;
@@ -153,7 +154,7 @@ namespace Weigh.ViewModels
 
         #region Methods
 
-        private void InitializeCharts()
+        private Task<void> InitializeCharts()
         {
             // Weight left chart
 
@@ -198,6 +199,7 @@ namespace Weigh.ViewModels
                 ScheduleStatus = AppResources.OffScheduleLabel;
             }
 
+            return;
         }
 
         public async void AddWeightToList()
@@ -237,7 +239,8 @@ namespace Weigh.ViewModels
             {
                 SettingVals = (SettingVals) parameters["SettingVals"];
             }
-            InitializeCharts();
+
+            Task.Run(InitializeCharts);
         }
 
         public override void Destroy()
