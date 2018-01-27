@@ -157,7 +157,7 @@
                     -->
                     <Grid ColumnSpacing="5" RowSpacing="0" Margin="0" Padding="5,0,5,0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="15" />
+                            <ColumnDefinition Width="25" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="15" />
                             <ColumnDefinition Width="*" />
@@ -173,7 +173,7 @@
                         </Grid.RowDefinitions>
                         <syncfusionList:SfLabel Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
                                                 FontSize="20"
-                                                Text="&#xf1ae;"
+                                                Text="&#x2696;"
                                                 FontFamily="{StaticResource FontAwesome}"/>
                         <syncfusionList:SfLabel Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"
                                                 FontSize="25"
@@ -182,7 +182,7 @@
 
                         <syncfusionList:SfLabel Grid.Column="2" Grid.Row="0" Grid.RowSpan="3"
                                                 FontSize="20"
-                                                Text="&#x394;"/>
+                                                Text="&#xb1;"/>
                         <syncfusionList:SfLabel Grid.Column="3" Grid.Row="0" Grid.RowSpan="3"
                                                 FontSize="25"
                                                 Text="{Binding Path=WeightDelta, StringFormat='{0:0}'}"/>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Acr.UserDialogs;
 using Prism.Commands;
 using Prism.Events;
@@ -28,6 +29,7 @@ namespace Weigh.ViewModels
             _ea = ea;
 
             SettingVals = new SettingVals();
+            PickerSelectedIndex = 1;
             SettingValsValidated = new SettingValsValidated();
 
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
@@ -44,7 +46,7 @@ namespace Weigh.ViewModels
             MaleSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             SettingVals.MinDate = DateTime.UtcNow.ToLocalTime().AddDays(10);
             MaxGoalDate = DateTime.UtcNow.ToLocalTime().AddYears(1);
-            PickerSource = new List<string>
+            PickerSource = new ObservableCollection<string>
             {
                 AppResources.LowActivityPickItem,
                 AppResources.LightActivityPickItem,
@@ -85,9 +87,9 @@ namespace Weigh.ViewModels
         public DelegateCommand SelectFemaleCommand { get; set; }
 
 
-        private List<string> _pickerSource;
+        private ObservableCollection<string> _pickerSource;
 
-        public List<string> PickerSource
+        public ObservableCollection<string> PickerSource
         {
             get => _pickerSource;
             set => SetProperty(ref _pickerSource, value);
@@ -163,6 +165,13 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _femaleText, value);
         }
 
+        private int _pickerSelectedIndex;
+        public int PickerSelectedIndex
+        {
+            get => _pickerSelectedIndex;
+            set => SetProperty(ref _pickerSelectedIndex, value);
+        }
+
         #endregion
 
         #region Methods
@@ -204,6 +213,7 @@ namespace Weigh.ViewModels
             if (SettingValsValidated.ValidateProperties())
             {
                 SettingVals.InitializeFromValidated(SettingValsValidated);
+                SettingVals.PickerSelectedItem = PickerSelectedIndex;
                 SettingVals.ValidateGoal();
                 SettingVals.SaveSettingValsToDevice();
 
@@ -219,6 +229,7 @@ namespace Weigh.ViewModels
             SettingVals = setupInfo;
             SettingValsValidated.InitializeFromSettings(SettingVals);
             SettingVals.MinDate = DateTime.UtcNow.ToLocalTime().AddDays(10);
+            PickerSelectedIndex = SettingVals.PickerSelectedItem;
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)
@@ -228,12 +239,8 @@ namespace Weigh.ViewModels
                 SettingVals = (SettingVals)parameters["SettingVals"];
                 SettingValsValidated.InitializeFromSettings(SettingVals);
                 SettingVals.MinDate = DateTime.UtcNow.ToLocalTime().AddDays(10);
+                PickerSelectedIndex = SettingVals.PickerSelectedItem;
             }
-        }
-
-        public override void OnNavigatedTo(NavigationParameters parameters)
-        {
-            SettingVals.PickerSelectedItem = Settings.PickerSelectedItem;
         }
 
         public override void Destroy()

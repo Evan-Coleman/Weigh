@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Acr.UserDialogs;
 using Prism.Commands;
@@ -22,6 +23,7 @@ namespace Weigh.ViewModels
             _ea = ea;
 
             SettingVals = new SettingVals();
+            PickerSelectedIndex = 1;
             SettingValsValidated = new SettingValsValidated();
 
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
@@ -31,7 +33,7 @@ namespace Weigh.ViewModels
             DeleteActionEnabled = false;
             EntryDate = DateTime.UtcNow.ToLocalTime();
             MaxEntryDate = DateTime.UtcNow.ToLocalTime();
-            PickerSource = new List<string>
+            PickerSource = new ObservableCollection<string>
             {
                 AppResources.LowActivityPickItem,
                 AppResources.LightActivityPickItem,
@@ -78,9 +80,9 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _deleteEntryCommand, value);
         }
 
-        private List<string> _pickerSource;
+        private ObservableCollection<string> _pickerSource;
 
-        public List<string> PickerSource
+        public ObservableCollection<string> PickerSource
         {
             get => _pickerSource;
             set => SetProperty(ref _pickerSource, value);
@@ -150,6 +152,13 @@ namespace Weigh.ViewModels
         {
             get => _deleteActionEnabled;
             set => SetProperty(ref _deleteActionEnabled, value);
+        }
+
+        private int _pickerSelectedIndex;
+        public int PickerSelectedIndex
+        {
+            get => _pickerSelectedIndex;
+            set => SetProperty(ref _pickerSelectedIndex, value);
         }
 
         #endregion
@@ -266,6 +275,7 @@ namespace Weigh.ViewModels
                     SettingVals.DistanceToGoalWeight = SettingVals.Weight - SettingVals.GoalWeight;
 
                     SettingVals.ValidateGoal();
+                    SettingVals.PickerSelectedItem = PickerSelectedIndex;
                     SettingVals.SaveSettingValsToDevice();
                 }
                 // If we're adding an older entry than the latest, we won't update current stats in Settings
@@ -350,7 +360,7 @@ namespace Weigh.ViewModels
                 WeightEntry latestWeight = await App.Database.GetLatestWeightasync();
                 SettingVals.Weight = latestWeight.Weight;
                 SettingVals.LastWeighDate = latestWeight.WeighDate;
-
+                SettingVals.PickerSelectedItem = PickerSelectedIndex;
                 SettingVals.SaveSettingValsToDevice();
                 _ea.GetEvent<AddWeightEvent>().Publish();
                 await NavigationService.GoBackAsync();
@@ -377,10 +387,12 @@ namespace Weigh.ViewModels
                 EntryDate = SelectedWeightEntry.WeighDate;
                 Title = AppResources.EditEntryPageTitle;
                 DeleteAction = true;
+                PickerSelectedIndex = SettingVals.PickerSelectedItem;
             }
             else
             {
                 Title = AppResources.AddEntryPageTitle;
+                PickerSelectedIndex = Settings.PickerSelectedItem;
             }
 
             if (parameters.ContainsKey("OnlyOneEntryLeft"))

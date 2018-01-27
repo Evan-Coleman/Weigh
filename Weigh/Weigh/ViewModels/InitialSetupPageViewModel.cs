@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Acr.UserDialogs;
 using Prism.Commands;
 using Prism.Events;
@@ -51,7 +52,7 @@ namespace Weigh.ViewModels
             SettingVals.PickerSelectedItem = 1;
             ImperialSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             MaleSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
-            PickerSource = new List<string>
+            PickerSource = new ObservableCollection<string>
             {
                 AppResources.LowActivityPickItem,
                 AppResources.LightActivityPickItem,
@@ -91,10 +92,10 @@ namespace Weigh.ViewModels
         public DelegateCommand SelectFemaleCommand { get; set; }
 
 
-        private List<string> _pickerSource;
+        private ObservableCollection<string> _pickerSource;
         private WeightEntry _newWeight;
 
-        public List<string> PickerSource
+        public ObservableCollection<string> PickerSource
         {
             get => _pickerSource;
             set => SetProperty(ref _pickerSource, value);
@@ -260,6 +261,7 @@ namespace Weigh.ViewModels
                 };
 
                 await NavigationService.NavigateAsync("/NavigationPage/NavigatingAwareTabbedPage", p);
+                return;
             }
         }
 
