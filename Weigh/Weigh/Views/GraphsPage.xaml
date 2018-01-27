@@ -194,16 +194,16 @@
                                                 FontSize="25"
                                                 Text="{Binding Path=WaistSize, StringFormat='{0:0}'}"/>
 
-
                         <syncfusionList:SfLabel Grid.Column="6" Grid.Row="0"
                                                 FontSize="15"
-                                                Text="{Binding Path=WeighDate, StringFormat='{0:MMM dd}'}"/>
+                                                Text="{Binding Path=WeighDate, StringFormat='{0:dddddddd}'}"/>
                         <syncfusionList:SfLabel Grid.Column="6" Grid.Row="1"
                                                 FontSize="15"
-                                                Text="{Binding Path=WeighDate, StringFormat='{0:yyyy}'}"/>
+                                                Text="{Binding Path=WeighDate, StringFormat='{0:MMM dd}'}"/>
                         <syncfusionList:SfLabel Grid.Column="6" Grid.Row="2"
                                                 FontSize="15"
-                                                Text="{Binding Path=WeighDate, StringFormat='{0:hh:mm}'}"/>
+                                                Text="{Binding Path=WeighDate, StringFormat='{0:yyyy}'}"/>
+                        
                         
                         <Frame Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="7"
                                HeightRequest="1" BackgroundColor="{StaticResource secondary_dark}"/>

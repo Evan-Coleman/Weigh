@@ -80,7 +80,7 @@ namespace Weigh.Validation
             // Perform validation logic here and set isValid to true or false.
             if (Settings.WaistSizeEnabled)
             {
-                if (waistSize.Length < 2 || waistSize.Length > 5)
+                if (waistSize.Length < 1 || waistSize.Length > 5)
                     return new ValidationResult(AppResources.WaistLengthValidationErrorMessage);
                 if (WaistSize > 200 || WaistSize < 15)
                     return new ValidationResult(AppResources.WaistValueValidationErrorMessage);

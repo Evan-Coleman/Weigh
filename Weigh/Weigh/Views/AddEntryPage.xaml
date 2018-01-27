@@ -17,6 +17,12 @@
         <ResourceDictionary>
             <converters:FirstErrorConverter x:Key="FirstErrorConverter" />
             <converters:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter"/>
+
+            <Style x:Key="ErrorLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Micro"/>
+                <Setter Property="TextColor" Value="Red"/>
+                <Setter Property="Margin" Value="5,0,0,0"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     

@@ -161,9 +161,9 @@ namespace Weigh.Models
             set => SetProperty(ref _minDate, value);
         }
 
-        private string _pickerSelectedItem;
+        private int _pickerSelectedItem;
 
-        public string PickerSelectedItem
+        public int PickerSelectedItem
         {
             get => _pickerSelectedItem;
             set => SetProperty(ref _pickerSelectedItem, value);
@@ -347,10 +347,10 @@ namespace Weigh.Models
                 BMR = 66 + 6.2 * weight + 12.7 * (feet * 12 + inches) - 6.76 * age;
             else
                 BMR = 655.1 + 4.35 * weight + 4.7 * (feet * 12 + inches) - 4.7 * age;
-            if (PickerSelectedItem == AppResources.LowActivityPickItem) BMR *= 1.2;
-            if (PickerSelectedItem == AppResources.LightActivityPickItem) BMR *= 1.375;
-            if (PickerSelectedItem == AppResources.MediumActivityPickItem) BMR *= 1.55;
-            if (PickerSelectedItem == AppResources.HeavyActivityPickItem) BMR *= 1.725;
+            if (PickerSelectedItem == 0) BMR *= 1.2;
+            if (PickerSelectedItem == 1) BMR *= 1.375;
+            if (PickerSelectedItem == 2) BMR *= 1.55;
+            if (PickerSelectedItem == 3) BMR *= 1.725;
         }
 
         public bool ValidateGoal()

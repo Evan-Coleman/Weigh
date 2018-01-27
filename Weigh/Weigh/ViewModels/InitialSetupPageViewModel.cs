@@ -48,7 +48,7 @@ namespace Weigh.ViewModels
             // Setting units to default imperial
             SettingVals.Units = true;
             SettingVals.WaistSizeEnabled = true;
-            SettingVals.PickerSelectedItem = AppResources.LightActivityPickItem;
+            SettingVals.PickerSelectedItem = 1;
             ImperialSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             MaleSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             PickerSource = new List<string>
@@ -192,6 +192,7 @@ namespace Weigh.ViewModels
             MetricSelectedBorderColor = Color.Default;
             ImperialSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             SettingVals.Units = true;
+            Settings.Units = true;
         }
 
         private void SelectMetric()
@@ -199,6 +200,7 @@ namespace Weigh.ViewModels
             MetricSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             ImperialSelectedBorderColor = Color.Default;
             SettingVals.Units = false;
+            Settings.Units = false;
         }
 
         private void SelectMale()
