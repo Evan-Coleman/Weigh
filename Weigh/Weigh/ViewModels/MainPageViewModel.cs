@@ -154,7 +154,7 @@ namespace Weigh.ViewModels
 
         #region Methods
 
-        private Task<void> InitializeCharts()
+        private void InitializeCharts()
         {
             // Weight left chart
 
@@ -240,7 +240,7 @@ namespace Weigh.ViewModels
                 SettingVals = (SettingVals) parameters["SettingVals"];
             }
 
-            Task.Run(InitializeCharts);
+            InitializeCharts();
         }
 
         public override void Destroy()
