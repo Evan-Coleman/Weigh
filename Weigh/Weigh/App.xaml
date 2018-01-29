@@ -33,7 +33,27 @@
             <GridLength x:Key="GridMultiLineEntryHeight">60</GridLength>
 
             <Color x:Key="ButtonSelected">#FFADD8E6</Color>
-            
+
+            <!-- See https://material.io/color for more help choosing a Material Design Color scheme
+            <Color x:Key="Primary">#78909c</Color>
+            <Color x:Key="PrimaryDark">#4b636e</Color>
+            <Color x:Key="PrimaryDarkTranslucent">#9926213C</Color>
+            <Color x:Key="Accent">#a7c0cd</Color>
+            <Color x:Key="NavigationText">White</Color>
+            <Color x:Key="LabelSectionText">#6D6D72</Color>
+            <Color x:Key="DetailTextColor">#979797</Color>
+            -->
+
+            <Style TargetType="NavigationPage" ApplyToDerivedTypes="true">
+                <Setter Property="BarTextColor" Value="{StaticResource NavigationText}" />
+                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryDark}" />
+            </Style>
+
+            <Style TargetType="TabbedPage" ApplyToDerivedTypes="true">
+                <Setter Property="BarTextColor" Value="{StaticResource NavigationText}" />
+                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryDark}" />
+            </Style>
+
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="{ DynamicResource BaseFontSize }"/>
                 <Setter Property="TextColor" Value="{ DynamicResource primary_text }"/>
