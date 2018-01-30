@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActivityLevelLabel" xml:space="preserve">
+    <value>Level of Activity</value>
+    <comment>(InitialSetupPage / SettingsPage) Title of activity picker</comment>
+  </data>
+  <data name="AddEntryLabel" xml:space="preserve">
+    <value>Add New Weight</value>
+    <comment>(MainPage) Button that adds new entry</comment>
+  </data>
+  <data name="AddEntryPageTitle" xml:space="preserve">
+    <value>Add New Weight</value>
+    <comment>(AddEntry)</comment>
+  </data>
+  <data name="AgeLabel" xml:space="preserve">
+    <value>Birth Date:</value>
+    <comment>(InitialSetupPage/SettingsPage) Label to indicate entry is for age</comment>
+  </data>
+  <data name="AgeLengthValidationErrorMessage" xml:space="preserve">
+    <value>Minimum 2 chars, max 3 chars</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+  <data name="AgeValueValidationErrorMessage" xml:space="preserve">
+    <value>Must be within range 1-150</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+  <data name="BMILabel" xml:space="preserve">
+    <value>BMI</value>
+    <comment>(MainPage) Shows BMI</comment>
+  </data>
+  <data name="BMRLabel" xml:space="preserve">
+    <value>Daily Caloric Budget</value>
+    <comment>(MainPage) Shows BMR</comment>
+  </data>
+  <data name="DateLabel" xml:space="preserve">
+    <value>Date: </value>
+    <comment>(MainPage) Shows date</comment>
+  </data>
+  <data name="DateLabelListviewItem" xml:space="preserve">
+    <value>Date: {0:MM/dd/yyyy hh:mm}</value>
+    <comment>(GraphsPage) Label on listview template</comment>
+  </data>
+  <data name="DayLabel" xml:space="preserve">
+    <value>Day</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="DaysToGoLabel" xml:space="preserve">
+    <value>{0:0} Days to go</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="DeleteEntryButton" xml:space="preserve">
+    <value>✘</value>
+    <comment>(AddEntry)</comment>
+  </data>
+  <data name="EditEntryPageTitle" xml:space="preserve">
+    <value>Edit Weight Entry</value>
+    <comment>(AddEntry)</comment>
+  </data>
+  <data name="EntryDateLabel" xml:space="preserve">
+    <value>Date of Entry:</value>
+    <comment>(AddEntryPage)</comment>
+  </data>
+  <data name="FemaleGenderSwitchLabel" xml:space="preserve">
+    <value>Female</value>
+    <comment>(InitialSetupPage / SettingsPage) Female indicator for switch</comment>
+  </data>
+  <data name="FormValidationPopupLabel" xml:space="preserve">
+    <value>Please fill in all forms!</value>
+    <comment>(InitialSetupPage / SettingsPage) Popup label if all forms aren't filled in correctly</comment>
+  </data>
+  <data name="GoalDateEntryLabel" xml:space="preserve">
+    <value>Goal Date:</value>
+    <comment>(InitialSetupPage) Label to indicate entry is for goal date</comment>
+  </data>
+  <data name="GoalDateSectionHeaderLabel" xml:space="preserve">
+    <value>Goal Date</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="GoalStatusLabel" xml:space="preserve">
+    <value>Goal Status</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="GoalTooSoonPopup" xml:space="preserve">
+    <value>Goal date was too soon, and has been set to: {0:MM/dd/yy}</value>
+    <comment>(SetupInfoExtensions) Pops up when goal date has been adjusted</comment>
+  </data>
+  <data name="GoalWeightEntryLabel" xml:space="preserve">
+    <value>Goal Weight:</value>
+    <comment>(InitialSetupPage) Label to indicate entry is for goal weight</comment>
+  </data>
+  <data name="GoalWeightImperialEntryPlaceholder" xml:space="preserve">
+    <value>Goal Weight (lb)</value>
+    <comment>(InitialSetupPage / SettingsPage) If user set units to imperial, lets them know to enter their goal weight in pounds</comment>
+  </data>
+  <data name="GoalWeightLengthValidationErrorMessage" xml:space="preserve">
+    <value>Minimum 1 chars, max 7 chars</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+  <data name="GoalWeightMetricEntryPlaceholder" xml:space="preserve">
+    <value>Goal Weight (kg)</value>
+    <comment>(InitialSetupPage / SettingsPage) If user set units to metric, lets them know to enter their goal weight in kilograms</comment>
+  </data>
+  <data name="GoalWeightSectionHeaderLabel" xml:space="preserve">
+    <value>Goal Weight</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="GoalWeightValueValidationErrorMessage" xml:space="preserve">
+    <value>Must be within range 0-1000</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+  <data name="GoBackButton" xml:space="preserve">
+    <value>◀</value>
+    <comment>(AddEntry)</comment>
+  </data>
+  <data name="GraphPageTitle" xml:space="preserve">
+    <value>Graph Page</value>
+    <comment>(GraphPage) GraphPage Title</comment>
+  </data>
+  <data name="HeavyActivityPickItem" xml:space="preserve">
+    <value>Heavy Exercise</value>
+    <comment>(InitialSetupPage / SettingsPage) Picker item for heavy activity</comment>
+  </data>
+  <data name="HeightLabel" xml:space="preserve">
+    <value>Height:</value>
+    <comment>(InitialSetupPage) Label to indicate entry is for height</comment>
+  </data>
+  <data name="HeightMajorImperialEntryPlaceholder" xml:space="preserve">
+    <value>Height (ft)</value>
+    <comment>(InitialSetupPage / SettingsPage) If user set units to imperial, lets them know to enter their height in feet</comment>
+  </data>
+  <data name="HeightMajorImperialValidationErrorMessage" xml:space="preserve">
+    <value>Must be in the range (1-15)</value>
+    <comment>(SetupInfoValidation) Error message</comment>
+  </data>
+  <data name="HeightMajorLengthValidationErrorMessage" xml:space="preserve">
+    <value>Minimum 1 chars, max 5 chars</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+  <data name="HeightMajorMetricEntryPlaceholder" xml:space="preserve">
+    <value>Height (cm)</value>
+    <comment>(InitialSetupPage / SettingsPage) If user set units to metric, lets them know to enter their height in centimeters</comment>
+  </data>
+  <data name="HeightMajorMetricValidationErrorMessage" xml:space="preserve">
+    <value>Must be in the range (50-300)</value>
+    <comment>(SetupInfoValidation) Error message</comment>
+  </data>
+  <data name="ImperialWeightToGoLabel" xml:space="preserve">
+    <value>{0:0} lb to go</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="InitialSetupPageTitle" xml:space="preserve">
+    <value>Setup</value>
+    <comment>(InitialSetupPage) InitialSetupPage Title</comment>
+  </data>
+  <data name="KiloGramsLabel" xml:space="preserve">
+    <value>kg</value>
+    <comment>(MainPage) units label for kilograms</comment>
+  </data>
+  <data name="LevelOfActivityLabel" xml:space="preserve">
+    <value>Activity Level:</value>
+    <comment>(InitialSetupPage) Label to indicate entry is for activity</comment>
+  </data>
+  <data name="LightActivityPickItem" xml:space="preserve">
+    <value>Light Exercise</value>
+    <comment>(InitialSetupPage / SettingsPage) Picker item for light activity</comment>
+  </data>
+  <data name="LowActivityPickItem" xml:space="preserve">
+    <value>No Exercise</value>
+    <comment>(InitialSetupPage / SettingsPage) Picker item for low activity</comment>
+  </data>
+  <data name="MainPageTitle" xml:space="preserve">
+    <value>Main Page</value>
+    <comment>(MainPage) MainPage Title</comment>
+  </data>
+  <data name="MaleGenderSwitchLabel" xml:space="preserve">
+    <value>Male</value>
+    <comment>(InitialSetupPage / SettingsPage) Male indicator for switch</comment>
+  </data>
+  <data name="MediumActivityPickItem" xml:space="preserve">
+    <value>Moderate Exercise</value>
+    <comment>(InitialSetupPage / SettingsPage) Picker item for medium activity</comment>
+  </data>
+  <data name="MetricWeightToGoLabel" xml:space="preserve">
+    <value>{0:0} kg to go</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="NormalWeightBMICategory" xml:space="preserve">
+    <value>Normal Weight</value>
+    <comment>(SetupInfoExtensions) BMI Category</comment>
+  </data>
+  <data name="NormalWeightLabel" xml:space="preserve">
+    <value>Normal</value>
+    <comment>(MainPage) Label on the BMI gague to show normal weight</comment>
+  </data>
+  <data name="NotesLabel" xml:space="preserve">
+    <value>Notes:</value>
+    <comment>(InitialSetupPage)</comment>
+  </data>
+  <data name="NumberOfEntriesLabel" xml:space="preserve">
+    <value># Points:</value>
+    <comment>(GraphsPage) Label to say how many entries on the graph will show</comment>
+  </data>
+  <data name="ObeseLabel" xml:space="preserve">
+    <value>Obese</value>
+    <comment>(MainPage) Label on the BMI gague to show obese</comment>
+  </data>
+  <data name="OffScheduleLabel" xml:space="preserve">
+    <value>Off Schedule</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="OnScheduleLabel" xml:space="preserve">
+    <value>On Schedule</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="OverweightLabel" xml:space="preserve">
+    <value>Overweight</value>
+    <comment>(MainPage) Label on the BMI gague to show overweight</comment>
+  </data>
+  <data name="PercentLabel" xml:space="preserve">
+    <value>{0:0}%</value>
+    <comment>(MainPage)</comment>
+  </data>
+  <data name="PoundsLabel" xml:space="preserve">
+    <value>lb</value>
+    <comment>(MainPage) units label for pounds</comment>
+  </data>
+  <data name="SavedToast" xml:space="preserve">
+    <value>Saved</value>
+    <comment>(SettingsPage)</comment>
+  </data>
+  <data name="SaveLabel" xml:space="preserve">
+    <value>Save</value>
+    <comment>(InitialSetupPage / SettingsPage) Save button</comment>
+  </data>
+  <data name="SettingsPageTitle" xml:space="preserve">
+    <value>Setup</value>
+    <comment>(SettingsPage) title of page</comment>
+  </data>
+  <data name="SexLabel" xml:space="preserve">
+    <value>Sex:</value>
+    <comment>(InitialSetupPage) Label to indicate entry is for sex</comment>
+  </data>
+  <data name="ShowMonthGraphButton" xml:space="preserve">
+    <value>Month (31)</value>
+    <comment>(GraphsPage) Button to show last Month in graph</comment>
+  </data>
+  <data name="ShowWeekGraphButton" xml:space="preserve">
+    <value>Week (7)</value>
+    <comment>(GraphsPage) Button to show last week in graph</comment>
+  </data>
+  <data name="ShowYearGraphButton" xml:space="preserve">
+    <value>Year (365)</value>
+    <comment>(GraphsPage) Button to show last Month in graph</comment>
+  </data>
+  <data name="UnderweightBMICategory" xml:space="preserve">
+    <value>Under Weight</value>
+    <comment>(SetupInfoExtensions) BMI Category</comment>
+  </data>
+  <data name="UnderWeightLabel" xml:space="preserve">
+    <value>Underweight</value>
+    <comment>(MainPage) Label on the BMI gague to show underweight</comment>
+  </data>
+  <data name="UnitsLabel" xml:space="preserve">
+    <value>Units:</value>
+    <comment>(InitialSetupPage) Label to indicate entry is for units</comment>
+  </data>
+  <data name="UnitSwitchImperialLabel" xml:space="preserve">
+    <value>Imperial</value>
+    <comment>(InitialSetupPage / SettingsPage) Shows next to switch that changes units used from imperial/metric</comment>
+  </data>
+  <data name="UnitSwitchMetricLabel" xml:space="preserve">
+    <value>Metric</value>
+    <comment>(InitialSetupPage / SettingsPage) Shows next to switch that changes units used from imperial/metric</comment>
+  </data>
+  <data name="ValidationRequiredErrorMessage" xml:space="preserve">
+    <value>This field is required</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+  <data name="WaistLengthValidationErrorMessage" xml:space="preserve">
+    <value>Minimum 2 chars, max 5 chars</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+  <data name="WaistSizeEntryLabel" xml:space="preserve">
+    <value>Waist Size:</value>
+    <comment>(InitialSetupPage) Label to indicate entry is for waist size</comment>
+  </data>
+  <data name="WaistSizeImperialEntryPlaceholder" xml:space="preserve">
+    <value>Waist Size (in)</value>
+    <comment>(InitialSetupPage / SettingsPage / MainPage) If user set units to imperial, lets them know to enter their waist size in inches</comment>
+  </data>
+  <data name="WaistSizeLabel" xml:space="preserve">
+    <value>Waist Size</value>
+    <comment>(GraphsPage) Label on graph for Waist Size</comment>
+  </data>
+  <data name="WaistSizeLabelListviewItem" xml:space="preserve">
+    <value>Waist Size: {0}</value>
+    <comment>(GraphsPage) Label for waist size in the listview</comment>
+  </data>
+  <data name="WaistSizeMetricEntryPlaceholder" xml:space="preserve">
+    <value>Waist Size (cm)</value>
+    <comment>(InitialSetupPage / SettingsPage / MainPage) If user set units to metric, lets them know to enter their waist size in centimeters</comment>
+  </data>
+  <data name="WaistValueValidationErrorMessage" xml:space="preserve">
+    <value>Must be within range 15-200</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+  <data name="WeightDeltaLabel" xml:space="preserve">
+    <value>Change from last entry: </value>
+    <comment>(GraphPage) Shows weight change from last entry</comment>
+  </data>
+  <data name="WeightDeltaLabelListviewItem" xml:space="preserve">
+    <value>Change from last entry: {0}</value>
+    <comment>(GraphsPage) Label on listview template</comment>
+  </data>
+  <data name="WeightEntryLabel" xml:space="preserve">
+    <value>Weight:</value>
+    <comment>(InitialSetupPage) Label to indicate entry is for weight</comment>
+  </data>
+  <data name="WeightImperialEntryPlaceholder" xml:space="preserve">
+    <value>Weight (lb)</value>
+    <comment>(InitialSetupPage / SettingsPage / MainPage) If user set units to imperial, lets them know to enter their weight in pounds</comment>
+  </data>
+  <data name="WeightLabel" xml:space="preserve">
+    <value>Weight</value>
+    <comment>(MainPage / GraphsPage) Shows weight</comment>
+  </data>
+  <data name="WeightLabelListviewItem" xml:space="preserve">
+    <value>Weight: {0}</value>
+    <comment>(GraphsPage) Label on listview template</comment>
+  </data>
+  <data name="WeightLengthValidationErrorMessage" xml:space="preserve">
+    <value>Minimum 1 chars, max 7 chars</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+  <data name="WeightMetricEntryPlaceholder" xml:space="preserve">
+    <value>Weight (kg)</value>
+    <comment>(InitialSetupPage / SettingsPage / MainPage) If user set units to metric, lets them know to enter their weight in kilograms</comment>
+  </data>
+  <data name="WeightValueValidationErrorMessage" xml:space="preserve">
+    <value>Must be within range 0-1000</value>
+    <comment>(SetupInfo) Validation error message</comment>
+  </data>
+</root>

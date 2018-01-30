@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:Weigh.Converters;assembly=Weigh"
+             xmlns:i18N="clr-namespace:Weigh.i18n;assembly=Weigh"
+             xmlns:validation="clr-namespace:Weigh.Validation;assembly=Weigh"
+             xmlns:behaviors="clr-namespace:Weigh.Behaviors;assembly=Weigh"
+             x:Class="Weigh.Views.InitialSetupPage"
+
+             Title="{Binding Title}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:FirstErrorConverter x:Key="FirstErrorConverter" />
+            <converters:StringNullOrEmptyBoolConverter x:Key="StringNullOrEmptyBoolConverter"/>
+
+            <Style x:Key="ErrorLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Micro"/>
+                <Setter Property="TextColor" Value="Red"/>
+                <Setter Property="Margin" Value="5,0,0,0"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <Grid RowSpacing="0" Padding="0,3,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource GridButtonHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridButtonHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
+            <RowDefinition Height="{StaticResource GridEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridMultiLineEntryHeight}" />
+            <RowDefinition Height="{StaticResource GridButtonHeight}" />
+        </Grid.RowDefinitions>
+
+
+        <!-- Units -->
+        <Label Grid.Column="0" Grid.Row="0"
+       Text="{i18N:Translate UnitsLabel}" />
+        <StackLayout Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"
+            Orientation="Horizontal">
+            <Button Text="{i18N:Translate UnitSwitchImperialLabel}"
+                BackgroundColor="{StaticResource primary_dark}"
+                TextColor="{Binding ImperialSelectedBorderColor}"
+                Command="{Binding SelectImperialCommand}"/>
+            <Button Text="{i18N:Translate UnitSwitchMetricLabel}"
+                BackgroundColor="{StaticResource primary_dark}"
+                TextColor="{Binding MetricSelectedBorderColor}"
+                Command="{Binding SelectMetricCommand}"/>
+        </StackLayout>
+
+
+
+
+        <!-- Age -->
+        <Label Grid.Column="0" Grid.Row="1"
+       Text="{i18N:Translate AgeLabel}" />
+        <DatePicker Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Date="{Binding SettingVals.BirthDate}"
+                    MinimumDate="{Binding BirthDateMinDate}"
+                    MaximumDate="{Binding BirthDateMaxDate}"/>
+
+        <!-- Height -->
+        <Label Grid.Column="0" Grid.Row="2"
+       Text="{i18N:Translate HeightLabel}" />
+        <Entry Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"
+            Text="{Binding SettingValsValidated.HeightMajor, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[HeightMajor]}"
+               Placeholder="{i18N:Translate HeightMajorImperialEntryPlaceholder}"
+               Style="{ StaticResource SetupEntryStyle }"
+               x:Name="HeightMajor"
+               Keyboard="Numeric">
+            <Entry.Behaviors>
+                <behaviors:EntryLengthValidatorBehavior MaxLength="6" />
+            </Entry.Behaviors>
+            <Entry.Triggers>
+                <DataTrigger TargetType="Entry"
+                     Binding="{Binding SettingVals.Units}"
+                     Value="false">
+                    <Setter Property="Placeholder" Value="{i18N:Translate HeightMajorMetricEntryPlaceholder}" />
+                </DataTrigger>
+            </Entry.Triggers>
+        </Entry>
+        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3"
+                    Text="{Binding SettingValsValidated.Errors[HeightMajor], Converter={StaticResource FirstErrorConverter}"
+               Style="{StaticResource ErrorLabelStyle}"
+               IsVisible="{Binding SettingValsValidated.IsDirty[HeightMajor]}"/>
+
+
+        <Entry Grid.Column="3" Grid.Row="2"
+            Text="{Binding SettingValsValidated.HeightMinor, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[HeightMinor]}"
+               Placeholder="(in)"
+               Style="{ StaticResource SetupEntryStyle }"
+               x:Name="HeightMinor"
+               Keyboard="Numeric"
+               IsVisible="{Binding SettingVals.Units}">
+            <Entry.Behaviors>
+                <behaviors:EntryLengthValidatorBehavior MaxLength="2" />
+            </Entry.Behaviors>
+        </Entry>
+        <Label Grid.Column="3" Grid.Row="3"
+                    Text="{Binding SettingValsValidated.Errors[HeightMinor], Converter={StaticResource FirstErrorConverter}"
+                       Margin="10,-10,0,-10"
+               Style="{StaticResource ErrorLabelStyle}"
+               IsVisible="{Binding SettingValsValidated.IsDirty[HeightMinor]}"/>
+
+        <!-- Weight -->
+        <Label Grid.Column="0" Grid.Row="4"
+               Text="{i18N:Translate WeightEntryLabel}" />
+        <Entry Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3"
+            Text="{Binding SettingValsValidated.Weight, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[Weight]}"
+               Placeholder="{i18N:Translate WeightImperialEntryPlaceholder}"
+               Style="{ StaticResource SetupEntryStyle }"
+               x:Name="Weight"
+               Keyboard="Numeric">
+            <Entry.Triggers>
+                <DataTrigger TargetType="Entry"
+                     Binding="{Binding SettingVals.Units}"
+                     Value="false">
+                    <Setter Property="Placeholder" Value="{i18N:Translate WeightMetricEntryPlaceholder}" />
+                </DataTrigger>
+            </Entry.Triggers>
+            <Entry.Behaviors>
+                <behaviors:EntryLengthValidatorBehavior MaxLength="7" />
+            </Entry.Behaviors>
+        </Entry>
+        <Label Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3"
+            Text="{Binding SettingValsValidated.Errors[Weight], Converter={StaticResource FirstErrorConverter}"
+               Style="{StaticResource ErrorLabelStyle}"
+               IsVisible="{Binding SettingValsValidated.IsDirty[Weight]}"/>
+
+
+        <!-- Waist Size -->
+        <Label Grid.Column="0" Grid.Row="6"
+       Text="{i18N:Translate WaistSizeEntryLabel}" />
+        <Switch Grid.Column="1" Grid.Row="6"
+            IsToggled="{Binding SettingVals.WaistSizeEnabled}" x:Name="EnableWaistSizeSwitch" />
+        <Entry Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2"
+            Text="{Binding SettingValsValidated.WaistSize, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[WaistSize]}"
+               Placeholder="{i18N:Translate WaistSizeImperialEntryPlaceholder}"
+               Style="{ StaticResource SetupEntryStyle }"
+               x:Name="WaistSize"
+               Keyboard="Numeric"
+               IsEnabled="{Binding Source={x:Reference EnableWaistSizeSwitch}, Path=IsToggled}">
+            <Entry.Triggers>
+                <DataTrigger TargetType="Entry"
+                     Binding="{Binding SettingVals.Units}"
+                     Value="false">
+                    <Setter Property="Placeholder" Value="{i18N:Translate WaistSizeMetricEntryPlaceholder}" />
+                </DataTrigger>
+            </Entry.Triggers>
+            <Entry.Behaviors>
+                <behaviors:EntryLengthValidatorBehavior MaxLength="5" />
+            </Entry.Behaviors>
+        </Entry>
+        <Label Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2"
+            Text="{Binding SettingValsValidated.Errors[WaistSize], Converter={StaticResource FirstErrorConverter}"
+               Style="{StaticResource ErrorLabelStyle}"
+               IsVisible="{Binding SettingValsValidated.IsDirty[WaistSize]}"
+               Margin="65,0,0,0"/>
+
+
+        <!-- Level of Activity -->
+        <Label Grid.Column="0" Grid.Row="8"
+       Text="{i18N:Translate LevelOfActivityLabel}" />
+        <Picker Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="3"
+            ItemsSource="{Binding PickerSource}"
+                SelectedIndex="{Binding SettingVals.PickerSelectedItem, Mode=TwoWay}"
+                Title="{i18N:Translate ActivityLevelLabel}"
+                 HorizontalOptions="FillAndExpand"
+                WidthRequest="150"/>
+
+        <!-- Sex -->
+        <Label Grid.Column="0" Grid.Row="9"
+       Text="{i18N:Translate SexLabel}" />
+        <StackLayout Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="3"
+            Orientation="Horizontal">
+            <Button Text="{Binding MaleText}"
+                    FontFamily="{StaticResource FontAwesome}"
+                    BackgroundColor="{StaticResource primary_dark}"
+                TextColor="{Binding MaleSelectedBorderColor}"
+                Command="{Binding SelectMaleCommand}"/>
+            <Button Text="{Binding FemaleText}"
+                    FontFamily="{StaticResource FontAwesome}"
+                    BackgroundColor="{StaticResource primary_dark}"
+                TextColor="{Binding FemaleSelectedBorderColor}"
+                Command="{Binding SelectFemaleCommand}"/>
+        </StackLayout>
+
+
+        <!-- Goal Weight -->
+        <Label Grid.Column="0" Grid.Row="10"
+       Text="{i18N:Translate GoalWeightEntryLabel}" />
+        <Entry Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="3"
+            Text="{Binding SettingValsValidated.GoalWeight, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[GoalWeight]}"
+               Placeholder="{i18N:Translate GoalWeightImperialEntryPlaceholder}"
+               Style="{ StaticResource SetupEntryStyle }"
+               x:Name="GoalWeight"
+               Keyboard="Numeric">
+            <Entry.Triggers>
+                <DataTrigger TargetType="Entry"
+                     Binding="{Binding SettingVals.Units}"
+                     Value="false">
+                    <Setter Property="Placeholder" Value="{i18N:Translate GoalWeightMetricEntryPlaceholder}" />
+                </DataTrigger>
+            </Entry.Triggers>
+            <Entry.Behaviors>
+                <behaviors:EntryLengthValidatorBehavior MaxLength="7" />
+            </Entry.Behaviors>
+        </Entry>
+        <Label Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="3"
+            Text="{Binding SettingValsValidated.Errors[GoalWeight], Converter={StaticResource FirstErrorConverter}"
+               Style="{StaticResource ErrorLabelStyle}"
+               IsVisible="{Binding SettingValsValidated.IsDirty[GoalWeight]}"/>
+
+
+        <!-- Goal Date -->
+        <Label Grid.Column="0" Grid.Row="12"
+       Text="{i18N:Translate GoalDateEntryLabel}" />
+        <DatePicker Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="3"
+            Date="{Binding SettingVals.GoalDate}"
+                    MinimumDate="{Binding SettingVals.MinDate}"
+                    MaximumDate="{Binding MaxGoalDate}"></DatePicker>
+
+        <!-- Notes Section -->
+        <Label Grid.Column="0" Grid.Row="13"
+               Text="{i18N:Translate NotesLabel}" />
+        <Editor Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="3"
+                Text="{Binding NoteEntry}">
+            <Editor.Behaviors>
+                <behaviors:EditorLengthValidatorBehavior MaxLength="250" />
+            </Editor.Behaviors>
+        </Editor>
+
+        <!-- Save Button -->
+        <Button Grid.Column="0" Grid.Row="14" Grid.ColumnSpan="4"
+            Text="{i18N:Translate SaveLabel}"
+                Command="{Binding SaveInfoCommand}"/>
+    </Grid>
+
+</ContentPage>
