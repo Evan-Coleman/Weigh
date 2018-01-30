@@ -220,6 +220,7 @@ namespace Weigh.ViewModels
             {
                 SettingVals.SaveSettingValsToDevice();
             }
+            _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SettingVals);
             InitializeCharts();
         }
 
