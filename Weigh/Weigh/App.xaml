@@ -45,13 +45,13 @@
             -->
 
             <Style TargetType="NavigationPage" ApplyToDerivedTypes="true">
-                <Setter Property="BarTextColor" Value="{StaticResource NavigationText}" />
-                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryDark}" />
+                <Setter Property="BarTextColor" Value="{StaticResource secondary_text}" />
+                <Setter Property="BarBackgroundColor" Value="{StaticResource primary}" />
             </Style>
 
             <Style TargetType="TabbedPage" ApplyToDerivedTypes="true">
-                <Setter Property="BarTextColor" Value="{StaticResource NavigationText}" />
-                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryDark}" />
+                <Setter Property="BarTextColor" Value="{StaticResource secondary_text}" />
+                <Setter Property="BarBackgroundColor" Value="{StaticResource primary}" />
             </Style>
 
             <Style TargetType="Label">
