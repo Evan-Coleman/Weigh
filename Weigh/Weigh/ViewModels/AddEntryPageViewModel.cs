@@ -281,13 +281,29 @@ namespace Weigh.ViewModels
                 // If we're adding an older entry than the latest, we won't update current stats in Settings
                 else
                 {
+                    WeightEntry previousWeightEntry;
+                    WeightEntry nextWeightEntry;
                     List<WeightEntry> entries = await App.Database.GetWeightsAsync();
-                    WeightEntry previousWeightEntry = entries
-                        .OrderByDescending(x => x.WeighDate).FirstOrDefault(x => x.WeighDate < newdate);
+                    var dentries = entries.OrderByDescending(x => x.WeighDate).ToList();
+                    var index = dentries.TakeWhile(x => x.ID != SelectedWeightEntry.ID).Count();
+                    if (index == 0)
+                    {
+                        nextWeightEntry = null;
+                    }
+                    else
+                    {
+                        nextWeightEntry = dentries[index - 1];
+                    }
 
-                    // Since we're adding an older entry, we want to make sure and update the next entry's weightdelta
-                    WeightEntry nextWeightEntry = entries
-                        .OrderBy(x => x.WeighDate).FirstOrDefault(x => x.WeighDate > newdate);
+                    if (index > dentries.Count - 2)
+                    {
+                        previousWeightEntry = null;
+                    }
+                    else
+                    {
+                        previousWeightEntry = dentries[index + 1];
+                    }
+
                     if (nextWeightEntry != null)
                     {
                         nextWeightEntry.WeightDelta = nextWeightEntry.Weight - SettingVals.Weight;
