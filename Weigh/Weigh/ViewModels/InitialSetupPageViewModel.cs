@@ -40,11 +40,11 @@ namespace Weigh.ViewModels
             Settings.GoalMetNotified = false;
             SettingVals.MinDate = DateTime.UtcNow.ToLocalTime().AddDays(10);
             SettingVals.GoalDate = DateTime.UtcNow.ToLocalTime().AddDays(180);
-#if DEBUG
-            SettingVals.BirthDate = DateTime.Parse("2/25/1988");
-#else
+
+            // DEBUG CHANGE!
+            //SettingVals.BirthDate = DateTime.Parse("2/25/1988");
             SettingVals.BirthDate = DateTime.UtcNow.ToLocalTime().AddYears(-21);
-#endif
+
             BirthDateMinDate = DateTime.UtcNow.ToLocalTime().AddYears(-150);
             BirthDateMaxDate = DateTime.UtcNow.ToLocalTime().AddYears(-1);
             MaxGoalDate = DateTime.UtcNow.ToLocalTime().AddYears(1);
