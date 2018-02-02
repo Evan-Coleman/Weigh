@@ -40,12 +40,12 @@ namespace Weigh.ViewModels
 
             _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo);
             
-            BirthDateMinDate = DateTime.UtcNow.ToLocalTime().AddYears(-150);
-            BirthDateMaxDate = DateTime.UtcNow.ToLocalTime().AddYears(-1);
+            BirthDateMinDate = DateTime.UtcNow.AddYears(-150);
+            BirthDateMaxDate = DateTime.UtcNow.AddYears(-1);
             ImperialSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             MaleSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
-            SettingVals.MinDate = DateTime.UtcNow.ToLocalTime().AddDays(10);
-            MaxGoalDate = DateTime.UtcNow.ToLocalTime().AddYears(1);
+            SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
+            MaxGoalDate = DateTime.UtcNow.AddYears(1);
             PickerSource = new ObservableCollection<string>
             {
                 AppResources.LowActivityPickItem,
@@ -228,7 +228,7 @@ namespace Weigh.ViewModels
         {
             SettingVals = setupInfo;
             SettingValsValidated.InitializeFromSettings(SettingVals);
-            SettingVals.MinDate = DateTime.UtcNow.ToLocalTime().AddDays(10);
+            SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
             PickerSelectedIndex = SettingVals.PickerSelectedItem;
         }
 
@@ -238,7 +238,7 @@ namespace Weigh.ViewModels
             {
                 SettingVals = (SettingVals)parameters["SettingVals"];
                 SettingValsValidated.InitializeFromSettings(SettingVals);
-                SettingVals.MinDate = DateTime.UtcNow.ToLocalTime().AddDays(10);
+                SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
                 PickerSelectedIndex = SettingVals.PickerSelectedItem;
             }
         }

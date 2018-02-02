@@ -38,16 +38,16 @@ namespace Weigh.ViewModels
 
             // Initialize app SettingVals
             Settings.GoalMetNotified = false;
-            SettingVals.MinDate = DateTime.UtcNow.ToLocalTime().AddDays(10);
-            SettingVals.GoalDate = DateTime.UtcNow.ToLocalTime().AddDays(180);
+            SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
+            SettingVals.GoalDate = DateTime.UtcNow.AddDays(180);
 
             // DEBUG CHANGE!
             //SettingVals.BirthDate = DateTime.Parse("2/25/1988");
-            SettingVals.BirthDate = DateTime.UtcNow.ToLocalTime().AddYears(-21);
+            SettingVals.BirthDate = DateTime.UtcNow.AddYears(-21);
 
-            BirthDateMinDate = DateTime.UtcNow.ToLocalTime().AddYears(-150);
-            BirthDateMaxDate = DateTime.UtcNow.ToLocalTime().AddYears(-1);
-            MaxGoalDate = DateTime.UtcNow.ToLocalTime().AddYears(1);
+            BirthDateMinDate = DateTime.UtcNow.AddYears(-150);
+            BirthDateMaxDate = DateTime.UtcNow.AddYears(-1);
+            MaxGoalDate = DateTime.UtcNow.AddYears(1);
 
             // Setting units to default imperial
             SettingVals.Units = true;
@@ -227,7 +227,7 @@ namespace Weigh.ViewModels
             {
                 SettingValsValidated.WaistSize = "0";
             }
-            SettingValsValidated.Age = ((DateTime.UtcNow.ToLocalTime() - SettingVals.BirthDate).Days / 365).ToString();
+            SettingValsValidated.Age = ((DateTime.UtcNow - SettingVals.BirthDate).Days / 365).ToString();
             if (CanExecute() == false)
             {
                 UserDialogs.Instance.Alert(AppResources.FormValidationPopupLabel);
@@ -247,9 +247,9 @@ namespace Weigh.ViewModels
                 // Pulling in vals from validated model
                 SettingVals.InitializeFromValidated(SettingValsValidated);
                 SettingVals.InitialWeight = Convert.ToDouble(SettingValsValidated.Weight);
-                SettingVals.InitialWeighDate = DateTime.UtcNow.ToLocalTime();
+                SettingVals.InitialWeighDate = DateTime.UtcNow;
                 SettingVals.LastWeight = SettingVals.InitialWeight;
-                SettingVals.LastWeighDate = DateTime.UtcNow.ToLocalTime();
+                SettingVals.LastWeighDate = DateTime.UtcNow;
                 SettingVals.ValidateGoal();
                 SettingVals.SaveSettingValsToDevice();
                 Settings.FirstUse = "no";

@@ -31,8 +31,8 @@ namespace Weigh.ViewModels
 
             DeleteAction = false;
             DeleteActionEnabled = false;
-            EntryDate = DateTime.UtcNow.ToLocalTime();
-            MaxEntryDate = DateTime.UtcNow.ToLocalTime();
+            EntryDate = DateTime.UtcNow;
+            MaxEntryDate = DateTime.UtcNow;
             PickerSource = new ObservableCollection<string>
             {
                 AppResources.LowActivityPickItem,
@@ -184,7 +184,7 @@ namespace Weigh.ViewModels
 
             WeightEntry nextWeightEntry;
             WeightEntry previousWeightEntry;
-            //DateTime newdate = EntryDate.Date + new TimeSpan(DateTime.UtcNow.ToLocalTime().Hour, DateTime.UtcNow.ToLocalTime().Minute, DateTime.UtcNow.ToLocalTime().Second);
+            //DateTime newdate = EntryDate.Date + new TimeSpan(DateTime.UtcNow.Hour, DateTime.UtcNow.Minute, DateTime.UtcNow.Second);
 
 
             List<WeightEntry> entries = await App.Database.GetWeightsAsync();
@@ -253,7 +253,7 @@ namespace Weigh.ViewModels
             else
             {
                 DateTime newdate = EntryDate.Date +
-                                   new TimeSpan(DateTime.UtcNow.ToLocalTime().Hour, DateTime.UtcNow.ToLocalTime().Minute, DateTime.UtcNow.ToLocalTime().Second);
+                                   new TimeSpan(DateTime.UtcNow.Hour, DateTime.UtcNow.Minute, DateTime.UtcNow.Second);
                 if (SelectedWeightEntry != null)
                 {
                     await App.Database.DeleteWeightInfoAsync(SelectedWeightEntry);
@@ -363,7 +363,7 @@ namespace Weigh.ViewModels
                 {
                     var WeightEntry = new WeightEntry();
                     WeightEntry.Weight = i;
-                    WeightEntry.WeighDate = DateTime.UtcNow.ToLocalTime().AddDays(190 - i);
+                    WeightEntry.WeighDate = DateTime.UtcNow.AddDays(190 - i);
                     await App.Database.SaveWeightAsync(WeightEntry);
                 }
                 */
