@@ -359,8 +359,8 @@ namespace Weigh.Models
             CalculateBMR();
             SetBMICategory();
 
-            Age = (DateTime.UtcNow.ToLocalTime() - BirthDate).Days / 365;
-            TimeLeftToGoal = Math.Max(0, (GoalDate - DateTime.UtcNow.ToLocalTime()).Days);
+            Age = (DateTime.UtcNow - BirthDate).Days / 365;
+            TimeLeftToGoal = Math.Max(0, (GoalDate - DateTime.UtcNow).Days);
             DistanceToGoalWeight = Math.Max(0, Weight - GoalWeight);
             WeightLostToDate = InitialWeight - Weight;
 
@@ -384,7 +384,7 @@ namespace Weigh.Models
             }
 
 
-            var weightPerDayToMeetGoal = (weight - goalWeight) / (GoalDate - DateTime.UtcNow.ToLocalTime()).TotalDays;
+            var weightPerDayToMeetGoal = (weight - goalWeight) / (GoalDate - DateTime.UtcNow).TotalDays;
             WeightPerWeekToMeetGoal = weightPerDayToMeetGoal * 7;
             var requiredCaloricDefecit = 500 * WeightPerWeekToMeetGoal;
             RecommendedDailyCaloricIntake = (int) BMR - requiredCaloricDefecit;
@@ -396,8 +396,8 @@ namespace Weigh.Models
                 RecommendedDailyCaloricIntake = (int)BMR - requiredCaloricDefecit;
                 WeightPerWeekToMeetGoal = requiredCaloricDefecit / 500;
                 var daysToAddToMeetMinimum = (int) ((weight - goalWeight) / (WeightPerWeekToMeetGoal / 7));
-                GoalDate = DateTime.Now.ToLocalTime().AddDays(daysToAddToMeetMinimum + 10);
-                TimeLeftToGoal = Math.Max(0, (GoalDate - DateTime.UtcNow.ToLocalTime()).Days);
+                GoalDate = DateTime.UtcNow.AddDays(daysToAddToMeetMinimum + 10);
+                TimeLeftToGoal = Math.Max(0, (GoalDate - DateTime.UtcNow).Days);
                 UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, GoalDate));
                 return false;
                 //Create(async token => await this.Dialogs.AlertAsync("Test alert", "Alert Title", null, token));
@@ -410,8 +410,8 @@ namespace Weigh.Models
                 RecommendedDailyCaloricIntake = (int)BMR - requiredCaloricDefecit;
                 WeightPerWeekToMeetGoal = requiredCaloricDefecit / 500;
                 var daysToAddToMeetMinimum = (int) ((weight - goalWeight) / (WeightPerWeekToMeetGoal / 7));
-                GoalDate = DateTime.Now.ToLocalTime().AddDays(daysToAddToMeetMinimum + 10);
-                TimeLeftToGoal = Math.Max(0, (GoalDate - DateTime.UtcNow.ToLocalTime()).Days);
+                GoalDate = DateTime.UtcNow.AddDays(daysToAddToMeetMinimum + 10);
+                TimeLeftToGoal = Math.Max(0, (GoalDate - DateTime.UtcNow).Days);
                 UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, GoalDate));
                 return false;
                 // Keeping for future use maybe
