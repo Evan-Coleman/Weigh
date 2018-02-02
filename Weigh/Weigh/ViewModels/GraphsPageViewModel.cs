@@ -37,35 +37,11 @@ namespace Weigh.ViewModels
             ShowMonthCommand = new DelegateCommand(ShowMonth);
             ShowYearCommand = new DelegateCommand(ShowYear);
             ItemTappedCommand = new DelegateCommand<SfListView>(HandleItemTapped);
-            //ToggleWeightWaistSizeCommand = new DelegateCommand(ToggleWeightWaistSize);
 
-            ShowDataMarker = true;
             WeekSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             CurrentlySelectedGraphTimeline = "week";
-            ToggleWeightOrWaistSize = "Weight";
-            ToggleWeightOrWaistSizeLabel = AppResources.WeightLabel;
-            //WaistSizeEnabled = Settings.WaistSizeEnabled;
-
-            //SfDateTimeRangeNavigator rangeNavigator = new SfDateTimeRangeNavigator();
-            /*
-            ViewStartDateRange = Settings.LastWeighDate.AddDays(-10).ToString("MM/dd/yyyy");
-            ViewEndDateRange = Settings.LastWeighDate.ToString("MM/dd/yyyy");
-
-            StartDateRange = Settings.InitialWeightDate.ToString("MM/dd/yyyy");
-            EndDateRange = Settings.LastWeighDate.ToString("MM/dd/yyyy");
-            
-            // REMOVE WHEN NOT DEBUG
-            // .ToString("MM/dd/yyyy")
-            Settings.InitialWeightDate = new DateTime(2017, 12, 1);
-            StartDateRange = Settings.InitialWeightDate;
-            EndDateRange = new DateTime(2017, 12, 18);
-            // REMOVE WHEN NOT DEBUG
-            ViewStartDateRange = new DateTime(2017, 12, 18).AddDays(-10);
-            ViewEndDateRange = new DateTime(2017, 12, 18);
-            */
 
             _ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry);
-            //ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Subscribe(UpdateWaistSizeEnabled);
         }
 
         #endregion
@@ -93,16 +69,7 @@ namespace Weigh.ViewModels
         public DelegateCommand ShowWeekCommand { get; set; }
         public DelegateCommand ShowMonthCommand { get; set; }
         public DelegateCommand ShowYearCommand { get; set; }
-        public DelegateCommand ToggleWeightWaistSizeCommand { get; set; }
         public DelegateCommand<SfListView> ItemTappedCommand { get; set; }
-
-        private bool _showDataMarker;
-
-        public bool ShowDataMarker
-        {
-            get => _showDataMarker;
-            set => SetProperty(ref _showDataMarker, value);
-        }
 
         private Color _weekSelectedBorderColor;
 
@@ -129,68 +96,16 @@ namespace Weigh.ViewModels
         }
 
         public string CurrentlySelectedGraphTimeline { get; set; }
-        private string _toggleWeightOrWaistSize;
-
-        public string ToggleWeightOrWaistSize
-        {
-            get => _toggleWeightOrWaistSize;
-            set => SetProperty(ref _toggleWeightOrWaistSize, value);
-        }
-
-        private string _toggleWeightOrWaistSizeLabel;
-
-        public string ToggleWeightOrWaistSizeLabel
-        {
-            get => _toggleWeightOrWaistSizeLabel;
-            set => SetProperty(ref _toggleWeightOrWaistSizeLabel, value);
-        }
 
         public List<WeightEntry> DataFromDatabase { get; set; }
-
-        // Functionality removed, keeping code for possible future re-integration
-        /*
-        private bool _waistSizeEnabled;
-
-        public bool WaistSizeEnabled
-        {
-            get => _waistSizeEnabled;
-            set => SetProperty(ref _waistSizeEnabled, value);
-        }
-        */
 
         #endregion
 
         #region Methods
 
-        // Functionality removed, keeping code for possible future re-integration
-        /*
-// Doesn't work to hide/show
-private void UpdateWaistSizeEnabled(bool enabled)
-{
-    WaistSizeEnabled = enabled;
-}
-
-
-
-private void ToggleWeightWaistSize()
-{
-    if (ToggleWeightOrWaistSize == "Weight")
-    {
-        ToggleWeightOrWaistSize = "WaistSize";
-        ToggleWeightOrWaistSizeLabel = AppResources.WaistSizeLabel;
-    }
-    else
-    {
-        ToggleWeightOrWaistSize = "Weight";
-        ToggleWeightOrWaistSizeLabel = AppResources.WeightLabel;
-    }
-}
-*/
-
         private void ShowWeek()
         {
             ChartData = WeightList.Take(7).ToObservableCollection();
-            ShowDataMarker = true;
             WeekSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             MonthSelectedBorderColor = Color.Default;
             YearSelectedBorderColor = Color.Default;
@@ -200,7 +115,6 @@ private void ToggleWeightWaistSize()
         private void ShowMonth()
         {
             ChartData = WeightList.Take(31).ToObservableCollection();
-            ShowDataMarker = false;
             WeekSelectedBorderColor = Color.Default;
             MonthSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             YearSelectedBorderColor = Color.Default;
@@ -210,7 +124,6 @@ private void ToggleWeightWaistSize()
         private void ShowYear()
         {
             ChartData = WeightList.Take(365).ToObservableCollection();
-            ShowDataMarker = false;
             WeekSelectedBorderColor = Color.Default;
             MonthSelectedBorderColor = Color.Default;
             YearSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
@@ -240,7 +153,6 @@ private void ToggleWeightWaistSize()
             WeightList = DataFromDatabase.ToObservableCollection();
 
             ChartData = DataFromDatabase.Take(7).ToObservableCollection();
-            ShowDataMarker = true;
             WeekSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             MonthSelectedBorderColor = Color.Default;
             YearSelectedBorderColor = Color.Default;

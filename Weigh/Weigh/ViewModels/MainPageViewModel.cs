@@ -150,6 +150,14 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _scheduleStatusBackgroundColor, value);
         }
 
+        private string _BMIInfoLabel;
+
+        public string BMIInfoLabel
+        {
+            get => _BMIInfoLabel;
+            set => SetProperty(ref _BMIInfoLabel, value);
+        }
+
         #endregion
 
         #region Methods
@@ -211,6 +219,7 @@ namespace Weigh.ViewModels
         {
             SettingVals = settingVals;
             InitializeCharts();
+            BMIInfoLabel = AppResources.BMILabel + ": " + SettingVals.BMI.ToString() + SettingVals.BMICategory;
         }
 
         private void HandleNewWeightEntry()
@@ -222,6 +231,7 @@ namespace Weigh.ViewModels
             }
             _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SettingVals);
             InitializeCharts();
+            BMIInfoLabel = AppResources.BMILabel + ": " + SettingVals.BMI.ToString() + SettingVals.BMICategory;
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)
@@ -235,13 +245,12 @@ namespace Weigh.ViewModels
             // TODO: Possibly remove
             _ea.GetEvent<UpdateWaistSizeEnabledToGraphEvent>().Publish(SettingVals.WaistSizeEnabled);
             */
-
             if (parameters.ContainsKey("SettingVals"))
             {
                 SettingVals = (SettingVals) parameters["SettingVals"];
             }
-
             InitializeCharts();
+            BMIInfoLabel = AppResources.BMILabel + ": " + SettingVals.BMI.ToString(format: "###.##") + " " + SettingVals.BMICategory;
         }
 
         public override void Destroy()

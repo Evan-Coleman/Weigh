@@ -322,20 +322,16 @@
     <comment>(SetupInfo) Validation error message</comment>
   </data>
   <data name="ShowMonthGraphButton" xml:space="preserve">
-    <value>Month (31)</value>
+    <value>Month</value>
     <comment>(GraphsPage) Button to show last Month in graph</comment>
   </data>
   <data name="ShowWeekGraphButton" xml:space="preserve">
-    <value>Week (7)</value>
+    <value>Week</value>
     <comment>(GraphsPage) Button to show last week in graph</comment>
   </data>
   <data name="ShowYearGraphButton" xml:space="preserve">
-    <value>Year (365)</value>
+    <value>Year</value>
     <comment>(GraphsPage) Button to show last Month in graph</comment>
-  </data>
-  <data name="NumberOfEntriesLabel" xml:space="preserve">
-    <value># Points:</value>
-    <comment>(GraphsPage) Label to say how many entries on the graph will show</comment>
   </data>
   <data name="WaistSizeLabel" xml:space="preserve">
     <value>Waist Size</value>
@@ -456,5 +452,9 @@
   <data name="SavedToast" xml:space="preserve">
     <value>Saved</value>
     <comment>(SettingsPage)</comment>
+  </data>
+  <data name="DeleteToolbarItemLabel" xml:space="preserve">
+    <value>Delete</value>
+    <comment>(AddEntry)</comment>
   </data>
 </root>
