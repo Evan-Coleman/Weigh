@@ -41,6 +41,7 @@ namespace Weigh.ViewModels
                 MinValue = 0,
                 MaxValue = 100,
                 Margin = 0,
+                LineSize = 40,
             };
             DaysLeftChart = new RadialGaugeChart
             {
@@ -48,6 +49,7 @@ namespace Weigh.ViewModels
                 MinValue = 0,
                 MaxValue = 100,
                 Margin = 0,
+                LineSize = 40,
             };
 
             //_ea.GetEvent<NewGoalEvent>().Subscribe(HandleNewGoal);
