@@ -21,22 +21,22 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid  Padding="0,3,0,0" RowSpacing="0">
+    <Grid Padding="0,3,0,0" RowSpacing="0" Margin="0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.35*" />
-            <RowDefinition Height="0.13*" />
-            <RowDefinition Height="0.55*" />
+            <RowDefinition Height="0.40*" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="0.60*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
+
         <!-- Chart -->
-        <chart:SfChart Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4">
+        <chart:SfChart Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
 
             <chart:SfChart.PrimaryAxis>
 
@@ -50,11 +50,11 @@
 
             <chart:SfChart.SecondaryAxis>
 
-                <chart:NumericalAxis>
+                <chart:NumericalAxis RangePadding="Additional">
 
                     <chart:NumericalAxis.Title>
 
-                        <chart:ChartAxisTitle Text="{Binding ToggleWeightOrWaistSizeLabel}"></chart:ChartAxisTitle>
+                        <chart:ChartAxisTitle Text="{localization:Translate WeightLabel}"></chart:ChartAxisTitle>
 
                     </chart:NumericalAxis.Title>
 
@@ -64,22 +64,12 @@
 
             <chart:SfChart.Series>
 
-                <chart:LineSeries ItemsSource="{Binding ChartData}" XBindingPath="WeighDate" YBindingPath="{Binding ToggleWeightOrWaistSize}"
-                                  EnableDataPointSelection="False"
+                <chart:LineSeries ItemsSource="{Binding ChartData}" XBindingPath="WeighDate" YBindingPath="Weight"
+                                  EnableDataPointSelection="True" EnableTooltip="True" EnableAnimation="True"
                                   Color="{StaticResource primary_dark}">
                     <chart:LineSeries.DataMarker>
 
-                        <chart:ChartDataMarker ShowLabel="{Binding ShowDataMarker}">
-
-                            <chart:ChartDataMarker.LabelStyle>
-
-                                <chart:DataMarkerLabelStyle BackgroundColor="{StaticResource secondary}"
-                                                            TextColor="{StaticResource secondary_text}" LabelPosition="Auto"
-                                                            BorderColor="{StaticResource primary_light}"/>
-
-                            </chart:ChartDataMarker.LabelStyle>
-
-                        </chart:ChartDataMarker>
+                        <chart:ChartDataMarker ShowLabel="False" ShowMarker="True" MarkerWidth="8" MarkerHeight="8" />
 
                     </chart:LineSeries.DataMarker>
                 </chart:LineSeries>
@@ -88,73 +78,41 @@
 
         </chart:SfChart>
 
+
         <!-- Chart Buttons -->
-        <Button Grid.Column="0" Grid.Row="1"
-            Text="{localization:Translate NumberOfEntriesLabel}" IsEnabled="False"
-                    BackgroundColor="{StaticResource primary_dark}"
-                    FontSize="Small"/>
-        <Button Grid.Column="1" Grid.Row="1"
+        <Button Grid.Column="0" Grid.Row="1" Margin="0"
             Text="{localization:Translate ShowWeekGraphButton}"
                     Command="{Binding ShowWeekCommand}"
-                BackgroundColor="{StaticResource primary_dark}"
+                BackgroundColor="{StaticResource secondary}"
                     FontSize="Small"
                     TextColor="{Binding WeekSelectedBorderColor}"/>
-        <Button Grid.Column="2" Grid.Row="1"
+        <Button Grid.Column="1" Grid.Row="1" Margin="0"
             Text="{localization:Translate ShowMonthGraphButton}"
                     Command="{Binding ShowMonthCommand}"
-                BackgroundColor="{StaticResource primary_dark}"
+                BackgroundColor="{StaticResource secondary}"
                     FontSize="Small"
                     TextColor="{Binding MonthSelectedBorderColor}"/>
-        <Button Grid.Column="3" Grid.Row="1"
+        <Button Grid.Column="2" Grid.Row="1" Margin="0"
             Text="{localization:Translate ShowYearGraphButton}"
                     Command="{Binding ShowYearCommand}"
-                BackgroundColor="{StaticResource primary_dark}"
+                BackgroundColor="{StaticResource secondary}"
                     FontSize="Small"
                     TextColor="{Binding YearSelectedBorderColor}"/>
 
+
         <!-- ListView -->
-        <syncfusionList:SfListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4"
+        <syncfusionList:SfListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Margin="0"
                                    x:Name="listView"
                                    ItemsSource="{Binding WeightList}"
                                    AutoFitMode="Height"
                                    SelectionBackgroundColor="{StaticResource secondary_light}"
-                                   Padding="4">
+                                   Padding="4,0,4,0">
             <chart:SfChart.Behaviors>
                 <pb:EventToCommandBehavior EventName="SelectionChanged" Command="{Binding ItemTappedCommand}"
                                            CommandParameter="{Binding Source={x:Reference listView}" />
             </chart:SfChart.Behaviors>
             <syncfusionList:SfListView.ItemTemplate>
                 <DataTemplate>
-                    <!--
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30" />
-                            <RowDefinition Height="30" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" Grid.Column="0"
-                               FontSize="Small"
-                               Text="{Binding Path=Weight, StringFormat={localization:Translate WeightLabelListviewItem}}"
-                               HorizontalOptions="StartAndExpand"/>
-                        <Label Grid.Row="0" Grid.Column="1"
-                               FontSize="Small"
-                               Text="{Binding Path=WeighDate, StringFormat={localization:Translate DateLabelListviewItem}}"
-                               HorizontalOptions="EndAndExpand"/>
-                        <Label Grid.Row="1" Grid.Column="0"
-                               FontSize="Small"
-                               Text="{Binding Path=WeightDelta, StringFormat={localization:Translate WeightDeltaLabelListviewItem}}"
-                               HorizontalOptions="StartAndExpand"/>
-                        <Label Grid.Row="1" Grid.Column="1"
-                               FontSize="Small"
-                               Text="{Binding Path=WaistSize, StringFormat={localization:Translate WaistSizeLabelListviewItem}}"
-                               HorizontalOptions="EndAndExpand"
-                               IsVisible="{Binding WaistSizeEnabled}">
-                        </Label>
-                    </Grid>
-                    -->
                     <Grid ColumnSpacing="5" RowSpacing="0" Margin="0" Padding="5,0,5,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="25" />
@@ -216,7 +174,7 @@
 
 
         <!-- ADMOB Banner -->
-        <controls:AdMobView Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" VerticalOptions="End" />
+        <controls:AdMobView Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" VerticalOptions="End" Margin="0" Padding="0"/>
     </Grid>
 
 </ContentPage>

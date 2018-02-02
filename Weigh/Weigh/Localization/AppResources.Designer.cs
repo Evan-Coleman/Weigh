@@ -178,6 +178,15 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string DeleteToolbarItemLabel {
+            get {
+                return ResourceManager.GetString("DeleteToolbarItemLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Weight Entry.
         /// </summary>
         internal static string EditEntryPageTitle {
@@ -502,15 +511,6 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to # Points:.
-        /// </summary>
-        internal static string NumberOfEntriesLabel {
-            get {
-                return ResourceManager.GetString("NumberOfEntriesLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Obese.
         /// </summary>
         internal static string ObeseLabel {
@@ -601,7 +601,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Month (31).
+        ///   Looks up a localized string similar to Month.
         /// </summary>
         internal static string ShowMonthGraphButton {
             get {
@@ -610,7 +610,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Week (7).
+        ///   Looks up a localized string similar to Week.
         /// </summary>
         internal static string ShowWeekGraphButton {
             get {
@@ -619,7 +619,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Year (365).
+        ///   Looks up a localized string similar to Year.
         /// </summary>
         internal static string ShowYearGraphButton {
             get {

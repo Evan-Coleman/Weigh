@@ -29,7 +29,7 @@
     <ContentPage.ToolbarItems>
         <controls:BindableToolbarItem Icon="ic_delete_white_48dp" Command="{Binding DeleteEntryCommand}"
                                       Parent="{x:Reference this}"
-                                      IsVisible="{Binding DeleteAction}" Text="Delete"/>
+                                      IsVisible="{Binding DeleteAction}" Text="{localization:Translate DeleteToolbarItemLabel}"/>
     </ContentPage.ToolbarItems>
 
     <Grid Padding="0,3,0,0">

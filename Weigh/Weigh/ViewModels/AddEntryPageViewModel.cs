@@ -259,18 +259,18 @@ namespace Weigh.ViewModels
                     await App.Database.DeleteWeightInfoAsync(SelectedWeightEntry);
                 }
                 SettingVals.InitializeFromValidated(SettingValsValidated);
-                if (SettingVals.LastWeighDate.Date < newdate.Date)
+                if (SettingVals.LastWeighDate < newdate)
                 {
                     NewWeightEntry = new WeightEntry
                     {
                         Weight = SettingVals.Weight,
                         WaistSize = SettingVals.WaistSize,
                         WeightDelta = SettingVals.Weight - SettingVals.LastWeight,
-                        WeighDate = newdate.Date,
+                        WeighDate = newdate,
                         Note = NoteEntry
                     };
 
-                    SettingVals.LastWeighDate = newdate.Date;
+                    SettingVals.LastWeighDate = newdate;
                     SettingVals.LastWeight = SettingVals.Weight;
                     SettingVals.DistanceToGoalWeight = SettingVals.Weight - SettingVals.GoalWeight;
 
