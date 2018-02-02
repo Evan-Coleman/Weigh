@@ -164,6 +164,9 @@ namespace Weigh.ViewModels
 
         private void InitializeCharts()
         {
+            // Here we make sure the BMI label is updated properly
+            BMIInfoLabel = AppResources.BMILabel + ": " + SettingVals.BMI.ToString(format: "###.##") + " " + SettingVals.BMICategory;
+
             // Weight left chart
 
             var TotalWeightToLose = SettingVals.InitialWeight - SettingVals.GoalWeight;
@@ -219,7 +222,6 @@ namespace Weigh.ViewModels
         {
             SettingVals = settingVals;
             InitializeCharts();
-            BMIInfoLabel = AppResources.BMILabel + ": " + SettingVals.BMI.ToString() + SettingVals.BMICategory;
         }
 
         private void HandleNewWeightEntry()
@@ -231,7 +233,6 @@ namespace Weigh.ViewModels
             }
             _ea.GetEvent<SendSetupInfoToSettingsEvent>().Publish(SettingVals);
             InitializeCharts();
-            BMIInfoLabel = AppResources.BMILabel + ": " + SettingVals.BMI.ToString() + SettingVals.BMICategory;
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)
@@ -250,7 +251,6 @@ namespace Weigh.ViewModels
                 SettingVals = (SettingVals) parameters["SettingVals"];
             }
             InitializeCharts();
-            BMIInfoLabel = AppResources.BMILabel + ": " + SettingVals.BMI.ToString(format: "###.##") + " " + SettingVals.BMICategory;
         }
 
         public override void Destroy()
