@@ -33,11 +33,11 @@ namespace Weigh.Droid.Renderers
                 var ad = new AdView(Context)
                 {
                     AdSize = AdSize.SmartBanner,
-#if DEBUG
+
+                    // DEBUG CHANGE!
                     AdUnitId = PrivateKeys.AdmobBannerTestId
-#else
-                    AdUnitId = PrivateKeys.AdmobBannerId
-#endif
+                    //AdUnitId = PrivateKeys.AdmobBannerId
+
 
                 };
 
