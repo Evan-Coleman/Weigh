@@ -28,7 +28,7 @@ namespace Weigh.Models
             ErrorMessageResourceName = "ValidationRequiredErrorMessage")]
         [StringLength(3, MinimumLength = 2, ErrorMessageResourceType = typeof(AppResources),
             ErrorMessageResourceName = "AgeLengthValidationErrorMessage")]
-        [Range(1, 150, ErrorMessageResourceType = typeof(AppResources),
+        [Range(10, 150, ErrorMessageResourceType = typeof(AppResources),
             ErrorMessageResourceName = "AgeValueValidationErrorMessage")]
         public string Age
         {
@@ -42,7 +42,7 @@ namespace Weigh.Models
             ErrorMessageResourceName = "ValidationRequiredErrorMessage")]
         [StringLength(7, MinimumLength = 1, ErrorMessageResourceType = typeof(AppResources),
             ErrorMessageResourceName = "GoalWeightLengthValidationErrorMessage")]
-        [Range(0.0, 1000.0, ErrorMessageResourceType = typeof(AppResources),
+        [Range(95.0, 1000.0, ErrorMessageResourceType = typeof(AppResources),
             ErrorMessageResourceName = "GoalWeightValueValidationErrorMessage")]
         public string GoalWeight
         {
@@ -88,7 +88,7 @@ namespace Weigh.Models
             ErrorMessageResourceName = "ValidationRequiredErrorMessage")]
         [StringLength(7, MinimumLength = 1, ErrorMessageResourceType = typeof(AppResources),
             ErrorMessageResourceName = "WeightLengthValidationErrorMessage")]
-        [Range(0.0, 1000.0, ErrorMessageResourceType = typeof(AppResources),
+        [Range(80.0, 1000.0, ErrorMessageResourceType = typeof(AppResources),
             ErrorMessageResourceName = "WeightValueValidationErrorMessage")]
         public string Weight
         {

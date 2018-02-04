@@ -31,7 +31,6 @@ namespace Weigh.iOS
             new SfLinearGaugeRenderer();
             SfListViewRenderer.Init();
 
-
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);

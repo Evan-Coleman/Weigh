@@ -76,9 +76,9 @@ namespace Weigh.Models
             set => SetProperty(ref _sex, value);
         }
 
-        private DateTime _birthDate;
+        private DateTimeOffset _birthDate;
 
-        public DateTime BirthDate
+        public DateTimeOffset BirthDate
         {
             get => _birthDate;
             set => SetProperty(ref _birthDate, value);
@@ -153,9 +153,9 @@ namespace Weigh.Models
         ////
 
 
-        private DateTime _minDate;
+        private DateTimeOffset _minDate;
 
-        public DateTime MinDate
+        public DateTimeOffset MinDate
         {
             get => _minDate;
             set => SetProperty(ref _minDate, value);
@@ -179,17 +179,17 @@ namespace Weigh.Models
 
         ////
 
-        private DateTime _goalDate;
+        private DateTimeOffset _goalDate;
 
-        public DateTime GoalDate
+        public DateTimeOffset GoalDate
         {
             get => _goalDate;
             set => SetProperty(ref _goalDate, value);
         }
 
-        private DateTime _initialWeighDate;
+        private DateTimeOffset _initialWeighDate;
 
-        public DateTime InitialWeighDate
+        public DateTimeOffset InitialWeighDate
         {
             get => _initialWeighDate;
             set => SetProperty(ref _initialWeighDate, value);
@@ -203,9 +203,9 @@ namespace Weigh.Models
             set => SetProperty(ref _initialWeight, value);
         }
 
-        private DateTime _lastWeighDate;
+        private DateTimeOffset _lastWeighDate;
 
-        public DateTime LastWeighDate
+        public DateTimeOffset LastWeighDate
         {
             get => _lastWeighDate;
             set => SetProperty(ref _lastWeighDate, value);
@@ -281,7 +281,7 @@ namespace Weigh.Models
             Settings.Units = Units;
             Settings.Weight = Weight;
             Settings.Sex = Sex;
-            Settings.BirthDate = BirthDate;
+            Settings.BirthDate = BirthDate.UtcDateTime;
 
             Settings.RecommendedDailyCaloricIntake = RecommendedDailyCaloricIntake;
             Settings.BMI = BMI;
@@ -292,14 +292,14 @@ namespace Weigh.Models
             Settings.WeightLostToDate = WeightLostToDate;
             Settings.TimeLeftToGoal = TimeLeftToGoal;
 
-            Settings.MinDate = MinDate;
+            Settings.MinDate = MinDate.UtcDateTime;
             Settings.PickerSelectedItem = PickerSelectedItem;
             Settings.WaistSizeEnabled = WaistSizeEnabled;
 
-            Settings.GoalDate = GoalDate;
-            Settings.InitialWeightDate = InitialWeighDate;
+            Settings.GoalDate = GoalDate.UtcDateTime;
+            Settings.InitialWeightDate = InitialWeighDate.UtcDateTime;
             Settings.InitialWeight = InitialWeight;
-            Settings.LastWeighDate = LastWeighDate;
+            Settings.LastWeighDate = LastWeighDate.UtcDateTime;
             Settings.LastWeight = LastWeight;
         }
 
@@ -347,10 +347,10 @@ namespace Weigh.Models
                 BMR = 66 + 6.2 * weight + 12.7 * (feet * 12 + inches) - 6.76 * age;
             else
                 BMR = 655.1 + 4.35 * weight + 4.7 * (feet * 12 + inches) - 4.7 * age;
-            if (PickerSelectedItem == 0) BMR *= 1.2;
-            if (PickerSelectedItem == 1) BMR *= 1.375;
-            if (PickerSelectedItem == 2) BMR *= 1.55;
-            if (PickerSelectedItem == 3) BMR *= 1.725;
+            if (PickerSelectedItem == 0) BMR *= 1.15;
+            if (PickerSelectedItem == 1) BMR *= 1.30;
+            if (PickerSelectedItem == 2) BMR *= 1.40;
+            if (PickerSelectedItem == 3) BMR *= 1.6;
         }
 
         public bool ValidateGoal()
@@ -359,8 +359,8 @@ namespace Weigh.Models
             CalculateBMR();
             SetBMICategory();
 
-            Age = (DateTime.UtcNow - BirthDate).Days / 365;
-            TimeLeftToGoal = Math.Max(0, (GoalDate - DateTime.UtcNow).Days);
+            Age = (DateTimeOffset.Now - BirthDate.LocalDateTime).Days / 365;
+            TimeLeftToGoal = Math.Max(0, (GoalDate.LocalDateTime - DateTimeOffset.Now).Days);
             DistanceToGoalWeight = Math.Max(0, Weight - GoalWeight);
             WeightLostToDate = InitialWeight - Weight;
 
@@ -384,7 +384,7 @@ namespace Weigh.Models
             }
 
 
-            var weightPerDayToMeetGoal = (weight - goalWeight) / (GoalDate - DateTime.UtcNow).TotalDays;
+            var weightPerDayToMeetGoal = (weight - goalWeight) / (GoalDate.LocalDateTime - DateTimeOffset.Now).TotalDays;
             WeightPerWeekToMeetGoal = weightPerDayToMeetGoal * 7;
             var requiredCaloricDefecit = 500 * WeightPerWeekToMeetGoal;
             RecommendedDailyCaloricIntake = (int) BMR - requiredCaloricDefecit;
@@ -396,23 +396,23 @@ namespace Weigh.Models
                 RecommendedDailyCaloricIntake = (int)BMR - requiredCaloricDefecit;
                 WeightPerWeekToMeetGoal = requiredCaloricDefecit / 500;
                 var daysToAddToMeetMinimum = (int) ((weight - goalWeight) / (WeightPerWeekToMeetGoal / 7));
-                GoalDate = DateTime.UtcNow.AddDays(daysToAddToMeetMinimum + 10);
-                TimeLeftToGoal = Math.Max(0, (GoalDate - DateTime.UtcNow).Days);
-                UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, GoalDate));
+                GoalDate = DateTimeOffset.Now.AddDays(daysToAddToMeetMinimum + 10);
+                TimeLeftToGoal = Math.Max(0, (GoalDate.LocalDateTime - DateTimeOffset.Now).Days);
+                UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, GoalDate.LocalDateTime));
                 return false;
                 //Create(async token => await this.Dialogs.AlertAsync("Test alert", "Alert Title", null, token));
             }
 
-            if (Sex == false && RecommendedDailyCaloricIntake < 1800)
+            if (Sex == false && RecommendedDailyCaloricIntake < 1600)
             {
-                // Min calories/day for men is 1800
-                requiredCaloricDefecit = BMR - 1900;
+                // Min calories/day for men is 1600
+                requiredCaloricDefecit = BMR - 1700;
                 RecommendedDailyCaloricIntake = (int)BMR - requiredCaloricDefecit;
                 WeightPerWeekToMeetGoal = requiredCaloricDefecit / 500;
                 var daysToAddToMeetMinimum = (int) ((weight - goalWeight) / (WeightPerWeekToMeetGoal / 7));
-                GoalDate = DateTime.UtcNow.AddDays(daysToAddToMeetMinimum + 10);
-                TimeLeftToGoal = Math.Max(0, (GoalDate - DateTime.UtcNow).Days);
-                UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, GoalDate));
+                GoalDate = DateTimeOffset.Now.AddDays(daysToAddToMeetMinimum + 10);
+                TimeLeftToGoal = Math.Max(0, (GoalDate.LocalDateTime - DateTimeOffset.Now).Days);
+                UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, GoalDate.LocalDateTime));
                 return false;
                 // Keeping for future use maybe
                 /*

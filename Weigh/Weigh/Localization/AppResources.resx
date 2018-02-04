@@ -278,7 +278,7 @@
     <comment>(SetupInfo) Validation error message</comment>
   </data>
   <data name="AgeValueValidationErrorMessage" xml:space="preserve">
-    <value>Must be within range 1-150</value>
+    <value>Must be within range 10-150</value>
     <comment>(SetupInfo) Validation error message</comment>
   </data>
   <data name="GoalWeightLengthValidationErrorMessage" xml:space="preserve">
@@ -286,7 +286,7 @@
     <comment>(SetupInfo) Validation error message</comment>
   </data>
   <data name="GoalWeightValueValidationErrorMessage" xml:space="preserve">
-    <value>Must be within range 0-1000</value>
+    <value>Must be within range 95-1000</value>
     <comment>(SetupInfo) Validation error message</comment>
   </data>
   <data name="HeightMajorImperialValidationErrorMessage" xml:space="preserve">
@@ -318,7 +318,7 @@
     <comment>(SetupInfo) Validation error message</comment>
   </data>
   <data name="WeightValueValidationErrorMessage" xml:space="preserve">
-    <value>Must be within range 0-1000</value>
+    <value>Must be within range 80-1000</value>
     <comment>(SetupInfo) Validation error message</comment>
   </data>
   <data name="ShowMonthGraphButton" xml:space="preserve">
@@ -456,5 +456,21 @@
   <data name="DeleteToolbarItemLabel" xml:space="preserve">
     <value>Delete</value>
     <comment>(AddEntry)</comment>
+  </data>
+  <data name="list_view_header_waist_label" xml:space="preserve">
+    <value>Waist Size</value>
+    <comment>(Graphspage)</comment>
+  </data>
+  <data name="list_view_header_weight_change_label" xml:space="preserve">
+    <value>Gain/Loss</value>
+    <comment>(Graphspage)</comment>
+  </data>
+  <data name="list_view_header_weight_label" xml:space="preserve">
+    <value>Weight</value>
+    <comment>(Graphspage)</comment>
+  </data>
+  <data name="list_view_header_weigh_date_label" xml:space="preserve">
+    <value>Weigh Date</value>
+    <comment>(Graphspage)</comment>
   </data>
 </root>
