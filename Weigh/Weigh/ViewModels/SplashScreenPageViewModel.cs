@@ -59,7 +59,7 @@ namespace Weigh.ViewModels
 	        SettingVals.Weight = LatestWeightEntry.Weight;
 	        SettingVals.LastWeighDate = LatestWeightEntry.WeighDate;
 	        Settings.Weight = LatestWeightEntry.Weight;
-	        Settings.LastWeighDate = LatestWeightEntry.WeighDate;
+	        Settings.LastWeighDate = LatestWeightEntry.WeighDate.UtcDateTime;
 
             if (SettingVals.ValidateGoal() == false)
 	            SettingVals.SaveSettingValsToDevice();

@@ -106,7 +106,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Must be within range 1-150.
+        ///   Looks up a localized string similar to Must be within range 10-150.
         /// </summary>
         internal static string AgeValueValidationErrorMessage {
             get {
@@ -304,7 +304,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Must be within range 0-1000.
+        ///   Looks up a localized string similar to Must be within range 95-1000.
         /// </summary>
         internal static string GoalWeightValueValidationErrorMessage {
             get {
@@ -435,6 +435,42 @@ namespace Weigh.Localization {
         internal static string LightActivityPickItem {
             get {
                 return ResourceManager.GetString("LightActivityPickItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waist Size.
+        /// </summary>
+        internal static string list_view_header_waist_label {
+            get {
+                return ResourceManager.GetString("list_view_header_waist_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weigh Date.
+        /// </summary>
+        internal static string list_view_header_weigh_date_label {
+            get {
+                return ResourceManager.GetString("list_view_header_weigh_date_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gain/Loss.
+        /// </summary>
+        internal static string list_view_header_weight_change_label {
+            get {
+                return ResourceManager.GetString("list_view_header_weight_change_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weight.
+        /// </summary>
+        internal static string list_view_header_weight_label {
+            get {
+                return ResourceManager.GetString("list_view_header_weight_label", resourceCulture);
             }
         }
         
@@ -817,7 +853,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Must be within range 0-1000.
+        ///   Looks up a localized string similar to Must be within range 80-1000.
         /// </summary>
         internal static string WeightValueValidationErrorMessage {
             get {

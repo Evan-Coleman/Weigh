@@ -118,8 +118,8 @@
         <!-- Entry Date Section -->
         <Label Grid.Column="0" Grid.Row="5"
                Text="{localization:Translate EntryDateLabel}" />
-        <DatePicker Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3"
-            Date="{Binding EntryDate}" MaximumDate="{Binding MaxEntryDate}"  />
+        <DatePicker Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"
+            Date="{Binding EntryDate, Mode=TwoWay}" MaximumDate="{Binding MaxEntryDate.LocalDateTime}"  />
 
         <!-- Notes Section -->
         <Label Grid.Column="0" Grid.Row="6"

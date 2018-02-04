@@ -8,6 +8,7 @@ using Prism.Navigation;
 using Syncfusion.ListView.XForms;
 using Weigh.Events;
 using Weigh.Extensions;
+using Weigh.Helpers;
 using Weigh.Localization;
 using Weigh.Models;
 using Xamarin.Forms;
@@ -31,7 +32,6 @@ namespace Weigh.ViewModels
             _ea = ea;
 
             WeightList = new ObservableCollection<WeightEntry>();
-            ChartData = new ObservableCollection<WeightEntry>();
 
             ShowWeekCommand = new DelegateCommand(ShowWeek);
             ShowMonthCommand = new DelegateCommand(ShowMonth);
@@ -39,6 +39,8 @@ namespace Weigh.ViewModels
             ItemTappedCommand = new DelegateCommand<SfListView>(HandleItemTapped);
 
             WeekSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
+            MaxChartDate = DateTime.Now;
+            MinChartDate = DateTime.Now.AddDays(-7);
             CurrentlySelectedGraphTimeline = "week";
 
             _ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry);
@@ -56,14 +58,6 @@ namespace Weigh.ViewModels
         {
             get => _weightList;
             set => SetProperty(ref _weightList, value);
-        }
-
-        private ObservableCollection<WeightEntry> _chartData;
-
-        public ObservableCollection<WeightEntry> ChartData
-        {
-            get => _chartData;
-            set => SetProperty(ref _chartData, value);
         }
 
         public DelegateCommand ShowWeekCommand { get; set; }
@@ -95,6 +89,22 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _yearSelectedBorderColor, value);
         }
 
+        private DateTime _minChartDate;
+
+        public DateTime MinChartDate
+        {
+            get => _minChartDate;
+            set => SetProperty(ref _minChartDate, value);
+        }
+
+        private DateTime _maxChartDate;
+
+        public DateTime MaxChartDate
+        {
+            get => _maxChartDate;
+            set => SetProperty(ref _maxChartDate, value);
+        }
+
         public string CurrentlySelectedGraphTimeline { get; set; }
 
         public List<WeightEntry> DataFromDatabase { get; set; }
@@ -105,7 +115,7 @@ namespace Weigh.ViewModels
 
         private void ShowWeek()
         {
-            ChartData = WeightList.Take(7).ToObservableCollection();
+            MinChartDate = DateTime.Now.AddDays(-7);
             WeekSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             MonthSelectedBorderColor = Color.Default;
             YearSelectedBorderColor = Color.Default;
@@ -114,7 +124,11 @@ namespace Weigh.ViewModels
 
         private void ShowMonth()
         {
-            ChartData = WeightList.Take(31).ToObservableCollection();
+            MinChartDate = DateTime.Now.AddDays(-31);
+            if (MinChartDate < Settings.InitialWeightDate)
+            {
+                MinChartDate = Settings.InitialWeightDate.AddDays(-1);
+            }
             WeekSelectedBorderColor = Color.Default;
             MonthSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             YearSelectedBorderColor = Color.Default;
@@ -123,7 +137,11 @@ namespace Weigh.ViewModels
 
         private void ShowYear()
         {
-            ChartData = WeightList.Take(365).ToObservableCollection();
+            MinChartDate = DateTime.Now.AddDays(-365);
+            if (MinChartDate < Settings.InitialWeightDate)
+            {
+                MinChartDate = Settings.InitialWeightDate.AddDays(-1);
+            }
             WeekSelectedBorderColor = Color.Default;
             MonthSelectedBorderColor = Color.Default;
             YearSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
@@ -149,10 +167,9 @@ namespace Weigh.ViewModels
         private async void HandleNewWeightEntry()
         {
             DataFromDatabase = await App.Database.GetWeightsAsync();
-            DataFromDatabase = DataFromDatabase.OrderByDescending(x => x.WeighDate).ToList();
+            DataFromDatabase = DataFromDatabase.OrderByDescending(x => x.WeighDate.LocalDateTime).ToList();
             WeightList = DataFromDatabase.ToObservableCollection();
 
-            ChartData = DataFromDatabase.Take(7).ToObservableCollection();
             WeekSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
             MonthSelectedBorderColor = Color.Default;
             YearSelectedBorderColor = Color.Default;
@@ -165,7 +182,6 @@ namespace Weigh.ViewModels
             {
                 DataFromDatabase = (List<WeightEntry>) parameters["AllWeightEntriesSorted"];
                 WeightList = DataFromDatabase.ToObservableCollection();
-                ChartData = DataFromDatabase.Take(7).ToObservableCollection();
             }
             // Only time this gets called is if we save new settings from the settingspage
             else

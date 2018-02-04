@@ -9,7 +9,7 @@ namespace Weigh.Models
         {
         }
 
-        public WeightEntry(double weight, DateTime date, double waistSize)
+        public WeightEntry(double weight, DateTimeOffset date, double waistSize)
         {
             Weight = weight;
             WeighDate = date;
@@ -22,6 +22,6 @@ namespace Weigh.Models
         public double WaistSize { get; set; }
         public double WeightDelta { get; set; }
         public string Note { get; set; }
-        public DateTime WeighDate { get; set; } = DateTime.UtcNow;
+        public DateTimeOffset WeighDate { get; set; } = DateTimeOffset.Now;
     }
 }

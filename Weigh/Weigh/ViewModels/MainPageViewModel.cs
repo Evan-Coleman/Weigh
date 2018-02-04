@@ -187,7 +187,7 @@ namespace Weigh.ViewModels
 
             // Time left chart
 
-            var TotalDaysToGo = (SettingVals.GoalDate - SettingVals.InitialWeighDate).TotalDays;
+            var TotalDaysToGo = (SettingVals.GoalDate.LocalDateTime - SettingVals.InitialWeighDate.LocalDateTime).TotalDays;
             var TimeProgressToGoal = TotalDaysToGo - SettingVals.TimeLeftToGoal;
             CurrentDay = Convert.ToInt32(TimeProgressToGoal);
             TimeProgress = Math.Floor(TimeProgressToGoal / TotalDaysToGo * 100);

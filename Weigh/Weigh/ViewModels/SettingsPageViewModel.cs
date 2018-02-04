@@ -40,12 +40,12 @@ namespace Weigh.ViewModels
 
             _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo);
             
-            BirthDateMinDate = DateTime.UtcNow.AddYears(-150);
-            BirthDateMaxDate = DateTime.UtcNow.AddYears(-1);
+            BirthDateMinDate = DateTimeOffset.Now.AddYears(-150);
+            BirthDateMaxDate = DateTimeOffset.Now.AddYears(-1);
             ImperialSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             MaleSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
-            SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
-            MaxGoalDate = DateTime.UtcNow.AddYears(1);
+            SettingVals.MinDate = DateTimeOffset.Now.AddDays(10);
+            MaxGoalDate = DateTimeOffset.Now.AddYears(1);
             PickerSource = new ObservableCollection<string>
             {
                 AppResources.LowActivityPickItem,
@@ -127,28 +127,44 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _femaleSelectedBorderColor, value);
         }
 
-        private DateTime _birthDateMinDate;
+        private DateTimeOffset _birthDateMinDate;
 
-        public DateTime BirthDateMinDate
+        public DateTimeOffset BirthDateMinDate
         {
             get => _birthDateMinDate;
             set => SetProperty(ref _birthDateMinDate, value);
         }
 
-        private DateTime _birthDateMaxDate;
+        private DateTimeOffset _birthDateMaxDate;
 
-        public DateTime BirthDateMaxDate
+        public DateTimeOffset BirthDateMaxDate
         {
             get => _birthDateMaxDate;
             set => SetProperty(ref _birthDateMaxDate, value);
         }
 
-        private DateTime _maxGoalDate;
+        private DateTimeOffset _maxGoalDate;
 
-        public DateTime MaxGoalDate
+        public DateTimeOffset MaxGoalDate
         {
             get => _maxGoalDate;
             set => SetProperty(ref _maxGoalDate, value);
+        }
+
+        private DateTime _goalDate;
+
+        public DateTime GoalDate
+        {
+            get => _goalDate;
+            set => SetProperty(ref _goalDate, value);
+        }
+
+        private DateTime _birthDate;
+
+        public DateTime BirthDate
+        {
+            get => _birthDate;
+            set => SetProperty(ref _birthDate, value);
         }
 
         private string _maleText;
@@ -209,6 +225,8 @@ namespace Weigh.ViewModels
 
         private void SaveInfoAsync()
         {
+            SettingVals.BirthDate = BirthDate;
+            SettingVals.GoalDate = GoalDate;
             // TODO: check this out and see what needs changing
             if (SettingValsValidated.ValidateProperties())
             {
@@ -228,7 +246,7 @@ namespace Weigh.ViewModels
         {
             SettingVals = setupInfo;
             SettingValsValidated.InitializeFromSettings(SettingVals);
-            SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
+            SettingVals.MinDate = DateTimeOffset.Now.AddDays(10);
             PickerSelectedIndex = SettingVals.PickerSelectedItem;
         }
 
@@ -238,8 +256,10 @@ namespace Weigh.ViewModels
             {
                 SettingVals = (SettingVals)parameters["SettingVals"];
                 SettingValsValidated.InitializeFromSettings(SettingVals);
-                SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
+                SettingVals.MinDate = DateTimeOffset.Now.AddDays(10);
                 PickerSelectedIndex = SettingVals.PickerSelectedItem;
+                BirthDate = SettingVals.BirthDate.LocalDateTime;
+                GoalDate = SettingVals.GoalDate.LocalDateTime;
             }
         }
 

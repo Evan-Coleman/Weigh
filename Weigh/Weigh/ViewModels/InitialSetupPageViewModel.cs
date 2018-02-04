@@ -38,16 +38,16 @@ namespace Weigh.ViewModels
 
             // Initialize app SettingVals
             Settings.GoalMetNotified = false;
-            SettingVals.MinDate = DateTime.UtcNow.AddDays(10);
-            SettingVals.GoalDate = DateTime.UtcNow.AddDays(180);
+            SettingVals.MinDate = DateTimeOffset.Now.AddDays(10);
+            GoalDate = DateTime.UtcNow.AddDays(180);
 
             // DEBUG CHANGE!
-            //SettingVals.BirthDate = DateTime.Parse("2/25/1988");
-            SettingVals.BirthDate = DateTime.UtcNow.AddYears(-21);
+            //BirthDate = DateTimeOffset.Parse("2/25/1988");
+            BirthDate = DateTime.UtcNow.AddYears(-21);
 
-            BirthDateMinDate = DateTime.UtcNow.AddYears(-150);
-            BirthDateMaxDate = DateTime.UtcNow.AddYears(-1);
-            MaxGoalDate = DateTime.UtcNow.AddYears(1);
+            BirthDateMinDate = DateTimeOffset.Now.AddYears(-150);
+            BirthDateMaxDate = DateTimeOffset.Now.AddYears(-1);
+            MaxGoalDate = DateTimeOffset.Now.AddYears(1);
 
             // Setting units to default imperial
             SettingVals.Units = true;
@@ -144,28 +144,44 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _noteEntry, value);
         }
 
-        private DateTime _birthDateMinDate;
+        private DateTimeOffset _birthDateMinDate;
 
-        public DateTime BirthDateMinDate
+        public DateTimeOffset BirthDateMinDate
         {
             get => _birthDateMinDate;
             set => SetProperty(ref _birthDateMinDate, value);
         }
 
-        private DateTime _birthDateMaxDate;
+        private DateTimeOffset _birthDateMaxDate;
 
-        public DateTime BirthDateMaxDate
+        public DateTimeOffset BirthDateMaxDate
         {
             get => _birthDateMaxDate;
             set => SetProperty(ref _birthDateMaxDate, value);
         }
 
-        private DateTime _maxGoalDate;
+        private DateTimeOffset _maxGoalDate;
 
-        public DateTime MaxGoalDate
+        public DateTimeOffset MaxGoalDate
         {
             get => _maxGoalDate;
             set => SetProperty(ref _maxGoalDate, value);
+        }
+
+        private DateTime _goalDate;
+
+        public DateTime GoalDate
+        {
+            get => _goalDate;
+            set => SetProperty(ref _goalDate, value);
+        }
+
+        private DateTime _birthDate;
+
+        public DateTime BirthDate
+        {
+            get => _birthDate;
+            set => SetProperty(ref _birthDate, value);
         }
 
         private string _maleText;
@@ -223,11 +239,13 @@ namespace Weigh.ViewModels
 
         private async void SaveInfoAsync()
         {
+            SettingVals.BirthDate = BirthDate;
+            SettingVals.GoalDate = GoalDate;
             if (SettingValsValidated.WaistSize == "" && SettingVals.WaistSizeEnabled == false)
             {
                 SettingValsValidated.WaistSize = "0";
             }
-            SettingValsValidated.Age = ((DateTime.UtcNow - SettingVals.BirthDate).Days / 365).ToString();
+            SettingValsValidated.Age = ((DateTimeOffset.Now - SettingVals.BirthDate.LocalDateTime).Days / 365).ToString();
             if (CanExecute() == false)
             {
                 UserDialogs.Instance.Alert(AppResources.FormValidationPopupLabel);
@@ -247,9 +265,9 @@ namespace Weigh.ViewModels
                 // Pulling in vals from validated model
                 SettingVals.InitializeFromValidated(SettingValsValidated);
                 SettingVals.InitialWeight = Convert.ToDouble(SettingValsValidated.Weight);
-                SettingVals.InitialWeighDate = DateTime.UtcNow;
+                SettingVals.InitialWeighDate = DateTimeOffset.Now;
                 SettingVals.LastWeight = SettingVals.InitialWeight;
-                SettingVals.LastWeighDate = DateTime.UtcNow;
+                SettingVals.LastWeighDate = DateTimeOffset.Now;
                 SettingVals.ValidateGoal();
                 SettingVals.SaveSettingValsToDevice();
                 Settings.FirstUse = "no";
