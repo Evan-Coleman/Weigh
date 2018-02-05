@@ -258,16 +258,22 @@ namespace Weigh.ViewModels
                 ButtonEnabled = true;
                 return;
             }
-
+            List<WeightEntry> entries = await App.Database.GetWeightsAsync();
+            List<WeightEntry> dentries = entries.OrderByDescending(x => x.WeighDate.LocalDateTime).ToList();
+            int selectedItemIndex = dentries.TakeWhile(x => x.ID != SelectedWeightEntry.ID).Count();
             NewDate = EntryDate;
 
             SettingVals.InitializeFromValidated(SettingValsValidated);
             double newDelta = 0.0;
             WeightEntry previousWeightEntry;
             WeightEntry nextWeightEntry;
-            List<WeightEntry> entries = await App.Database.GetWeightsAsync();
-            var dentries = entries.OrderByDescending(x => x.WeighDate.LocalDateTime).ToList();
-            var index = dentries.TakeWhile(x => x.ID != SelectedWeightEntry.ID).Count();
+
+            // For editing, we must remove the current entry before we look find prev/next entries
+            await App.Database.DeleteWeightInfoAsync(SelectedWeightEntry);
+
+            entries = await App.Database.GetWeightsAsync();
+            dentries = entries.OrderByDescending(x => x.WeighDate.LocalDateTime).ToList();
+            int index = dentries.TakeWhile(x => x.WeighDate.LocalDateTime > NewDate.LocalDateTime).Count();
             if (index == 0)
             {
                 nextWeightEntry = null;
@@ -277,13 +283,13 @@ namespace Weigh.ViewModels
                 nextWeightEntry = dentries[index - 1];
             }
 
-            if (index >= dentries.Count - 1)
+            if (index >= dentries.Count)
             {
                 previousWeightEntry = null;
             }
             else
             {
-                previousWeightEntry = dentries[index + 1];
+                previousWeightEntry = dentries[index];
             }
 
             if (nextWeightEntry != null)
@@ -297,20 +303,35 @@ namespace Weigh.ViewModels
                 newDelta = SettingVals.Weight - previousWeightEntry.Weight;
             }
 
-            SelectedWeightEntry.Weight = SettingVals.Weight;
-            SelectedWeightEntry.WaistSize = SettingVals.WaistSize;
-            SelectedWeightEntry.WeightDelta = newDelta;
-            SelectedWeightEntry.WeighDate = NewDate;
-            SelectedWeightEntry.Note = NoteEntry;
+            // Case: Moving current entry forward in time, need to update delta on prev entry
+            if (SelectedWeightEntry.WeighDate.LocalDateTime < NewDate.LocalDateTime && previousWeightEntry != null)
+            {
+                index = dentries.TakeWhile(x => x.WeighDate.LocalDateTime > previousWeightEntry.WeighDate.LocalDateTime).Count();
+
+                if (index < dentries.Count - 1)
+                {
+                    previousWeightEntry.WeightDelta = previousWeightEntry.Weight - dentries[index + 1].Weight;
+                    await App.Database.SaveWeightAsync(previousWeightEntry);
+                }
+            }
+
+            WeightEntry editedWeightEntry = new WeightEntry
+            {
+                Weight = SettingVals.Weight,
+                WaistSize = SettingVals.WaistSize,
+                WeightDelta = newDelta,
+                WeighDate = NewDate,
+                Note = NoteEntry
+            };
 
 
             // Case: Edit most recent entry
             if (nextWeightEntry == null)
             {
-                SettingVals.Weight = SelectedWeightEntry.Weight;
-                SettingVals.LastWeighDate = SelectedWeightEntry.WeighDate.LocalDateTime;
-                SettingVals.LastWeight = SelectedWeightEntry.Weight;
-                SettingVals.DistanceToGoalWeight = SelectedWeightEntry.Weight - SettingVals.GoalWeight;
+                SettingVals.Weight = editedWeightEntry.Weight;
+                SettingVals.LastWeighDate = editedWeightEntry.WeighDate.LocalDateTime;
+                SettingVals.LastWeight = editedWeightEntry.Weight;
+                SettingVals.DistanceToGoalWeight = editedWeightEntry.Weight - SettingVals.GoalWeight;
                 SettingVals.PickerSelectedItem = PickerSelectedIndex;
                 SettingVals.ValidateGoal();
                 SettingVals.SaveSettingValsToDevice();
@@ -319,11 +340,21 @@ namespace Weigh.ViewModels
             // Case: Edit first entry
             if (previousWeightEntry == null)
             {
-                Settings.InitialWeight = SelectedWeightEntry.Weight;
-                Settings.InitialWeightDate = SelectedWeightEntry.WeighDate.LocalDateTime;
+                Settings.InitialWeight = editedWeightEntry.Weight;
+                Settings.InitialWeightDate = editedWeightEntry.WeighDate.LocalDateTime;
             }
 
-            await App.Database.SaveWeightAsync(SelectedWeightEntry);
+
+            // Case: Edit first weight and move it forward
+            if (selectedItemIndex == dentries.Count)
+            {
+                WeightEntry firstWeightEntry = await App.Database.GetFirstWeightasync();
+
+                Settings.InitialWeight = firstWeightEntry.Weight;
+                Settings.InitialWeightDate = firstWeightEntry.WeighDate.UtcDateTime;
+            }
+
+            await App.Database.SaveWeightAsync(editedWeightEntry);
 
             _ea.GetEvent<AddWeightEvent>().Publish();
             await NavigationService.GoBackAsync();

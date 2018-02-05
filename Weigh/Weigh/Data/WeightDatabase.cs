@@ -47,6 +47,11 @@ namespace Weigh.Data
             return _database.Table<WeightEntry>().OrderByDescending(x => x.WeighDate).FirstOrDefaultAsync();
         }
 
+        public Task<WeightEntry> GetFirstWeightasync()
+        {
+            return _database.Table<WeightEntry>().OrderBy(x => x.WeighDate).FirstOrDefaultAsync();
+        }
+
         public Task<int> SaveWeightAsync(WeightEntry weight)
         {
             if (weight.ID != 0)
