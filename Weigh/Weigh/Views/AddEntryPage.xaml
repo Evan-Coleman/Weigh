@@ -11,7 +11,8 @@
              xmlns:controls="clr-namespace:Weigh.Controls;assembly=Weigh"
              x:Class="Weigh.Views.AddEntryPage"
              x:Name="this"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             BackgroundColor="#E0E0E0">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -39,7 +40,7 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>     
+        <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource GridEntryHeight}" />
             <RowDefinition Height="{StaticResource GridErrorLabelHeight}" />
             <RowDefinition Height="{StaticResource GridEntryHeight}" />
@@ -114,7 +115,7 @@
                  HorizontalOptions="FillAndExpand"
                 WidthRequest="150"
                 SelectedIndex="{Binding PickerSelectedIndex, Mode=TwoWay}"/>
-        
+
         <!-- Entry Date Section -->
         <Label Grid.Column="0" Grid.Row="5"
                Text="{localization:Translate EntryDateLabel}" />
@@ -136,9 +137,9 @@
             Text="{localization:Translate SaveLabel}"
                 Command="{Binding AddWeightToListCommand}"/>
 
-        
+
         <!-- ADMOB Banner -->
         <controls:AdMobView Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="4" VerticalOptions="End" />
     </Grid>
-  
+
 </ContentPage>

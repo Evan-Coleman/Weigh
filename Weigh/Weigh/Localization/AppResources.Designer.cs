@@ -592,6 +592,15 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Goal would take too long, adjusting to 2 years from now..
+        /// </summary>
+        internal static string popup_goal_too_soon_label {
+            get {
+                return ResourceManager.GetString("popup_goal_too_soon_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to lb.
         /// </summary>
         internal static string PoundsLabel {

@@ -10,7 +10,8 @@
              xmlns:pb="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              xmlns:controls="clr-namespace:Weigh.Controls;assembly=Weigh"
              xmlns:system="clr-namespace:System;assembly=netstandard"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             BackgroundColor="#E0E0E0">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -24,7 +25,6 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-
 
     <Grid RowSpacing="0" Padding="0,3,0,0">
         <Grid.ColumnDefinitions>
@@ -57,11 +57,11 @@
        Text="{localization:Translate UnitsLabel}" />
         <StackLayout Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"
             Orientation="Horizontal">
-        <Button Text="{localization:Translate UnitSwitchImperialLabel}"
+            <Button Text="{localization:Translate UnitSwitchImperialLabel}"
                 BackgroundColor="{StaticResource primary_dark}"
                 TextColor="{Binding ImperialSelectedBorderColor}"
                 Command="{Binding SelectImperialCommand}"/>
-        <Button Text="{localization:Translate UnitSwitchMetricLabel}"
+            <Button Text="{localization:Translate UnitSwitchMetricLabel}"
                 BackgroundColor="{StaticResource primary_dark}"
                 TextColor="{Binding MetricSelectedBorderColor}"
                 Command="{Binding SelectMetricCommand}"/>
