@@ -45,7 +45,7 @@ namespace Weigh.ViewModels
             ImperialSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             MaleSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             SettingVals.MinDate = DateTimeOffset.Now.AddDays(10);
-            MaxGoalDate = DateTimeOffset.Now.AddYears(1);
+            MaxGoalDate = DateTimeOffset.Now.AddYears(2);
             PickerSource = new ObservableCollection<string>
             {
                 AppResources.LowActivityPickItem,

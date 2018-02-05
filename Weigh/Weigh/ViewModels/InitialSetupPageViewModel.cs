@@ -47,7 +47,7 @@ namespace Weigh.ViewModels
 
             BirthDateMinDate = DateTimeOffset.Now.AddYears(-150);
             BirthDateMaxDate = DateTimeOffset.Now.AddYears(-1);
-            MaxGoalDate = DateTimeOffset.Now.AddYears(1);
+            MaxGoalDate = DateTimeOffset.Now.AddYears(2);
 
             // Setting units to default imperial
             SettingVals.Units = true;

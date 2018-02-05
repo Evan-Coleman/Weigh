@@ -398,7 +398,15 @@ namespace Weigh.Models
                 var daysToAddToMeetMinimum = (int) ((weight - goalWeight) / (WeightPerWeekToMeetGoal / 7));
                 GoalDate = DateTimeOffset.Now.AddDays(daysToAddToMeetMinimum + 10);
                 TimeLeftToGoal = Math.Max(0, (GoalDate.LocalDateTime - DateTimeOffset.Now).Days);
-                UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, GoalDate.LocalDateTime));
+                if (GoalDate > DateTimeOffset.Now.AddYears(2))
+                {
+                    GoalDate = DateTimeOffset.Now.AddYears(2);
+                    UserDialogs.Instance.Alert(string.Format(AppResources.popup_goal_too_soon_label, GoalDate.LocalDateTime));
+                }
+                else
+                {
+                    UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, GoalDate.LocalDateTime));
+                }
                 return false;
                 //Create(async token => await this.Dialogs.AlertAsync("Test alert", "Alert Title", null, token));
             }
@@ -412,7 +420,15 @@ namespace Weigh.Models
                 var daysToAddToMeetMinimum = (int) ((weight - goalWeight) / (WeightPerWeekToMeetGoal / 7));
                 GoalDate = DateTimeOffset.Now.AddDays(daysToAddToMeetMinimum + 10);
                 TimeLeftToGoal = Math.Max(0, (GoalDate.LocalDateTime - DateTimeOffset.Now).Days);
-                UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, GoalDate.LocalDateTime));
+                if (GoalDate > DateTimeOffset.Now.AddYears(2))
+                {
+                    GoalDate = DateTimeOffset.Now.AddYears(2);
+                    UserDialogs.Instance.Alert(string.Format(AppResources.popup_goal_too_soon_label, GoalDate.LocalDateTime));
+                }
+                else
+                {
+                    UserDialogs.Instance.Alert(string.Format(AppResources.GoalTooSoonPopup, GoalDate.LocalDateTime));
+                }
                 return false;
                 // Keeping for future use maybe
                 /*

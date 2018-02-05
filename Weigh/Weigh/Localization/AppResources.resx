@@ -473,4 +473,7 @@
     <value>Weigh Date</value>
     <comment>(Graphspage)</comment>
   </data>
+  <data name="popup_goal_too_soon_label" xml:space="preserve">
+    <value>Current Goal would take too long, adjusting to 2 years from now.</value>
+  </data>
 </root>

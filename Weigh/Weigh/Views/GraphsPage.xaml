@@ -21,7 +21,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid Padding="0,3,0,0" RowSpacing="0" Margin="0">
+    <Grid Padding="0,5,0,0" RowSpacing="5" Margin="0" BackgroundColor="#E0E0E0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -36,7 +36,8 @@
 
 
         <!-- Chart -->
-        <chart:SfChart Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
+        <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Padding="0" Margin="5,0,5,0">
+        <chart:SfChart >
 
             <chart:SfChart.PrimaryAxis>
 
@@ -77,31 +78,42 @@
             </chart:SfChart.Series>
 
         </chart:SfChart>
+        </Frame>
 
 
         <!-- Chart Buttons -->
-        <Button Grid.Column="0" Grid.Row="1" Margin="0"
+        <Frame Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="5,0,5,0" Padding="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"
             Text="{localization:Translate ShowWeekGraphButton}"
                     Command="{Binding ShowWeekCommand}"
                 BackgroundColor="{StaticResource secondary}"
                     FontSize="Small"
                     TextColor="{Binding WeekSelectedBorderColor}"/>
-        <Button Grid.Column="1" Grid.Row="1" Margin="0"
+                <Button Grid.Column="1"
             Text="{localization:Translate ShowMonthGraphButton}"
                     Command="{Binding ShowMonthCommand}"
                 BackgroundColor="{StaticResource secondary}"
                     FontSize="Small"
                     TextColor="{Binding MonthSelectedBorderColor}"/>
-        <Button Grid.Column="2" Grid.Row="1" Margin="0"
+                <Button Grid.Column="2"
             Text="{localization:Translate ShowYearGraphButton}"
                     Command="{Binding ShowYearCommand}"
                 BackgroundColor="{StaticResource secondary}"
                     FontSize="Small"
                     TextColor="{Binding YearSelectedBorderColor}"/>
+            </Grid>
+        </Frame>
 
 
         <!-- ListView -->
-        <syncfusionList:SfListView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Margin="0"
+        <Frame Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Margin="5,0,5,0" Padding="0">
+        <syncfusionList:SfListView Margin="0"
                                    x:Name="listView"
                                    ItemsSource="{Binding WeightList}"
                                    AutoFitMode="Height"
@@ -198,6 +210,7 @@
                 </DataTemplate>
             </syncfusionList:SfListView.ItemTemplate>
         </syncfusionList:SfListView>
+        </Frame>
 
 
 

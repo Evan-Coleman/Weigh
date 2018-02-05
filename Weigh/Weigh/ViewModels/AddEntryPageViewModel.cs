@@ -344,17 +344,17 @@ namespace Weigh.ViewModels
                 Settings.InitialWeightDate = editedWeightEntry.WeighDate.LocalDateTime;
             }
 
+            await App.Database.SaveWeightAsync(editedWeightEntry);
 
             // Case: Edit first weight and move it forward
             if (selectedItemIndex == dentries.Count)
             {
                 WeightEntry firstWeightEntry = await App.Database.GetFirstWeightasync();
-
+                firstWeightEntry.WeightDelta = 0;
+                await App.Database.SaveWeightAsync(firstWeightEntry);
                 Settings.InitialWeight = firstWeightEntry.Weight;
                 Settings.InitialWeightDate = firstWeightEntry.WeighDate.UtcDateTime;
             }
-
-            await App.Database.SaveWeightAsync(editedWeightEntry);
 
             _ea.GetEvent<AddWeightEvent>().Publish();
             await NavigationService.GoBackAsync();

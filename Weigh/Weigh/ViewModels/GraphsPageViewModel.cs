@@ -38,10 +38,8 @@ namespace Weigh.ViewModels
             ShowYearCommand = new DelegateCommand(ShowYear);
             ItemTappedCommand = new DelegateCommand<SfListView>(HandleItemTapped);
 
-            WeekSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             MaxChartDate = DateTime.Now;
-            MinChartDate = DateTime.Now.AddDays(-7);
-            CurrentlySelectedGraphTimeline = "week";
+            ShowWeek();
 
             _ea.GetEvent<AddWeightEvent>().Subscribe(HandleNewWeightEntry);
         }
@@ -115,7 +113,13 @@ namespace Weigh.ViewModels
 
         private void ShowWeek()
         {
-            MinChartDate = DateTime.Now.AddDays(-7);
+            MinChartDate = DateTime.Now;
+            MaxChartDate = DateTime.Now.AddDays(-7);
+            if (MaxChartDate < Settings.LastWeighDate)
+            {
+                MaxChartDate = Settings.LastWeighDate.AddDays(1);
+                MinChartDate = MaxChartDate.AddDays(-7);
+            }
             WeekSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             MonthSelectedBorderColor = Color.Default;
             YearSelectedBorderColor = Color.Default;
@@ -124,10 +128,12 @@ namespace Weigh.ViewModels
 
         private void ShowMonth()
         {
-            MinChartDate = DateTime.Now.AddDays(-31);
-            if (MinChartDate < Settings.InitialWeightDate)
+            MinChartDate = DateTime.Now;
+            MaxChartDate = DateTime.Now.AddDays(-31);
+            if (MaxChartDate < Settings.LastWeighDate)
             {
-                MinChartDate = Settings.InitialWeightDate.AddDays(-1);
+                MaxChartDate = Settings.LastWeighDate.AddDays(2);
+                MinChartDate = MaxChartDate.AddDays(-31);
             }
             WeekSelectedBorderColor = Color.Default;
             MonthSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
@@ -137,10 +143,12 @@ namespace Weigh.ViewModels
 
         private void ShowYear()
         {
-            MinChartDate = DateTime.Now.AddDays(-365);
-            if (MinChartDate < Settings.InitialWeightDate)
+            MinChartDate = DateTime.Now;
+            MaxChartDate = DateTime.Now.AddDays(-365);
+            if (MaxChartDate < Settings.LastWeighDate)
             {
-                MinChartDate = Settings.InitialWeightDate.AddDays(-1);
+                MaxChartDate = Settings.LastWeighDate.AddDays(15);
+                MinChartDate = MaxChartDate.AddDays(-365);
             }
             WeekSelectedBorderColor = Color.Default;
             MonthSelectedBorderColor = Color.Default;
@@ -170,10 +178,7 @@ namespace Weigh.ViewModels
             DataFromDatabase = DataFromDatabase.OrderByDescending(x => x.WeighDate.LocalDateTime).ToList();
             WeightList = DataFromDatabase.ToObservableCollection();
 
-            WeekSelectedBorderColor = (Color)Application.Current.Resources["ButtonSelected"];
-            MonthSelectedBorderColor = Color.Default;
-            YearSelectedBorderColor = Color.Default;
-            CurrentlySelectedGraphTimeline = "week";
+            ShowWeek();
         }
 
         public override void OnNavigatingTo(NavigationParameters parameters)
