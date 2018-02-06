@@ -103,6 +103,14 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _maxChartDate, value);
         }
 
+        private bool _waistSizeEnabled;
+
+        public bool WaistSizeEnabled
+        {
+            get => _waistSizeEnabled;
+            set => SetProperty(ref _waistSizeEnabled, value);
+        }
+
         public string CurrentlySelectedGraphTimeline { get; set; }
 
         public List<WeightEntry> DataFromDatabase { get; set; }
@@ -113,12 +121,17 @@ namespace Weigh.ViewModels
 
         private void ShowWeek()
         {
+            WaistSizeEnabled = Settings.WaistSizeEnabled;
             MaxChartDate = DateTime.Now;
             MinChartDate = DateTime.Now.AddDays(-7);
             if (MaxChartDate > Settings.LastWeighDate)
             {
                 MaxChartDate = Settings.LastWeighDate.AddDays(0);
                 MinChartDate = MaxChartDate.AddDays(-7);
+            }
+            if (MinChartDate < Settings.InitialWeightDate)
+            {
+                MinChartDate = Settings.InitialWeightDate.AddDays(-2);
             }
             WeekSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             MonthSelectedBorderColor = Color.Default;
@@ -128,6 +141,8 @@ namespace Weigh.ViewModels
 
         private void ShowMonth()
         {
+            // TODO: FIGURE OUT LISTVIEW WAIST SHOWING
+            WaistSizeEnabled = Settings.WaistSizeEnabled;
             MaxChartDate = DateTime.Now;
             MinChartDate = DateTime.Now.AddDays(-31);
             if (MaxChartDate > Settings.LastWeighDate)
@@ -147,6 +162,7 @@ namespace Weigh.ViewModels
 
         private void ShowYear()
         {
+            WaistSizeEnabled = Settings.WaistSizeEnabled;
             MaxChartDate = DateTime.Now;
             MinChartDate = DateTime.Now.AddDays(-365);
             if (MaxChartDate > Settings.LastWeighDate)
