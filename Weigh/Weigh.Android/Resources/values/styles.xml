@@ -29,6 +29,12 @@
     <item name="colorAccent">#FF4081</item>
   </style>
 
+  <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+
+  <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+    <item name="colorAccent">@color/secondaryColor</item>
+  </style>
+
   <style name="SplashTheme" parent="SplashTheme.Base">
     <!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette-->
     <!-- colorPrimary is used for the default action bar background -->

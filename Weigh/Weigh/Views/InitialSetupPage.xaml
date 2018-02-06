@@ -53,7 +53,7 @@
 
 
         <!-- Units -->
-        <Label Grid.Column="0" Grid.Row="0"
+        <Label Grid.Column="0" Grid.Row="0" Margin="5,0,0,0"
        Text="{localization:Translate UnitsLabel}" />
         <StackLayout Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"
             Orientation="Horizontal">
@@ -71,14 +71,14 @@
 
 
         <!-- Age -->
-        <Label Grid.Column="0" Grid.Row="1"
+        <Label Grid.Column="0" Grid.Row="1" Margin="5,0,0,0"
        Text="{localization:Translate AgeLabel}" />
         <DatePicker Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Date="{Binding BirthDate}"
                     MinimumDate="{Binding BirthDateMinDate.LocalDateTime}"
                     MaximumDate="{Binding BirthDateMaxDate.LocalDateTime}"/>
 
         <!-- Height -->
-        <Label Grid.Column="0" Grid.Row="2"
+        <Label Grid.Column="0" Grid.Row="2" Margin="5,0,0,0"
        Text="{localization:Translate HeightLabel}" />
         <Entry Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"
             Text="{Binding SettingValsValidated.HeightMajor, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[HeightMajor]}"
@@ -121,7 +121,7 @@
                IsVisible="{Binding SettingValsValidated.IsDirty[HeightMinor]}"/>
 
         <!-- Weight -->
-        <Label Grid.Column="0" Grid.Row="4"
+        <Label Grid.Column="0" Grid.Row="4" Margin="5,0,0,0"
                Text="{localization:Translate WeightEntryLabel}" />
         <Entry Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3"
             Text="{Binding SettingValsValidated.Weight, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[Weight]}"
@@ -147,7 +147,7 @@
 
 
         <!-- Waist Size -->
-        <Label Grid.Column="0" Grid.Row="6"
+        <Label Grid.Column="0" Grid.Row="6" Margin="5,0,0,0"
        Text="{localization:Translate WaistSizeEntryLabel}" />
         <Switch Grid.Column="1" Grid.Row="6"
             IsToggled="{Binding SettingVals.WaistSizeEnabled}" x:Name="EnableWaistSizeSwitch" />
@@ -177,7 +177,7 @@
 
 
         <!-- Level of Activity -->
-        <Label Grid.Column="0" Grid.Row="8"
+        <Label Grid.Column="0" Grid.Row="8" Margin="5,0,0,0"
        Text="{localization:Translate LevelOfActivityLabel}" />
         <Picker Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="3"
             ItemsSource="{Binding PickerSource}"
@@ -187,7 +187,7 @@
                 WidthRequest="150"/>
 
         <!-- Sex -->
-        <Label Grid.Column="0" Grid.Row="9"
+        <Label Grid.Column="0" Grid.Row="9" Margin="5,0,0,0"
        Text="{localization:Translate SexLabel}" />
         <StackLayout Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="3"
             Orientation="Horizontal">
@@ -205,7 +205,7 @@
 
 
         <!-- Goal Weight -->
-        <Label Grid.Column="0" Grid.Row="10"
+        <Label Grid.Column="0" Grid.Row="10" Margin="5,0,0,0"
        Text="{localization:Translate GoalWeightEntryLabel}" />
         <Entry Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="3"
             Text="{Binding SettingValsValidated.GoalWeight, Mode=TwoWay}" validation:Validation.Errors="{Binding SettingValsValidated.Errors[GoalWeight]}"
@@ -231,7 +231,7 @@
 
 
         <!-- Goal Date -->
-        <Label Grid.Column="0" Grid.Row="12"
+        <Label Grid.Column="0" Grid.Row="12" Margin="5,0,0,0"
        Text="{localization:Translate GoalDateEntryLabel}" />
         <DatePicker Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="3"
             Date="{Binding GoalDate}"
@@ -239,7 +239,7 @@
                     MaximumDate="{Binding MaxGoalDate.LocalDateTime}"></DatePicker>
 
         <!-- Notes Section -->
-        <Label Grid.Column="0" Grid.Row="13"
+        <Label Grid.Column="0" Grid.Row="13" Margin="5,0,0,0"
                Text="{localization:Translate NotesLabel}" />
         <Editor Grid.Column="1" Grid.Row="13" Grid.ColumnSpan="3"
                 Text="{Binding NoteEntry}">
