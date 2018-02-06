@@ -295,6 +295,7 @@ namespace Weigh.ViewModels
                 SettingVals.MinDate = DateTimeOffset.Now.AddDays(10);
                 BirthDate = SettingVals.BirthDate.LocalDateTime;
                 GoalDate = SettingVals.GoalDate.LocalDateTime;
+                SettingVals.PickerSelectedItem = 1;
             }
         }
         #endregion

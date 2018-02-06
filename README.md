@@ -17,9 +17,9 @@ TODO:
 		(General) Optimise for more screen DPIs
 		(GraphPage) Add area colors for bmi
 		(MainPage) Continue UI revamp, possibly change to BMI circular gague		
-		(AddEntryPage) Add a stepper for weight and waist size	
 
 	Done
+		(AddEntryPage) Add a stepper for weight and waist size	
 		(General) Navigation breaks pickerselected item on Settingspage (initial setup -> main page nav)
 		(GraphPage) Spice up Listview		
 		(GraphPage) Add ability to click listview items

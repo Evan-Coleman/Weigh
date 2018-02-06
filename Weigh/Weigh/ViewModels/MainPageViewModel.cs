@@ -187,7 +187,7 @@ namespace Weigh.ViewModels
 
             var TotalDaysToGo = (SettingVals.GoalDate.LocalDateTime - SettingVals.InitialWeighDate.LocalDateTime).TotalDays;
             var TimeProgressToGoal = TotalDaysToGo - SettingVals.TimeLeftToGoal;
-            CurrentDay = Convert.ToInt32(TimeProgressToGoal);
+            CurrentDay = Convert.ToInt32(Math.Ceiling(TimeProgressToGoal));
             TimeProgress = Math.Floor(TimeProgressToGoal / TotalDaysToGo * 100);
             TimeProgress = Math.Min(100, TimeProgress);
             TimeProgress = Math.Max(0, TimeProgress);
