@@ -33,7 +33,7 @@ namespace Weigh
             get
             {
                 if (_database == null)
-                    _database = new WeightDatabase(DependencyService.Get<IFileHelper>().GetPath("TodoSQLite.db3"));
+                    _database = new WeightDatabase(DependencyService.Get<IFileHelper>().GetPath("WeighSQLite.db3"));
                 return _database;
             }
         }

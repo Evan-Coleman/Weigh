@@ -144,7 +144,7 @@
                 <Label Grid.Row="1"
                        HorizontalOptions="Center"
                        FontSize="10"
-                       Text="{Binding SettingVals.GoalDate, StringFormat='{0:MM/dd/yyyy}'}" />
+                       Text="{Binding SettingVals.GoalDate.LocalDateTime, StringFormat='{0:MM/dd/yyyy}'}" />
 
                 <Label Grid.Column="0" Grid.Row="2"
                        VerticalOptions="Center"

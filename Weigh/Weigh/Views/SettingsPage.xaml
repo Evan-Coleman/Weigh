@@ -179,7 +179,7 @@
         <Label Grid.Column="0" Grid.Row="8"
        Text="{localization:Translate GoalDateEntryLabel}" />
         <DatePicker Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="3"
-            Date="{Binding GoalDate}"
+            Date="{Binding GoalDate, Mode=TwoWay}"
                     MinimumDate="{Binding SettingVals.MinDate.LocalDateTime}"
                     MaximumDate="{Binding MaxGoalDate.LocalDateTime}"></DatePicker>
 

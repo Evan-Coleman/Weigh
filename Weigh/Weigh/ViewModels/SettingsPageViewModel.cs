@@ -249,7 +249,7 @@ namespace Weigh.ViewModels
                 Settings.Age = SettingVals.Age;
                 SettingVals.ValidateGoal();
                 SettingVals.SaveSettingValsToDevice();
-
+                GoalDate = SettingVals.GoalDate.LocalDateTime;
                 _ea.GetEvent<UpdateSetupInfoEvent>().Publish(SettingVals);
 
                 UserDialogs.Instance.Toast(new ToastConfig(AppResources.SavedToast)
