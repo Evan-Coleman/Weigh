@@ -65,6 +65,17 @@ namespace Weigh.Data
             return _database.DeleteAsync(weight);
         }
 
+        public async Task<int> DeleteAllWeightsAsync()
+        {
+            var allWeights = await GetWeightsAsync();
+            foreach (var weight in allWeights)
+            {
+                await _database.DeleteAsync(weight);
+            }
+
+            return 1;
+        }
+
         #endregion
     }
 }

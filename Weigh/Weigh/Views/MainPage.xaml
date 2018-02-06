@@ -27,6 +27,7 @@
             <Grid ColumnSpacing="0" RowSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20" />
+                    <RowDefinition Height="15" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="20" />
                 </Grid.RowDefinitions>
@@ -35,15 +36,20 @@
                        Text="{localization:Translate GoalWeightSectionHeaderLabel}" />
 
                 <Label Grid.Row="1"
+                       HorizontalOptions="Center"
+                       FontSize="10"
+                       Text="{Binding SettingVals.GoalWeight}" />
+
+                <Label Grid.Row="2"
                        VerticalOptions="Center"
                        HorizontalOptions="Center"
                        Text="{Binding WeightProgress, StringFormat={localization:Translate PercentLabel}}" />
-                <microcharts:ChartView Grid.Row="1"
+                <microcharts:ChartView Grid.Row="2"
                                Chart="{Binding WeightLeftChart}"/>
 
-            <Label Grid.Row="2"
+            <Label Grid.Row="3"
                        HorizontalOptions="Center"
-                   Margin="0,-10,0,0">
+                   Margin="0,-3,0,0">
                 <Label.Triggers>
                     <DataTrigger TargetType="Label"
                                      Binding="{Binding SettingVals.Units}"
@@ -127,6 +133,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20" />
+                    <RowDefinition Height="15" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="20" />
                 </Grid.RowDefinitions>
@@ -134,17 +141,22 @@
                        HorizontalOptions="Center"
                        Text="{localization:Translate GoalDateSectionHeaderLabel}" />
 
-                <Label Grid.Column="0" Grid.Row="1"
+                <Label Grid.Row="1"
+                       HorizontalOptions="Center"
+                       FontSize="10"
+                       Text="{Binding SettingVals.GoalDate, StringFormat='{0:MM/dd/yyyy}'}" />
+
+                <Label Grid.Column="0" Grid.Row="2"
                        VerticalOptions="Center"
                        HorizontalOptions="Center"
                        Text="{Binding TimeProgress, StringFormat={localization:Translate PercentLabel}}" />
-                <microcharts:ChartView Grid.Row="1"
+                <microcharts:ChartView Grid.Row="2"
                                BackgroundColor="Transparent"
                                Chart="{Binding DaysLeftChart}"/>
 
-                <Label Grid.Column="0" Grid.Row="2"
+                <Label Grid.Column="0" Grid.Row="3"
                        HorizontalOptions="Center"
-                       Margin="0,-10,0,0"
+                       Margin="0,-3,0,0"
                        Text="{Binding SettingVals.TimeLeftToGoal, StringFormat={localization:Translate DaysToGoLabel}}" />
             </Grid>
         </Frame>

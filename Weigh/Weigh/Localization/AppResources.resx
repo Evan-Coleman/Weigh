@@ -476,4 +476,12 @@
   <data name="popup_goal_too_soon_label" xml:space="preserve">
     <value>Current Goal would take too long, adjusting to 2 years from now.</value>
   </data>
+  <data name="settings_page_delete_all_button" xml:space="preserve">
+    <value>Delete all entries and start over</value>
+    <comment>(SettingsPage)</comment>
+  </data>
+  <data name="settings_page_delete_all_confirmation_button" xml:space="preserve">
+    <value>Are you sure? Must click within {0} seconds</value>
+    <comment>(SettingsPage)</comment>
+  </data>
 </root>

@@ -628,6 +628,24 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete all entries and start over.
+        /// </summary>
+        internal static string settings_page_delete_all_button {
+            get {
+                return ResourceManager.GetString("settings_page_delete_all_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure? Must click within {0} seconds.
+        /// </summary>
+        internal static string settings_page_delete_all_confirmation_button {
+            get {
+                return ResourceManager.GetString("settings_page_delete_all_confirmation_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Setup.
         /// </summary>
         internal static string SettingsPageTitle {
