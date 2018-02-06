@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Acr.UserDialogs;
 using Prism.Commands;
 using Prism.Events;
@@ -33,13 +34,15 @@ namespace Weigh.ViewModels
             SettingValsValidated = new SettingValsValidated();
 
             SaveInfoCommand = new DelegateCommand(SaveInfoAsync);
+            DeleteAllCommand = new DelegateCommand(DeleteAll);
             SelectImperialCommand = new DelegateCommand(SelectImperial);
             SelectMetricCommand = new DelegateCommand(SelectMetric);
             SelectMaleCommand = new DelegateCommand(SelectMale);
             SelectFemaleCommand = new DelegateCommand(SelectFemale);
 
             _ea.GetEvent<SendSetupInfoToSettingsEvent>().Subscribe(HandleNewSetupInfo);
-            
+
+            DeleteAllButton = AppResources.settings_page_delete_all_button;
             BirthDateMinDate = DateTimeOffset.Now.AddYears(-150);
             BirthDateMaxDate = DateTimeOffset.Now.AddYears(-1);
             ImperialSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
@@ -55,6 +58,8 @@ namespace Weigh.ViewModels
             };
             MaleText = "\uf183  " + AppResources.MaleGenderSwitchLabel;
             FemaleText = "\uf182  " + AppResources.FemaleGenderSwitchLabel;
+
+            _timelft = 5;
         }
 
         #endregion
@@ -62,6 +67,8 @@ namespace Weigh.ViewModels
         #region Fields
 
         private readonly IEventAggregator _ea;
+
+        private int _timelft;
 
 
         private SettingVals _settingVals;
@@ -85,7 +92,7 @@ namespace Weigh.ViewModels
         public DelegateCommand SelectMetricCommand { get; set; }
         public DelegateCommand SelectMaleCommand { get; set; }
         public DelegateCommand SelectFemaleCommand { get; set; }
-
+        public DelegateCommand DeleteAllCommand { get; set; }
 
         private ObservableCollection<string> _pickerSource;
 
@@ -181,6 +188,13 @@ namespace Weigh.ViewModels
             set => SetProperty(ref _femaleText, value);
         }
 
+        private string _deleteAllButton;
+        public string DeleteAllButton
+        {
+            get => _deleteAllButton;
+            set => SetProperty(ref _deleteAllButton, value);
+        }
+
         private int _pickerSelectedIndex;
         public int PickerSelectedIndex
         {
@@ -227,11 +241,12 @@ namespace Weigh.ViewModels
         {
             SettingVals.BirthDate = BirthDate;
             SettingVals.GoalDate = GoalDate;
-            // TODO: check this out and see what needs changing
+            SettingValsValidated.Age = Convert.ToInt32(Math.Floor((DateTimeOffset.Now - SettingVals.BirthDate).TotalDays / 365)).ToString();
             if (SettingValsValidated.ValidateProperties())
             {
                 SettingVals.InitializeFromValidated(SettingValsValidated);
                 SettingVals.PickerSelectedItem = PickerSelectedIndex;
+                Settings.Age = SettingVals.Age;
                 SettingVals.ValidateGoal();
                 SettingVals.SaveSettingValsToDevice();
 
@@ -239,6 +254,39 @@ namespace Weigh.ViewModels
 
                 UserDialogs.Instance.Toast(new ToastConfig(AppResources.SavedToast)
                                                           .SetPosition(ToastPosition.Top));
+            }
+        }
+
+        private async void DeleteAll()
+        {
+            TimeSpan timelefTimeSpan = new TimeSpan(0,0,5);
+
+            if (_timelft != 5)
+            {
+                await App.Database.DeleteAllWeightsAsync();
+                await NavigationService.NavigateAsync("/InitialSetupPage");
+                Settings.FirstUse = "FALSE";
+                return;
+            }
+            if (DeleteAllButton == AppResources.settings_page_delete_all_button)
+            {
+                //_buttonTimerStopwatch = new Stopwatch();
+                //_buttonTimerStopwatch.Start();
+                DeleteAllButton = string.Format(AppResources.settings_page_delete_all_confirmation_button, _timelft);
+
+                Device.StartTimer(new TimeSpan(0,0,1), () =>
+                {
+                    if (timelefTimeSpan != null && _timelft > 0)
+                    {
+                        timelefTimeSpan = timelefTimeSpan.Subtract(TimeSpan.FromSeconds(1));
+                        _timelft = timelefTimeSpan.Seconds;
+                        DeleteAllButton = string.Format(AppResources.settings_page_delete_all_confirmation_button, _timelft);
+                        return true;
+                    }
+                    _timelft = 5;
+                    DeleteAllButton = AppResources.settings_page_delete_all_button;
+                    return false;
+                });
             }
         }
 

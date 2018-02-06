@@ -113,11 +113,11 @@ namespace Weigh.ViewModels
 
         private void ShowWeek()
         {
-            MinChartDate = DateTime.Now;
-            MaxChartDate = DateTime.Now.AddDays(-7);
-            if (MaxChartDate < Settings.LastWeighDate)
+            MaxChartDate = DateTime.Now;
+            MinChartDate = DateTime.Now.AddDays(-7);
+            if (MaxChartDate > Settings.LastWeighDate)
             {
-                MaxChartDate = Settings.LastWeighDate.AddDays(1);
+                MaxChartDate = Settings.LastWeighDate.AddDays(0);
                 MinChartDate = MaxChartDate.AddDays(-7);
             }
             WeekSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
@@ -128,12 +128,16 @@ namespace Weigh.ViewModels
 
         private void ShowMonth()
         {
-            MinChartDate = DateTime.Now;
-            MaxChartDate = DateTime.Now.AddDays(-31);
-            if (MaxChartDate < Settings.LastWeighDate)
+            MaxChartDate = DateTime.Now;
+            MinChartDate = DateTime.Now.AddDays(-31);
+            if (MaxChartDate > Settings.LastWeighDate)
             {
                 MaxChartDate = Settings.LastWeighDate.AddDays(2);
                 MinChartDate = MaxChartDate.AddDays(-31);
+            }
+            if (MinChartDate < Settings.InitialWeightDate)
+            {
+                MinChartDate = Settings.InitialWeightDate.AddDays(-10);
             }
             WeekSelectedBorderColor = Color.Default;
             MonthSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
@@ -143,12 +147,16 @@ namespace Weigh.ViewModels
 
         private void ShowYear()
         {
-            MinChartDate = DateTime.Now;
-            MaxChartDate = DateTime.Now.AddDays(-365);
-            if (MaxChartDate < Settings.LastWeighDate)
+            MaxChartDate = DateTime.Now;
+            MinChartDate = DateTime.Now.AddDays(-365);
+            if (MaxChartDate > Settings.LastWeighDate)
             {
                 MaxChartDate = Settings.LastWeighDate.AddDays(15);
                 MinChartDate = MaxChartDate.AddDays(-365);
+            }
+            if (MinChartDate < Settings.InitialWeightDate)
+            {
+                MinChartDate = Settings.InitialWeightDate.AddDays(-20);
             }
             WeekSelectedBorderColor = Color.Default;
             MonthSelectedBorderColor = Color.Default;
