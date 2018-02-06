@@ -28,6 +28,8 @@ namespace Weigh.ViewModels
 
             AddWeightToListCommand = new DelegateCommand(AddWeightToList);
             DeleteEntryCommand = new DelegateCommand(HandleDeleteEntry);
+            AddOneToWeightCommand = new DelegateCommand(HandleAddOneToWeight);
+            SubtractOneToWeightCommand = new DelegateCommand(HandleSubtractOneToWeight);
 
             DeleteAction = false;
             DeleteActionEnabled = false;
@@ -79,6 +81,22 @@ namespace Weigh.ViewModels
         {
             get => _deleteEntryCommand;
             set => SetProperty(ref _deleteEntryCommand, value);
+        }
+
+        private DelegateCommand _addOneToWeightCommand;
+
+        public DelegateCommand AddOneToWeightCommand
+        {
+            get => _addOneToWeightCommand;
+            set => SetProperty(ref _addOneToWeightCommand, value);
+        }
+
+        private DelegateCommand _subtractOneToWeightCommand;
+
+        public DelegateCommand SubtractOneToWeightCommand
+        {
+            get => _subtractOneToWeightCommand;
+            set => SetProperty(ref _subtractOneToWeightCommand, value);
         }
 
         private ObservableCollection<string> _pickerSource;
@@ -172,6 +190,16 @@ namespace Weigh.ViewModels
         #endregion
 
         #region Methods
+
+        private void HandleAddOneToWeight()
+        {
+            SettingValsValidated.Weight = (Convert.ToInt32(SettingValsValidated.Weight) + 1).ToString();
+        }
+
+        private void HandleSubtractOneToWeight()
+        {
+            SettingValsValidated.Weight = (Convert.ToInt32(SettingValsValidated.Weight) - 1).ToString();
+        }
 
         private async void HandleDeleteEntry()
         {
@@ -377,7 +405,7 @@ namespace Weigh.ViewModels
                 return;
             }
 
-            NewDate = EntryDate;
+            NewDate = EntryDate + DateTime.Now.TimeOfDay;
 
             SettingVals.InitializeFromValidated(SettingValsValidated);
             double newDelta = 0.0;
