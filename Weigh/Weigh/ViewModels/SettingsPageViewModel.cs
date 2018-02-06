@@ -264,7 +264,10 @@ namespace Weigh.ViewModels
             if (_timelft != 5)
             {
                 await App.Database.DeleteAllWeightsAsync();
-                await NavigationService.NavigateAsync("/InitialSetupPage");
+                NavigationParameters p = new NavigationParameters();
+                SettingVals.InitializeFromValidated(SettingValsValidated);
+                p.Add("SettingVals", SettingVals);
+                await NavigationService.NavigateAsync("/InitialSetupPage", p);
                 Settings.FirstUse = "FALSE";
                 return;
             }

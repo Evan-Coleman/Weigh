@@ -286,6 +286,17 @@ namespace Weigh.ViewModels
             }
         }
 
-#endregion
+        public override void OnNavigatingTo(NavigationParameters parameters)
+        {
+            if (parameters.ContainsKey("SettingVals"))
+            {
+                SettingVals = (SettingVals)parameters["SettingVals"];
+                SettingValsValidated.InitializeFromSettings(SettingVals);
+                SettingVals.MinDate = DateTimeOffset.Now.AddDays(10);
+                BirthDate = SettingVals.BirthDate.LocalDateTime;
+                GoalDate = SettingVals.GoalDate.LocalDateTime;
+            }
+        }
+        #endregion
     }
 }
