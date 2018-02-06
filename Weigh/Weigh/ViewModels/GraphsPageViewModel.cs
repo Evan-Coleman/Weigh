@@ -209,6 +209,7 @@ namespace Weigh.ViewModels
         {
             if (parameters.ContainsKey("AllWeightEntriesSorted"))
             {
+                WaistSizeEnabled = Settings.WaistSizeEnabled;
                 DataFromDatabase = (List<WeightEntry>) parameters["AllWeightEntriesSorted"];
                 WeightList = DataFromDatabase.ToObservableCollection();
             }

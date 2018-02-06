@@ -146,8 +146,7 @@
 
                             <syncfusionList:SfLabel Grid.Column="2"  Grid.Row="0"
                                                 FontSize="10"
-                                                Text="{localization:Translate list_view_header_waist_label}"
-                                                    IsVisible="{Binding WaistSizeEnabled}"/>
+                                                Text="{localization:Translate list_view_header_waist_label}"/>
 
                             <syncfusionList:SfLabel Grid.Column="3"  Grid.Row="0"
                                                 FontSize="10"
@@ -191,8 +190,7 @@
 
                         <syncfusionList:SfLabel Grid.Column="2" Grid.Row="0" Grid.RowSpan="3"
                                                 FontSize="25"
-                                                Text="{Binding Path=WaistSize, StringFormat='{0:0}'}"
-                                                IsVisible="{Binding WaistSizeEnabled}"/>
+                                                Text="{Binding Path=WaistSize, StringFormat='{0:0}'}"/>
 
 
                         <syncfusionList:SfLabel Grid.Column="3" Grid.Row="0"

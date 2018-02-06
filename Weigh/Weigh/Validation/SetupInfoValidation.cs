@@ -75,15 +75,23 @@ namespace Weigh.Validation
 
         public static ValidationResult WaistSizeValidation(string waistSize)
         {
-            var WaistSize = Convert.ToDouble(waistSize);
-
-            // Perform validation logic here and set isValid to true or false.
-            if (Settings.WaistSizeEnabled)
+            if (waistSize != "")
             {
-                if (waistSize.Length < 1 || waistSize.Length > 5)
-                    return new ValidationResult(AppResources.WaistLengthValidationErrorMessage);
-                if (WaistSize > 200 || WaistSize < 15)
-                    return new ValidationResult(AppResources.WaistValueValidationErrorMessage);
+                var WaistSize = Convert.ToDouble(waistSize);
+                // Perform validation logic here and set isValid to true or false.
+                if (Settings.WaistSizeEnabled)
+                {
+                    if (waistSize.Length < 1 || waistSize.Length > 5)
+                        return new ValidationResult(AppResources.WaistLengthValidationErrorMessage);
+                    if (WaistSize > 200 || WaistSize < 15)
+                        return new ValidationResult(AppResources.WaistValueValidationErrorMessage);
+                }
+            }
+
+            if (waistSize == "" && Settings.WaistSizeEnabled == true)
+            {
+                waistSize = "0";
+                return new ValidationResult(AppResources.WaistLengthValidationErrorMessage);
             }
 
             return ValidationResult.Success;
