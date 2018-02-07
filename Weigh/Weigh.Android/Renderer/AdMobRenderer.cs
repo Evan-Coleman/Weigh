@@ -35,8 +35,8 @@ namespace Weigh.Droid.Renderers
                     AdSize = AdSize.SmartBanner,
 
                     // DEBUG CHANGE!
-                    AdUnitId = PrivateKeys.AdmobBannerTestId
-                    //AdUnitId = PrivateKeys.AdmobBannerId
+                    //AdUnitId = PrivateKeys.AdmobBannerTestId
+                    AdUnitId = PrivateKeys.AdmobBannerId
 
 
                 };
