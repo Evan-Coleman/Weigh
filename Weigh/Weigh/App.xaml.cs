@@ -28,15 +28,8 @@ namespace Weigh
         {
         }
 
-        public static WeightDatabase Database
-        {
-            get
-            {
-                if (_database == null)
-                    _database = new WeightDatabase(DependencyService.Get<IFileHelper>().GetPath("WeighSQLite.db3"));
-                return _database;
-            }
-        }
+        public static WeightDatabase Database => _database ?? (_database =
+                                                     new WeightDatabase(DependencyService.Get<IFileHelper>().GetPath("WeighSQLite.db3")));
 
         protected override async void OnInitialized()
         {
