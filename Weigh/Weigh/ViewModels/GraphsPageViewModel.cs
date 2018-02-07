@@ -122,16 +122,16 @@ namespace Weigh.ViewModels
         private void ShowWeek()
         {
             WaistSizeEnabled = Settings.WaistSizeEnabled;
-            MaxChartDate = DateTime.Now;
+            MaxChartDate = DateTime.Now.AddDays(0.5);
             MinChartDate = DateTime.Now.AddDays(-7);
             if (MaxChartDate > Settings.LastWeighDate)
             {
-                MaxChartDate = Settings.LastWeighDate.AddDays(0);
+                MaxChartDate = Settings.LastWeighDate.AddDays(0.5);
                 MinChartDate = MaxChartDate.AddDays(-7);
             }
             if (MinChartDate < Settings.InitialWeightDate)
             {
-                MinChartDate = Settings.InitialWeightDate.AddDays(-2);
+                MinChartDate = Settings.InitialWeightDate.AddDays(-1);
             }
             WeekSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
             MonthSelectedBorderColor = Color.Default;
@@ -143,16 +143,16 @@ namespace Weigh.ViewModels
         {
             // TODO: FIGURE OUT LISTVIEW WAIST SHOWING
             WaistSizeEnabled = Settings.WaistSizeEnabled;
-            MaxChartDate = DateTime.Now;
+            MaxChartDate = DateTime.Now.AddDays(1);
             MinChartDate = DateTime.Now.AddDays(-31);
             if (MaxChartDate > Settings.LastWeighDate)
             {
-                MaxChartDate = Settings.LastWeighDate.AddDays(2);
+                MaxChartDate = Settings.LastWeighDate.AddDays(1);
                 MinChartDate = MaxChartDate.AddDays(-31);
             }
             if (MinChartDate < Settings.InitialWeightDate)
             {
-                MinChartDate = Settings.InitialWeightDate.AddDays(-10);
+                MinChartDate = Settings.InitialWeightDate.AddDays(-5);
             }
             WeekSelectedBorderColor = Color.Default;
             MonthSelectedBorderColor = (Color) Application.Current.Resources["ButtonSelected"];
@@ -163,16 +163,16 @@ namespace Weigh.ViewModels
         private void ShowYear()
         {
             WaistSizeEnabled = Settings.WaistSizeEnabled;
-            MaxChartDate = DateTime.Now;
+            MaxChartDate = DateTime.Now.AddDays(1);
             MinChartDate = DateTime.Now.AddDays(-365);
             if (MaxChartDate > Settings.LastWeighDate)
             {
-                MaxChartDate = Settings.LastWeighDate.AddDays(15);
+                MaxChartDate = Settings.LastWeighDate.AddDays(5);
                 MinChartDate = MaxChartDate.AddDays(-365);
             }
             if (MinChartDate < Settings.InitialWeightDate)
             {
-                MinChartDate = Settings.InitialWeightDate.AddDays(-20);
+                MinChartDate = Settings.InitialWeightDate.AddDays(-10);
             }
             WeekSelectedBorderColor = Color.Default;
             MonthSelectedBorderColor = Color.Default;
