@@ -10,8 +10,7 @@
              xmlns:pb="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              xmlns:controls="clr-namespace:Weigh.Controls;assembly=Weigh"
              xmlns:system="clr-namespace:System;assembly=netstandard"
-             Title="{Binding Title}"
-             BackgroundColor="#E0E0E0">
+             Title="{Binding Title}">
 
     <ContentPage.Resources>
         <ResourceDictionary>

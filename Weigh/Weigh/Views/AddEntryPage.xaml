@@ -11,8 +11,7 @@
              xmlns:controls="clr-namespace:Weigh.Controls;assembly=Weigh"
              x:Class="Weigh.Views.AddEntryPage"
              x:Name="this"
-             Title="{Binding Title}"
-             BackgroundColor="#E0E0E0">
+             Title="{Binding Title}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
