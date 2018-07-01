@@ -19,7 +19,7 @@
             <RowDefinition Height=".2*" />
             <RowDefinition Height=".4*" />
             <RowDefinition Height=".1*" />
-            <RowDefinition Height="50"  />
+            <RowDefinition Height="55"  />
         </Grid.RowDefinitions>
 
         <!-- Weight Left Chart Region -->
