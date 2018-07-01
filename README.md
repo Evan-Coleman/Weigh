@@ -1,5 +1,8 @@
 # Weigh
 
+Released to Google Play Store 2/6/2018
+https://play.google.com/store/apps/details?id=com.fatdogapps.weigh
+
 Description: Simple weight loss app
 
 Important: To get Admob ads working for yourself, take PrivateKeys.Sample, and remove the .Sample from the file name and then add your personal keys.
