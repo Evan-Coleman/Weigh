@@ -31,7 +31,7 @@
             <RowDefinition Height="0.40*" />
             <RowDefinition Height="40" />
             <RowDefinition Height="0.60*" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="55" />
         </Grid.RowDefinitions>
 
 
@@ -182,11 +182,11 @@
 
                         <syncfusionList:SfLabel Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
                                                 FontSize="25"
-                                                Text="{Binding Path=Weight, StringFormat='{0:0}'}"/>
+                                                Text="{Binding Path=Weight, StringFormat='{0:##.##}'}"/>
 
                         <syncfusionList:SfLabel Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"
                                                 FontSize="25"
-                                                Text="{Binding Path=WeightDelta, StringFormat='{0:0}'}"/>
+                                                Text="{Binding Path=WeightDelta, StringFormat='{0:##.##}'}"/>
 
                         <syncfusionList:SfLabel Grid.Column="2" Grid.Row="0" Grid.RowSpan="3"
                                                 FontSize="25"

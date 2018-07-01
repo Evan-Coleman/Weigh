@@ -7,6 +7,7 @@ namespace Weigh.Models
     {
         public WeightEntry()
         {
+            Weight = -1.0;
         }
 
         public WeightEntry(double weight, DateTimeOffset date, double waistSize)

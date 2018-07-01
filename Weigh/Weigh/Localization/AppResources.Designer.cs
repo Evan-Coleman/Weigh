@@ -394,7 +394,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0:0} lb to go.
+        ///   Looks up a localized string similar to {0:##.##} lb to go.
         /// </summary>
         internal static string ImperialWeightToGoLabel {
             get {
@@ -511,7 +511,7 @@ namespace Weigh.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0:0} kg to go.
+        ///   Looks up a localized string similar to {0:##.##} kg to go.
         /// </summary>
         internal static string MetricWeightToGoLabel {
             get {

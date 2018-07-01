@@ -430,11 +430,11 @@
     <comment>(MainPage)</comment>
   </data>
   <data name="ImperialWeightToGoLabel" xml:space="preserve">
-    <value>{0:0} lb to go</value>
+    <value>{0:##.##} lb to go</value>
     <comment>(MainPage)</comment>
   </data>
   <data name="MetricWeightToGoLabel" xml:space="preserve">
-    <value>{0:0} kg to go</value>
+    <value>{0:##.##} kg to go</value>
     <comment>(MainPage)</comment>
   </data>
   <data name="EditEntryPageTitle" xml:space="preserve">

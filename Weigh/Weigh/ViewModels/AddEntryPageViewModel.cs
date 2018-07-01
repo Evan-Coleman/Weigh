@@ -260,7 +260,7 @@ namespace Weigh.ViewModels
                 Settings.LastWeight = previousWeightEntry.Weight;
             }
             // Normal delete case
-            else if (previousWeightEntry != null && nextWeightEntry != null)
+            else if (previousWeightEntry.Weight != -1.0 && nextWeightEntry.Weight != -1.0)
             {
                 nextWeightEntry.WeightDelta = nextWeightEntry.Weight - previousWeightEntry.Weight;
                 await App.Database.SaveWeightAsync(nextWeightEntry);
@@ -276,6 +276,10 @@ namespace Weigh.ViewModels
         {
             ButtonEnabled = false;
             Settings.WaistSizeEnabled = SettingVals.WaistSizeEnabled;
+            if (SettingVals.WaistSizeEnabled == false)
+            {
+                SettingValsValidated.WaistSize = "0";
+            }
             if (SettingValsValidated.WaistSize == "")
             {
                 SettingValsValidated.WaistSize = "0";
