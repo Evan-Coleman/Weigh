@@ -193,12 +193,12 @@ namespace Weigh.ViewModels
 
         private void HandleAddOneToWeight()
         {
-            SettingValsValidated.Weight = (Convert.ToInt32(SettingValsValidated.Weight) + 1).ToString();
+            SettingValsValidated.Weight = (Convert.ToDouble(SettingValsValidated.Weight) + 1).ToString();
         }
 
         private void HandleSubtractOneToWeight()
         {
-            SettingValsValidated.Weight = (Convert.ToInt32(SettingValsValidated.Weight) - 1).ToString();
+            SettingValsValidated.Weight = (Convert.ToDouble(SettingValsValidated.Weight) - 1).ToString();
         }
 
         private async void HandleDeleteEntry()
