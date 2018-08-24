@@ -262,3 +262,4 @@ __pycache__/
 /PrivateKeys.cs
 /src/Weigh/secrets.json
 /src/Weigh/Helpers/Secrets.cs
+/Weigh/Weigh/PrivateKeys.cs
