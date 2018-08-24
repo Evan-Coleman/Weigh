@@ -260,3 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 /PrivateKeys.cs
+/src/Weigh/secrets.json
+/src/Weigh/Helpers/Secrets.cs
