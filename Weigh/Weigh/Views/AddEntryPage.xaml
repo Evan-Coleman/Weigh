@@ -49,7 +49,7 @@
             <RowDefinition Height="{StaticResource GridEntryHeight}" />
             <RowDefinition Height="{StaticResource GridMultiLineEntryHeight}" />
             <RowDefinition Height="{StaticResource GridButtonHeight}" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
         <!-- Weight -->
