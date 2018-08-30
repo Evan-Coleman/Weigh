@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="com.fatdogapps.weigh" android:versionName="1.0.5" android:versionCode="14">
-	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="26" />
+	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="28" />
 	<application android:label="Weigh" android:icon="@mipmap/ic_launcher">
 		<activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" android:theme="@android:style/Theme.Translucent" />
 	</application>
