@@ -26,7 +26,7 @@ namespace Weigh.Droid
             base.OnCreate(bundle);
             MobileAds.Initialize(ApplicationContext, Weigh.PrivateKeys.AdmobAppId);
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            CachedImageRenderer.Init(enableFastRenderer: true);
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
 
 
             UserDialogs.Init(this);

@@ -27,7 +27,7 @@ namespace Weigh.ViewModels
         #endregion
 
         #region Methods
-        public void OnNavigatingTo(NavigationParameters parameters)
+        public void OnNavigatingTo(INavigationParameters parameters)
         {
             foreach (var child in Children)
             {

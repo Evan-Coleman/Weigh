@@ -44,7 +44,7 @@ namespace Weigh.ViewModels
 	        set => SetProperty(ref _allWeightEntries, value);
 	    }
 
-        public override async void OnNavigatedTo(NavigationParameters parameters)
+        public override async void OnNavigatedTo(INavigationParameters parameters)
 	    {
 	        if (Settings.FirstUse == "yes")
 	        {

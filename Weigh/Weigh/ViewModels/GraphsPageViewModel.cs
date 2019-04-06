@@ -205,7 +205,7 @@ namespace Weigh.ViewModels
             ShowWeek();
         }
 
-        public override void OnNavigatingTo(NavigationParameters parameters)
+        public override void OnNavigatingTo(INavigationParameters parameters)
         {
             if (parameters.ContainsKey("AllWeightEntriesSorted"))
             {

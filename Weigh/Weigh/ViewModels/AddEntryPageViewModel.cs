@@ -484,7 +484,7 @@ namespace Weigh.ViewModels
         ///     When we come to this page we will always want to initialize SettingVals & Validated
         /// </summary>
         /// <param name="parameters"></param>
-        public override void OnNavigatingTo(NavigationParameters parameters)
+        public override void OnNavigatingTo(INavigationParameters parameters)
         {
 
             SettingVals.InitializeSettingVals();

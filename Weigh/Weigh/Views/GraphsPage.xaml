@@ -14,7 +14,7 @@
     
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style TargetType="syncfusionList:SfLabel">
+            <Style TargetType="Label">
                 <Setter Property="FontSize" Value="{ DynamicResource BaseFontSize }"/>
                 <Setter Property="TextColor" Value="{ DynamicResource primary_text }"/>
             </Style>
@@ -136,19 +136,19 @@
                                 <RowDefinition Height="1"/>
                             </Grid.RowDefinitions>
 
-                            <syncfusionList:SfLabel Grid.Column="0" Grid.Row="0"
+                            <Label Grid.Column="0" Grid.Row="0"
                                                 FontSize="10"
                                                 Text="{localization:Translate list_view_header_weight_label}"/>
 
-                            <syncfusionList:SfLabel Grid.Column="1" Grid.Row="0"
+                            <Label Grid.Column="1" Grid.Row="0"
                                                 FontSize="10"
                                                 Text="{localization:Translate list_view_header_weight_change_label}"/>
 
-                            <syncfusionList:SfLabel Grid.Column="2"  Grid.Row="0"
+                            <Label Grid.Column="2"  Grid.Row="0"
                                                 FontSize="10"
                                                 Text="{localization:Translate list_view_header_waist_label}"/>
 
-                            <syncfusionList:SfLabel Grid.Column="3"  Grid.Row="0"
+                            <Label Grid.Column="3"  Grid.Row="0"
                                                 FontSize="10"
                                                 Text="{localization:Translate list_view_header_weigh_date_label}"/>
 
@@ -180,26 +180,26 @@
                             <RowDefinition Height="1" />
                         </Grid.RowDefinitions>
 
-                        <syncfusionList:SfLabel Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                        <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
                                                 FontSize="25"
                                                 Text="{Binding Path=Weight, StringFormat='{0:##.##}'}"/>
 
-                        <syncfusionList:SfLabel Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"
+                        <Label Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"
                                                 FontSize="25"
                                                 Text="{Binding Path=WeightDelta, StringFormat='{0:##.##}'}"/>
 
-                        <syncfusionList:SfLabel Grid.Column="2" Grid.Row="0" Grid.RowSpan="3"
+                        <Label Grid.Column="2" Grid.Row="0" Grid.RowSpan="3"
                                                 FontSize="25"
                                                 Text="{Binding Path=WaistSize, StringFormat='{0:##.##}'}"/>
 
 
-                        <syncfusionList:SfLabel Grid.Column="3" Grid.Row="0"
+                        <Label Grid.Column="3" Grid.Row="0"
                                                 FontSize="15"
                                                 Text="{Binding Path=WeighDate.LocalDateTime.DayOfWeek, StringFormat='{0}'}"/>
-                        <syncfusionList:SfLabel Grid.Column="3" Grid.Row="1"
+                        <Label Grid.Column="3" Grid.Row="1"
                                                 FontSize="15"
                                                 Text="{Binding Path=WeighDate.LocalDateTime.Date, StringFormat='{0:MMM dd}'}"/>
-                        <syncfusionList:SfLabel Grid.Column="3" Grid.Row="2"
+                        <Label Grid.Column="3" Grid.Row="2"
                                                 FontSize="15"
                                                 Text="{Binding Path=WeighDate.LocalDateTime.Year, StringFormat='{0}'}"/>
                         

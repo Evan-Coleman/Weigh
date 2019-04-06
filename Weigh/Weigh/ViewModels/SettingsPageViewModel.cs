@@ -301,7 +301,7 @@ namespace Weigh.ViewModels
             PickerSelectedIndex = SettingVals.PickerSelectedItem;
         }
 
-        public override void OnNavigatingTo(NavigationParameters parameters)
+        public override void OnNavigatingTo(INavigationParameters parameters)
         {
             if (parameters.ContainsKey("SettingVals"))
             {

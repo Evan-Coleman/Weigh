@@ -235,7 +235,7 @@ namespace Weigh.ViewModels
             InitializeCharts();
         }
 
-        public override void OnNavigatingTo(NavigationParameters parameters)
+        public override void OnNavigatingTo(INavigationParameters parameters)
         {
             /*
             SettingVals.InitializeSettingVals();
